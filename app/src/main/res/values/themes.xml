@@ -6,4 +6,46 @@
     </style>
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
+
+    <!-- Button -->
+    <style name="btStyle" parent="Widget.AppCompat.Button">
+        <item name="background">@drawable/bt_shape</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+    <!-- Button -->
+
+
+    <!-- Font -->
+    <style name="Font" parent="@android:style/TextAppearance" />
+
+    <style name="Font.black" parent="Font">
+        <item name="android:fontFamily">@font/app_font_black</item>
+    </style>
+
+    <style name="Font.bold" parent="Font">
+        <item name="android:fontFamily">@font/app_font_bold</item>
+    </style>
+
+    <style name="Font.heavy" parent="Font">
+        <item name="android:fontFamily">@font/app_font_heavy</item>
+    </style>
+
+    <style name="Font.medium" parent="Font">
+        <item name="android:fontFamily">@font/app_font_medium</item>
+    </style>
+
+    <style name="Font.regular" parent="Font">
+        <item name="android:fontFamily">@font/app_font_regular</item>
+    </style>
+
+    <style name="Font.semiBold" parent="Font">
+        <item name="android:fontFamily">@font/app_font_semibold</item>
+    </style>
+
+    <style name="Font.thin" parent="Font">
+        <item name="android:fontFamily">@font/app_font_thin</item>
+    </style>
+    <!-- Font -->
+
 </resources>

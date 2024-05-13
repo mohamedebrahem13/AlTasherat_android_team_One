@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+    <!-- light mode colors -->
+    <color name="primary">#4426F5</color>
+    <color name="secondary">#65BCF9</color>
+    <color name="accent">#8EE7AD</color>
+    <color name="text">#0E0063</color>
+
+    <color name="bg_input">#F1F4FB</color>
+    <color name="text_input">#D5D4DC</color>
+    <color name="icon_input">#D5D4DC</color>
+    <!-- light mode colors -->
 </resources>
