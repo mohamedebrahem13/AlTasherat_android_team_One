@@ -1,4 +1,4 @@
-package am.leon.solutionx.android.helpers.logging.file
+package com.solutionplus.altasherat.android.helpers.logging.file
 
 import android.os.Environment
 import android.util.Log

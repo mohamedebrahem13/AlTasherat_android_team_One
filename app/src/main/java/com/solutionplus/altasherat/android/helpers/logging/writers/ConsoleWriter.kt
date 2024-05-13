@@ -1,6 +1,6 @@
-package am.leon.solutionx.android.helpers.logging.writers
+package com.solutionplus.altasherat.android.helpers.logging.writers
 
-import am.leon.solutionx.android.helpers.logging.LogWriter
+import com.solutionplus.altasherat.android.helpers.logging.LogWriter
 
 class ConsoleWriter(private val tagKey: String, override val isDebugEnabled: Boolean) : LogWriter {
 

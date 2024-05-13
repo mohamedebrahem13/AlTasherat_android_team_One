@@ -1,8 +1,8 @@
-package am.leon.solutionx.android.helpers.logging.writers
+package com.solutionplus.altasherat.android.helpers.logging.writers
 
-import am.leon.solutionx.android.helpers.logging.LogWriter
-import am.leon.solutionx.android.helpers.logging.file.FileUtil
-import am.leon.solutionx.android.helpers.logging.file.LogType
+import com.solutionplus.altasherat.android.helpers.logging.LogWriter
+import com.solutionplus.altasherat.android.helpers.logging.file.FileUtil
+import com.solutionplus.altasherat.android.helpers.logging.file.LogType
 import android.util.Log
 import java.io.File
 

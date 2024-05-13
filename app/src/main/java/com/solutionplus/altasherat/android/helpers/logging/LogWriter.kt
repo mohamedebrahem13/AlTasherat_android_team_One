@@ -1,4 +1,4 @@
-package am.leon.solutionx.android.helpers.logging
+package com.solutionplus.altasherat.android.helpers.logging
 
 interface LogWriter {
     val isDebugEnabled: Boolean

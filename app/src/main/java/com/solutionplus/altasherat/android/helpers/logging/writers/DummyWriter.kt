@@ -1,6 +1,6 @@
-package am.leon.solutionx.android.helpers.logging.writers
+package com.solutionplus.altasherat.android.helpers.logging.writers
 
-import am.leon.solutionx.android.helpers.logging.LogWriter
+import com.solutionplus.altasherat.android.helpers.logging.LogWriter
 
 /**
  * Do not writes anything
