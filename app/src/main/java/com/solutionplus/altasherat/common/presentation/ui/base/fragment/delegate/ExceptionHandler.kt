@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.common.presentation.ui
+package com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate
 
 import android.content.Context
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
