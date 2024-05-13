@@ -1,10 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
     namespace = "com.solutionplus.altasherat"
+    flavorDimensions += "logging"
     compileSdk = 34
 
     defaultConfig {
@@ -26,23 +29,90 @@ android {
             )
         }
     }
+
+    productFlavors {
+        create("logCat") {
+            dimension = "logging"
+        }
+
+        create("logWriter") {
+            dimension = "logging"
+        }
+
+        create("production") {
+            dimension = "logging"
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    androidComponents {
+        beforeVariants { variant ->
+            val isReleaseWithLogCatOrLogWriterFlavor = variant.buildType == "release" &&
+                    variant.productFlavors.any { it.second in listOf("logCat", "logWriter") }
+
+            val isDebugWithProductionFlavor =
+                variant.buildType == "debug" && variant.productFlavors.any { it.second == "production" }
+
+            if (isReleaseWithLogCatOrLogWriterFlavor || isDebugWithProductionFlavor) {
+                variant.enable = false
+            }
+        }
     }
 }
 
 dependencies {
 
+    // Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // Unit Test
     testImplementation(libs.junit)
+
+    // Android Test
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Kotlin Reflect
+    implementation(libs.kotlin.reflect)
+
+    // Fragment KTX
+    implementation(libs.androidx.fragment.ktx)
+
+    // Dagger Hilt
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+
+    // Gson
+    implementation(libs.converter.gson)
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // DataStore
+    implementation(libs.datastore.preferences)
+
+    // WorkManager
+    implementation(libs.work.runtime.ktx)
+    implementation(libs.hilt.work)
+    kapt(libs.hilt.compiler)
 }
