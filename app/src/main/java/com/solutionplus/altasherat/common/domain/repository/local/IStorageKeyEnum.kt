@@ -1,4 +1,5 @@
 package com.solutionplus.altasherat.common.domain.repository.local
 
-class ExampleClass {
+interface IStorageKeyEnum {
+    val keyValue: String
 }
