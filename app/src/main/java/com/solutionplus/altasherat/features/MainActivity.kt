@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun viewInit() {
-        binding.text2.text="welcome"
+        binding.textHelloWorld.text = "welcome"
     }
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
