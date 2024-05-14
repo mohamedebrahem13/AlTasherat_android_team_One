@@ -47,8 +47,6 @@ abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
 
     abstract fun viewInit()
 
-
-
     fun isInternetAvailable(): Boolean {
         return isInternetAvailable(requireContext())
     }
@@ -66,5 +64,4 @@ abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
         super.onDestroyView()
         _binding =null
     }
-
 }
