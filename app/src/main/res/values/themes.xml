@@ -7,13 +7,20 @@
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
 
-    <!-- Button -->
-    <style name="btStyle" parent="Widget.AppCompat.Button">
-        <item name="background">@drawable/bt_shape</item>
+    <!-- textView -->
+    <style name="textStyle" parent="@android:style/TextAppearance">
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">16sp</item>
     </style>
-    <!-- Button -->
+
+    <style name="textInputStyle" parent="@android:style/TextAppearance">
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/text_input</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- textView -->
 
 
     <!-- Font -->

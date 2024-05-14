@@ -9,5 +9,8 @@
     <color name="bg_input">#F1F4FB</color>
     <color name="text_input">#B2AECC</color>
     <color name="icon_input">#B2AECC</color>
+    <color name="bg_card">#1C204C</color>
+    <color name="bg">#010533</color>
+
 
 </resources>
