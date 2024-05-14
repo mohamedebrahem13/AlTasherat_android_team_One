@@ -8,7 +8,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseViewActivity<ActivityMainBinding>() {
-    
     override fun viewInit() {
         binding.text2.text="welcome"
     }
