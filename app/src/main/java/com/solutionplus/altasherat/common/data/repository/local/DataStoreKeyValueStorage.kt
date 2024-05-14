@@ -16,7 +16,6 @@ import com.solutionplus.altasherat.common.data.models.exception.AlTasheratExcept
 import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
 import com.solutionplus.altasherat.common.domain.repository.local.IStorageKeyEnum
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import java.lang.reflect.Type
 
 @Suppress("UNCHECKED_CAST")
@@ -54,11 +53,10 @@ class DataStoreKeyValueStorage(private val context: Context) : IKeyValueStorageP
         }
     }
 
-    override suspend fun <Model> hasKey(key: IStorageKeyEnum, type: Type) {
+    override suspend fun <Model> hasKey(key: IStorageKeyEnum, type: Type): Boolean {
         val preferencesKey = getPreferenceKey<Model>(key, type)
-        context.dataStore.data.map {
-            it.contains(preferencesKey)
-        }
+        val preferences = context.dataStore.data.first()
+        return preferences.contains(preferencesKey)
     }
 
     private fun <Model> getPreferenceKey(key: IStorageKeyEnum, type: Type): Preferences.Key<Model> {
