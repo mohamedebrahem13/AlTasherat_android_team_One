@@ -4,19 +4,4 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
-
-    <!-- textView -->
-    <style name="textStyle" parent="@android:style/TextAppearance">
-        <item name="textAllCaps">false</item>
-        <item name="android:textColor">@color/text</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="textInputStyle" parent="@android:style/TextAppearance">
-        <item name="textAllCaps">false</item>
-        <item name="android:textColor">@color/text_input</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-    <!-- textView -->
-
 </resources>
