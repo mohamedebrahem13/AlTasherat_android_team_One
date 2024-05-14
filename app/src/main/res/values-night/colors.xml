@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#4426F5</color>
+    <color name="secondary">#65BCF9</color>
+    <color name="accent">#8EE7AD</color>
+    <color name="text">#FFFFFF</color>
+
+    <color name="bg_input">#F1F4FB</color>
+    <color name="text_input">#B2AECC</color>
+    <color name="icon_input">#B2AECC</color>
+    <color name="bg_card">#1C204C</color>
+    <color name="bg">#010533</color>
+
+
+</resources>
