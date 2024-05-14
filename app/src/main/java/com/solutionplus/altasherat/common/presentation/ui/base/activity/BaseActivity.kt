@@ -3,15 +3,19 @@ package com.solutionplus.altasherat.common.presentation.ui.base.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.solutionplus.altasherat.common.data.models.exception.bindView
+import com.solutionplus.altasherat.android.extentions.bindView
 
-abstract class BaseViewActivity<B : ViewBinding> : AppCompatActivity() {
+abstract class BaseViewActivity<Binding : ViewBinding> : AppCompatActivity() {
 
-    protected lateinit var binding: B
-
+    private lateinit var _binding: Binding
+    protected val binding: Binding
+        get() = _binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = bindView()
+        _binding = bindView()
+        viewInit()
+        onActivityReady(savedInstanceState)
     }
     abstract fun viewInit()
+    abstract fun onActivityReady (savedInstanceState: Bundle?)
 }

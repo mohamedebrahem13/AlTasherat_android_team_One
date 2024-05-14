@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.common.data.models.exception
+package com.solutionplus.altasherat.android.extentions
 
 import android.app.Activity
 import android.view.LayoutInflater
