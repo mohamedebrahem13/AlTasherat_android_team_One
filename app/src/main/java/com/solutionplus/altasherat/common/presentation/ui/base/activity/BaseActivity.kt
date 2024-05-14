@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.solutionplus.altasherat.android.extentions.bindView
 
-abstract class BaseViewActivity<Binding : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
 
     private lateinit var _binding: Binding
     protected val binding: Binding

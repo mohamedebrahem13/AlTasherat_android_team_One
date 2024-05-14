@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<Action : ViewAction, Event : ViewEvent, State : ViewState>(
+abstract class AlTasheratViewModel<Action : ViewAction, Event : ViewEvent, State : ViewState>(
     initialState: State
-) : IBaseViewModel<Action, Event, State>, ViewModel() {
+) : IAlTasheratViewModel<Action, Event, State>, ViewModel() {
 
     private val _viewState: MutableStateFlow<State> = MutableStateFlow(initialState)
     override val viewState: StateFlow<State>

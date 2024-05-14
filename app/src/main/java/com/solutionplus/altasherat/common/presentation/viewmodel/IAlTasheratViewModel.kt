@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.StateFlow
 /**
  * Object that will subscribes to a MviView's [ViewAction]s, process it and emit a [ViewState] back.
  *
- * @param Action Top class of the [ViewAction] that the [IBaseViewModel] will be subscribing to.
- * @param State Top class of the [ViewState] the [IBaseViewModel] will be emitting.
- * @param Event Top class of the [ViewEvent] that the [IBaseViewModel] will be emitting.
+ * @param Action Top class of the [ViewAction] that the [IAlTasheratViewModel] will be subscribing to.
+ * @param State Top class of the [ViewState] the [IAlTasheratViewModel] will be emitting.
+ * @param Event Top class of the [ViewEvent] that the [IAlTasheratViewModel] will be emitting.
  */
-interface IBaseViewModel<Action : ViewAction, Event : ViewEvent, State : ViewState> {
+interface IAlTasheratViewModel<Action : ViewAction, Event : ViewEvent, State : ViewState> {
 
     val singleEvent: Flow<Event>
 
