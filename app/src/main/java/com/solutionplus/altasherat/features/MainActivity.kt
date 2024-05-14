@@ -8,13 +8,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseViewActivity<ActivityMainBinding>() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewInit()
-    }
-
+    
     override fun viewInit() {
         binding.text2.text="welcome"
+    }
+
+    override fun onActivityReady(savedInstanceState: Bundle?) {
+        logger.debug("onActivityReady")
     }
 
     companion object {
