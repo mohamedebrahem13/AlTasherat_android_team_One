@@ -9,10 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.android.extentions.bindView
-import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.DefaultResourceErrorHandlerDelegate
-import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.ExceptionHandler
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.InternetConnectionDelegate
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.InternetConnectionDelegateImpl
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +17,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
-    ExceptionHandler by DefaultResourceErrorHandlerDelegate(),
     InternetConnectionDelegate by InternetConnectionDelegateImpl()
 {
     private var _binding: Binding? = null
@@ -52,9 +48,7 @@ abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
     abstract fun viewInit()
 
 
-    fun handleException(exception: AlTasheratException) {
-        handleException(exception, requireContext())
-    }
+
     fun isInternetAvailable(): Boolean {
         return isInternetAvailable(requireContext())
     }
