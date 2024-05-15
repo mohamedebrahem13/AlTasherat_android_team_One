@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">AlTasherat</string>
-    <string name="unsupported_type">Unsupported type…</string>
+    <string name="unsupported_type" translatable="false">Unsupported type…</string>
+    <string name="hello_world" translatable="false">HelloWorld!</string>
+    <string name="skip_tv" translatable="false">Skip</string>
+
+    <string name="first_name" translatable="false">First Name</string>
+    <string name="last_name" translatable="false">Last Name</string>
+    <string name="new_account" translatable="false">New Account</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="first_name_input_hint" translatable="false">enter your First Name</string>
+    <string name="last_name_input_hint" translatable="false">enter your Second Name</string>
+    <string name="email_input_hint" translatable="false">enter your Email</string>
+    <string name="phone_input_hint" translatable="false">enter your phone number</string>
+    <string name="password_input_hint" translatable="false">enter your password</string>
+    <string name="email_text" translatable="false">Email</string>
+    <string name="phone_text" translatable="false">Phone</string>
+    <string name="password_text" translatable="false">password</string>
+    <string name="country_code_text" translatable="false">+966</string>
+    <string name="signup_text" translatable="false">Sign Up</string>
+
+
 </resources>

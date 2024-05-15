@@ -16,5 +16,6 @@
     <color name="icon_input">#D5D4DC</color>
     <color name="bg_card">#FFFFFFFF</color>
     <color name="bg">#FFFFFFFF</color>
+    <color name="stroke_input">#4426F5</color>
     <!-- light mode colors -->
 </resources>
