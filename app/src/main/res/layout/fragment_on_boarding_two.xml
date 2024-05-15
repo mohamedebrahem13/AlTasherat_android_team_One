@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".features.splash.presention.OnBoardingTwoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/text3"
         android:layout_width="229dp"
