@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class LinkDto(
     @SerializedName("url") val url: String?,
-    @SerializedName("label") val label: String,
-    @SerializedName("active") val active: Boolean
+    @SerializedName("label") val label: String?,
+    @SerializedName("active") val active: Boolean?
 )

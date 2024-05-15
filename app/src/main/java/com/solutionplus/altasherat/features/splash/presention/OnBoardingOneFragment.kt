@@ -4,8 +4,9 @@ import android.os.Bundle
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentOnBoardingOneBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OnBoardingOneFragment : BaseFragment<FragmentOnBoardingOneBinding>() {
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {

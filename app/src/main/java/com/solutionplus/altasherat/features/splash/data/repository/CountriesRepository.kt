@@ -11,7 +11,7 @@ import com.solutionplus.altasherat.features.splash.domain.repository.remote.ICou
 class CountriesRepository (private val localDataSource: ICountriesLocalDS, private val remoteDataSource: ICountriesRemoteDS,private val countryMapper: CountryMapper):ICountriesRepository{
     override suspend fun getCountries(): CountriesResponse {
         val countryResponseDto = remoteDataSource.getCountries()
-        return countryMapper.mapDtoToDomain(countryResponseDto.data)
+        return countryMapper.mapDtoToDomain(countryResponseDto.data!!)
     }
 
     override suspend fun saveCountries(countries: List<Country>){

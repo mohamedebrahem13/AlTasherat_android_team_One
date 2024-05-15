@@ -8,7 +8,7 @@ class CountriesRemoteDS (private val iNetworkProvider: INetworkProvider):ICountr
 
     override suspend fun getCountries(): CountryResponseDto {
         return iNetworkProvider.get( responseWrappedModel = CountryResponseDto::class.java,
-            "/admin-panel/countries"
+            "countries"
             )
     }
 }

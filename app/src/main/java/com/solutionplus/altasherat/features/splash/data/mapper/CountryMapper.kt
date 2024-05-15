@@ -11,17 +11,16 @@ object CountryMapper : Mapper<CountryDto, Country, CountryEntity>() {
 
     override fun dtoToDomain(model: CountryDto): Country {
         return Country(
-            id = model.id,
-            name = model.name,
-            nationality = model.nationality,
-            currency = model.currency,
-            code = model.code,
-            phoneCode = model.phoneCode,
-            visible = model.visible,
-            flag = model.flag
+            id = model.id ?: 0,
+            name = model.name ?: "",
+            nationality = model.nationality ?: "",
+            currency = model.currency ?: "",
+            code = model.code ?: "",
+            phoneCode = model.phoneCode ?: "",
+            visible = model.visible ?: false,
+            flag = model.flag ?: ""
         )
     }
-
     override fun domainToEntity(model: Country): CountryEntity {
         return CountryEntity(
             id = model.id,

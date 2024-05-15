@@ -4,8 +4,9 @@ import android.os.Bundle
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentOnBoardingThreeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
 
