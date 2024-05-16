@@ -17,8 +17,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun viewInit() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
         navController = navHostFragment.navController
-        setSupportActionBar(binding.toolbar)
-        setupActionBarWithNavController(navController)
     }
 
     override fun onActivityReady(savedInstanceState: Bundle?) {

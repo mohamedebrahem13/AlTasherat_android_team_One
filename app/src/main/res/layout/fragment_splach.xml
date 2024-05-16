@@ -5,8 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundimage"
+    android:background="@drawable/group"
     tools:context=".features.splash.presention.SplashFragment">
+
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,7 +17,8 @@
         android:layout_marginTop="228dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        android:src="@drawable/manasa_tashirat"
+        android:src="@drawable/group_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,8 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
-
-
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSplachBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,7 +63,6 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
     }
 
     override fun viewInit() {
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         logger.debug("splash")
 
     }
