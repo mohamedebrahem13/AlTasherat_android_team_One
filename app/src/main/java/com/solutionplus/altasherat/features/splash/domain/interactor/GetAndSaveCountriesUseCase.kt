@@ -14,6 +14,4 @@ class GetAndSaveCountriesUseCase @Inject constructor(
         countriesRepository.saveCountries(countriesResponse.countries)
     }
     fun executeAndEmitState(): Flow<Resource<Unit>> = invoke()
-
-
 }

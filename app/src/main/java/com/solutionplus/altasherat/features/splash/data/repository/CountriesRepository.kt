@@ -16,9 +16,6 @@ class CountriesRepository (private val localDataSource: ICountriesLocalDS, priva
 
     override suspend fun saveCountries(countries: List<Country>){
         val countryEntities = countries.map { countryMapper.domainToEntity(it) }
-        val gson = Gson()
-        val json = gson.toJson(countryEntities)
-
-        localDataSource.saveCountryString(json)
+        localDataSource.saveCountryString(countryEntities)
     }
 }
