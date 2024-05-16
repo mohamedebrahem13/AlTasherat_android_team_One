@@ -115,4 +115,6 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     implementation(libs.hilt.work)
     kapt(libs.hilt.compiler)
+
+    implementation("com.etebarian:meow-bottom-navigation:1.2.0")
 }
