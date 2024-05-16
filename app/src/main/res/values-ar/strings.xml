@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AlTasherat</string>
-    <string name="unsupported_type">Unsupported type…</string>
+    <string name="unsupported_type">نوع غير مدعوم</string>
+    <string name="unknown_network_error">خطأ غير معروف في الشبكة</string>
+    <string name="network_connection_error">خطأ في الاتصال بالشبكة</string>
 </resources>

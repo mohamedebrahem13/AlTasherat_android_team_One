@@ -81,6 +81,10 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    // SDP & SSP
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
+
     // Unit Test
     testImplementation(libs.junit)
 

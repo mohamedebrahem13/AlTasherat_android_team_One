@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">AlTasherat</string>
-    <string name="unsupported_type">Unsupported type…</string>
+    <string name="unsupported_type">Unsupported type</string>
+    <string name="unknown_network_error">Unknown network error</string>
+    <string name="network_connection_error">Network connection error</string>
 </resources>
