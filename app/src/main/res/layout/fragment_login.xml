@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/signUpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_text"
+            android:layout_margin="8dp"
+            style="@style/TextView.Heavy"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0.5"
+                app:endIconCheckable="true"
+                app:hintAnimationEnabled="false"
+                app:startIconDrawable="@drawable/ic_mobile"
+                android:hint="@string/phone_input_hint"
+                app:hintTextAppearance="@style/TextView.InputText"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="phone"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:endIconCheckable="true"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_weight="1"
+
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/countryCodeEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:background="@drawable/drop_down_background"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_text"
+            android:layout_margin="8dp"
+            style="@style/TextView.Heavy"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_pass"
+            android:hint="@string/password_input_hint"
+            app:hintTextAppearance="@style/TextView.InputText"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:inputType="textPassword"
+                android:background="@drawable/edit_text_background"
+                android:layout_height="match_parent"
+                android:id="@+id/passwordEt"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="20dp"
+        style="@style/TextView.SemiBold"
+        android:text="@string/foregt_password_text"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginBtn"
+        android:layout_width="204dp"
+        android:padding="16dp"
+        android:drawableStart="@drawable/ic_signup"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/signUpLayout"
+        app:layout_constraintEnd_toEndOf="@id/signUpLayout"
+        app:layout_constraintTop_toBottomOf="@id/signUpLayout"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextView"
+        android:text="@string/login_text"
+        android:background="@drawable/button_background"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

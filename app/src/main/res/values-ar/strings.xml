@@ -6,7 +6,7 @@
     <string name="first_name">الاسم الاول</string>
     <string name="last_name">الاسم الاخير</string>
     <string name="new_account">حساب جديد</string>
-    <string name="login">تسجيل الدخول</string>
+    <string name="login_text">تسجيل الدخول</string>
     <string name="first_name_input_hint">ادخل الاسم اولا</string>
     <string name="last_name_input_hint">ادخل الاسم الاخير</string>
     <string name="email_input_hint">ادخل البريد الالكتروني</string>
@@ -16,6 +16,8 @@
     <string name="phone_text">الجوال</string>
     <string name="password_text">الرقم السري</string>
     <string name="signup_text">حساب جديد</string>
+    <string name="foregt_password_text" translatable="false">نسيت كلمة المرور؟</string>
+
 
 
 

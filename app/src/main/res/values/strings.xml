@@ -7,7 +7,7 @@
     <string name="first_name" translatable="false">First Name</string>
     <string name="last_name" translatable="false">Last Name</string>
     <string name="new_account" translatable="false">New Account</string>
-    <string name="login" translatable="false">Login</string>
+    <string name="login_text" translatable="false">Login</string>
     <string name="first_name_input_hint" translatable="false">enter your First Name</string>
     <string name="last_name_input_hint" translatable="false">enter your Second Name</string>
     <string name="email_input_hint" translatable="false">enter your Email</string>
@@ -18,6 +18,8 @@
     <string name="password_text" translatable="false">password</string>
     <string name="country_code_text" translatable="false">+966</string>
     <string name="signup_text" translatable="false">Sign Up</string>
+    <string name="foregt_password_text" translatable="false">forget password?</string>
+
 
 
 </resources>

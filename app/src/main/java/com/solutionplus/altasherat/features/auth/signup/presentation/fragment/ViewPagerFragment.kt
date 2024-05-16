@@ -1,29 +1,17 @@
-package com.solutionplus.altasherat.features.auth.signup.presentation
+package com.solutionplus.altasherat.features.auth.signup.presentation.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentViewpagerBinding
+import com.solutionplus.altasherat.features.auth.login.presentation.LoginFragment
 
-class ViewPagerFragment : Fragment() {
-    private var _binding: FragmentViewpagerBinding? = null
-    private val binding get() = _binding!!
+class ViewPagerFragment : BaseFragment<FragmentViewpagerBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentViewpagerBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onFragmentReady(savedInstanceState: Bundle?) {
 
         val viewPager = binding.viewPager
         val fragments = listOf<Fragment>(SignUpFragment(), LoginFragment())
@@ -41,16 +29,22 @@ class ViewPagerFragment : Fragment() {
 
                 }
                 1 -> {
-                    tab.text = getString(R.string.login)
+                    tab.text = getString(R.string.login_text)
                 }
             }
 
         }.attach()
+    }
+
+    override fun onLoading(isLoading: Boolean) {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun subscribeToObservables() {
+
+    }
+
+    override fun viewInit() {
+
     }
 }

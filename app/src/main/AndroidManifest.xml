@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AlTasherat"
         tools:targetApi="31">
         <activity
-            android:name=".features.auth.signup.presentation.AuthActivity"
+            android:name=".features.auth.ui.AuthActivity"
             android:exported="false"
             android:theme="@style/Theme.AlTasherat" />
         <activity

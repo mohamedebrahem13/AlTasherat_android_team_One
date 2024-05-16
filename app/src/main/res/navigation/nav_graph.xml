@@ -6,7 +6,7 @@
     app:startDestination="@id/viewPagerFragment">
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.solutionplus.altasherat.features.auth.signup.presentation.ViewPagerFragment"
+        android:name="com.solutionplus.altasherat.features.auth.signup.presentation.fragment.ViewPagerFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_viewpager"/>
 </navigation>

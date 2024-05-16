@@ -1,3 +1,3 @@
 -- signup screen(create UI(ViewPager2, TabLayout) , create signup logic)
---
+-- response&request data class, domain(interface), data(Impl), domain(usecase), viewModel
 --
