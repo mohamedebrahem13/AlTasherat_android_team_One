@@ -18,6 +18,7 @@ recyclerview = "1.3.2"
 hiltCompiler = "1.0.0"
 hiltWork = "1.0.0"
 workManager = "2.9.0"
+intuit = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,8 @@ androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview"
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompiler" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
 work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workManager" }
+intuit-ssp = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "intuit" }
+intuit-sdp = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "intuit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
