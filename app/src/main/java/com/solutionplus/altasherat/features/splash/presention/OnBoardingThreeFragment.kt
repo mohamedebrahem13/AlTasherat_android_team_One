@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.splash.presention
 
 import android.os.Bundle
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentOnBoardingThreeBinding
@@ -23,6 +24,8 @@ class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
     override fun viewInit() {
         logger.debug("Three")
+        binding.cardView.welcomeText1.text=getString(R.string.onboarding_1_welcome)
+        binding.cardView.welcomeText2.text=getString(R.string.onboarding_3_welcome_2)
     }
     companion object {
         private val logger = getClassLogger()

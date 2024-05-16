@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">AlTasherat</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="back_text">السابق</string>
-    <string name="welcome_onboarding_1">مرحباً بك في تطبيق التأشيرات</string>
-    <string name="welcome_onboarding_2">    مع تطبيق تأشيرات أصبح استخراج تأشيرتك الإلكترونية غاية في السهولة سواء تأشيرة سياحة أو توظيف أو تأشيرات أصحاب الشركات فلا تحمل هم الإجراءات المرهقة فلدينا فريق كامل يعمل على راحتك
+    <string name="next_text" translatable="false">التالي</string>
+    <string name="onboarding_3_welcome_2" translatable="false">    سواء كنت تبحث عن عمل أو كنت من أصحاب الشركات الباحثين عن عمالة سيكون في خدمتك فريق من الخبراء على أعلى مستوى فقط املأ استمارتك بخطوات سهلة بلا تعقيدات
+</string>
+    <string name="onboarding_2_welcome_2" translatable="false">يمكنك أن تصل إلى وجهتك المفضلة إلى أي مكان في العالم فقط قم بالتجهيز لرحلتك واترك الباقي علينا واستمتع بتجربة سلسة وآمنة لاستخراج تأشيرتك السياحية
+</string>
+
+    <string name="onboarding_1_welcome" translatable="false">مرحباً بك في تطبيق التأشيرات</string>
+    <string name="onboarding_1_welcome_2" translatable="false">    مع تطبيق تأشيرات أصبح استخراج تأشيرتك الإلكترونية غاية في السهولة سواء تأشيرة سياحة أو توظيف أو تأشيرات أصحاب الشركات فلا تحمل هم الإجراءات المرهقة فلدينا فريق كامل يعمل على راحتك
 </string>
 
 
-    <string name="unsupported_type">Unsupported type</string>
-    <string name="unknown_network_error">Unknown network error</string>
-    <string name="network_connection_error">Network connection error</string>
+    <string name="unsupported_type" translatable="false">Unsupported type</string>
+    <string name="unknown_network_error" translatable="false">Unknown network error</string>
+    <string name="network_connection_error" translatable="false">Network connection error</string>
 </resources>

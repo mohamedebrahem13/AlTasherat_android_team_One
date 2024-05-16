@@ -35,6 +35,7 @@
         tools:layout="@layout/fragment_splach" >
         <action
             android:id="@+id/action_splashFragment_to_onBoardingOneFragment"
-            app:destination="@id/onBoardingOneFragment" />
+            app:destination="@id/onBoardingOneFragment"
+            app:popUpTo="@id/onBoardingOneFragment" />
     </fragment>
 </navigation>
