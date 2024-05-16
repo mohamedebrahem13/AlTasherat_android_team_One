@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">AlTasherat</string>
-    <string name="unsupported_type">Unsupported type…</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_text">السابق</string>
     <string name="welcome_onboarding_1">مرحباً بك في تطبيق التأشيرات</string>
@@ -8,4 +7,7 @@
 </string>
 
 
+    <string name="unsupported_type">Unsupported type</string>
+    <string name="unknown_network_error">Unknown network error</string>
+    <string name="network_connection_error">Network connection error</string>
 </resources>
