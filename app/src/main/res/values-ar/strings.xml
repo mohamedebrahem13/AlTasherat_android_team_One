@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlTasherat</string>
+    <string name="unsupported_type">نوع غير مدعوم</string>
+    <string name="visa_platform">منصة التأشيرات</string>
+    <string name="visa_requests">طلبات التأشيرات</string>
+    <string name="profile">الملف الشخصي</string>
+</resources>

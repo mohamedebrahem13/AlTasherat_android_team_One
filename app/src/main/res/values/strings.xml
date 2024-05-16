@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AlTasherat</string>
     <string name="unsupported_type">Unsupported type…</string>
+    <string name="visa_platform">Visa platform</string>
+    <string name="visa_requests">Visa Requests</string>
+    <string name="profile">Profile</string>
 </resources>
