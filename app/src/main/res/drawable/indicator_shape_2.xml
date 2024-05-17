@@ -1,0 +1,5 @@
+<!-- indicator_shape_2.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/colorIndicator2" /> <!-- Default color of the indicator -->
+</shape>

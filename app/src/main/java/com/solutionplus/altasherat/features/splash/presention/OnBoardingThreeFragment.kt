@@ -24,6 +24,7 @@ class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
     override fun viewInit() {
         logger.debug("Three")
+        binding.cardView.indicator.indicator2.setBackgroundResource(R.drawable.indicator_shape_2)
         binding.cardView.welcomeText1.text=getString(R.string.onboarding_1_welcome)
         binding.cardView.welcomeText2.text=getString(R.string.onboarding_3_welcome_2)
     }

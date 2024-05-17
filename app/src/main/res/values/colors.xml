@@ -18,4 +18,6 @@
     <color name="bg_card">#FFFFFFFF</color>
     <color name="bg">#FFFFFFFF</color>
     <!-- light mode colors -->
+        <color name="colorIndicator1">#65BCF9</color>
+        <color name="colorIndicator2">#8EE7AD</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.splash.presention
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
@@ -22,6 +23,7 @@ class OnBoardingOneFragment : BaseFragment<FragmentOnBoardingOneBinding>() {
 
     override fun viewInit() {
         logger.debug("one")
+        binding.cardView.indicator.indicator4.setBackgroundResource(R.drawable.indicator_shape_2)
         binding.cardView.welcomeText1.text=getString(R.string.onboarding_1_welcome)
         binding.cardView.welcomeText2.text=getString(R.string.onboarding_1_welcome_2)
         binding.cardView.nextButton.setOnClickListener {
