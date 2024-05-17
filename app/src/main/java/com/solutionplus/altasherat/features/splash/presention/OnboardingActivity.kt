@@ -4,7 +4,6 @@ import android.os.Bundle
 
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.activity.BaseActivity
 import com.solutionplus.altasherat.databinding.ActivityOnboardingBinding
@@ -17,8 +16,6 @@ class OnboardingActivity : BaseActivity<ActivityOnboardingBinding>() {
     override fun viewInit() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.onboardingNavHostFragment) as NavHostFragment
         navController = navHostFragment.navController
-        setSupportActionBar(binding.toolbar)
-        setupActionBarWithNavController(navController)
     }
 
     override fun onActivityReady(savedInstanceState: Bundle?) {

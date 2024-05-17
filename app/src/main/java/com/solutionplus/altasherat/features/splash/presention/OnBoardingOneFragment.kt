@@ -27,8 +27,8 @@ class OnBoardingOneFragment : BaseFragment<FragmentOnBoardingOneBinding>() {
         binding.cardView.welcomeText2.text=getString(R.string.onboarding_1_welcome_2)
         binding.cardView.nextButton.setOnClickListener {
             findNavController().navigate(R.id.action_onBoardingOneFragment1_to_onBoardingTwoFragment2)
-
         }
+
 
     }
     companion object {

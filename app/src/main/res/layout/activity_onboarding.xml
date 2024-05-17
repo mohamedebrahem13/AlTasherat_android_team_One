@@ -7,20 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".features.splash.presention.OnboardingActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-
-    </androidx.appcompat.widget.Toolbar>
-
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/onboardingNavHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

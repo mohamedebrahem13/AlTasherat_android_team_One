@@ -29,7 +29,9 @@ class OnBoardingTwoFragment : BaseFragment<FragmentOnBoardingTwoBinding>() {
         binding.cardView.welcomeText2.text=getString(R.string.onboarding_2_welcome_2)
         binding.cardView.nextButton.setOnClickListener {
             findNavController().navigate(R.id.action_onBoardingTwoFragment2_to_onBoardingThreeFragment3)
-
+        }
+        binding.customToolbar.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
     companion object {
