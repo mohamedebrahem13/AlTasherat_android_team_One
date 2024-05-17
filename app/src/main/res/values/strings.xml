@@ -3,4 +3,25 @@
     <string name="unsupported_type">Unsupported type</string>
     <string name="unknown_network_error">Unknown network error</string>
     <string name="network_connection_error">Network connection error</string>
+
+    <!--region Personal Info Fragment -->
+    <string name="more">More</string>
+    <string name="back_arrow">Back Arrow</string>
+    <string name="first_name">FirstName</string>
+    <string name="enter_first_name">Enter FirstName</string>
+    <string name="middle_name">Middle Name</string>
+    <string name="enter_middle_name">Enter Middle Name</string>
+    <string name="last_name">LastName</string>
+    <string name="enter_last_name">Enter LastName</string>
+    <string name="phone_number">Phone</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="email">Email Address</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="enter_birth_date">Enter Birth Date</string>
+    <string name="country">Country</string>
+    <string name="select_country">Enter Country</string>
+    <string name="save">Save</string>
+    <string name="country_code">Country Code</string>
+    <!--endregion-->
 </resources>
