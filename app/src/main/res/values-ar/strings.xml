@@ -4,5 +4,5 @@
     <string name="unsupported_type">نوع غير مدعوم</string>
     <string name="unknown_network_error">خطأ غير معروف في الشبكة</string>
     <string name="network_connection_error">خطأ في الاتصال بالشبكة</string>
-    <string name="back_text">Previous</string>
+    <string name="back_text">السابق</string>
 </resources>

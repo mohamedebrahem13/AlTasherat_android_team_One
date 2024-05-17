@@ -12,9 +12,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/Theme.AlTasherat"
         tools:targetApi="31">
+        <activity
+            android:name=".features.splash.presention.OnboardingActivity"
+            android:exported="false" />
         <activity
             android:name=".features.MainActivity"
             android:exported="true">

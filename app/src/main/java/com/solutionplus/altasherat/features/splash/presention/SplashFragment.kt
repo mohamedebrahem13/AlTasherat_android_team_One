@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.splash.presention
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -58,7 +59,10 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
 
     private fun handleSingleEvent() {
         // Handle single events
-        findNavController().navigate(R.id.action_splashFragment_to_onBoardingOneFragment)
+        Intent(requireActivity(), OnboardingActivity::class.java).also { intent ->
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
 
     }
 

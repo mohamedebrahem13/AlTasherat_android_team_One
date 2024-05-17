@@ -1,7 +1,6 @@
 package com.solutionplus.altasherat.features.splash.presention
 
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
@@ -27,7 +26,7 @@ class OnBoardingOneFragment : BaseFragment<FragmentOnBoardingOneBinding>() {
         binding.cardView.welcomeText1.text=getString(R.string.onboarding_1_welcome)
         binding.cardView.welcomeText2.text=getString(R.string.onboarding_1_welcome_2)
         binding.cardView.nextButton.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardingOneFragment_to_onBoardingTwoFragment)
+            findNavController().navigate(R.id.action_onBoardingOneFragment1_to_onBoardingTwoFragment2)
 
         }
 

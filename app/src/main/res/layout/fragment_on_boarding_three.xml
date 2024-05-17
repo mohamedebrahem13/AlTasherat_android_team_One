@@ -42,17 +42,6 @@
         app:layout_constraintVertical_bias="0.554" />
 
 
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/TextView.Heavy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <include
         android:id="@+id/cardView"
         layout="@layout/card_view_content"
@@ -74,7 +63,6 @@
         app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
