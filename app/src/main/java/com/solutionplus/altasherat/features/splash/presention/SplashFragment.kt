@@ -3,10 +3,7 @@ package com.solutionplus.altasherat.features.splash.presention
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSplachBinding
@@ -19,7 +16,7 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        viewModel.onActionTrigger(CountriesContract.Action.FetchAndSaveCountries)
+        viewModel.onActionTrigger(SplashContract.Action.CheckCountryStringKey)
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -31,22 +28,22 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
         }
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
-            handleSingleEvent()
+            handleSingleEvent(event)
         }
     }
-    private fun handleViewState(state: CountriesContract.SplashViewState) {
+    private fun handleViewState(state: SplashContract.SplashViewState) {
         when (state) {
-            is CountriesContract.SplashViewState.Idle -> {
+            is SplashContract.SplashViewState.Idle -> {
                 // Handle the idle state
             }
-            is CountriesContract.SplashViewState.Loading -> {
+            is SplashContract.SplashViewState.Loading -> {
                 // Handle the loading state
             }
-            is CountriesContract.SplashViewState.Success -> {
+            is SplashContract.SplashViewState.Success -> {
                 // Handle the success state
                 showToast("Data loaded successfully")
             }
-            is CountriesContract.SplashViewState.Error -> {
+            is SplashContract.SplashViewState.Error -> {
                 // Handle the error state
                 val errorMessage = state.message
                 showToast("Error: $errorMessage")
@@ -57,12 +54,21 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
-    private fun handleSingleEvent() {
+    private fun handleSingleEvent(event: SplashContract.Event) {
         // Handle single events
-        Intent(requireActivity(), OnboardingActivity::class.java).also { intent ->
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+        when (event) {
+            SplashContract.Event.NavigateToHome -> {
+                logger.debug("navigate to home")
+
+            }
+            SplashContract.Event.NavigateToOnBoarding -> {
+            Intent(requireActivity(), OnboardingActivity::class.java).also { intent ->
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            }
         }
+
 
     }
 

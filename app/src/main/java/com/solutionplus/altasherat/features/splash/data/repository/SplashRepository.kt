@@ -1,14 +1,13 @@
 package com.solutionplus.altasherat.features.splash.data.repository
 
-import com.google.gson.Gson
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
 import com.solutionplus.altasherat.features.splash.domain.models.CountriesResponse
 import com.solutionplus.altasherat.features.splash.domain.models.Country
-import com.solutionplus.altasherat.features.splash.domain.repository.ICountriesRepository
-import com.solutionplus.altasherat.features.splash.domain.repository.local.ICountriesLocalDS
-import com.solutionplus.altasherat.features.splash.domain.repository.remote.ICountriesRemoteDS
+import com.solutionplus.altasherat.features.splash.domain.repository.ISplashRepository
+import com.solutionplus.altasherat.features.splash.domain.repository.local.ISplashLocalDS
+import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 
-class CountriesRepository (private val localDataSource: ICountriesLocalDS, private val remoteDataSource: ICountriesRemoteDS,private val countryMapper: CountryMapper):ICountriesRepository{
+internal class SplashRepository (private val localDataSource: ISplashLocalDS, private val remoteDataSource: ISplashRemoteDS, private val countryMapper: CountryMapper):ISplashRepository{
     override suspend fun getCountries(): CountriesResponse {
         val countryResponseDto = remoteDataSource.getCountries()
         return countryMapper.mapDtoToDomain(countryResponseDto.data!!)
@@ -17,5 +16,9 @@ class CountriesRepository (private val localDataSource: ICountriesLocalDS, priva
     override suspend fun saveCountries(countries: List<Country>){
         val countryEntities = countries.map { countryMapper.domainToEntity(it) }
         localDataSource.saveCountryString(countryEntities)
+    }
+
+    override suspend fun hasCountryStringKey(): Boolean {
+        return localDataSource.hasCountryStringKey()
     }
 }

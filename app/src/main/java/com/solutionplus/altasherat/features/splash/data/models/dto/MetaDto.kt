@@ -2,7 +2,7 @@ package com.solutionplus.altasherat.features.splash.data.models.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class MetaDto(
+internal data class MetaDto(
     @SerializedName("current_page") val currentPage: Int?,
     @SerializedName("from") val from: Int?,
     @SerializedName("last_page") val lastPage: Int?,

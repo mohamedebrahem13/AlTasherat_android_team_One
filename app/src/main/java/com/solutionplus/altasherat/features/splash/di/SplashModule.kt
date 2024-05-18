@@ -4,13 +4,13 @@ import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
-import com.solutionplus.altasherat.features.splash.data.repository.CountriesRepository
-import com.solutionplus.altasherat.features.splash.data.repository.local.CountriesLocalDS
-import com.solutionplus.altasherat.features.splash.data.repository.remote.CountriesRemoteDS
+import com.solutionplus.altasherat.features.splash.data.repository.SplashRepository
+import com.solutionplus.altasherat.features.splash.data.repository.local.SplashLocalDS
+import com.solutionplus.altasherat.features.splash.data.repository.remote.SplashRemoteDS
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveCountriesUseCase
-import com.solutionplus.altasherat.features.splash.domain.repository.ICountriesRepository
-import com.solutionplus.altasherat.features.splash.domain.repository.local.ICountriesLocalDS
-import com.solutionplus.altasherat.features.splash.domain.repository.remote.ICountriesRemoteDS
+import com.solutionplus.altasherat.features.splash.domain.repository.ISplashRepository
+import com.solutionplus.altasherat.features.splash.domain.repository.local.ISplashLocalDS
+import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,35 +20,35 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object CountriesModule {
+internal object SplashModule {
 
 
     @Provides
     @ViewModelScoped
-    fun provideRemoteCountriesDataSource(iNetworkProvider: INetworkProvider): ICountriesRemoteDS {
-        return CountriesRemoteDS(iNetworkProvider)
+    fun provideRemoteCountriesDataSource(iNetworkProvider: INetworkProvider): ISplashRemoteDS {
+        return SplashRemoteDS(iNetworkProvider)
     }
 
     @Provides
     @ViewModelScoped
-    fun provideLocalCountriesDataSource(preferenceStorage: IKeyValueStorageProvider): ICountriesLocalDS {
-        return CountriesLocalDS(preferenceStorage)
+    fun provideLocalCountriesDataSource(preferenceStorage: IKeyValueStorageProvider): ISplashLocalDS {
+        return SplashLocalDS(preferenceStorage)
     }
 
     @Provides
     @ViewModelScoped
     fun provideCountriesRepository(
-        remoteDataSource: ICountriesRemoteDS,
-        localDataSource: ICountriesLocalDS
+        remoteDataSource: ISplashRemoteDS,
+        localDataSource: ISplashLocalDS
         , countryMapper: CountryMapper
 
-    ): ICountriesRepository {
-        return CountriesRepository(localDataSource, remoteDataSource,countryMapper)
+    ): ISplashRepository {
+        return SplashRepository(localDataSource, remoteDataSource,countryMapper)
     }
     @Provides
     @Singleton
     fun provideGetAndSaveCountriesUseCase(
-        countriesRepository: ICountriesRepository
+        countriesRepository: ISplashRepository
     ): BaseUseCase<Unit, Unit> {
         return GetAndSaveCountriesUseCase(countriesRepository)
     }

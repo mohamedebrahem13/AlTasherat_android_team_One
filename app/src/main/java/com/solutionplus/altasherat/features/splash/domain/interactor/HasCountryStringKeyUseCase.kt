@@ -6,12 +6,17 @@ import com.solutionplus.altasherat.features.splash.domain.repository.ISplashRepo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetAndSaveCountriesUseCase @Inject constructor(
+class HasCountryStringKeyUseCase @Inject constructor(
     private val splashRepository: ISplashRepository
-) : BaseUseCase<Unit, Unit>() {
-    override suspend fun execute(params: Unit?) {
-        val countriesResponse = splashRepository.getCountries()
-        splashRepository.saveCountries(countriesResponse.countries)
+) : BaseUseCase<Boolean,Unit>(){
+    override suspend fun execute(params: Unit?): Boolean {
+        return splashRepository.hasCountryStringKey()
     }
-    fun executeAndEmitState(): Flow<Resource<Unit>> = invoke()
+
+    fun executeAndEmitState(): Flow<Resource<Boolean>> {
+        return invoke()
+    }
+
+
+
 }

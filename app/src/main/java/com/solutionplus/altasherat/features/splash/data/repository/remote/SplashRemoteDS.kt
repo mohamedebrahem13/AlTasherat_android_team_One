@@ -2,9 +2,9 @@ package com.solutionplus.altasherat.features.splash.data.repository.remote
 
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.splash.data.models.dto.CountryResponseDto
-import com.solutionplus.altasherat.features.splash.domain.repository.remote.ICountriesRemoteDS
+import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 
-class CountriesRemoteDS (private val iNetworkProvider: INetworkProvider):ICountriesRemoteDS{
+internal class SplashRemoteDS (private val iNetworkProvider: INetworkProvider):ISplashRemoteDS{
 
     override suspend fun getCountries(): CountryResponseDto {
         return iNetworkProvider.get( responseWrappedModel = CountryResponseDto::class.java,

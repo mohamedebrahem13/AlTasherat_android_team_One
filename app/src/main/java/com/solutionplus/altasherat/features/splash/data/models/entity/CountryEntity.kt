@@ -1,6 +1,6 @@
 package com.solutionplus.altasherat.features.splash.data.models.entity
 
-data class CountryEntity(
+internal data class CountryEntity(
     val id: Int,
     val name: String,
     val nationality: String,

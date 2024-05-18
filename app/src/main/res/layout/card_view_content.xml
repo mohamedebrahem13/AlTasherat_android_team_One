@@ -67,7 +67,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.solutionplus.altasherat.common.presentation.coustom_view.CustomButton
+    <com.solutionplus.altasherat.common.presentation.coustom_view.CustomButtonOnBoarding
         android:id="@+id/next_button"
         android:layout_width="204dp"
         android:layout_height="100dp"
@@ -78,7 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </com.solutionplus.altasherat.common.presentation.coustom_view.CustomButton>
+    </com.solutionplus.altasherat.common.presentation.coustom_view.CustomButtonOnBoarding>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

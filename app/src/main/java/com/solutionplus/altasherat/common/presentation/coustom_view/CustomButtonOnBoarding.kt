@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.databinding.CustomButtonBinding
 
-class CustomButton @JvmOverloads constructor(
+class CustomButtonOnBoarding @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
 

@@ -6,7 +6,7 @@ import com.solutionplus.altasherat.features.splash.data.models.entity.CountryEnt
 import com.solutionplus.altasherat.features.splash.domain.models.CountriesResponse
 import com.solutionplus.altasherat.features.splash.domain.models.Country
 
-object CountryMapper : Mapper<CountryDto, Country, CountryEntity>() {
+internal object CountryMapper : Mapper<CountryDto, Country, CountryEntity>() {
 
 
     override fun dtoToDomain(model: CountryDto): Country {

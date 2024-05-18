@@ -125,4 +125,9 @@ dependencies {
     // Kotlin
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:")
+    testImplementation(libs.mockito.kotlin)
+
+
 }
