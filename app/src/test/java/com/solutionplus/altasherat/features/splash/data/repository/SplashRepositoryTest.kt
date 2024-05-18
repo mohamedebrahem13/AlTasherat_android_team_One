@@ -1,6 +1,5 @@
 package com.solutionplus.altasherat.features.splash.data.repository
 
-import android.util.Log
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
 import com.solutionplus.altasherat.features.splash.data.models.dto.CountryDto
 import com.solutionplus.altasherat.features.splash.data.models.dto.CountryResponseDto
