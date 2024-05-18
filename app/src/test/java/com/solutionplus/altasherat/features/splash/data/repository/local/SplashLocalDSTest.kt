@@ -6,6 +6,8 @@ import com.solutionplus.altasherat.features.splash.data.models.entity.CountryEnt
 import com.solutionplus.altasherat.features.splash.domain.repository.local.ISplashLocalDS
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -32,10 +34,31 @@ class SplashLocalDSTest{
         // Verify that the save function was called with the correct arguments
       val countriesJson=  preferenceStorage.get(
             StorageKeyEnum.COUNTRIES_STRING,
-            expectedJson,
+          "",
             String::class.java
         )
         assertEquals(countriesJson, expectedJson)
 
+    }
+    @Test
+    fun `hasCountryStringKey should return true if the country string key exists`() = runTest {
+        // Mock data
+        val countries = listOf(
+            CountryEntity(1, "USA", "American", "USD", "US", "+1", true, "us_flag.png")
+        )
+
+        // Save the country string to the preference storage
+        splashLocalDS.saveCountryString(countries)
+
+        // Verify that the hasKey function returns true
+        val hasKey = splashLocalDS.hasCountryStringKey()
+        assertTrue(hasKey)
+    }
+
+    @Test
+    fun `hasCountryStringKey should return false if the country string key does not exist`() = runTest {
+        // Verify that the hasKey function returns false when the key is not present
+        val hasKey = splashLocalDS.hasCountryStringKey()
+        assertFalse(hasKey)
     }
 }

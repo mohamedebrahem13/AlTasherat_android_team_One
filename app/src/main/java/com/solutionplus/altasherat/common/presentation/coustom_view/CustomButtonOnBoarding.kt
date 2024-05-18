@@ -20,9 +20,9 @@ class CustomButtonOnBoarding @JvmOverloads constructor(
 
     init {
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomButton, 0, 0)
-            val text = typedArray.getString(R.styleable.CustomButton_customText)
-            val imageResId = typedArray.getResourceId(R.styleable.CustomButton_customImage, 0)
+            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomButtonOnBoarding, 0, 0)
+            val text = typedArray.getString(R.styleable.CustomButtonOnBoarding_customText)
+            val imageResId = typedArray.getResourceId(R.styleable.CustomButtonOnBoarding_customImage, 0)
 
             textView.text = text
             if (imageResId != 0) {

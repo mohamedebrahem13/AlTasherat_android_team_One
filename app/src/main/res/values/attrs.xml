@@ -1,5 +1,5 @@
 <resources>
-    <declare-styleable name="CustomButton">
+    <declare-styleable name="CustomButtonOnBoarding">
         <attr name="customText" format="string" />
         <attr name="customImage" format="reference" />
     </declare-styleable>
