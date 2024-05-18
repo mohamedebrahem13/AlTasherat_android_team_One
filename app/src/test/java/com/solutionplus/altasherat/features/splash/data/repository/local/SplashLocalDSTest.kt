@@ -42,7 +42,7 @@ class SplashLocalDSTest{
     }
     @Test
     fun `hasCountryStringKey after saving country entities should return true`() = runTest {
-        // Mock data
+        //  data
         val countries = listOf(
             CountryEntity(1, "USA", "American", "USD", "US", "+1", true, "us_flag.png")
         )
