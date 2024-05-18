@@ -1,9 +1,6 @@
 package com.solutionplus.altasherat.features.splash.domain.interactor
-
-import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.splash.domain.repository.ISplashRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetAndSaveCountriesUseCase @Inject constructor(
@@ -13,5 +10,4 @@ class GetAndSaveCountriesUseCase @Inject constructor(
         val countriesResponse = splashRepository.getCountries()
         splashRepository.saveCountries(countriesResponse.countries)
     }
-    fun executeAndEmitState(): Flow<Resource<Unit>> = invoke()
 }

@@ -33,7 +33,7 @@ class SplashViewModel @Inject constructor(
     }
     private fun checkCountryStringKey() {
         viewModelScope.launch {
-            hasCountryStringKeyUseCase.executeAndEmitState().collect { resource ->
+            hasCountryStringKeyUseCase.invoke().collect { resource ->
                 when (resource) {
                     is Resource.Failure -> {
                         setState(
@@ -61,7 +61,7 @@ class SplashViewModel @Inject constructor(
     private fun fetchAndSaveCountries() {
         // Call the invoke function of the use case and collect the states emitted by it
         viewModelScope.launch {
-            getAndSaveCountriesUseCase.executeAndEmitState().collect { resource ->
+            getAndSaveCountriesUseCase.invoke().collect { resource ->
                 when (resource) {
                      is Resource.Progress -> {
                         // Update view state to loading

@@ -1,9 +1,6 @@
 package com.solutionplus.altasherat.features.splash.domain.interactor
-
-import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.splash.domain.repository.ISplashRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class HasCountryStringKeyUseCase @Inject constructor(
@@ -12,11 +9,4 @@ class HasCountryStringKeyUseCase @Inject constructor(
     override suspend fun execute(params: Unit?): Boolean {
         return splashRepository.hasCountryStringKey()
     }
-
-    fun executeAndEmitState(): Flow<Resource<Boolean>> {
-        return invoke()
-    }
-
-
-
 }
