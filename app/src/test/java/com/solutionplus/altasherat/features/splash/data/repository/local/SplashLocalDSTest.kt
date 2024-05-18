@@ -20,7 +20,7 @@ class SplashLocalDSTest{
         splashLocalDS = SplashLocalDS(preferenceStorage)
     }
     @Test
-    fun `saveCountryString should save the list of country entities and check if the return countries is the same`() = runTest {
+    fun `saveCountryString with valid country entities after successful saving should return the saved JSON string`() = runTest {
         val countries = listOf(
             CountryEntity(1, "USA", "American", "USD", "US", "+1", true, "us_flag.png"),
             CountryEntity(2, "UK", "British", "GBP", "UK", "+44", true, "uk_flag.png"),
@@ -41,7 +41,7 @@ class SplashLocalDSTest{
 
     }
     @Test
-    fun `hasCountryStringKey should return true if the country string key exists`() = runTest {
+    fun `hasCountryStringKey after saving country entities should return true`() = runTest {
         // Mock data
         val countries = listOf(
             CountryEntity(1, "USA", "American", "USD", "US", "+1", true, "us_flag.png")
@@ -56,7 +56,7 @@ class SplashLocalDSTest{
     }
 
     @Test
-    fun `hasCountryStringKey should return false if the country string key does not exist`() = runTest {
+    fun `hasCountryStringKey without saving country entities should return false`() = runTest {
         // Verify that the hasKey function returns false when the key is not present
         val hasKey = splashLocalDS.hasCountryStringKey()
         assertFalse(hasKey)
