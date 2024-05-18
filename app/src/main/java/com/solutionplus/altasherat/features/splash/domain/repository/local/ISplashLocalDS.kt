@@ -5,5 +5,6 @@ import com.solutionplus.altasherat.features.splash.data.models.entity.CountryEnt
 internal interface ISplashLocalDS {
     suspend fun saveCountryString(countries: List<CountryEntity>)
     suspend fun hasCountryStringKey(): Boolean
+    suspend fun getCountries(): List<CountryEntity>
 
 }

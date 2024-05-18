@@ -7,7 +7,7 @@ class GetAndSaveCountriesUseCase @Inject constructor(
     private val splashRepository: ISplashRepository
 ) : BaseUseCase<Unit, Unit>() {
     override suspend fun execute(params: Unit?) {
-        val countriesResponse = splashRepository.getCountries()
+        val countriesResponse = splashRepository.getCountriesFromRemote()
         splashRepository.saveCountries(countriesResponse.countries)
     }
 }

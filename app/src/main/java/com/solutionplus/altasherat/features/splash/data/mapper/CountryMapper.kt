@@ -47,6 +47,9 @@ internal object CountryMapper : Mapper<CountryDto, Country, CountryEntity>() {
         )
     }
 
+    fun mapEntityListToDomain(entityList: List<CountryEntity>): List<Country> {
+        return entityList.map { entityToDomain(it) }
+    }
     fun mapDtoToDomain(dto: List<CountryDto>): CountriesResponse {
         val countries = dto.map { dtoToDomain(it)
         }

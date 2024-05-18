@@ -8,7 +8,7 @@ import com.solutionplus.altasherat.features.splash.domain.repository.local.ISpla
 import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 
 internal class SplashRepository (private val localDataSource: ISplashLocalDS, private val remoteDataSource: ISplashRemoteDS, private val countryMapper: CountryMapper):ISplashRepository{
-    override suspend fun getCountries(): CountriesResponse {
+    override suspend fun getCountriesFromRemote(): CountriesResponse {
         val countryResponseDto = remoteDataSource.getCountries()
         return countryMapper.mapDtoToDomain(countryResponseDto.data!!)
     }
@@ -20,5 +20,10 @@ internal class SplashRepository (private val localDataSource: ISplashLocalDS, pr
 
     override suspend fun hasCountryStringKey(): Boolean {
         return localDataSource.hasCountryStringKey()
+    }
+
+    override suspend fun getCountriesFromLocal(): List<Country> {
+       val countries= localDataSource.getCountries()
+      return  countryMapper.mapEntityListToDomain(countries)
     }
 }
