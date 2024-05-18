@@ -24,7 +24,6 @@ class SplashViewModel @Inject constructor(
     override fun onActionTrigger(action: ViewAction?) {
         when (action) {
             is SplashContract.Action.CheckCountryStringKey -> checkCountryStringKey()
-            is SplashContract.Action.FetchAndSaveCountries -> fetchAndSaveCountries()
             // Handle other actions if needed
             else -> {
                 // Do nothing or handle unknown action

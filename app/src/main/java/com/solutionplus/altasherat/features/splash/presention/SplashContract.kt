@@ -7,7 +7,6 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 sealed class SplashContract {
 
     sealed class Action : ViewAction {
-        data object FetchAndSaveCountries : Action()
         data object CheckCountryStringKey : Action()
     }
 
