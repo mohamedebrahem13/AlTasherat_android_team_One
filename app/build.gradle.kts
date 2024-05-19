@@ -86,7 +86,6 @@ dependencies {
     // SDP & SSP
     implementation(libs.intuit.sdp)
     implementation(libs.intuit.ssp)
-    implementation(libs.androidx.legacy.support.v4)
 
     // Unit Test
     testImplementation(libs.junit)
