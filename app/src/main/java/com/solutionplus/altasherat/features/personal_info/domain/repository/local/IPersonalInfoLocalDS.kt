@@ -5,5 +5,5 @@ import com.solutionplus.altasherat.features.personal_info.data.models.entity.Use
 
 internal interface IPersonalInfoLocalDS {
     fun getUserPersonalInfo(): UserEntity
-    fun getCountries(): List<CountryEntity>
+    fun getCountries(): ArrayList<CountryEntity>
 }

@@ -24,6 +24,8 @@ class PersonalInfoViewModel @Inject constructor(
     }
 
     override fun onActionTrigger(action: ViewAction?) {
+        when (action) {
+        }
     }
 
     private fun getCountries() {
@@ -36,13 +38,12 @@ class PersonalInfoViewModel @Inject constructor(
         }
     }
 
-
     private fun getUserPersonalInfo() {
         getUserPersonalInfoUC.invoke(viewModelScope) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
-                is Resource.Success -> setState(oldViewState.copy(userPersonalInfo = it.model))
+                is Resource.Success -> sendEvent(PersonalInfoEvent.UserPersonalInfo(it.model))
             }
         }
     }

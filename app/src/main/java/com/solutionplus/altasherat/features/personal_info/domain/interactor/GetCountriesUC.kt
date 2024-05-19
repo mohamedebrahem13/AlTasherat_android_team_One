@@ -6,9 +6,9 @@ import com.solutionplus.altasherat.features.personal_info.domain.repository.IPer
 
 class GetCountriesUC(
     private val repository: IPersonalInfoRepository
-) : BaseUseCase<List<Country>, Unit>() {
+) : BaseUseCase<ArrayList<Country>, Unit>() {
 
-    override suspend fun execute(params: Unit?): List<Country> {
+    override suspend fun execute(params: Unit?): ArrayList<Country> {
         return repository.getCountries()
     }
 }

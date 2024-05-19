@@ -12,16 +12,18 @@ interface PersonalInfoContract {
     }
 
     sealed class PersonalInfoEvent : ViewEvent {
-        data class CountriesIndex(val countries: List<Country>) : PersonalInfoEvent()
+        data class CountriesIndex(val countries: ArrayList<Country>) : PersonalInfoEvent()
+        data class UserPersonalInfo(val user: User) : PersonalInfoEvent()
     }
 
     data class PersonalInfoState(
         val isLoading: Boolean, val exception: AlTasheratException?, val action: ViewAction?,
-        val userPersonalInfo: User
     ) : ViewState {
         companion object {
             fun initial() = PersonalInfoState(
-                isLoading = false, exception = null, action = null, userPersonalInfo = User()
+                isLoading = false,
+                exception = null,
+                action = null,
             )
         }
     }

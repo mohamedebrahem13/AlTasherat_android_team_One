@@ -15,8 +15,8 @@ internal class PersonalInfoRepository(
         return UserMapper.entityToDomain(user)
     }
 
-    override fun getCountries(): List<Country> {
+    override fun getCountries(): ArrayList<Country> {
         val countries = localDS.getCountries()
-        return countries.map { country -> CountryMapper.entityToDomain(country) }
+        return countries.map { CountryMapper.entityToDomain(it) } as ArrayList<Country>
     }
 }

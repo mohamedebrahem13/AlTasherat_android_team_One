@@ -91,7 +91,8 @@
                 style="@style/TextInputEditText.Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/enter_first_name" />
+                android:hint="@string/enter_first_name"
+                android:text="@{state.userPersonalInfo.firstname}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -180,11 +181,11 @@
             app:layout_constraintTop_toTopOf="@id/input_phone_number">
 
             <AutoCompleteTextView
-                style="@style/TextInputEditText.CountryCode"
+                style="@style/AutoCompleteTextView.CountryCode"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/country_code"
-                tools:hint="🇸🇦  (+966)" />
+                tools:hint="🇸🇦 (+966)" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView

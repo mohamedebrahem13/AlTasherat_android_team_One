@@ -10,6 +10,12 @@ internal object CountryMapper : Mapper<Unit, Country, CountryEntity>() {
     }
 
     override fun entityToDomain(model: CountryEntity): Country {
-        return Country(id = model.id, phoneCode = model.phoneCode, flag = model.flag)
+        return Country(
+            id = model.id,
+            name = model.name,
+            phoneCode = model.phoneCode,
+            flag = model.flag,
+            isSelected = false
+        )
     }
 }

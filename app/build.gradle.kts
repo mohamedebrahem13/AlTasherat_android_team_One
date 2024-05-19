@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-parcelize")
     kotlin("kapt")
     alias(libs.plugins.dagger.hilt)
 }
@@ -80,10 +81,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
 
     // SDP & SSP
     implementation(libs.intuit.sdp)
     implementation(libs.intuit.ssp)
+    implementation(libs.androidx.legacy.support.v4)
 
     // Unit Test
     testImplementation(libs.junit)

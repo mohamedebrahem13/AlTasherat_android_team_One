@@ -17,10 +17,10 @@ internal class PersonalInfoLocalDS(
         return jsonString.getModelFromJSON(UserEntity::class.java)
     }
 
-    override fun getCountries(): List<CountryEntity> {
+    override fun getCountries(): ArrayList<CountryEntity> {
         val jsonString =
             context.assets.open("Countries.json").bufferedReader().use { it.readText() }
-        val itemType = object : TypeToken<List<CountryEntity>>() {}.type
+        val itemType = object : TypeToken<ArrayList<CountryEntity>>() {}.type
         return jsonString.getModelFromJSON(itemType)
     }
 }

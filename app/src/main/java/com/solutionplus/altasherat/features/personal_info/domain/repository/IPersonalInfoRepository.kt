@@ -5,5 +5,5 @@ import com.solutionplus.altasherat.features.personal_info.domain.models.User
 
 interface IPersonalInfoRepository {
     fun getUserPersonalInfo(): User
-    fun getCountries(): List<Country>
+    fun getCountries(): ArrayList<Country>
 }

@@ -23,5 +23,6 @@
     <string name="select_country">Enter Country</string>
     <string name="save">Save</string>
     <string name="country_code">Country Code</string>
+    <string name="selected_country_code">%1$s\t(+%2$s)</string>
     <!--endregion-->
 </resources>

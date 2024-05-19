@@ -24,5 +24,6 @@
     <string name="select_country">ادخل دولتك</string>
     <string name="save">حفظ</string>
     <string name="country_code">كود الدولة</string>
+    <string name="selected_country_code">%1$s\t(+%2$s)</string>
     <!--endregion-->
 </resources>
