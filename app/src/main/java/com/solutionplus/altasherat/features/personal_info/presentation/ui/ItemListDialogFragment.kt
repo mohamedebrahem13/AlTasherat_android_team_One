@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.solutionplus.altasherat.databinding.FragmentCountrySelectionDialogBinding
 import com.solutionplus.altasherat.features.personal_info.domain.models.Country
@@ -39,8 +41,16 @@ class ItemListDialogFragment(
         val countries = arguments?.getParcelableArrayList(ARG_ITEM_COUNT, Country::class.java)!!
 
         binding.recyclerView.adapter = singleSelectionAdapter
+
         singleSelectionAdapter.setItems(countries)
         singleSelectionAdapter.setSelectedItem(countries.find { it.isSelected })
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
+
     }
 
     companion object {

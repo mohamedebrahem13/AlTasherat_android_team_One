@@ -104,8 +104,11 @@ class SingleSelectionAdapter(
             val isItemSelected = checkedPosition == bindingAdapterPosition
             root.isSelected = isItemSelected
             textCountryName.text = item.name
-            textCountryFlag.text = item.flag
-            imageCheck.visibility = if (isItemSelected) View.VISIBLE else View.GONE
+            imageCheck.visibility = if (isItemSelected) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         }
 
         override fun onClick(view: View) {

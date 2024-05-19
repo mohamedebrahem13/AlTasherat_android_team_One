@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recyclerView"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:clipToPadding="false"
-    android:paddingVertical="16dp"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:context=".features.personal_info.presentation.ui.ItemListDialogFragment"
-    tools:listitem="@layout/item_single_selection" />
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/bg"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.App.BottomSheetDialog"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:context=".features.personal_info.presentation.ui.ItemListDialogFragment">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_single_selection" />
+</LinearLayout>

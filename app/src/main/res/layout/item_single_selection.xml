@@ -3,32 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/selector_item_single_check_selection"
+    android:gravity="center"
     android:orientation="horizontal"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/text_country_flag"
-        style="@style/TextView.Bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        tools:text="🇸🇦" />
-
-    <TextView
         android:id="@+id/text_country_name"
         style="@style/TextView.Bold"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="السعودية" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_check"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_gravity="end"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_check"
         android:visibility="gone" />
-
 </LinearLayout>
