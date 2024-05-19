@@ -14,13 +14,15 @@ class SplashViewModel @Inject constructor(
     private val getAndSaveCountriesUseCase: GetAndSaveCountriesUseCase,
     private val hasCountryStringKeyUseCase: HasCountryStringKeyUseCase
 ) : AlTasheratViewModel<SplashContract.SplashAction, SplashContract.SplashEvent, SplashContract.SplashViewState>(
-    SplashContract.SplashViewState.Idle
+    SplashContract.SplashViewState.initial()
+
 ) {
     override fun clearState() {
-        setState(SplashContract.SplashViewState.Idle)
+        setState(SplashContract.SplashViewState.initial())
     }
 
     override fun onActionTrigger(action: ViewAction?) {
+        setState(oldViewState.copy(action = action))
         when (action) {
             is SplashContract.SplashAction.CheckCountryStringKey -> checkCountryStringKey()
             // Handle other actions if needed
@@ -30,51 +32,41 @@ class SplashViewModel @Inject constructor(
         }
     }
     private fun checkCountryStringKey() {
-            hasCountryStringKeyUseCase.invoke(viewModelScope) { resource ->
-                when (resource) {
-                    is Resource.Failure -> {
-                        setState(
-                            SplashContract.SplashViewState.Error(
-                                resource.exception.message ?: "Unknown error"
-                            )
-                        )
-                    }
-                    is Resource.Progress -> {
-                        // Update view state to loading
-                        setState(SplashContract.SplashViewState.Loading)
-                    }
-                    is Resource.Success -> {
-                        if (resource.model) {
-                            sendEvent(SplashContract.SplashEvent.NavigateToHome)
-                        } else {
-                            fetchAndSaveCountries()
-                        }
-                    }
+        hasCountryStringKeyUseCase.invoke(viewModelScope) { resource ->
+            when (resource) {
+                is Resource.Failure -> {
+
+                    setState(oldViewState.copy(exception = resource.exception))
                 }
-            }
-        }
+                is Resource.Progress -> {
+                    setState(oldViewState.copy(isLoading = resource.loading))
 
-
-    private fun fetchAndSaveCountries() {
-        // Call the invoke function of the use case and collect the states emitted by it
-            getAndSaveCountriesUseCase.invoke(viewModelScope) { resource ->
-                when (resource) {
-                     is Resource.Progress -> {
-                        // Update view state to loading
-                        setState(SplashContract.SplashViewState.Loading)
-                    }
-                    is Resource.Success -> {
-                        // Update view state to success
-                        setState(SplashContract.SplashViewState.Success)
-                        // Send success event
-                        sendEvent(SplashContract.SplashEvent.NavigateToOnBoarding)
-                    }
-                    is Resource.Failure -> {
-                        // Update view state to error with the error message
-                        setState(SplashContract.SplashViewState.Error(resource.exception.message ?: "Unknown error"))
+                }
+                is Resource.Success -> {
+                    if (resource.model) {
+                        sendEvent(SplashContract.SplashEvent.NavigateToHome)
+                    } else {
+                        fetchAndSaveCountries()
                     }
                 }
             }
         }
     }
+
+    private fun fetchAndSaveCountries() {
+        getAndSaveCountriesUseCase.invoke(viewModelScope) { resource ->
+            when (resource) {
+                is Resource.Progress -> {
+                    setState(oldViewState.copy(isLoading = resource.loading))
+                }
+                is Resource.Success -> {
+                    sendEvent(SplashContract.SplashEvent.NavigateToOnBoarding)
+                }
+                is Resource.Failure -> {
+                    setState(oldViewState.copy(exception = resource.exception))
+                }
+            }
+        }
+    }
+}
 

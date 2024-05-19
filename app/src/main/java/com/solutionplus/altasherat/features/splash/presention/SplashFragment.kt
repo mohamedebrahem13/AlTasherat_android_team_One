@@ -32,21 +32,19 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
         }
     }
     private fun handleViewState(state: SplashContract.SplashViewState) {
-        when (state) {
-            is SplashContract.SplashViewState.Idle -> {
-                // Handle the idle state
+        // Handle different states here
+        when {
+            state.isLoading -> {
+                // Show loading UI
             }
-            is SplashContract.SplashViewState.Loading -> {
-                // Handle the loading state
-            }
-            is SplashContract.SplashViewState.Success -> {
-                // Handle the success state
-                showToast("Data loaded successfully")
-            }
-            is SplashContract.SplashViewState.Error -> {
-                // Handle the error state
-                val errorMessage = state.message
+            state.exception != null -> {
+                // Handle error state
+                val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
+            }
+            else -> {
+                // Handle success state
+                showToast("Data loaded successfully")
             }
         }
     }
