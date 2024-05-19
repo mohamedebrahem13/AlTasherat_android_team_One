@@ -1,21 +1,20 @@
-package com.solutionplus.altasherat.features.auth.signup.domain.di
+package com.solutionplus.altasherat.features.auth.signup.di
 
-import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
+import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
-import com.solutionplus.altasherat.features.auth.signup.data.model.dto.UserResponseDto
-import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserRequest
 import com.solutionplus.altasherat.features.auth.signup.data.repository.SignUpRepository
+import com.solutionplus.altasherat.features.auth.signup.data.repository.local.SignUpLocalDataSource
 import com.solutionplus.altasherat.features.auth.signup.data.repository.remote.SignUpRemoteDataSource
+import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SaveLocalUserUC
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SignUpUC
-import com.solutionplus.altasherat.features.auth.signup.domain.models.UserInfo
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.ISignUpRepository
+import com.solutionplus.altasherat.features.auth.signup.domain.repository.local.ISignUpLocalDataSource
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.remote.ISignUpRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+
 
 
 @Module
@@ -31,10 +30,18 @@ object SignUpModule {
     }
 
     @Provides
+    fun provideSignUpLocalDS(
+        localProvider: IKeyValueStorageProvider,
+    ): ISignUpLocalDataSource {
+        return SignUpLocalDataSource(localProvider)
+    }
+
+    @Provides
     fun provideSignUpRepository(
-        signUpRemoteDataSource: ISignUpRemoteDataSource
+        signUpRemoteDataSource: ISignUpRemoteDataSource,
+        signUpLocalDataSource: ISignUpLocalDataSource
     ): ISignUpRepository {
-        return SignUpRepository(signUpRemoteDataSource)
+        return SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource)
     }
 
     @Provides
@@ -42,6 +49,12 @@ object SignUpModule {
         signupRepository: SignUpRepository
     ): SignUpUC {
         return SignUpUC(signupRepository)
+    }
+    @Provides
+    fun provideSaveUserTokenUC(
+        signupRepository: SignUpRepository
+    ): SaveLocalUserUC {
+        return SaveLocalUserUC(signupRepository)
     }
 
 

@@ -7,6 +7,12 @@
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
 
+
+    <style name="EditText" parent="Widget.Design.TextInputLayout">
+        <item name="cornerRadius">22dp</item>
+        <item name="android:shape">rectangle</item>
+    </style>
+
     <!-- textView -->
     <style name="TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:layout_width">wrap_content</item>

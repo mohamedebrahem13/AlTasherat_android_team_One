@@ -1,6 +1,5 @@
 package com.solutionplus.altasherat.features.auth.signup.data.model.request
 
-import android.content.Intent
 import com.google.gson.annotations.SerializedName
 
 data class UserRequest(

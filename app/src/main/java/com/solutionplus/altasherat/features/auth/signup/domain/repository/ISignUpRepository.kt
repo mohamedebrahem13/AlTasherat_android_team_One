@@ -5,4 +5,6 @@ import com.solutionplus.altasherat.features.auth.signup.domain.models.UserInfo
 
 interface ISignUpRepository {
     suspend fun signup(userRequest: UserRequest): UserInfo
+    suspend fun saveUser(user: String)
+
 }

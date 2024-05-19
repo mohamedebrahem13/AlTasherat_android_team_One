@@ -16,9 +16,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
-    InternetConnectionDelegate by InternetConnectionDelegateImpl()
-{
+abstract class BaseFragment<Binding : ViewBinding> : Fragment(),
+    InternetConnectionDelegate by InternetConnectionDelegateImpl() {
     private var _binding: Binding? = null
     protected val binding: Binding
         get() = _binding!!
@@ -50,6 +49,7 @@ abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
     fun isInternetAvailable(): Boolean {
         return isInternetAvailable(requireContext())
     }
+
     protected fun <T> collectFlowWithLifecycle(flow: Flow<T>, action: (T) -> Unit) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -62,6 +62,6 @@ abstract class BaseFragment <Binding : ViewBinding>: Fragment(),
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding =null
+        _binding = null
     }
 }

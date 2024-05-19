@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.auth.login.presentation
+package com.solutionplus.altasherat.features.auth.login.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
@@ -6,9 +6,9 @@ import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFrag
 import com.solutionplus.altasherat.databinding.FragmentLoginBinding
 import com.solutionplus.altasherat.features.auth.login.data.models.request.LoginRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneRequest
-import com.solutionplus.altasherat.features.auth.signup.presentation.contracts.LoginContracts
+import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
+import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.LoginContracts
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {

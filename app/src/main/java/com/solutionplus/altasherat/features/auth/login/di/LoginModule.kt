@@ -1,10 +1,14 @@
-package com.solutionplus.altasherat.features.auth.login.domain.di
+package com.solutionplus.altasherat.features.auth.login.di
 
+import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.auth.login.data.repository.LoginRepository
+import com.solutionplus.altasherat.features.auth.login.data.repository.local.LoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.data.repository.remote.LoginRemoteDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.interactor.LoginUC
+import com.solutionplus.altasherat.features.auth.login.domain.interactor.SaveLoginUserUC
 import com.solutionplus.altasherat.features.auth.login.domain.repository.ILoginRepository
+import com.solutionplus.altasherat.features.auth.login.domain.repository.local.ILoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.ILoginRemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -25,10 +29,18 @@ object LoginModule {
     }
 
     @Provides
+    fun provideLoginUpLocalDS(
+        localProvider: IKeyValueStorageProvider,
+    ): ILoginLocalDataSource {
+        return LoginLocalDataSource(localProvider)
+    }
+
+    @Provides
     fun provideLoginRepository(
-        loginRemoteDataSource: ILoginRemoteDataSource
+        loginRemoteDataSource: ILoginRemoteDataSource,
+        localLoginDataSource: ILoginLocalDataSource
     ): ILoginRepository {
-        return LoginRepository(loginRemoteDataSource)
+        return LoginRepository(loginRemoteDataSource, localLoginDataSource)
     }
 
     @Provides
@@ -36,6 +48,13 @@ object LoginModule {
         loginRepository: LoginRepository
     ): LoginUC {
         return LoginUC(loginRepository)
+    }
+
+    @Provides
+    fun provideSaveLoginUserTokenUC(
+        loginRepository: LoginRepository
+    ): SaveLoginUserUC {
+        return SaveLoginUserUC(loginRepository)
     }
 
 }

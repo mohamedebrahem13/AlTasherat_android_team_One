@@ -8,5 +8,5 @@ data class UserInfo(
     val email: String,
     val countryCode: String,
     val number: String,
-    val message: String
+    val message: String?
 )

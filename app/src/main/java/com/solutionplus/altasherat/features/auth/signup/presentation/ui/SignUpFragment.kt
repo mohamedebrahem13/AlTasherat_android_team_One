@@ -1,57 +1,58 @@
-package com.solutionplus.altasherat.features.auth.signup.presentation.fragment
+package com.solutionplus.altasherat.features.auth.signup.presentation.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.textfield.TextInputLayout
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSignupBinding
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserRequest
-import com.solutionplus.altasherat.features.auth.signup.presentation.contracts.LoginContracts
-import com.solutionplus.altasherat.features.auth.signup.presentation.contracts.SignUpContract
-import com.solutionplus.altasherat.features.auth.signup.presentation.contracts.SignUpViewModel
+import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpViewModel
+import com.solutionplus.altasherat.features.auth.ui.ViewPagerAdapter
+import com.solutionplus.altasherat.features.auth.ui.ViewPagerFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignupBinding>() {
-
-
     private val signUpViewModel by viewModels<SignUpViewModel>()
+    private lateinit var viewPagerFragment: ViewPagerFragment
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-
-        val firstName = binding.firstNameEt.text.toString().trim()
-        val lastName = binding.lastNameEt.text.toString()
-        val email = binding.emailEt.text.toString()
-        val phoneNumber = binding.phoneEt.text.toString()
-        val countryCode = binding.countryCodeEt.text.toString()
-        val password = binding.passwordEt.text.toString()
-        val passwordConfirmation = binding.passwordEt.text.toString()
-        val countryId = "1"
-
-
-
         val userRequest = UserRequest(
-            firstname = "ebram",
+            firstname = "toto",
             middleName = "zakria",
-            lastname = "ibrahem",
-            email = "abram@gmail.com",
+            lastname = "toto",
+            email = "toto@gmail.com",
             password = "123456789",
             passwordConfirmation = "123456789",
             "1",
-            phoneRequest = PhoneRequest("0020", number = "12345678989")
+            phoneRequest = PhoneRequest("0020", number = "123400023389")
         )
-        binding.signupBtn.setOnClickListener {
-            Toast.makeText(requireContext(), firstName, Toast.LENGTH_LONG).show()
-
-            signUpViewModel.processIntent(SignUpContract.MainAction.SignUp(userRequest))
+        collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
+            result.exception?.let {
+                if (it.message?.isNotEmpty()!!) {
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
         }
     }
 
-    override fun viewInit() {}
+    override fun viewInit() {
+        viewPagerFragment.updateButtonText(getString(R.string.signup_text))
+        viewPagerFragment.updateButtonIcon(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_signup
+            )
+        )
+    }
 
     private fun EditText.hintDisabled(textInputLayout: TextInputLayout) {
         this.addTextChangedListener(object : TextWatcher {
@@ -68,8 +69,6 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>() {
             }
         })
     }
-
-
 
 
     override fun onLoading(isLoading: Boolean) {
