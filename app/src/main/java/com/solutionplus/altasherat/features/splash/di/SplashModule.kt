@@ -39,8 +39,8 @@ internal object SplashModule {
     @ViewModelScoped
     fun provideCountriesRepository(
         remoteDataSource: ISplashRemoteDS,
-        localDataSource: ISplashLocalDS
-        , countryMapper: CountryMapper
+        localDataSource: ISplashLocalDS,
+        countryMapper: CountryMapper
 
     ): ISplashRepository {
         return SplashRepository(localDataSource, remoteDataSource,countryMapper)

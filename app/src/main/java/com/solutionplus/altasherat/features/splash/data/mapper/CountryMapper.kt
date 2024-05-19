@@ -12,13 +12,13 @@ internal object CountryMapper : Mapper<CountryDto, Country, CountryEntity>() {
     override fun dtoToDomain(model: CountryDto): Country {
         return Country(
             id = model.id ?: 0,
-            name = model.name ?: "",
-            nationality = model.nationality ?: "",
-            currency = model.currency ?: "",
-            code = model.code ?: "",
-            phoneCode = model.phoneCode ?: "",
+            name = model.name.orEmpty(),
+            nationality = model.nationality .orEmpty(),
+            currency = model.currency .orEmpty(),
+            code = model.code .orEmpty(),
+            phoneCode = model.phoneCode .orEmpty(),
             visible = model.visible ?: false,
-            flag = model.flag ?: ""
+            flag = model.flag .orEmpty()
         )
     }
     override fun domainToEntity(model: Country): CountryEntity {
@@ -50,7 +50,10 @@ internal object CountryMapper : Mapper<CountryDto, Country, CountryEntity>() {
     fun mapEntityListToDomain(entityList: List<CountryEntity>): List<Country> {
         return entityList.map { entityToDomain(it) }
     }
-    fun mapDtoToDomain(dto: List<CountryDto>): CountriesResponse {
+    fun mapDomainListToEntity(countries: List<Country>): List<CountryEntity>{
+        return countries.map { domainToEntity(it) }
+    }
+    fun mapDtoListToDomain(dto: List<CountryDto>): CountriesResponse {
         val countries = dto.map { dtoToDomain(it)
         }
         return CountriesResponse(countries)

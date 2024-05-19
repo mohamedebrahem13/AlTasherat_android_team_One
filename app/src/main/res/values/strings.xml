@@ -12,6 +12,10 @@
     <string name="onboarding_1_welcome_2" translatable="false">    مع تطبيق تأشيرات أصبح استخراج تأشيرتك الإلكترونية غاية في السهولة سواء تأشيرة سياحة أو توظيف أو تأشيرات أصحاب الشركات فلا تحمل هم الإجراءات المرهقة فلدينا فريق كامل يعمل على راحتك
 </string>
 
+    <string name="splash_text" translatable="false">منصة التاشيرات</string>
+    <string name="continue_" translatable="false">الاستمرار</string>
+    <string name="please_pick_lang" translatable="false">من فضلك اختر اللغة</string>
+    <string name="please_pick_country" translatable="false">من فضلك اختر الدولة</string>
 
     <string name="unsupported_type" translatable="false">Unsupported type</string>
     <string name="unknown_network_error" translatable="false">Unknown network error</string>

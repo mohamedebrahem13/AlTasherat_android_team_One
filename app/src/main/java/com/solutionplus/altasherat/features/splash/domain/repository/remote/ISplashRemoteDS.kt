@@ -4,5 +4,4 @@ import com.solutionplus.altasherat.features.splash.data.models.dto.CountryRespon
 
 internal interface ISplashRemoteDS {
     suspend fun getCountries(): CountryResponseDto
-
 }

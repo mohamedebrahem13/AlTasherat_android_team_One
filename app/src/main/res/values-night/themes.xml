@@ -1,7 +1,9 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Dark theme colors -->
+        <item name="splashBackgroundColor">@color/bg</item>
+        <item name="splashTextColor">@color/bg_input</item>
     </style>
+
 </resources>

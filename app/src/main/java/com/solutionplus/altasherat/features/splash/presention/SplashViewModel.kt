@@ -7,14 +7,13 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveCountriesUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.HasCountryStringKeyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val getAndSaveCountriesUseCase: GetAndSaveCountriesUseCase,
     private val hasCountryStringKeyUseCase: HasCountryStringKeyUseCase
-) : AlTasheratViewModel<SplashContract.Action, SplashContract.Event, SplashContract.SplashViewState>(
+) : AlTasheratViewModel<SplashContract.SplashAction, SplashContract.SplashEvent, SplashContract.SplashViewState>(
     SplashContract.SplashViewState.Idle
 ) {
     override fun clearState() {
@@ -23,7 +22,7 @@ class SplashViewModel @Inject constructor(
 
     override fun onActionTrigger(action: ViewAction?) {
         when (action) {
-            is SplashContract.Action.CheckCountryStringKey -> checkCountryStringKey()
+            is SplashContract.SplashAction.CheckCountryStringKey -> checkCountryStringKey()
             // Handle other actions if needed
             else -> {
                 // Do nothing or handle unknown action
@@ -31,8 +30,7 @@ class SplashViewModel @Inject constructor(
         }
     }
     private fun checkCountryStringKey() {
-        viewModelScope.launch {
-            hasCountryStringKeyUseCase.invoke().collect { resource ->
+            hasCountryStringKeyUseCase.invoke(viewModelScope) { resource ->
                 when (resource) {
                     is Resource.Failure -> {
                         setState(
@@ -47,7 +45,7 @@ class SplashViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         if (resource.model) {
-                            sendEvent(SplashContract.Event.NavigateToHome)
+                            sendEvent(SplashContract.SplashEvent.NavigateToHome)
                         } else {
                             fetchAndSaveCountries()
                         }
@@ -55,12 +53,11 @@ class SplashViewModel @Inject constructor(
                 }
             }
         }
-    }
+
 
     private fun fetchAndSaveCountries() {
         // Call the invoke function of the use case and collect the states emitted by it
-        viewModelScope.launch {
-            getAndSaveCountriesUseCase.invoke().collect { resource ->
+            getAndSaveCountriesUseCase.invoke(viewModelScope) { resource ->
                 when (resource) {
                      is Resource.Progress -> {
                         // Update view state to loading
@@ -70,7 +67,7 @@ class SplashViewModel @Inject constructor(
                         // Update view state to success
                         setState(SplashContract.SplashViewState.Success)
                         // Send success event
-                        sendEvent(SplashContract.Event.NavigateToOnBoarding)
+                        sendEvent(SplashContract.SplashEvent.NavigateToOnBoarding)
                     }
                     is Resource.Failure -> {
                         // Update view state to error with the error message
@@ -81,5 +78,3 @@ class SplashViewModel @Inject constructor(
         }
     }
 
-
-}

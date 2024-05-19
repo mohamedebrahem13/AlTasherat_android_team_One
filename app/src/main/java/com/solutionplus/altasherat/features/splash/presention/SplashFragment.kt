@@ -16,7 +16,7 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        viewModel.onActionTrigger(SplashContract.Action.CheckCountryStringKey)
+        viewModel.onActionTrigger(SplashContract.SplashAction.CheckCountryStringKey)
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -54,14 +54,13 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
-    private fun handleSingleEvent(event: SplashContract.Event) {
+    private fun handleSingleEvent(event: SplashContract.SplashEvent) {
         // Handle single events
         when (event) {
-            SplashContract.Event.NavigateToHome -> {
+            SplashContract.SplashEvent.NavigateToHome -> {
                 logger.debug("navigate to home")
-
             }
-            SplashContract.Event.NavigateToOnBoarding -> {
+            SplashContract.SplashEvent.NavigateToOnBoarding -> {
             Intent(requireActivity(), OnboardingActivity::class.java).also { intent ->
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
