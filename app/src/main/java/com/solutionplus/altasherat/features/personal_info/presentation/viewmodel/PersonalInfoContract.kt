@@ -9,6 +9,8 @@ import com.solutionplus.altasherat.features.personal_info.domain.models.User
 
 interface PersonalInfoContract {
     sealed class PersonalInfoAction : ViewAction {
+        data object GetCountries : PersonalInfoAction()
+        data object GetUserPersonalInfo : PersonalInfoAction()
     }
 
     sealed class PersonalInfoEvent : ViewEvent {

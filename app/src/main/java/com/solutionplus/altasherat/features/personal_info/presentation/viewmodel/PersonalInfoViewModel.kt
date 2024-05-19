@@ -18,13 +18,10 @@ class PersonalInfoViewModel @Inject constructor(
     private val getUserPersonalInfoUC: GetUserPersonalInfoUC
 ) : AlTasheratViewModel<PersonalInfoAction, PersonalInfoEvent, PersonalInfoState>(PersonalInfoState.initial()) {
 
-    init {
-        getCountries()
-        getUserPersonalInfo()
-    }
-
     override fun onActionTrigger(action: ViewAction?) {
         when (action) {
+            is PersonalInfoAction.GetCountries -> getCountries()
+            is PersonalInfoAction.GetUserPersonalInfo -> getUserPersonalInfo()
         }
     }
 

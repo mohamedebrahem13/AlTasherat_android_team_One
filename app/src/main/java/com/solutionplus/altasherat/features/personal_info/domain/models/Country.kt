@@ -9,6 +9,6 @@ data class Country(
     override var id: Int,
     override var name: String,
     val phoneCode: String,
-    override var flag: String,
+    val flag: String,
     override var isSelected: Boolean
 ) : SingleSelection, Parcelable

@@ -17,12 +17,12 @@ class SingleSelectionAdapter(
     private var items: MutableList<SingleSelection> = ArrayList()
 
     override fun getItemViewType(position: Int): Int = when (viewType) {
-        SingleSelectionViewType.SELECTION_RADIO -> SingleSelectionViewType.SELECTION_RADIO.index
+        SingleSelectionViewType.SELECTION_CHECK -> SingleSelectionViewType.SELECTION_CHECK.index
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            SingleSelectionViewType.SELECTION_RADIO.index -> ViewHolderRadio(
+            SingleSelectionViewType.SELECTION_CHECK.index -> ViewHolderCheck(
                 ItemSingleSelectionBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -36,7 +36,7 @@ class SingleSelectionAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
-            SingleSelectionViewType.SELECTION_RADIO.index -> with(holder as ViewHolderRadio) {
+            SingleSelectionViewType.SELECTION_CHECK.index -> with(holder as ViewHolderCheck) {
                 this.bind(items[position])
             }
         }
@@ -92,7 +92,7 @@ class SingleSelectionAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    inner class ViewHolderRadio(private val binding: ItemSingleSelectionBinding) :
+    inner class ViewHolderCheck(private val binding: ItemSingleSelectionBinding) :
         View.OnClickListener,
         RecyclerView.ViewHolder(binding.root) {
 

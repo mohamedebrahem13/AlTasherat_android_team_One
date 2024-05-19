@@ -232,7 +232,6 @@
 
     <style name="AutoCompleteTextView.Country" parent="AutoCompleteTextView.OutlinedBox">
         <item name="android:imeOptions">actionNext</item>
-        <item name="android:inputType">none</item>
     </style>
 
     <style name="AutoCompleteTextView.CountryCode" parent="AutoCompleteTextView.OutlinedBox">

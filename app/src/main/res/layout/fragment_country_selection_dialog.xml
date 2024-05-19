@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.App.BottomSheetDialog"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".features.personal_info.presentation.ui.ItemListDialogFragment">
+    tools:context=".features.personal_info.presentation.ui.SelectionDialogFragment">
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         android:id="@+id/drag_handle"

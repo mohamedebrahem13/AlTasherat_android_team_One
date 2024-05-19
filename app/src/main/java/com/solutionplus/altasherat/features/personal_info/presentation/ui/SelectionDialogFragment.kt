@@ -15,7 +15,7 @@ import com.solutionplus.altasherat.features.personal_info.presentation.ui.single
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionCallback
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionViewType
 
-class ItemListDialogFragment(
+class SelectionDialogFragment(
     private val singleSelectionCallback: SingleSelectionCallback
 ) : BottomSheetDialogFragment() {
 
@@ -23,7 +23,7 @@ class ItemListDialogFragment(
     private val binding get() = _binding!!
 
     private val singleSelectionAdapter by lazy {
-        SingleSelectionAdapter(SingleSelectionViewType.SELECTION_RADIO, singleSelectionCallback)
+        SingleSelectionAdapter(SingleSelectionViewType.SELECTION_CHECK, singleSelectionCallback)
     }
 
     override fun onCreateView(
@@ -38,33 +38,30 @@ class ItemListDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val countries = arguments?.getParcelableArrayList(ARG_ITEM_COUNT, Country::class.java)!!
+        val countries = arguments?.getParcelableArrayList(ARG_COUNTRIES, Country::class.java)!!
 
         binding.recyclerView.adapter = singleSelectionAdapter
 
         singleSelectionAdapter.setItems(countries)
         singleSelectionAdapter.setSelectedItem(countries.find { it.isSelected })
+
         binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                LinearLayoutManager.VERTICAL
-            )
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         )
 
     }
 
     companion object {
         fun newInstance(
-            singleSelectionCallback: SingleSelectionCallback,
-            countries: ArrayList<Country>
-        ): ItemListDialogFragment =
-            ItemListDialogFragment(singleSelectionCallback).apply {
+            singleSelectionCallback: SingleSelectionCallback, countries: ArrayList<Country>
+        ): SelectionDialogFragment =
+            SelectionDialogFragment(singleSelectionCallback).apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_ITEM_COUNT, countries)
+                    putParcelableArrayList(ARG_COUNTRIES, countries)
                 }
             }
 
-        const val ARG_ITEM_COUNT = "item_count"
+        const val ARG_COUNTRIES = "countries"
     }
 
     override fun onDestroyView() {
