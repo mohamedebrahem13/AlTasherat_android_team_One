@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.viewModels
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
@@ -15,6 +18,9 @@ import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoEvent
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 
 @AndroidEntryPoint
 class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
@@ -27,6 +33,17 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
 
     private val selectionBottomSheet by lazy {
         SelectionDialogFragment.newInstance(this, countries)
+    }
+
+    private val datePicker: MaterialDatePicker<Long> by lazy {
+        val constraintsBuilder =
+            CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now())
+
+        MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select date")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setCalendarConstraints(constraintsBuilder.build())
+            .build()
     }
 
     private var selectedCountryIndex = -1
@@ -47,12 +64,22 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
             (inputCountry.editText as AutoCompleteTextView).setOnItemClickListener { _, _, position, _ ->
                 selectedCountryIndex = position
             }
+
+            inputBirthDate.editText?.setOnClickListener {
+                datePicker.show(parentFragmentManager, datePicker.toString())
+            }
+
+            datePicker.addOnPositiveButtonClickListener {
+                val zoneId = ZoneId.systemDefault()
+                val instant = Instant.ofEpochMilli(it)
+                val localDate = instant.atZone(zoneId).toLocalDate()
+                setBirthDateText(localDate)
+            }
         }
     }
 
     override fun subscribeToObservables() {
         viewModel.processIntent(PersonalInfoAction.GetCountries)
-
         collectFlowWithLifecycle(viewModel.viewState) {}
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
@@ -104,6 +131,10 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
                 R.string.selected_country_code, country.flag, country.phoneCode.substring(2)
             )
         )
+    }
+
+    private fun setBirthDateText(date: LocalDate) {
+        binding.inputBirthDate.editText?.setText(date.toString())
     }
 
     private fun showCountrySelectionSheet() {

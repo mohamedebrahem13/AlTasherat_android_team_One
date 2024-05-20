@@ -146,6 +146,7 @@
 
     <style name="TextInputLayout.BirthDate" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_calender</item>
+
     </style>
 
     <style name="TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -212,9 +213,10 @@
     </style>
 
     <style name="TextInputEditText.BirthDate" parent="TextInputEditText.OutlinedBox">
-        <item name="android:inputType">textEmailAddress</item>
-        <item name="android:enabled">false</item>
-        <item name="android:clickable">true</item>
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
         <item name="android:imeOptions">actionNext</item>
     </style>
     <!--endregion-->
