@@ -3,4 +3,6 @@
     <string name="unsupported_type">Unsupported type</string>
     <string name="unknown_network_error">Unknown network error</string>
     <string name="network_connection_error">Network connection error</string>
+    <string name="encryption_error">Encryption error</string>
+    <string name="decryption_error">Decryption error</string>
 </resources>
