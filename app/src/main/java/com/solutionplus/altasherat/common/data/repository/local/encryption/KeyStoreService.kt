@@ -38,12 +38,12 @@ class KeyStoreService : IKeyStoreService {
         }.build()
     }
 
-    override fun isKeySecretExist(keyAlias: String): Boolean {
+    override fun isSecretKeyExist(keyAlias: String): Boolean {
         return keyStore.containsAlias(keyAlias)
     }
 
     override fun deleteSecretKey(keyAlias: String) {
-        if (isKeySecretExist(keyAlias)) keyStore.deleteEntry(keyAlias)
+        if (isSecretKeyExist(keyAlias)) keyStore.deleteEntry(keyAlias)
     }
 
     companion object {

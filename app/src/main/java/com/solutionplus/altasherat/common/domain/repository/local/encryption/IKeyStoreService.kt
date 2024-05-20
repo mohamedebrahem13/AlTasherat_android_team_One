@@ -5,6 +5,6 @@ import javax.crypto.SecretKey
 interface IKeyStoreService {
     val transformation: String
     fun getSecretKey(keyAlias: String): SecretKey
-    fun isKeySecretExist(keyAlias: String): Boolean
+    fun isSecretKeyExist(keyAlias: String): Boolean
     fun deleteSecretKey(keyAlias: String)
 }
