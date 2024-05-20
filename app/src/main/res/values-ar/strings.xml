@@ -19,6 +19,10 @@
     <string name="foregt_password_text" translatable="false">نسيت كلمة المرور؟</string>
 
 
+    <string name="email_validation_error">البريد الإلكتروني الذي أدخلته غير صالح</string>
+    <string name="firstname_validation_error">الاسم الاول الذي أدخلته غير صالح</string>
+    <string name="lastname_validation_error">الاسم الاخير الذي أدخلته غير صالح</string>
+    <string name="password_validation_error">الرقم السري الذي أدخلته غير صالح</string>
 
 
 

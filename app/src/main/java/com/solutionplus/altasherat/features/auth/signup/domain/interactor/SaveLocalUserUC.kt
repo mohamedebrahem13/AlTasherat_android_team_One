@@ -6,9 +6,9 @@ import javax.inject.Inject
 
 class SaveLocalUserUC @Inject constructor(
     private val repository: SignUpRepository
-): BaseUseCase<String, String>() {
+) : BaseUseCase<String, String>() {
     override suspend fun execute(params: String?): String {
-         params?.let { repository.saveUser(user = it) }
+        params?.let { repository.saveUser(user = it) }
         return "User Saved Successfully"
     }
 }

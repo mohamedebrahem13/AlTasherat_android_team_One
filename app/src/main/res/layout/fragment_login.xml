@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+
 
     <LinearLayout
-        android:id="@+id/signUpLayout"
+        android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical">
-
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,20 +114,6 @@
         style="@style/TextView.SemiBold"
         android:text="@string/foregt_password_text"/>
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginBtn"
-        android:layout_width="204dp"
-        android:padding="16dp"
-        android:drawableStart="@drawable/ic_signup"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/signUpLayout"
-        app:layout_constraintEnd_toEndOf="@id/signUpLayout"
-        app:layout_constraintTop_toBottomOf="@id/signUpLayout"
-        android:layout_marginTop="10dp"
-        android:textAppearance="@style/TextView"
-        android:text="@string/login_text"
-        android:background="@drawable/button_background"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,15 @@
-package com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel
+package com.solutionplus.altasherat.features.auth.login.presentation.viewmodel
 
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
-import com.solutionplus.altasherat.features.auth.login.data.models.request.LoginRequest
+import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 
 interface LoginContracts {
     sealed class MainAction : ViewAction {
         data object GetCountries : MainAction()
-        data class Login(val loginUserRequest: LoginRequest) : MainAction()
+        data class Login(val loginUserRequest: UserLoginRequest) : MainAction()
     }
 
     sealed class MainEvent : ViewEvent {

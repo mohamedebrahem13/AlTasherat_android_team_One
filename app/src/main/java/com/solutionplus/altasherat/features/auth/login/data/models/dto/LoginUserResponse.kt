@@ -1,8 +1,8 @@
-package com.solutionplus.altasherat.features.auth.signup.data.model.dto
+package com.solutionplus.altasherat.features.auth.login.data.models.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class LoginUserResponse(
     @SerializedName("birth_date")
     val birthDate: Any? = null,
     @SerializedName("email")
@@ -22,7 +22,7 @@ data class User(
     @SerializedName("middlename")
     val middleName: String? = null,
     @SerializedName("phone")
-    val phone: Phone? = null,
+    val phone: LoginPhoneResponse? = null,
     @SerializedName("phone_verified")
     val phoneVerified: Boolean? = null,
     @SerializedName("username")

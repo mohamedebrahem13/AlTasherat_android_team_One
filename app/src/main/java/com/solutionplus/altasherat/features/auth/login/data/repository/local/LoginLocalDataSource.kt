@@ -5,9 +5,9 @@ import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStora
 import com.solutionplus.altasherat.features.auth.login.domain.repository.local.ILoginLocalDataSource
 import javax.inject.Inject
 
-class LoginLocalDataSource@Inject constructor(
+class LoginLocalDataSource @Inject constructor(
     private val localProvider: IKeyValueStorageProvider,
-): ILoginLocalDataSource {
+) : ILoginLocalDataSource {
     override suspend fun saveUserToken(token: String) {
         localProvider.update(StorageKeyEnum.USER_KEY, token, String::class.java)
     }

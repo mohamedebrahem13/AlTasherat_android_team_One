@@ -8,5 +8,5 @@ data class LoginResponseDto(
     @SerializedName("token")
     val token: String? = null,
     @SerializedName("user")
-    val user: User? = null
+    val loginUserResponse: LoginUserResponse? = null
 )

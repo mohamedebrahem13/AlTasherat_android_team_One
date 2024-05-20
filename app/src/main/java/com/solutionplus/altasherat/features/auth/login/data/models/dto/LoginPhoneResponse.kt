@@ -1,8 +1,8 @@
-package com.solutionplus.altasherat.features.auth.signup.data.model.dto
+package com.solutionplus.altasherat.features.auth.login.data.models.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Phone(
+data class LoginPhoneResponse(
     @SerializedName("country_code")
     val countryCode: String? = null,
     @SerializedName("extension")

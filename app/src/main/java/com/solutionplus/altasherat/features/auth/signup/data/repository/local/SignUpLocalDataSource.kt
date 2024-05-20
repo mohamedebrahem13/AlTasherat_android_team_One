@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class SignUpLocalDataSource @Inject constructor(
     private val localProvider: IKeyValueStorageProvider,
-): ISignUpLocalDataSource {
+) : ISignUpLocalDataSource {
     override suspend fun saveUser(user: String) {
         localProvider.save(StorageKeyEnum.USER_KEY, user, String::class.java)
     }

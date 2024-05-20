@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
-import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserRequest
+import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SaveLocalUserUC
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SignUpUC
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +21,8 @@ class SignUpViewModel @Inject constructor(
     SignUpContract.MainState.initial()
 ) {
 
-    private fun signup(userRequest: UserRequest) {
-        signUpUC.invoke(viewModelScope, userRequest) { result ->
+    private fun signup(userSignUpRequest: UserSignUpRequest) {
+        signUpUC.invoke(viewModelScope, userSignUpRequest) { result ->
             when (result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
@@ -57,7 +57,7 @@ class SignUpViewModel @Inject constructor(
         setState(oldViewState.copy(action = action))
         when (action) {
             is SignUpContract.MainAction.SignUp -> {
-                signup(action.userRequest)
+                signup(action.userSignUpRequest)
             }
         }
     }

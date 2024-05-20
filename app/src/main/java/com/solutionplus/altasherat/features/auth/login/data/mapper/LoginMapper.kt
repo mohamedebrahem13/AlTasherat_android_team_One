@@ -4,18 +4,17 @@ import com.solutionplus.altasherat.common.data.mapper.Mapper
 import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
 import com.solutionplus.altasherat.features.auth.login.data.models.entity.LoginUserEntity
 import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserInfo
-import com.solutionplus.altasherat.features.auth.signup.domain.models.UserInfo
 
 object LoginMapper: Mapper<LoginResponseDto, LoginUserInfo, LoginUserEntity>() {
     override fun dtoToDomain(model: LoginResponseDto): LoginUserInfo {
         return LoginUserInfo(
             token = model.token ?: "",
-            username = model.user?.username ?: "",
-            firstname = model.user?.firstname ?: "",
-            lastname = model.user?.lastname ?: "",
-            email = model.user?.email ?: "",
-            countryCode = model.user?.phone?.countryCode ?: "",
-            number = model.user?.phone?.number ?: "",
+            username = model.loginUserResponse?.username ?: "",
+            firstname = model.loginUserResponse?.firstname ?: "",
+            lastname = model.loginUserResponse?.lastname ?: "",
+            email = model.loginUserResponse?.email ?: "",
+            countryCode = model.loginUserResponse?.phone?.countryCode ?: "",
+            number = model.loginUserResponse?.phone?.number ?: "",
             message = model.message ?: ""
         )
     }

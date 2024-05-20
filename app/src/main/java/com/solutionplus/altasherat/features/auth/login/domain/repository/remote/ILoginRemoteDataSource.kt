@@ -1,9 +1,9 @@
 package com.solutionplus.altasherat.features.auth.login.domain.repository.remote
 
 import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
-import com.solutionplus.altasherat.features.auth.login.data.models.request.LoginRequest
+import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 
 
 interface ILoginRemoteDataSource {
-    suspend fun loginWithPhone(loginRequest: LoginRequest): LoginResponseDto
+    suspend fun loginWithPhone(userLoginRequest: UserLoginRequest): LoginResponseDto
 }

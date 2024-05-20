@@ -4,12 +4,12 @@ import com.solutionplus.altasherat.common.data.models.exception.AlTasheratExcept
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
-import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserRequest
+import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 
 interface SignUpContract {
     sealed class MainAction : ViewAction {
         data object GetCountries : MainAction()
-        data class SignUp(val userRequest: UserRequest) : MainAction()
+        data class SignUp(val userSignUpRequest: UserSignUpRequest) : MainAction()
     }
 
     sealed class MainEvent : ViewEvent {
