@@ -19,12 +19,16 @@ internal data class UserEntity(
     val phone: PhoneEntity,
     @SerializedName("image")
     val image: ImageEntity,
-    @SerializedName("birth_date")
+    @SerializedName("birthdate")
     val birthDate: String,
     @SerializedName("email_verified")
     val isEmailVerified: Boolean,
     @SerializedName("phone_verified")
     val isPhoneVerified: Boolean,
-    @SerializedName("is_blocked")
+    @SerializedName("blocked")
     val isBlocked: Int,
+    @SerializedName("country")
+    val country: CountryEntity,
+    @SerializedName("all_permissions")
+    val allPermissions: ArrayList<String?>? = null,
 )

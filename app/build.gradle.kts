@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.coil.kt)
 
     // SDP & SSP
     implementation(libs.intuit.sdp)

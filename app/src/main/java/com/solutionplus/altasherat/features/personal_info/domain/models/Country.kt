@@ -11,4 +11,6 @@ data class Country(
     val phoneCode: String,
     val flag: String,
     override var isSelected: Boolean
-) : SingleSelection, Parcelable
+) : SingleSelection, Parcelable {
+    constructor() : this(0, "", "", "", false)
+}

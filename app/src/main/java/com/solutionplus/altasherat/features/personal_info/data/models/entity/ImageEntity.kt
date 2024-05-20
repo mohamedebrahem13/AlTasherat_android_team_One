@@ -16,7 +16,7 @@ internal data class ImageEntity(
     @SerializedName("priority")
     val priority: Int,
     @SerializedName("main")
-    val main: Boolean,
+    val isMain: Boolean,
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("updated_at")

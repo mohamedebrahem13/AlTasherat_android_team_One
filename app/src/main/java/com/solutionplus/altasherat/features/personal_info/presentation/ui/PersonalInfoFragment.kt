@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.viewModels
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -105,6 +107,13 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
             inputPhoneNumber.editText?.setText(user.phone.number)
             inputEmail.editText?.setText(user.email)
             inputBirthDate.editText?.setText(user.birthDate.toString())
+            imageProfile.load(user.image.path) {
+                crossfade(true)
+                placeholder(R.drawable.ic_no_profile_image)
+                error(R.drawable.ic_no_profile_image)
+                transformations(CircleCropTransformation())
+            }
+            (inputCountry.editText as AutoCompleteTextView).setText(user.country.name)
         }
 
         val country = countries.first { it.phoneCode == user.phone.countryCode }

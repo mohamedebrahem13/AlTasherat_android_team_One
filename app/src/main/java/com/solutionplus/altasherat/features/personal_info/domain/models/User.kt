@@ -11,9 +11,11 @@ data class User(
     val phone: Phone,
     val image: Image,
     val birthDate: LocalDate,
+    val country: Country,
 ) {
     constructor() : this(
         id = 0, firstname = "", middlename = "", lastname = "", email = "",
-        phone = Phone(), image = Image(), birthDate = LocalDate.now()
+        phone = Phone(), image = Image(), birthDate = LocalDate.now(),
+        country = Country()
     )
 }

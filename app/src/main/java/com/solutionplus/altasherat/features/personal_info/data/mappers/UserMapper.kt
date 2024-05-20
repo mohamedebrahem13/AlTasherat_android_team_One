@@ -24,7 +24,8 @@ internal object UserMapper : Mapper<Unit, User, UserEntity>() {
             birthDate = LocalDate.parse(
                 model.birthDate,
                 DateTimeFormatter.ofPattern("d-M-yyyy").withZone(ZoneId.systemDefault())
-            )
+            ),
+            country = CountryMapper.entityToDomain(model.country)
         )
     }
 }
