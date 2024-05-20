@@ -5,7 +5,7 @@ import com.solutionplus.altasherat.features.splash.data.models.dto.CountryRespon
 import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 
 internal class FakeSplashRemoteDS(private val iNetworkProvider: INetworkProvider) : ISplashRemoteDS {
-    override suspend fun getCountries(): CountryResponseDto {
+    override suspend fun getCountries(params: String): CountryResponseDto {
         return iNetworkProvider.get(CountryResponseDto::class.java, "countries")
     }
 }

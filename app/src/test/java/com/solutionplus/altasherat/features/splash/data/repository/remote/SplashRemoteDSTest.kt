@@ -33,7 +33,7 @@ class SplashRemoteDSTest{
         networkProvider.setResponse("countries", expectedResponse)
 
         // Act
-        val result = splashRemoteDS.getCountries()
+        val result = splashRemoteDS.getCountries("en")
 
         // Assert
         assertEquals(expectedResponse, result)

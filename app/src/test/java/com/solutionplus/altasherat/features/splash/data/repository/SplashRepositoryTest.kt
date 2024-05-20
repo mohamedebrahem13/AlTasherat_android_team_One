@@ -99,7 +99,7 @@ class SplashRepositoryTest {
         networkProvider.setResponse("countries", countryResponseDto)
 
         // When
-        val result = splashRepository.getCountriesFromRemote()
+        val result = splashRepository.getCountriesFromRemote("en")
 
         // Then
         val expectedCountries = CountriesResponse(

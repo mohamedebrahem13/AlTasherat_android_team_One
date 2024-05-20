@@ -6,12 +6,13 @@ import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISpl
 
 internal class SplashRemoteDS (private val iNetworkProvider: INetworkProvider):ISplashRemoteDS{
 
-    override suspend fun getCountries(): CountryResponseDto {
-        val headers = mapOf("X-locale" to "ar")
+
+    override suspend fun getCountries(params: String): CountryResponseDto {
+        val headers = mapOf("X-locale" to params)
 
         return iNetworkProvider.get( responseWrappedModel = CountryResponseDto::class.java,
             pathUrl = "countries",
             headers = headers
-            )
+        )
     }
 }

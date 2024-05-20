@@ -8,10 +8,9 @@ import com.solutionplus.altasherat.features.splash.domain.repository.local.ISpla
 import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 
 internal class SplashRepository (private val localDataSource: ISplashLocalDS, private val remoteDataSource: ISplashRemoteDS, private val countryMapper: CountryMapper):ISplashRepository{
-    override suspend fun getCountriesFromRemote(): CountriesResponse {
-        val countryResponseDto = remoteDataSource.getCountries()
-        return countryMapper.mapDtoListToDomain(countryResponseDto.data)
-    }
+    override suspend fun getCountriesFromRemote(locale: String): CountriesResponse {
+        val countryResponseDto = remoteDataSource.getCountries(locale)
+        return countryMapper.mapDtoListToDomain(countryResponseDto.data)    }
 
     override suspend fun saveCountries(countries: List<Country>) {
         val countryEntities = countryMapper.mapDomainListToEntity(countries)

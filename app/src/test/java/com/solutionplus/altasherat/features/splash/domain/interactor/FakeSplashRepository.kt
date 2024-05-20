@@ -26,11 +26,10 @@ internal class FakeSplashRepository(
 
     }
 
-    override suspend fun getCountriesFromRemote(): CountriesResponse {
+    override suspend fun getCountriesFromRemote(params: String): CountriesResponse {
         if (shouldThrowException) throw Exception("Error fetching countries")
-        val countryResponseDto = remoteDS.getCountries()
-        return countryMapper.mapDtoListToDomain(countryResponseDto.data!!)
-    }
+        val countryResponseDto = remoteDS.getCountries(params)
+        return countryMapper.mapDtoListToDomain(countryResponseDto.data)    }
 
     override suspend fun saveCountries(countries: List<Country>) {
         val countryEntities = countries.map { countryMapper.domainToEntity(it) }

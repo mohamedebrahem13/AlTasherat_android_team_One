@@ -54,7 +54,7 @@ class SplashViewModel @Inject constructor(
     }
 
     private fun fetchAndSaveCountries() {
-        getAndSaveCountriesUseCase.invoke(viewModelScope) { resource ->
+        getAndSaveCountriesUseCase.invoke(viewModelScope,params = "ar") { resource ->
             when (resource) {
                 is Resource.Progress -> {
                     setState(oldViewState.copy(isLoading = resource.loading))

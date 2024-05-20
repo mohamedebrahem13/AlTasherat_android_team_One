@@ -84,7 +84,7 @@ class GetAndSaveCountriesUseCaseTest{
 
         networkProvider.setResponse("countries", expectedResponse)
         // When
-        val resultFlow = useCase(Unit)
+        val resultFlow =useCase("en")
         val resultList = resultFlow.take(3).toList()
 
         // Then
@@ -104,7 +104,7 @@ class GetAndSaveCountriesUseCaseTest{
         networkProvider.setResponse("countries", CountryResponseDto(emptyList(), null, null))
 
         // When
-        val resultFlow = useCase(Unit)
+        val resultFlow = useCase("en")
         val resultList = resultFlow.take(1).toList()
 
         // Then
@@ -129,7 +129,7 @@ class GetAndSaveCountriesUseCaseTest{
         networkProvider.setResponse("countries", expectedResponse)
 
         // When
-        val resultFlow = useCase(Unit)
+        val resultFlow = useCase("en")
         val resultList = resultFlow.take(2).toList()
 
         // Then
@@ -146,7 +146,7 @@ class GetAndSaveCountriesUseCaseTest{
         splashRepository.setShouldThrowException(true)
 
         // When
-        val resultFlow = useCase(Unit)
+        val resultFlow = useCase("en")
             .catch { throwable ->
                 // Ensure that the caught exception is the expected one
                 assertTrue(throwable is AlTasheratException.Unknown)
