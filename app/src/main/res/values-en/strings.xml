@@ -7,4 +7,8 @@
     <string name="onboarding_2_welcome_2">You can reach your favorite destination anywhere in the world just prepare for your trip and leave the rest to us and enjoy a smooth and safe experience of obtaining your tourist visa</string>
     <string name="onboarding_1_welcome">Welcome to the Visa Application</string>
     <string name="onboarding_1_welcome_2">With the Visa Application, obtaining your electronic visa has become incredibly easy, whether it\'s a tourist visa, employment visa, or company visa. Don\'t worry about the exhausting procedures; we have a complete team working for your convenience.</string>
+    <string name="arabic">arabic</string>
+    <string name="english">english</string>
+    <string name="please_pick_lang">please choose the language</string>
+    <string name="please_pick_country">please choose the country</string>
 </resources>

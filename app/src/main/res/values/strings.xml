@@ -13,6 +13,9 @@
 </string>
 
     <string name="splash_text" translatable="false">منصة التاشيرات</string>
+    <string name="arabic" translatable="false">العربية</string>
+    <string name="english" translatable="false">الانجلزية</string>
+
     <string name="continue_" translatable="false">الاستمرار</string>
     <string name="please_pick_lang" translatable="false">من فضلك اختر اللغة</string>
     <string name="please_pick_country" translatable="false">من فضلك اختر الدولة</string>
