@@ -10,11 +10,17 @@ sealed class CountryLocalContract {
 
     sealed class CountryLocalAction : ViewAction {
         data object FetchCountriesFromLocal: CountryLocalAction()
+        data object NextButtonClick: CountryLocalAction()
+        data object StartCountriesWorker: CountryLocalAction()
     }
 
     sealed class CountryLocalEvent : ViewEvent {
         // Define events here if needed
         data class UpdateTheCountry(val countries: List<Country>) : CountryLocalEvent()
+        data object NavigateToOnBoarding : CountryLocalEvent()
+        data object StartCountriesWorker : CountryLocalEvent()
+        data class ShowWorkerStateToast(val workerState: String) : CountryLocalEvent()
+
 
     }
 

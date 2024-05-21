@@ -5,6 +5,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.solutionplus.altasherat.features.splash.domain.worker.CountriesWorker
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
@@ -15,8 +16,11 @@ import javax.inject.Inject
 
 class CountriesWorkerImpl @Inject constructor(private val context: Context) {
 
-    suspend fun startCountriesWorker(): Flow<WorkInfo> = flow {
+    suspend fun startCountriesWorker(language: String): Flow<WorkInfo> = flow {
+        val inputData = workDataOf(CountriesWorker.KEY_LANGUAGE to language)
+
         val countriesWorker = OneTimeWorkRequestBuilder<CountriesWorker>()
+            .setInputData(inputData)
             .build()
 
         val workManager = WorkManager.getInstance(context)
