@@ -12,4 +12,9 @@
     <string name="english">english</string>
     <string name="please_pick_lang">please choose the language</string>
     <string name="please_pick_country">please choose the country</string>
+    <string name="unsupported_type">Unsupported type</string>
+    <string name="unknown_network_error">Unknown network error</string>
+    <string name="network_connection_error">Network connection error</string>
+    <string name="encryption_error">Encryption error</string>
+    <string name="decryption_error">Decryption error</string>
 </resources>

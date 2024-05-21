@@ -24,8 +24,4 @@
     <string name="continue_" translatable="false">الاستمرار</string>
     <string name="please_pick_lang" translatable="false">من فضلك اختر اللغة</string>
     <string name="please_pick_country" translatable="false">من فضلك اختر الدولة</string>
-
-    <string name="unsupported_type" translatable="false">Unsupported type</string>
-    <string name="unknown_network_error" translatable="false">Unknown network error</string>
-    <string name="network_connection_error" translatable="false">Network connection error</string>
 </resources>
