@@ -1,9 +1,9 @@
 package com.solutionplus.altasherat.features.personal_info.presentation.ui
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.datepicker.CalendarConstraints
@@ -15,7 +15,6 @@ import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
 import com.solutionplus.altasherat.features.personal_info.domain.models.Country
 import com.solutionplus.altasherat.features.personal_info.domain.models.User
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelection
-import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionCallback
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoAction
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoEvent
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoViewModel
@@ -25,17 +24,13 @@ import java.time.LocalDate
 import java.time.ZoneId
 
 @AndroidEntryPoint
-class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
-    SingleSelectionCallback {
+class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private val viewModel: PersonalInfoViewModel by viewModels()
 
     private lateinit var countries: ArrayList<Country>
-    private lateinit var countriesAdapter: ArrayAdapter<String>
-
-    private val selectionBottomSheet by lazy {
-        SelectionDialogFragment.newInstance(this, countries)
-    }
+    private lateinit var selectedCountry: Country
+    private lateinit var selectedCountryCode: Country
 
     private val datePicker: MaterialDatePicker<Long> by lazy {
         val constraintsBuilder =
@@ -48,26 +43,43 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
             .build()
     }
 
-    private var selectedCountryIndex = -1
+    private var selectionType = SelectionType.NONE
 
     override fun viewInit() {
-        countriesAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line)
 
-        (binding.inputCountry.editText as AutoCompleteTextView).setAdapter(countriesAdapter)
+        setFragmentResultListener(SelectionDialogFragment.REQUEST_KEY) { _, bundle ->
+            val selectedCountryIndex =
+                bundle.getInt(SelectionDialogFragment.SELECTED_COUNTRY_INDEX_KEY)
+
+            val selectedCountry = countries[selectedCountryIndex]
+
+            when (selectionType) {
+                SelectionType.NONE -> {}
+                SelectionType.COUNTRY -> onCountrySelected(selectedCountry)
+                SelectionType.COUNTRY_CODE -> onCountryCodeSelected(selectedCountry)
+            }
+        }
     }
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         with(binding) {
             inputCountryCode.editText?.let { editText ->
-                editText.setOnClickListener { showCountrySelectionSheet() }
+                editText.setOnClickListener {
+                    navigateToSelectionDialog(
+                        SelectionType.COUNTRY_CODE,
+                        countries.indexOf(selectedCountryCode)
+                    )
+                }
             }
 
-            (inputCountry.editText as AutoCompleteTextView).setOnItemClickListener { _, _, position, _ ->
-                selectedCountryIndex = position
+            inputCountry.setEndIconOnClickListener {
+                navigateToSelectionDialog(
+                    SelectionType.COUNTRY,
+                    countries.indexOf(selectedCountry)
+                )
             }
 
-            inputBirthDate.editText?.setOnClickListener {
+            inputBirthDate.setOnClickListener {
                 datePicker.show(parentFragmentManager, datePicker.toString())
             }
 
@@ -78,6 +90,16 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
                 setBirthDateText(localDate)
             }
         }
+    }
+
+    private fun navigateToSelectionDialog(selectionType: SelectionType, selectedIndex: Int) {
+        this.selectionType = selectionType
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(
+            PersonalInfoFragmentDirections.actionPersonalInfoFragmentToSelectionDialogFragment(
+                countries = countries.toTypedArray(),
+                selectedIndex = selectedIndex
+            )
+        )
     }
 
     override fun subscribeToObservables() {
@@ -94,8 +116,6 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
 
     private fun handleCountriesIndex(countriesList: ArrayList<Country>) {
         countries = countriesList
-        val countriesNamesArray = countries.map { it.name }
-        countriesAdapter.addAll(countriesNamesArray)
         viewModel.processIntent(PersonalInfoAction.GetUserPersonalInfo)
     }
 
@@ -113,25 +133,26 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
                 error(R.drawable.ic_no_profile_image)
                 transformations(CircleCropTransformation())
             }
-            (inputCountry.editText as AutoCompleteTextView).setText(user.country.name)
         }
 
-        val country = countries.first { it.phoneCode == user.phone.countryCode }
-        country.isSelected = true
-        setCountryCodeText(country)
+        selectedCountry = user.country
+        selectedCountryCode = countries.first { it.phoneCode == user.country.phoneCode }
+
+        setCountryText(selectedCountry.name)
+        setCountryCodeText(selectedCountryCode)
     }
 
     override fun onLoading(isLoading: Boolean) {
     }
 
-    override fun onSingleItemSelected(selectedItem: SingleSelection) {
-        val country = selectedItem as Country
-        setCountryCodeText(country)
+    private fun onCountryCodeSelected(selectedItem: SingleSelection) {
+        selectedCountryCode = selectedItem as Country
+        setCountryCodeText(selectedCountryCode)
+    }
 
-        countries.firstOrNull { it.isSelected }?.isSelected = false
-        countries.find { it == country }?.isSelected = true
-
-        selectionBottomSheet.dismiss()
+    private fun onCountrySelected(selectedItem: SingleSelection) {
+        selectedCountry = selectedItem as Country
+        setCountryText(selectedCountry.name)
     }
 
     private fun setCountryCodeText(country: Country) {
@@ -142,15 +163,15 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>(),
         )
     }
 
+    private fun setCountryText(countryName: String) {
+        binding.inputCountry.editText?.setText(countryName)
+    }
+
     private fun setBirthDateText(date: LocalDate) {
         binding.inputBirthDate.editText?.setText(date.toString())
     }
 
-    private fun showCountrySelectionSheet() {
-        if (!selectionBottomSheet.isAdded) {
-            selectionBottomSheet.show(
-                parentFragmentManager, SelectionDialogFragment::class.java.simpleName
-            )
-        }
+    companion object {
+
     }
 }

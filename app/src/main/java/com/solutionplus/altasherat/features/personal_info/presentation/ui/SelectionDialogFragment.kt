@@ -1,29 +1,29 @@
 package com.solutionplus.altasherat.features.personal_info.presentation.ui
 
-import android.os.Build.VERSION_CODES.TIRAMISU
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.solutionplus.altasherat.databinding.FragmentCountrySelectionDialogBinding
-import com.solutionplus.altasherat.features.personal_info.domain.models.Country
+import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelection
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionAdapter
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionCallback
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionViewType
 
-class SelectionDialogFragment(
-    private val singleSelectionCallback: SingleSelectionCallback
-) : BottomSheetDialogFragment() {
+class SelectionDialogFragment : BottomSheetDialogFragment(), SingleSelectionCallback {
+
+    private val args: SelectionDialogFragmentArgs by navArgs()
 
     private var _binding: FragmentCountrySelectionDialogBinding? = null
     private val binding get() = _binding!!
 
     private val singleSelectionAdapter by lazy {
-        SingleSelectionAdapter(SingleSelectionViewType.SELECTION_CHECK, singleSelectionCallback)
+        SingleSelectionAdapter(SingleSelectionViewType.SELECTION_CHECK, this)
     }
 
     override fun onCreateView(
@@ -34,16 +34,16 @@ class SelectionDialogFragment(
         return binding.root
     }
 
-    @RequiresApi(TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val countries = arguments?.getParcelableArrayList(ARG_COUNTRIES, Country::class.java)!!
+        val countries = args.countries.toList()
+        val selectedIndex = args.selectedIndex
 
         binding.recyclerView.adapter = singleSelectionAdapter
 
         singleSelectionAdapter.setItems(countries)
-        singleSelectionAdapter.setSelectedItem(countries.find { it.isSelected })
+        singleSelectionAdapter.setSelectedItem(countries[selectedIndex])
 
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
@@ -51,21 +51,25 @@ class SelectionDialogFragment(
 
     }
 
-    companion object {
-        fun newInstance(
-            singleSelectionCallback: SingleSelectionCallback, countries: ArrayList<Country>
-        ): SelectionDialogFragment =
-            SelectionDialogFragment(singleSelectionCallback).apply {
-                arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_COUNTRIES, countries)
-                }
-            }
-
-        const val ARG_COUNTRIES = "countries"
+    override fun onSingleItemSelected(selectedItem: SingleSelection) {
+        setFragmentResult(
+            requestKey = REQUEST_KEY,
+            Bundle().apply {
+                putInt(
+                    SELECTED_COUNTRY_INDEX_KEY,
+                    args.countries.indexOf(selectedItem)
+                )
+            })
+        dismissNow()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val REQUEST_KEY = "selected_country"
+        const val SELECTED_COUNTRY_INDEX_KEY = "selected_country_index"
     }
 }

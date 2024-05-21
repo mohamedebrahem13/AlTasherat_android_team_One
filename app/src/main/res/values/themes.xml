@@ -233,6 +233,10 @@
     </style>
 
     <style name="AutoCompleteTextView.Country" parent="AutoCompleteTextView.OutlinedBox">
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
         <item name="android:imeOptions">actionNext</item>
     </style>
 
@@ -281,7 +285,7 @@
 
     <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">25dp</item>
+        <item name="cornerSize">22dp</item>
     </style>
     <!--endregion-->
 </resources>
