@@ -1,16 +1,17 @@
 package com.solutionplus.altasherat.features.splash.presention
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
+import kotlin.math.abs
 
 
 class ViewPagerFragment : Fragment() {
@@ -67,7 +68,10 @@ class ViewPagerFragment : Fragment() {
             indicators[i] = ImageView(requireContext())
             indicators[i]?.apply {
                 setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(), R.drawable.indicator_shape_1)
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.shape_indicator_not_active
+                    )
                 )
                 this.layoutParams = layoutParams
                 this.setOnClickListener {
@@ -85,15 +89,20 @@ class ViewPagerFragment : Fragment() {
             val imageView = indicatorLayout.getChildAt(i) as ImageView
             if (i == position) {
                 imageView.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(), R.drawable.indicator_shape_2)
+                    ContextCompat.getDrawable(requireContext(), R.drawable.shape_indicator_active)
                 )
             } else {
                 imageView.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(), R.drawable.indicator_shape_1)
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.shape_indicator_not_active
+                    )
                 )
             }
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

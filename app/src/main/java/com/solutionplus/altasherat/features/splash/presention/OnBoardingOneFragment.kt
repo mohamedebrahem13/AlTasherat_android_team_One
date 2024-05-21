@@ -1,8 +1,6 @@
 package com.solutionplus.altasherat.features.splash.presention
 
 import android.os.Bundle
-import androidx.navigation.fragment.findNavController
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
@@ -27,16 +25,14 @@ class OnBoardingOneFragment : BaseFragment<FragmentOnBoardingOneBinding>() {
         logger.debug("one")
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewpager)
 
-        binding.cardView.welcomeText1.text=getString(R.string.onboarding_1_welcome)
-        binding.cardView.welcomeText2.text=getString(R.string.onboarding_1_welcome_2)
-        binding.cardView.nextButton.setOnClickListener {
-            viewPager?.currentItem=1
+        binding.card.textWelcome1.text = getString(R.string.onboarding_1_welcome)
+        binding.card.textWelcome2.text = getString(R.string.onboarding_1_welcome_2)
+        binding.card.buttonNext.setOnClickListener {
+            viewPager?.currentItem = 1
         }
-
-
     }
+
     companion object {
         private val logger = getClassLogger()
     }
-
 }

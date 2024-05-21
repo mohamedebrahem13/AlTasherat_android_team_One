@@ -4,51 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle"
+    android:background="@drawable/image_on_boarding_background"
     tools:context=".features.splash.presention.OnBoardingOneFragment">
 
-
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="365dp"
+        android:id="@+id/image_background"
+        android:layout_width="0dp"
         android:layout_height="273dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/group190"
+        android:layout_marginHorizontal="16dp"
+        android:src="@drawable/image_on_boarding"
+        app:layout_constraintBottom_toTopOf="@id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/image_bag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/_1"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.833" />
+        android:layout_marginTop="32dp"
+        android:src="@drawable/image_bag"
+        app:layout_constraintBottom_toBottomOf="@+id/image_background"
+        app:layout_constraintEnd_toEndOf="@+id/image_background"
+        app:layout_constraintStart_toStartOf="@+id/image_background"
+        app:layout_constraintTop_toTopOf="@+id/image_background" />
 
     <include
-        android:id="@+id/cardView"
+        android:id="@+id/card"
         layout="@layout/card_view_content"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/imageView4"
-        app:layout_constraintHorizontal_bias="0.186"
-        app:layout_constraintStart_toStartOf="@id/imageView4"
-        app:layout_constraintTop_toBottomOf="@id/imageView4" />
-
-    <View
-        android:id="@+id/rectangleView"
-        android:layout_width="4dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/image_background"
+        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintTop_toBottomOf="@id/image_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

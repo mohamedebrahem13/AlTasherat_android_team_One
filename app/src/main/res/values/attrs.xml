@@ -1,8 +1,4 @@
 <resources>
-    <declare-styleable name="CustomButtonOnBoarding">
-        <attr name="customText" format="string" />
-        <attr name="customImage" format="reference" />
-    </declare-styleable>
     <declare-styleable name="Theme">
         <attr name="splashBackgroundColor" format="color"/>
         <attr name="splashTextColor" format="color"/>

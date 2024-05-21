@@ -1,11 +1,8 @@
 package com.solutionplus.altasherat.features
 
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.activity.BaseActivity
