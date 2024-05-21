@@ -83,6 +83,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    // SDP & SSP
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
+
     // Unit Test
     testImplementation(libs.junit)
     testImplementation(libs.mockwebserver)

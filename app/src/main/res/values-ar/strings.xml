@@ -32,4 +32,7 @@
 
 
 
+    <string name="unsupported_type">نوع غير مدعوم</string>
+    <string name="unknown_network_error">خطأ غير معروف في الشبكة</string>
+    <string name="network_connection_error">خطأ في الاتصال بالشبكة</string>
 </resources>

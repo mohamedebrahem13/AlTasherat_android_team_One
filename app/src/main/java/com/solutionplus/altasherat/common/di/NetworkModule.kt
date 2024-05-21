@@ -4,6 +4,9 @@ import com.solutionplus.altasherat.BuildConfig
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.repository.remote.AlTasheratApiServices
 import com.solutionplus.altasherat.common.data.repository.remote.RetrofitNetworkProvider
+import com.solutionplus.altasherat.common.data.repository.remote.call_factory.AlTasheratCallAdapterFactory
+import com.solutionplus.altasherat.common.data.repository.remote.converter.ExceptionConverter
+import com.solutionplus.altasherat.common.data.repository.remote.converter.IExceptionConverter
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import dagger.Module
 import dagger.Provides
@@ -36,12 +39,14 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient.Builder,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
+        alTasheratCallAdapterFactory: AlTasheratCallAdapterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient.build())
             .baseUrl("https://intern.api.altashirat.solutionplus.net/api/")
             .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(alTasheratCallAdapterFactory)
             .build()
     }
 
@@ -52,7 +57,9 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient.Builder {
+    fun provideOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient.Builder {
         return OkHttpClient().newBuilder().apply {
             connectTimeout(30L, TimeUnit.SECONDS)
             retryOnConnectionFailure(true)
@@ -63,6 +70,24 @@ object NetworkModule {
             writeTimeout(30L, TimeUnit.SECONDS)
             addInterceptor(httpLoggingInterceptor)
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideGsonConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCallAdapter(exceptionConverter: IExceptionConverter): AlTasheratCallAdapterFactory {
+        return AlTasheratCallAdapterFactory.create(exceptionConverter)
+    }
+
+    @Provides
+    @Singleton
+    fun provideExceptionConverter(): IExceptionConverter {
+        return ExceptionConverter()
     }
 
     @Provides

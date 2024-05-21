@@ -26,4 +26,7 @@
     <string name="password_validation_error" translatable="false">Your input password is not valid</string>
 
 
+    <string name="unsupported_type">Unsupported type</string>
+    <string name="unknown_network_error">Unknown network error</string>
+    <string name="network_connection_error">Network connection error</string>
 </resources>
