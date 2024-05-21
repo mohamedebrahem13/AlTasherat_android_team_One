@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     alias(libs.plugins.dagger.hilt)
+
 }
 
 android {
@@ -73,6 +74,7 @@ android {
 }
 
 dependencies {
+    val nav_version = "2.7.7"
 
     // Android
     implementation(libs.androidx.core.ktx)
@@ -119,4 +121,13 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     implementation(libs.hilt.work)
     kapt(libs.hilt.compiler)
+
+    // Kotlin
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:")
+    testImplementation(libs.mockito.kotlin)
+
+
 }

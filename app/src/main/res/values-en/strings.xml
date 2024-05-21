@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlTasherat</string>
+    <string name="back_text">Previous</string>
+    <string name="continue_">continue</string>
+    <string name="next_text">next</string>
+    <string name="onboarding_3_welcome_2">Whether you are looking for a job or you are one of the owners of companies looking for employment, a team of experts will be at your service at the highest level, just fill out your form with easy steps without complications</string>
+    <string name="onboarding_2_welcome_2">You can reach your favorite destination anywhere in the world just prepare for your trip and leave the rest to us and enjoy a smooth and safe experience of obtaining your tourist visa</string>
+    <string name="onboarding_1_welcome">Welcome to the Visa Application</string>
+    <string name="onboarding_1_welcome_2">With the Visa Application, obtaining your electronic visa has become incredibly easy, whether it\'s a tourist visa, employment visa, or company visa. Don\'t worry about the exhausting procedures; we have a complete team working for your convenience.</string>
+    <string name="arabic">arabic</string>
+    <string name="english">english</string>
+    <string name="please_pick_lang">please choose the language</string>
+    <string name="please_pick_country">please choose the country</string>
+    <string name="unsupported_type">Unsupported type</string>
+    <string name="unknown_network_error">Unknown network error</string>
+    <string name="network_connection_error">Network connection error</string>
+    <string name="encryption_error">Encryption error</string>
+    <string name="decryption_error">Decryption error</string>
+</resources>
