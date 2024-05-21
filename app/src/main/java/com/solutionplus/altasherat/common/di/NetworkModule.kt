@@ -74,12 +74,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-
-    @Provides
-    @Singleton
     fun provideCallAdapter(exceptionConverter: IExceptionConverter): AlTasheratCallAdapterFactory {
         return AlTasheratCallAdapterFactory.create(exceptionConverter)
     }

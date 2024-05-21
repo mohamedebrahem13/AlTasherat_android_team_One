@@ -14,6 +14,7 @@ interface SignUpContract {
 
     sealed class MainEvent : ViewEvent {
         data class SignUpIsSuccessfully(val message: String) : MainEvent()
+        data class UserWasSavedSuccessfully(val message: String) : MainEvent()
         data class TokenWasSavedSuccessfully(val message: String) : MainEvent()
     }
 

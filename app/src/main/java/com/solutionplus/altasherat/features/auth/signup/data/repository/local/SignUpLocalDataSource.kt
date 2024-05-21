@@ -11,6 +11,10 @@ class SignUpLocalDataSource @Inject constructor(
     override suspend fun saveUser(user: String) {
         localProvider.save(StorageKeyEnum.USER_KEY, user, String::class.java)
     }
+
+    override suspend fun saveUserToken(token: String) {
+        localProvider.save(StorageKeyEnum.USER_TOKEN_KEY, token, String::class.java)
+    }
 }
 
 

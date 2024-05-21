@@ -1,13 +1,14 @@
 package com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
+import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SaveLocalUserTokenUC
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SaveLocalUserUC
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SignUpUC
+import com.solutionplus.altasherat.features.auth.signup.domain.models.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUC: SignUpUC,
-    private val saveLocalUserUC: SaveLocalUserUC
+    private val saveLocalUserUC: SaveLocalUserUC,
+    private val saveTokenUC: SaveLocalUserTokenUC
 ) : AlTasheratViewModel<SignUpContract.MainAction, SignUpContract.MainEvent, SignUpContract.MainState>(
     SignUpContract.MainState.initial()
 ) {
@@ -28,16 +30,33 @@ class SignUpViewModel @Inject constructor(
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> {
                     sendEvent(SignUpContract.MainEvent.SignUpIsSuccessfully(result.model.message.toString()))
-                    val user = Gson().toJson(result.model)
-                    saveUser(user)
+                    saveUser(result.model)
+                    saveToken(result.model)
                 }
             }
         }
     }
 
-    private fun saveUser(user: String) {
+    private fun saveUser(user: UserInfo) {
         viewModelScope.launch {
             saveLocalUserUC.invoke(user).collect { result ->
+                when (result) {
+                    is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
+                    is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
+                    is Resource.Success -> sendEvent(
+                        SignUpContract.MainEvent.UserWasSavedSuccessfully(
+                            result.model
+                        )
+                    )
+                }
+            }
+        }
+
+    }
+
+    private fun saveToken(user: UserInfo) {
+        viewModelScope.launch {
+            saveTokenUC.invoke(user).collect { result ->
                 when (result) {
                     is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
                     is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
@@ -51,6 +70,7 @@ class SignUpViewModel @Inject constructor(
         }
 
     }
+
 
 
     override fun onActionTrigger(action: ViewAction?) {

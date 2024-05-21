@@ -18,7 +18,11 @@ class LoginRepository @Inject constructor(
         return LoginMapper.dtoToDomain(user)
     }
 
+    override suspend fun saveUser(user: String) {
+        loginLocalDataSource.saveUser(user)
+    }
+
     override suspend fun saveUserToken(token: String) {
-        loginLocalDataSource.saveUserToken(token)
+        loginLocalDataSource.saveToken(token)
     }
 }

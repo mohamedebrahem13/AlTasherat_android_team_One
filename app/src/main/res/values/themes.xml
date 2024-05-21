@@ -8,9 +8,13 @@
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
 
 
-    <style name="EditText" parent="Widget.Design.TextInputLayout">
+    <style name="EditText" parent="TextAppearance.AppCompat">
         <item name="cornerRadius">22dp</item>
         <item name="android:shape">rectangle</item>
+    </style>
+
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/holo_blue_light</item>
     </style>
 
     <!-- textView -->
@@ -31,6 +35,8 @@
         <item name="android:textColor">@color/text_input</item>
         <item name="android:textAppearance">@style/Font.SemiBold</item>
     </style>
+
+
 
 
     <style name="TextView.Black" parent="TextView">

@@ -1,30 +1,30 @@
-package com.solutionplus.altasherat.features.auth.signup.data.repository.local
+package com.solutionplus.altasherat.features.auth.login.data.repository.local
 
 import com.google.gson.Gson
 import com.solutionplus.altasherat.common.data.repository.local.DataStoreKeyValueStorage
 import com.solutionplus.altasherat.common.data.repository.local.StorageKeyEnum
-import com.solutionplus.altasherat.features.auth.signup.data.model.entity.SignUpUserEntity
+import com.solutionplus.altasherat.features.auth.login.data.models.entity.LoginUserEntity
 import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.slot
-import org.junit.Assert.*
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class SignUpLocalDataSourceTest {
+class LoginLocalDataSourceTest{
 
     private val localDataSource = mockk<DataStoreKeyValueStorage>(relaxed = true)
-    private lateinit var signUpLocalDataSource: SignUpLocalDataSource
+    private lateinit var loginLocalDataSource: LoginLocalDataSource
 
     @Before
     fun setup() {
-        signUpLocalDataSource = SignUpLocalDataSource(localDataSource)
+        loginLocalDataSource = LoginLocalDataSource(localDataSource)
     }
 
     @Test
     fun dataStore_getUserInfo_returnUserObject() = runTest {
-        val userEntity = SignUpUserEntity(
+        val userEntity = LoginUserEntity(
             "token",
             "username",
             "firstname",
@@ -35,7 +35,7 @@ class SignUpLocalDataSourceTest {
         )
 
         val stringUser = Gson().toJson(userEntity)
-        signUpLocalDataSource.saveUser(stringUser)
+        loginLocalDataSource.saveUser(stringUser)
 
         val captor = slot<String>()
 
@@ -49,8 +49,4 @@ class SignUpLocalDataSourceTest {
         assertEquals(stringUser, captor.captured)
     }
 }
-
-
-
-
 

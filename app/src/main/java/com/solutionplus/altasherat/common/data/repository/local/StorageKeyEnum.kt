@@ -4,5 +4,5 @@ import com.solutionplus.altasherat.common.domain.repository.local.IStorageKeyEnu
 
 enum class StorageKeyEnum(override val keyValue: String) : IStorageKeyEnum {
     USER_KEY("user_pref"),
-    USER_KEY_TEST("user_pref_test")
+    USER_TOKEN_KEY("user_token_key")
 }

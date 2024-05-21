@@ -15,6 +15,7 @@ interface LoginContracts {
     sealed class MainEvent : ViewEvent {
         data class LoginIsSuccessfully(val message: String) : MainEvent()
         data class TokenWasSavedSuccessfully(val message: String) : MainEvent()
+        data class UserWasSavedSuccessfully(val message: String) : MainEvent()
     }
 
     data class MainState(

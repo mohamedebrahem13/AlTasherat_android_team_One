@@ -40,7 +40,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/EditTextThemeOverlay"
                 app:startIconDrawable="@drawable/ic_user"
+                app:boxStrokeColor="@color/primary"
+                app:boxStrokeWidth="3dp"
                 android:hint="@string/first_name_input_hint"
                 app:hintTextAppearance="@style/TextView.InputText"
                 >
@@ -48,6 +51,7 @@
                     android:layout_width="match_parent"
                     android:background="@drawable/edit_text_background"
                     android:layout_height="match_parent"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:inputType="text"
                     android:id="@+id/firstNameEt"/>
 
@@ -72,6 +76,7 @@
                 android:layout_height="wrap_content"
                 app:boxBackgroundColor="@color/text_input"
                 app:startIconDrawable="@drawable/ic_user"
+                android:theme="@style/EditTextThemeOverlay"
                 android:hint="@string/first_name_input_hint"
                 app:hintTextAppearance="@style/TextView.InputText"
                 >
@@ -79,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:background="@drawable/edit_text_background"
                     android:id="@+id/lastNameEt"/>
 
@@ -101,8 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
-
+        android:theme="@style/EditTextThemeOverlay"
         app:startIconDrawable="@drawable/ic_email"
         android:hint="@string/email_input_hint"
         app:hintTextAppearance="@style/TextView.InputText"
@@ -110,6 +115,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:inputType="textEmailAddress"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:background="@drawable/edit_text_background"
             android:layout_height="match_parent"
             android:id="@+id/emailEt"/>
@@ -127,6 +133,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -134,11 +141,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            style="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
-
             android:layout_weight="0.5"
             app:endIconCheckable="true"
             app:hintAnimationEnabled="false"
+            android:theme="@style/EditTextThemeOverlay"
             app:startIconDrawable="@drawable/ic_mobile"
             android:hint="@string/phone_input_hint"
             app:hintTextAppearance="@style/TextView.InputText"
@@ -148,6 +154,7 @@
                 android:id="@+id/phoneEt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:background="@drawable/edit_text_background"
                 android:inputType="phone"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -161,7 +168,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:endIconCheckable="true"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_weight="1"
 
             >
@@ -171,6 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:background="@drawable/drop_down_background"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -193,8 +200,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
         android:layout_marginEnd="8dp"
+        android:theme="@style/EditTextThemeOverlay"
         app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/ic_pass"
         android:hint="@string/password_input_hint"
@@ -205,6 +212,7 @@
             android:inputType="textPassword"
             android:background="@drawable/edit_text_background"
             android:layout_height="match_parent"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/passwordEt"/>
     </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>

@@ -21,6 +21,10 @@ class SignUpRepository @Inject constructor(
     override suspend fun saveUser(user: String) {
         signUpLocalDataSource.saveUser(user)
     }
+
+    override suspend fun saveUserToken(token: String) {
+        signUpLocalDataSource.saveUserToken(token)
+    }
 }
 
 
