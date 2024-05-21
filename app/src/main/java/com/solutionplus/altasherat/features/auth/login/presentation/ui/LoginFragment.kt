@@ -20,10 +20,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private lateinit var authActivity: AuthActivity
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        val userLoginRequest =
-            UserLoginRequest("ibrahem2@gmail.com", "123456544789", PhoneLoginRequest("0020", "2266989857"))
         authActivity.triggerButton {
-            loginViewMode.processIntent(LoginContracts.MainAction.Login(userLoginRequest))
+            login()
         }
     }
 
@@ -36,6 +34,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun viewInit() {
+
+    }
+
+    private fun login() {
+        val phoneNumber = binding.phoneEt.text.toString().trim()
+        val countryCode = binding.countryCodeEt.text.toString()
+        val password = binding.passwordEt.text.toString()
+        val phoneRequest = PhoneLoginRequest(countryCode, phoneNumber)
+        val userLoginRequest = UserLoginRequest(
+            password = password,
+            phoneLoginRequest = phoneRequest
+        )
+        loginViewMode.processIntent(LoginContracts.MainAction.Login(userLoginRequest))
 
     }
 

@@ -21,19 +21,8 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>() {
     private lateinit var authActivity: AuthActivity
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        val userSignUpRequest = UserSignUpRequest(
-            firstname = "ibrahem",
-            middleName = "zakria",
-            lastname = "aziz",
-            email = "ibrahem2@gmail.com",
-            password = "123456544789",
-            passwordConfirmation = "123456544789",
-            "1",
-            phoneSignUpRequest = PhoneSignUpRequest("0020", number = "2266989857")
-        )
-
         authActivity.triggerButton {
-            signUpViewModel.processIntent(SignUpContract.MainAction.SignUp(userSignUpRequest))
+            signUp()
         }
 
         collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
@@ -47,6 +36,24 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>() {
     }
 
     override fun viewInit() {
+
+    }
+
+    private fun signUp() {
+        val firstname: String = binding.firstNameEt.text.toString().trim()
+        val lastname: String = binding.lastNameEt.text.toString().trim()
+        val email: String = binding.emailEt.text.toString().trim()
+        val phoneNumber = binding.phoneEt.text.toString().trim()
+        val password = binding.passwordEt.text.toString().trim()
+        val passwordConfirmation = binding.passwordEt.text.toString().trim()
+        val countryCode = "1"
+        val phoneRequest = PhoneSignUpRequest("0020", number = phoneNumber)
+
+        val signUpUserRequest = UserSignUpRequest(
+            firstname, "sdadsa", lastname, email, password, passwordConfirmation, countryCode, phoneRequest
+        )
+
+        signUpViewModel.processIntent(SignUpContract.MainAction.SignUp(signUpUserRequest))
 
     }
 
