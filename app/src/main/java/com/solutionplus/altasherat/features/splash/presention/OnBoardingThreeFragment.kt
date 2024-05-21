@@ -2,6 +2,8 @@ package com.solutionplus.altasherat.features.splash.presention
 
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -13,6 +15,7 @@ class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
+
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -25,11 +28,15 @@ class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
     override fun viewInit() {
         logger.debug("Three")
-        binding.cardView.indicator.indicator2.setBackgroundResource(R.drawable.indicator_shape_2)
+        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewpager)
         binding.cardView.welcomeText1.text=getString(R.string.onboarding_1_welcome)
         binding.cardView.welcomeText2.text=getString(R.string.onboarding_3_welcome_2)
-        binding.customToolbar.backButton.setOnClickListener {
-            findNavController().popBackStack()
+        binding.imageView3.setOnClickListener {
+            viewPager?.currentItem=1
+        }
+        binding.cardView.nextButton.setOnClickListener{
+            viewPager?.currentItem=2
+
         }
     }
     companion object {

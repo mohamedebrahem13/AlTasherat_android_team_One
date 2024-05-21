@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.splash.presention
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
@@ -48,7 +49,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
                 binding.spinner.adapter = spinnerAdapter
             }
             is CountryLocalContract.CountryLocalEvent.NavigateToOnBoarding->{
-                findNavController().navigate(R.id.action_languageFragment_to_onBoardingOneFragment2)
+                findNavController().navigate(R.id.action_languageFragment_to_viewPagerFragment)
             }
             is CountryLocalContract.CountryLocalEvent.StartCountriesWorker->{
                 logger.debug("updateLocaleToEnglish")

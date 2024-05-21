@@ -12,7 +12,7 @@ sealed class SplashContract {
     }
 
     sealed class SplashEvent : ViewEvent {
-        data object NavigateToOnBoarding : SplashEvent()
+        data object NavigateToLanguage : SplashEvent()
         data object NavigateToHome : SplashEvent()
     }
 

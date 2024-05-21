@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/onboarding"
-    app:startDestination="@id/languageFragment">
+    app:startDestination="@id/onBoardingOneFragment2">
 
     <fragment
         android:id="@+id/onBoardingOneFragment2"
@@ -28,13 +28,4 @@
         android:name="com.solutionplus.altasherat.features.splash.presention.OnBoardingThreeFragment"
         android:label="fragment_on_boarding_three"
         tools:layout="@layout/fragment_on_boarding_three" />
-    <fragment
-        android:id="@+id/languageFragment"
-        android:name="com.solutionplus.altasherat.features.splash.presention.LanguageFragment"
-        android:label="fragment_language"
-        tools:layout="@layout/fragment_language" >
-        <action
-            android:id="@+id/action_languageFragment_to_onBoardingOneFragment2"
-            app:destination="@id/onBoardingOneFragment2" />
-    </fragment>
 </navigation>

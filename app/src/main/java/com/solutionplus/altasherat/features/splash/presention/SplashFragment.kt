@@ -1,9 +1,10 @@
 package com.solutionplus.altasherat.features.splash.presention
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSplachBinding
@@ -58,11 +59,9 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
             SplashContract.SplashEvent.NavigateToHome -> {
                 logger.debug("navigate to home")
             }
-            SplashContract.SplashEvent.NavigateToOnBoarding -> {
-            Intent(requireActivity(), OnboardingActivity::class.java).also { intent ->
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            }
+            SplashContract.SplashEvent.NavigateToLanguage -> {
+                findNavController().navigate(R.id.action_splash_to_languageFragment)
+
             }
         }
 

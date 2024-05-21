@@ -60,7 +60,7 @@ class SplashViewModel @Inject constructor(
                     setState(oldViewState.copy(isLoading = resource.loading))
                 }
                 is Resource.Success -> {
-                    sendEvent(SplashContract.SplashEvent.NavigateToOnBoarding)
+                    sendEvent(SplashContract.SplashEvent.NavigateToLanguage)
                 }
                 is Resource.Failure -> {
                     setState(oldViewState.copy(exception = resource.exception))
