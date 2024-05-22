@@ -3,6 +3,7 @@
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Light theme colors -->
         <item name="background">@color/bg</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
@@ -95,6 +96,147 @@
     </style>
     <!-- Font -->
 
+    <!--region TextInputLayout-->
+    <style name="TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="boxBackgroundColor">@color/bg_input</item>
+        <item name="boxCornerRadiusBottomEnd">22dp</item>
+        <item name="boxCornerRadiusBottomStart">22dp</item>
+        <item name="boxCornerRadiusTopEnd">22dp</item>
+        <item name="boxCornerRadiusTopStart">22dp</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="hintTextAppearance">@style/Font.SemiBold</item>
+        <item name="startIconTint">@color/icon_input</item>
+    </style>
+
+    <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
+        <item name="startIconDrawable">@drawable/ic_user</item>
+    </style>
+
+    <style name="TextInputLayout.Phone" parent="TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">0dp</item>
+        <item name="boxCornerRadiusBottomStart">22dp</item>
+        <item name="boxCornerRadiusTopEnd">0dp</item>
+        <item name="boxCornerRadiusTopStart">22dp</item>
+        <item name="startIconDrawable">@drawable/ic_phone</item>
+    </style>
+
+    <style name="TextInputLayout.Email" parent="TextInputLayout.OutlinedBox">
+        <item name="startIconDrawable">@drawable/ic_email</item>
+    </style>
+
+    <style name="TextInputLayout.BirthDate" parent="TextInputLayout.OutlinedBox">
+        <item name="startIconDrawable">@drawable/ic_calender</item>
+    </style>
+
+    <style name="TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="boxBackgroundColor">@color/bg_input</item>
+        <item name="boxCornerRadiusBottomEnd">22dp</item>
+        <item name="boxCornerRadiusBottomStart">22dp</item>
+        <item name="boxCornerRadiusTopEnd">22dp</item>
+        <item name="boxCornerRadiusTopStart">22dp</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="hintTextAppearance">@style/Font.SemiBold</item>
+        <item name="startIconTint">@color/icon_input</item>
+        <item name="endIconDrawable">@drawable/selector_menu_icon</item>
+        <item name="endIconTint">@color/icon_input</item>
+    </style>
+
+    <style name="TextInputLayout.Country" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="startIconDrawable">@drawable/ic_flag</item>
+    </style>
+
+    <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginVertical">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">22dp</item>
+        <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="boxCornerRadiusTopEnd">22dp</item>
+        <item name="boxCornerRadiusTopStart">0dp</item>
+        <item name="boxBackgroundColor">@color/primary</item>
+        <item name="endIconMode">none</item>
+    </style>
+    <!--endregion-->
+
+    <!--region TextInputEditText-->
+    <style name="TextInputEditText.OutlinedBox" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorHint">@color/text_input</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
+    </style>
+
+    <style name="TextInputEditText.Name" parent="TextInputEditText.OutlinedBox">
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="TextInputEditText.Phone" parent="TextInputEditText.OutlinedBox">
+        <item name="android:inputType">phone</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="TextInputEditText.Email" parent="TextInputEditText.OutlinedBox">
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="TextInputEditText.BirthDate" parent="TextInputEditText.OutlinedBox">
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+    <!--endregion-->
+
+    <!--region AutoCompleteTextView -->
+    <style name="AutoCompleteTextView.OutlinedBox" parent="Widget.Material3.AutoCompleteTextView.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorHint">@color/text_input</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
+    </style>
+
+    <style name="AutoCompleteTextView.Country" parent="AutoCompleteTextView.OutlinedBox">
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="AutoCompleteTextView.CountryCode" parent="AutoCompleteTextView.OutlinedBox">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:inputType">none</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <!--endregion-->
+
     <!--region Button -->
     <style name="Button" parent="ThemeOverlay.Material3.Button">
         <item name="android:layout_width">match_parent</item>
@@ -114,8 +256,24 @@
         <item name="iconSize">20dp</item>
     </style>
 
-    <style name="Button.Next" parent="Button">
-        <item name="icon">@drawable/ic_next</item>
+    <style name="Button.Save" parent="Button">
+        <item name="icon">@drawable/ic_save</item>
+    </style>
+    <!--endregion-->
+
+    <!--region BottomSheetDialog -->
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/bg</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
     </style>
     <!--endregion-->
 </resources>
