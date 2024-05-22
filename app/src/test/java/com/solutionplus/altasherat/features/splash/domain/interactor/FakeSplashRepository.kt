@@ -26,6 +26,22 @@ internal class FakeSplashRepository(
 
     }
 
+    override suspend fun saveUserPreferredCountry(country: String) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserPreferredCountry(): String {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveUserPreferredLanguage(language: String) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserPreferredLanguage(): String {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getCountriesFromRemote(params: String): CountriesResponse {
         if (shouldThrowException) throw Exception("Error fetching countries")
         val countryResponseDto = remoteDS.getCountries(params)

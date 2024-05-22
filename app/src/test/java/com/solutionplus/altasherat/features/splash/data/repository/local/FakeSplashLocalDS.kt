@@ -32,4 +32,20 @@ internal class FakeSplashLocalDS(private val preferenceStorage: IKeyValueStorage
         }
         return emptyList()
     }
+
+    override suspend fun saveUserPreferredCountry(country: String) {
+        preferenceStorage.save(key = StorageKeyEnum.USER_PREFERRED_COUNTRY, value = country, type = String::class.java)
+    }
+
+    override suspend fun getUserPreferredCountry(): String {
+        return preferenceStorage.get(StorageKeyEnum.USER_PREFERRED_COUNTRY, "DefaultCountry", String::class.java) ?: "DefaultCountry"
+    }
+
+    override suspend fun saveUserPreferredLanguage(language: String) {
+        preferenceStorage.save(key = StorageKeyEnum.LANGUAGE, value = language, type = String::class.java)
+    }
+
+    override suspend fun getUserPreferredLanguage(): String {
+        return preferenceStorage.get(StorageKeyEnum.LANGUAGE, "DefaultLanguage", String::class.java) ?: "DefaultLanguage"
+    }
 }

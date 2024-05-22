@@ -5,20 +5,23 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.splash.domain.models.Country
+import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 
 sealed class CountryLocalContract {
 
     sealed class CountryLocalAction : ViewAction {
         data object FetchCountriesFromLocal: CountryLocalAction()
-        data object NextButtonClick: CountryLocalAction()
-        data object StartCountriesWorker: CountryLocalAction()
+        data class NextButtonClick(val userPreference: UserPreference) : CountryLocalAction()
+        data class StartCountriesWorkerEn(val language: String) : CountryLocalAction()
+        data class StartCountriesWorkerAr(val language: String) : CountryLocalAction()
+
     }
 
     sealed class CountryLocalEvent : ViewEvent {
         // Define events here if needed
         data class UpdateTheCountry(val countries: List<Country>) : CountryLocalEvent()
         data object NavigateToOnBoarding : CountryLocalEvent()
-        data object StartCountriesWorker : CountryLocalEvent()
+        data class StartCountriesWorker(val language: String) : CountryLocalEvent()
         data class ShowWorkerStateToast(val workerState: String) : CountryLocalEvent()
 
 

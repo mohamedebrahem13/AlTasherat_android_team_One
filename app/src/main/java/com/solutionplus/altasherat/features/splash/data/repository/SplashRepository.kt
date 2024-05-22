@@ -24,4 +24,20 @@ internal class SplashRepository (private val localDataSource: ISplashLocalDS, pr
        val countries= localDataSource.getCountries()
       return  countryMapper.mapEntityListToDomain(countries)
     }
+
+    override suspend fun saveUserPreferredCountry(country: String) {
+        localDataSource.saveUserPreferredCountry(country)
+    }
+
+    override suspend fun getUserPreferredCountry(): String {
+        return localDataSource.getUserPreferredCountry()
+    }
+
+    override suspend fun saveUserPreferredLanguage(language: String) {
+        localDataSource.saveUserPreferredLanguage(language)
+    }
+
+    override suspend fun getUserPreferredLanguage(): String {
+      return localDataSource.getUserPreferredLanguage()
+    }
 }

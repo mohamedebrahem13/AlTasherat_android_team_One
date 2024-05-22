@@ -4,6 +4,6 @@ import com.solutionplus.altasherat.common.domain.repository.local.IStorageKeyEnu
 
 enum class StorageKeyEnum(override val keyValue: String) : IStorageKeyEnum {
     COUNTRIES_STRING("countries_string"),
-    LANGUAGE("language") // New key for language preference
-
+    LANGUAGE("language"),
+    USER_PREFERRED_COUNTRY("country")
 }
