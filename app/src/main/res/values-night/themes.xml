@@ -2,8 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Dark theme colors -->
-        <item name="splashBackgroundColor">@color/bg</item>
-        <item name="splashTextColor">@color/bg_input</item>
     </style>
 
 </resources>

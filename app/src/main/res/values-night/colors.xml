@@ -12,5 +12,7 @@
     <color name="bg_card">#1C204C</color>
     <color name="bg">#010533</color>
 
+    <color name="gray">#871C204C</color>
+
 
 </resources>

@@ -2,8 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Light theme colors -->
-        <item name="splashBackgroundColor">@color/white</item>
-        <item name="splashTextColor">@color/text</item>
+        <item name="background">@color/bg</item>
     </style>
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
@@ -119,6 +118,4 @@
         <item name="icon">@drawable/ic_next</item>
     </style>
     <!--endregion-->
-
-
 </resources>
