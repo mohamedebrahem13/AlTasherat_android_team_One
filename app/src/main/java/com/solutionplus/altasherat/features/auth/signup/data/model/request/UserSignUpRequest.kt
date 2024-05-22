@@ -16,7 +16,7 @@ data class UserSignUpRequest(
     val password: String,
     @SerializedName("password_confirmation")
     val passwordConfirmation: String,
-    @SerializedName("country")
+    @SerializedName("country_id")
     val countryId: String,
     @SerializedName("phone")
     val phoneSignUpRequest: PhoneSignUpRequest

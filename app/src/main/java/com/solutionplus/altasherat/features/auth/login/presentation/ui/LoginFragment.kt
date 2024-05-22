@@ -38,9 +38,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun login() {
-        val phoneNumber = binding.phoneEt.text.toString().trim()
-        val countryCode = binding.countryCodeEt.text.toString()
-        val password = binding.passwordEt.text.toString()
+        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
+        val countryCode = binding.etCountryCode.text.toString()
+        val password = binding.etPassword.text.toString()
         val phoneRequest = PhoneLoginRequest(countryCode, phoneNumber)
         val userLoginRequest = UserLoginRequest(
             password = password,

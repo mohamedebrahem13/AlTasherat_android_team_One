@@ -96,6 +96,6 @@
         app:layout_constraintTop_toBottomOf="@id/layout_viewpager"
         app:layout_constraintBottom_toBottomOf="@id/layout_viewpager"
         tools:text="@string/signup_text"
-        android:background="@drawable/button_background"/>
+        style="@style/Button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

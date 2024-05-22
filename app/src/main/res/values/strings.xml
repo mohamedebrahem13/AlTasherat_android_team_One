@@ -16,9 +16,9 @@
     <string name="email_text" translatable="false">Email</string>
     <string name="phone_text" translatable="false">Phone</string>
     <string name="password_text" translatable="false">password</string>
-    <string name="country_code_text" translatable="false">+966</string>
+    <string name="country_code_text" translatable="false">SA+966</string>
     <string name="signup_text" translatable="false">Sign Up</string>
-    <string name="foregt_password_text" translatable="false">forget password?</string>
+    <string name="forget_password_text" translatable="false">forget password?</string>
 
     <string name="email_validation_error" translatable="false">Your input email is not valid</string>
     <string name="firstname_validation_error" translatable="false">Your input first name is not valid</string>
