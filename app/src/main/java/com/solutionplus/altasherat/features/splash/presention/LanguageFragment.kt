@@ -32,7 +32,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
 
     override fun viewInit() {
-        binding.nextButton.setOnClickListener {
+        binding.buttonContinue.setOnClickListener {
             viewModel.onActionTrigger( CountryLocalContract.CountryLocalAction.NextButtonClick)
         }
          binding.radioButton2.setOnClickListener {

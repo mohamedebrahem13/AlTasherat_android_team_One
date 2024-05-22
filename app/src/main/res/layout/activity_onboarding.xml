@@ -8,7 +8,7 @@
     tools:context=".features.splash.presention.OnboardingActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/onboardingNavHostFragment"
+        android:id="@+id/onBoarding_fragment_nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

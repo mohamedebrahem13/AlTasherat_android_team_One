@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/rectangle"
+        android:src="@drawable/image_on_boarding_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,11 +20,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/image_background"
         android:layout_width="365dp"
         android:layout_height="273dp"
         android:layout_marginTop="80dp"
-        android:src="@drawable/group190"
+        android:src="@drawable/image_on_boarding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,10 +44,10 @@
             android:layout_width="match_parent"
             android:layout_height="470dp"
             android:layout_marginTop="116dp"
-            app:cardMaxElevation="0dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="10dp"
             android:backgroundTint="@color/gray"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -78,8 +77,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/please_pick_lang"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                </TextView>
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
 
                 <View
                     android:id="@+id/horizontalLine"
@@ -124,13 +122,13 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:layout_marginBottom="8dp"
-                        android:background="@drawable/radio_button_background_selector"
+                        android:background="@drawable/selector_radio_button_background"
                         android:button="@null"
-                        android:drawableStart="@drawable/flag_ar"
+                        android:checked="true"
+                        android:drawableStart="@drawable/image_flag_ar"
                         android:drawablePadding="8dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="16dp"
-                        android:checked="true"
                         android:text="@string/arabic"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/TextView.Bold" />
@@ -140,9 +138,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
-                        android:background="@drawable/radio_button_background_selector"
+                        android:background="@drawable/selector_radio_button_background"
                         android:button="@null"
-                        android:drawableStart="@drawable/flag_en"
+                        android:drawableStart="@drawable/image_flag_en"
                         android:drawablePadding="8dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="16dp"
@@ -158,7 +156,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/custom_dropdown_arrow"
+                    android:background="@drawable/layer_item_custom_dropdown_arrow"
                     android:minHeight="48dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -180,27 +178,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:src="@drawable/location_green"
             android:layout_marginBottom="16dp"
+            android:src="@drawable/image_location"
             app:layout_constraintBottom_toTopOf="@id/cardView2"
             app:layout_constraintEnd_toEndOf="@id/cardView2"
             app:layout_constraintTop_toTopOf="@id/cardView2" />
 
         <!-- Custom Button at the middle bottom -->
-        <com.solutionplus.altasherat.common.presentation.coustom_view.CustomButtonOnBoarding
-            android:id="@+id/next_button"
+        <Button
+            android:id="@+id/button_continue"
+            style="@style/Button.Next"
             android:layout_width="204dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="-80dp"
-            android:elevation="10dp"
-            app:customImage="@drawable/iconssolidnext"
-            app:customText="@string/continue_"
+            android:layout_height="wrap_content"
+            android:text="@string/continue_text"
+            app:layout_constraintTop_toBottomOf="@id/cardView2"
             app:layout_constraintBottom_toBottomOf="@id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
         <!-- Right-side View -->
         <View
-            android:id="@+id/rectangleView"
+            android:id="@+id/view_rectangle"
             android:layout_width="4dp"
             android:layout_height="24dp"
             android:layout_marginTop="16dp"

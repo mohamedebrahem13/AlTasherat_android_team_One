@@ -7,11 +7,11 @@ import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.FragmentSplachBinding
+import com.solutionplus.altasherat.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashFragment : BaseFragment<FragmentSplachBinding>() {
+class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     private val viewModel: SplashViewModel by viewModels()
 
@@ -32,23 +32,27 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
             handleSingleEvent(event)
         }
     }
+
     private fun handleViewState(state: SplashContract.SplashViewState) {
         // Handle different states here
         when {
             state.isLoading -> {
                 // Show loading UI
             }
+
             state.exception != null -> {
                 // Handle error state
                 val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
             }
+
             else -> {
                 // Handle success state
                 showToast("Data loaded successfully")
             }
         }
     }
+
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
@@ -59,6 +63,7 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
             SplashContract.SplashEvent.NavigateToHome -> {
                 logger.debug("navigate to home")
             }
+
             SplashContract.SplashEvent.NavigateToLanguage -> {
                 findNavController().navigate(R.id.action_splash_to_languageFragment)
 
@@ -72,10 +77,10 @@ class SplashFragment : BaseFragment<FragmentSplachBinding>() {
         logger.debug("splash")
 
     }
+
     companion object {
         private val logger = getClassLogger()
     }
-
 
 
 }

@@ -5,23 +5,16 @@
     <string name="network_connection_error">Network connection error</string>
     <string name="encryption_error">Encryption error</string>
     <string name="decryption_error">Decryption error</string>
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="back_text">السابق</string>
-    <string name="next_text" translatable="false">التالي</string>
-    <string name="onboarding_3_welcome_2" translatable="false">    سواء كنت تبحث عن عمل أو كنت من أصحاب الشركات الباحثين عن عمالة سيكون في خدمتك فريق من الخبراء على أعلى مستوى فقط املأ استمارتك بخطوات سهلة بلا تعقيدات
-</string>
-    <string name="onboarding_2_welcome_2" translatable="false">يمكنك أن تصل إلى وجهتك المفضلة إلى أي مكان في العالم فقط قم بالتجهيز لرحلتك واترك الباقي علينا واستمتع بتجربة سلسة وآمنة لاستخراج تأشيرتك السياحية
-</string>
-
-    <string name="onboarding_1_welcome" translatable="false">مرحباً بك في تطبيق التأشيرات</string>
-    <string name="onboarding_1_welcome_2" translatable="false">    مع تطبيق تأشيرات أصبح استخراج تأشيرتك الإلكترونية غاية في السهولة سواء تأشيرة سياحة أو توظيف أو تأشيرات أصحاب الشركات فلا تحمل هم الإجراءات المرهقة فلدينا فريق كامل يعمل على راحتك
-</string>
-
-    <string name="splash_text" translatable="false">منصة التاشيرات</string>
-    <string name="arabic" translatable="false">العربية</string>
-    <string name="english" translatable="false">الانجلزية</string>
-
-    <string name="continue_" translatable="false">الاستمرار</string>
-    <string name="please_pick_lang" translatable="false">من فضلك اختر اللغة</string>
-    <string name="please_pick_country" translatable="false">من فضلك اختر الدولة</string>
+    <string name="continue_text">Continue</string>
+    <string name="next">next</string>
+    <string name="back_text">Previous</string>
+    <string name="onboarding_3_welcome_2">Whether you are looking for a job or you are one of the owners of companies looking for employment, a team of experts will be at your service at the highest level, just fill out your form with easy steps without complications</string>
+    <string name="onboarding_2_welcome_2">You can reach your favorite destination anywhere in the world just prepare for your trip and leave the rest to us and enjoy a smooth and safe experience of obtaining your tourist visa</string>
+    <string name="onboarding_1_welcome">Welcome to the Visa Application</string>
+    <string name="onboarding_1_welcome_2">With the Visa Application, obtaining your electronic visa has become incredibly easy, whether it\'s a tourist visa, employment visa, or company visa. Don\'t worry about the exhausting procedures; we have a complete team working for your convenience.</string>
+    <string name="arabic">arabic</string>
+    <string name="english">english</string>
+    <string name="please_pick_lang">please choose the language</string>
+    <string name="please_pick_country">please choose the country</string>
+    <string name="splash_text">AlTasherat Platform</string>
 </resources>

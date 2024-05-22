@@ -11,7 +11,7 @@
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_margin="4dp"
-        android:background="@drawable/indicator_shape_1" /> <!-- Change the background to your drawable -->
+        android:background="@drawable/shape_indicator_not_active" /> <!-- Change the background to your drawable -->
 
     <!-- Indicator 2 -->
     <View
@@ -19,7 +19,7 @@
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_margin="4dp"
-        android:background="@drawable/indicator_shape_1" /> <!-- Change the background to your drawable -->
+        android:background="@drawable/shape_indicator_not_active" /> <!-- Change the background to your drawable -->
 
     <!-- Indicator 3 -->
     <View
@@ -27,7 +27,7 @@
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_margin="4dp"
-        android:background="@drawable/indicator_shape_1" /> <!-- Change the background to your drawable -->
+        android:background="@drawable/shape_indicator_not_active" /> <!-- Change the background to your drawable -->
 
     <!-- Indicator 4 -->
     <View
@@ -35,6 +35,6 @@
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_margin="4dp"
-        android:background="@drawable/indicator_shape_1" /> <!-- Change the background to your drawable -->
+        android:background="@drawable/shape_indicator_not_active" /> <!-- Change the background to your drawable -->
 
 </LinearLayout>
