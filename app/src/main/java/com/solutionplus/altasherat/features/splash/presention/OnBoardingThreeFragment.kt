@@ -26,16 +26,8 @@ class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
     override fun viewInit() {
         logger.debug("Three")
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewpager)
         binding.card.textWelcome1.text = getString(R.string.onboarding_1_welcome)
         binding.card.textWelcome2.text = getString(R.string.onboarding_3_welcome_2)
-        binding.buttonPrevious.setOnClickListener {
-            viewPager?.currentItem = 1
-        }
-        binding.card.buttonNext.setOnClickListener {
-            viewPager?.currentItem = 2
-
-        }
     }
 
     companion object {

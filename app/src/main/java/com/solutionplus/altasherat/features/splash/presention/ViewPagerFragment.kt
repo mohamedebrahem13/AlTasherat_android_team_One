@@ -1,5 +1,8 @@
 package com.solutionplus.altasherat.features.splash.presention
 
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,8 +44,45 @@ class ViewPagerFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setCurrentIndicator(position)
+                // Show the button in fragment 2 and 3, hide it in fragment 1
+                if (position == 0) {
+                    binding.buttonPrevious.visibility = View.GONE
+                    binding.textPrevious.visibility = View.GONE
+                } else {
+                    binding.buttonPrevious.visibility = View.VISIBLE
+                    binding.textPrevious.visibility = View.VISIBLE
+                }
             }
+
         })
+        // Set click listener for the button
+        binding.buttonPrevious.setOnClickListener {
+            // Get the current item position
+            val currentPosition = viewPager.currentItem
+            // If it's not the first fragment, move to the previous fragment
+            if (currentPosition > 0) {
+                viewPager.currentItem = currentPosition - 1
+            }
+        }
+        // Set click listener for the next button
+        binding.buttonNext.setOnClickListener {
+            // Get the current item position
+            val currentPosition = viewPager.currentItem
+            // If it's not the last fragment
+            if (currentPosition < adapter.itemCount - 1) {
+                viewPager.currentItem = currentPosition + 1
+            } else if (currentPosition == adapter.itemCount - 1) { // Last fragment
+//                // Check if it's the OnBoardingThreeFragment
+//                val currentFragment = adapter.createFragment(currentPosition)
+//                if (currentFragment is OnBoardingThreeFragment) {
+//                    // Navigate to another activity
+//                      Intent(requireActivity(), anotherActivity::class.java).also { intent ->
+//                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
+//                        startActivity(intent)
+//                    }
+//                }
+            }
+        }
     }
 
     private fun setupViewPager() {

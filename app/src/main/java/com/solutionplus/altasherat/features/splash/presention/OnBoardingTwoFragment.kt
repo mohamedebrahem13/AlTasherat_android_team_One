@@ -24,15 +24,8 @@ class OnBoardingTwoFragment : BaseFragment<FragmentOnBoardingTwoBinding>() {
 
     override fun viewInit() {
         logger.debug("Two")
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewpager)
         binding.card.textWelcome1.text = getString(R.string.onboarding_1_welcome)
         binding.card.textWelcome2.text = getString(R.string.onboarding_2_welcome_2)
-        binding.card.buttonNext.setOnClickListener {
-            viewPager?.currentItem = 2
-        }
-        binding.buttonPrevious.setOnClickListener {
-            viewPager?.currentItem = 0
-        }
     }
 
     companion object {
