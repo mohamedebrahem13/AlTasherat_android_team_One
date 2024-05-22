@@ -7,13 +7,16 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewM
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.splash.data.worker.CountriesWorkerImpl
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetCountriesFromLocalUseCase
+import com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase
+import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 import com.solutionplus.altasherat.features.splash.domain.worker.CountriesWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LocalCountriesViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,private val countriesWorkerImpl: CountriesWorkerImpl
+class LocalCountriesViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,
+                                                  private val countriesWorkerImpl: CountriesWorkerImpl,private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase
 ): AlTasheratViewModel<CountryLocalContract.CountryLocalAction, CountryLocalContract.CountryLocalEvent, CountryLocalContract.CountryLocalViewState>(
     CountryLocalContract.CountryLocalViewState.initial()){
     override fun clearState() {
@@ -25,15 +28,30 @@ class LocalCountriesViewModel @Inject constructor(private val getCountriesFromLo
         when (action) {
             is CountryLocalContract.CountryLocalAction.FetchCountriesFromLocal -> fetchCountriesFromLocal()
             // Handle other actions if needed
-            is CountryLocalContract.CountryLocalAction.NextButtonClick ->navigateToOnboarding()
-            is CountryLocalContract.CountryLocalAction.StartCountriesWorker -> startCountriesWorker()
+            is CountryLocalContract.CountryLocalAction.NextButtonClick ->navigateToOnboarding(action.userPreference)
+            is CountryLocalContract.CountryLocalAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
+            is CountryLocalContract.CountryLocalAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)
+
             else -> {
                 // Do nothing or handle unknown action
             }
         }
     }
-    private fun navigateToOnboarding(){
-        sendEvent(CountryLocalContract.CountryLocalEvent.NavigateToOnBoarding)
+    private fun navigateToOnboarding(userPreference: UserPreference){
+        saveUserPreferenceUseCase.invoke(viewModelScope,userPreference){resource->
+            when (resource) {
+                is Resource.Progress -> {
+                    setState(oldViewState.copy(isLoading = resource.loading))
+                }
+                is Resource.Success -> {
+                    sendEvent(CountryLocalContract.CountryLocalEvent.NavigateToOnBoarding)
+                    // Handle success scenario
+                }
+                is Resource.Failure -> {
+                    setState(oldViewState.copy(exception = resource.exception))
+                }
+            }
+        }
     }
 
     private fun fetchCountriesFromLocal() {
@@ -52,17 +70,18 @@ class LocalCountriesViewModel @Inject constructor(private val getCountriesFromLo
             }
         }
     }
-    private fun startCountriesWorker() {
+    private fun startCountriesWorker(language: String) {
         viewModelScope.launch {
-            countriesWorkerImpl.startCountriesWorker("en").collect { workInfo ->
+            countriesWorkerImpl.startCountriesWorker(language).collect { workInfo ->
                 val message = when (workInfo.state) {
                     WorkInfo.State.ENQUEUED -> {
-                        sendEvent(CountryLocalContract.CountryLocalEvent.StartCountriesWorker)
                         "Worker ENQUEUED"
                     }                    WorkInfo.State.RUNNING -> "Worker RUNNING"
                     WorkInfo.State.SUCCEEDED -> {
+                        sendEvent(CountryLocalContract.CountryLocalEvent.StartCountriesWorker(language))
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
+
                     }
                     WorkInfo.State.FAILED -> {
                         val errorMessage = workInfo.outputData.getString(CountriesWorker.KEY_ERROR_MESSAGE)

@@ -77,7 +77,8 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/please_pick_lang"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
                 <View
                     android:id="@+id/horizontalLine"
@@ -124,7 +125,6 @@
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/selector_radio_button_background"
                         android:button="@null"
-                        android:checked="true"
                         android:drawableStart="@drawable/image_flag_ar"
                         android:drawablePadding="8dp"
                         android:paddingStart="8dp"

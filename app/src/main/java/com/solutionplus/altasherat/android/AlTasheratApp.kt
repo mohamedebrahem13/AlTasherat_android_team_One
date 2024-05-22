@@ -1,9 +1,9 @@
 package com.solutionplus.altasherat.android
 
 import android.app.Application
+import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.solutionplus.altasherat.android.helpers.logging.LoggerProvider
-import com.solutionplus.altasherat.features.splash.domain.worker.CountriesWorkerFactory
 import dagger.hilt.android.HiltAndroidApp
 
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltAndroidApp
 class AlTasheratApp : Application(), Configuration.Provider {
     @Inject
-    lateinit var hiltWorkerFactory: CountriesWorkerFactory
+    lateinit var hiltWorkerFactory: HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
