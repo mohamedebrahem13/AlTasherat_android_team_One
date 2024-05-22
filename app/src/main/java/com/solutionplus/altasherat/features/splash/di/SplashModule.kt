@@ -1,6 +1,5 @@
 package com.solutionplus.altasherat.features.splash.di
 
-import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
@@ -11,7 +10,6 @@ import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveC
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetCountriesFromLocalUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.HasCountryStringKeyUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase
-import com.solutionplus.altasherat.features.splash.domain.models.Country
 import com.solutionplus.altasherat.features.splash.domain.repository.ISplashRepository
 import com.solutionplus.altasherat.features.splash.domain.repository.local.ISplashLocalDS
 import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
