@@ -1,27 +1,27 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.fragments
 
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.solutionplus.altasherat.R
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
-import kotlin.math.abs
+import com.solutionplus.altasherat.features.splash.presention.adapter.ViewPagerAdapter
+import com.solutionplus.altasherat.features.splash.presention.fragments.OnBoardingOneFragment
+import com.solutionplus.altasherat.features.splash.presention.fragments.OnBoardingThreeFragment
+import com.solutionplus.altasherat.features.splash.presention.fragments.OnBoardingTwoFragment
 
 
 class ViewPagerFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
     private lateinit var adapter: ViewPagerAdapter
     private var _binding: FragmentViewPagerBinding? = null
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -36,14 +36,13 @@ class ViewPagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewPager = binding.viewpager
+        tabLayout = binding.tabLayout
         setupViewPager()
-        setupIndicators()
-        setCurrentIndicator(0)
+        setupTabLayout()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                setCurrentIndicator(position)
                 // Show the button in fragment 2 and 3, hide it in fragment 1
                 if (position == 0) {
                     binding.buttonPrevious.visibility = View.GONE
@@ -53,8 +52,8 @@ class ViewPagerFragment : Fragment() {
                     binding.textPrevious.visibility = View.VISIBLE
                 }
             }
-
         })
+
         // Set click listener for the button
         binding.buttonPrevious.setOnClickListener {
             // Get the current item position
@@ -64,6 +63,7 @@ class ViewPagerFragment : Fragment() {
                 viewPager.currentItem = currentPosition - 1
             }
         }
+
         // Set click listener for the next button
         binding.buttonNext.setOnClickListener {
             // Get the current item position
@@ -71,16 +71,12 @@ class ViewPagerFragment : Fragment() {
             // If it's not the last fragment
             if (currentPosition < adapter.itemCount - 1) {
                 viewPager.currentItem = currentPosition + 1
-            } else if (currentPosition == adapter.itemCount - 1) { // Last fragment
-//                // Check if it's the OnBoardingThreeFragment
-//                val currentFragment = adapter.createFragment(currentPosition)
-//                if (currentFragment is OnBoardingThreeFragment) {
-//                    // Navigate to another activity
-//                      Intent(requireActivity(), anotherActivity::class.java).also { intent ->
-//                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
-//                        startActivity(intent)
-//                    }
-//                }
+            } else if (currentPosition == adapter.itemCount - 1) {
+                // Last fragment, you can navigate to another activity if needed
+                // Intent(requireActivity(), AnotherActivity::class.java).also { intent ->
+                //     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                //     startActivity(intent)
+                // }
             }
         }
     }
@@ -95,53 +91,10 @@ class ViewPagerFragment : Fragment() {
         viewPager.adapter = adapter
     }
 
-    private fun setupIndicators() {
-        val indicatorLayout = binding.indicatorLayout
-        val indicators = arrayOfNulls<ImageView>(adapter.itemCount)
-        val layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        layoutParams.setMargins(8, 0, 8, 0)
-
-        for (i in indicators.indices) {
-            indicators[i] = ImageView(requireContext())
-            indicators[i]?.apply {
-                setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.shape_indicator_not_active
-                    )
-                )
-                this.layoutParams = layoutParams
-                this.setOnClickListener {
-                    viewPager.currentItem = i
-                }
-            }
-            indicatorLayout.addView(indicators[i])
-        }
+    private fun setupTabLayout() {
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        }.attach()
     }
-
-    private fun setCurrentIndicator(position: Int) {
-        val indicatorLayout = binding.indicatorLayout
-        val childCount = indicatorLayout.childCount
-        for (i in 0 until childCount) {
-            val imageView = indicatorLayout.getChildAt(i) as ImageView
-            if (i == position) {
-                imageView.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(), R.drawable.shape_indicator_active)
-                )
-            } else {
-                imageView.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.shape_indicator_not_active
-                    )
-                )
-            }
-        }
-    }
-
 
 
     override fun onDestroyView() {

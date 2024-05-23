@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.contracts
 
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
@@ -8,12 +8,16 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 sealed class SplashContract {
 
     sealed class SplashAction : ViewAction {
-        data object CheckCountryStringKey : SplashAction()
+        data object CheckIsOnBoardingShown : SplashAction()
+        data object CheckHasCountriesKey : SplashAction()
+
     }
 
     sealed class SplashEvent : ViewEvent {
         data object NavigateToLanguage : SplashEvent()
         data object NavigateToHome : SplashEvent()
+        data object NavigateToOnBoarding : SplashEvent()
+
     }
 
     data class SplashViewState(

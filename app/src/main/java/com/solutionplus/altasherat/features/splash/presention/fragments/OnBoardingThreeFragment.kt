@@ -1,18 +1,22 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.fragments
 
 import android.os.Bundle
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentOnBoardingThreeBinding
+import com.solutionplus.altasherat.features.splash.presention.contracts.OnBoardingThreeContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
 
+    private val viewModel: OnBoardingThreeViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
+        viewModel.onActionTrigger( OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown)
 
     }
 

@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.fragments
 
 import android.os.Bundle
 import android.widget.Toast
@@ -11,13 +11,16 @@ import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
 import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
+import com.solutionplus.altasherat.features.splash.presention.adapter.CustomSpinnerAdapter
+import com.solutionplus.altasherat.features.splash.presention.contracts.CountryLocalContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
-    private val viewModel: LocalCountriesViewModel by viewModels()
+    private val viewModel: LanguageViewModel by viewModels()
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         viewModel.onActionTrigger( CountryLocalContract.CountryLocalAction.FetchCountriesFromLocal)
     }
@@ -57,7 +60,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
                 findNavController().navigate(R.id.action_languageFragment_to_viewPagerFragment)
             }
             is CountryLocalContract.CountryLocalEvent.StartCountriesWorker->{
-                logger.debug("updateLocaleToEnglish")
                     updateLocale(event.language)
             }
 
@@ -75,11 +77,9 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
     private fun getUserPreference():UserPreference {
         val preferredCountry = binding.spinner.selectedItem.toString()
-      val language=  AppCompatDelegate.getApplicationLocales()
-        val crunnetlangage =language[0]?.toLanguageTag()
+        val language=  AppCompatDelegate.getApplicationLocales()
         // Create a UserPreference object with the retrieved values
-        val userPreference = UserPreference(preferredCountry, crunnetlangage.toString())
-        return userPreference
+        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
         }
     companion object {
         private val logger = getClassLogger()

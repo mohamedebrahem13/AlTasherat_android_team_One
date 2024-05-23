@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.viewmodels
 
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
@@ -10,13 +10,14 @@ import com.solutionplus.altasherat.features.splash.domain.interactor.GetCountrie
 import com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase
 import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 import com.solutionplus.altasherat.features.splash.domain.worker.CountriesWorker
+import com.solutionplus.altasherat.features.splash.presention.contracts.CountryLocalContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LocalCountriesViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,
-                                                  private val countriesWorkerImpl: CountriesWorkerImpl,private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase
+class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,
+                                            private val countriesWorkerImpl: CountriesWorkerImpl, private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase
 ): AlTasheratViewModel<CountryLocalContract.CountryLocalAction, CountryLocalContract.CountryLocalEvent, CountryLocalContract.CountryLocalViewState>(
     CountryLocalContract.CountryLocalViewState.initial()){
     override fun clearState() {

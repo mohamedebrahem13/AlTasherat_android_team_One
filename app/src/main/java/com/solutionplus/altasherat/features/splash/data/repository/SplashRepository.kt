@@ -40,4 +40,12 @@ internal class SplashRepository (private val localDataSource: ISplashLocalDS, pr
     override suspend fun getUserPreferredLanguage(): String {
       return localDataSource.getUserPreferredLanguage()
     }
+
+    override suspend fun setOnboardingShown(shown: Boolean) {
+        localDataSource.setOnboardingShown(shown)
+    }
+
+    override suspend fun isOnboardingShown(): Boolean {
+      return  localDataSource.isOnboardingShown()
+    }
 }

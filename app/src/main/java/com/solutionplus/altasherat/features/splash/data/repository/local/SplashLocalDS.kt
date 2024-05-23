@@ -47,4 +47,12 @@ internal class SplashLocalDS(private val preferenceStorage: IKeyValueStorageProv
         return preferenceStorage.get(StorageKeyEnum.LANGUAGE, "DefaultLanguage", String::class.java) ?: "DefaultLanguage"
     }
 
+    override suspend fun setOnboardingShown(shown: Boolean) {
+        preferenceStorage.save(key = StorageKeyEnum.ONBOARDING_SHOWN, value = shown,Boolean::class.java)
+    }
+
+    override suspend fun isOnboardingShown(): Boolean {
+        return preferenceStorage.get(key = StorageKeyEnum.ONBOARDING_SHOWN, defaultValue = false,Boolean::class.java)
+    }
+
 }

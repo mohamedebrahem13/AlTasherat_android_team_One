@@ -4,20 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/image_on_boarding_background"
-    tools:context=".features.splash.presention.OnBoardingOneFragment">
+    tools:context=".features.splash.presention.fragments.OnBoardingOneFragment">
 
-    <ImageView
-        android:id="@+id/image_background"
-        android:layout_width="0dp"
-        android:layout_height="273dp"
-        android:layout_marginHorizontal="16dp"
-        android:src="@drawable/image_on_boarding"
-        app:layout_constraintBottom_toTopOf="@id/card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
 
     <ImageView
         android:id="@+id/image_bag"
@@ -25,10 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:src="@drawable/image_bag"
-        app:layout_constraintBottom_toBottomOf="@+id/image_background"
-        app:layout_constraintEnd_toEndOf="@+id/image_background"
-        app:layout_constraintStart_toStartOf="@+id/image_background"
-        app:layout_constraintTop_toTopOf="@+id/image_background" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/card"
@@ -36,10 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/image_background"
-        app:layout_constraintStart_toStartOf="@id/image_background"
-        app:layout_constraintTop_toBottomOf="@id/image_background" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_bag"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
