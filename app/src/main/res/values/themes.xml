@@ -1,8 +1,8 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Light theme colors -->
+        <item name="background">@color/bg</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 
@@ -129,24 +129,12 @@
         <item name="startIconDrawable">@drawable/ic_phone</item>
     </style>
 
-    <!--    <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox">
-            <item name="android:layout_marginStart">0dp</item>
-            <item name="android:layout_marginEnd">16dp</item>
-            <item name="android:layout_marginVertical">0dp</item>
-            <item name="boxCornerRadiusBottomEnd">22dp</item>
-            <item name="boxCornerRadiusBottomStart">0dp</item>
-            <item name="boxCornerRadiusTopEnd">22dp</item>
-            <item name="boxCornerRadiusTopStart">0dp</item>
-            <item name="boxBackgroundColor">@color/primary</item>
-        </style>-->
-
     <style name="TextInputLayout.Email" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
 
     <style name="TextInputLayout.BirthDate" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_calender</item>
-
     </style>
 
     <style name="TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -270,6 +258,10 @@
 
     <style name="Button.Save" parent="Button">
         <item name="icon">@drawable/ic_save</item>
+    </style>
+
+    <style name="Button.Next" parent="Button">
+        <item name="icon">@drawable/ic_next</item>
     </style>
     <!--endregion-->
 

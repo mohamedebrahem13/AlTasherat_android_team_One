@@ -14,7 +14,7 @@ abstract class BaseUseCase<out Model, in Params> {
 
     protected abstract suspend fun execute(params: Params?): Model
 
-    protected operator fun invoke(
+     operator fun invoke(
         scope: CoroutineScope,
         params: Params? = null,
         onResult: (Resource<Model>) -> Unit
@@ -43,7 +43,7 @@ abstract class BaseUseCase<out Model, in Params> {
         }
     }
 
-    protected operator fun invoke(params: Params? = null): Flow<Resource<Model>> = channelFlow {
+     operator fun invoke(params: Params? = null): Flow<Resource<Model>> = channelFlow {
         send(Resource.loading())
         try {
             val result = execute(params)

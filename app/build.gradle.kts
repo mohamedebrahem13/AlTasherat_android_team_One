@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     kotlin("kapt")
+    id("kotlin-parcelize")
     alias(libs.plugins.dagger.hilt)
 }
 
@@ -76,19 +76,12 @@ android {
 
 dependencies {
 
-    val nav_version = "2.7.7"
-
     // Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.coil.kt)
-    // Kotlin
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // SDP & SSP
     implementation(libs.intuit.sdp)
@@ -128,4 +121,8 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     implementation(libs.hilt.work)
     kapt(libs.hilt.compiler)
+
+    // Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }
