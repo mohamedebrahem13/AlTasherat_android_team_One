@@ -18,6 +18,6 @@ internal class CountriesLocalDS(
             String::class.java
         )
         val itemType = object : TypeToken<List<CountryEntity>>() {}.type
-        return countriesJson.getModelFromJSON(itemType)
+        return countriesJson.getModelFromJSON(itemType) ?: emptyList()
     }
 }
