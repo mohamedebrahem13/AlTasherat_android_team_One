@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
+    id("kotlin-parcelize")
     alias(libs.plugins.dagger.hilt)
 
 }
@@ -74,7 +75,6 @@ android {
 }
 
 dependencies {
-    val nav_version = "2.7.7"
 
     // Android
     implementation(libs.androidx.core.ktx)
@@ -82,13 +82,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
-    // SDP & SSP
-    implementation(libs.intuit.sdp)
-    implementation(libs.intuit.ssp)
+    implementation(libs.androidx.recyclerview)
 
     // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
 
     // Android Test
     androidTestImplementation(libs.androidx.junit)
@@ -122,12 +121,7 @@ dependencies {
     implementation(libs.hilt.work)
     kapt(libs.hilt.compiler)
 
-    // Kotlin
+    // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:")
-    testImplementation(libs.mockito.kotlin)
-
-
 }
