@@ -12,6 +12,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
+import com.solutionplus.altasherat.features.personal_info.data.models.request.PhoneRequest
+import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.personal_info.domain.models.Country
 import com.solutionplus.altasherat.features.personal_info.domain.models.User
 import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelection
@@ -89,6 +91,24 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                 val localDate = instant.atZone(zoneId).toLocalDate()
                 setBirthDateText(localDate)
             }
+
+            buttonSave.setOnClickListener {
+                val updateInfoRequest = UpdateInfoRequest(
+                    firstname = inputFirstName.editText?.text.toString(),
+                    middlename = inputMiddleName.editText?.text.toString(),
+                    lastname = inputLastName.editText?.text.toString(),
+                    phone = PhoneRequest(
+                        number = inputPhoneNumber.editText?.text.toString(),
+                        countryCode = selectedCountryCode.phoneCode
+                    ),
+                    email = inputEmail.editText?.text.toString(),
+                    birthDate = inputBirthDate.editText?.text.toString(),
+                    image = "",
+                    countryId = selectedCountry.id
+                )
+
+                viewModel.processIntent(PersonalInfoAction.UpdatePersonalInfo(updateInfoRequest))
+            }
         }
     }
 
@@ -110,6 +130,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             when (event) {
                 is PersonalInfoEvent.CountriesIndex -> handleCountriesIndex(event.countries)
                 is PersonalInfoEvent.UserPersonalInfo -> bindUser(event.user)
+                is PersonalInfoEvent.PersonalInfoUpdated -> TODO()
             }
         }
     }
