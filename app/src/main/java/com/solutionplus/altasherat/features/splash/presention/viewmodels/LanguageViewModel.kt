@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.splash.presention.viewmodels
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
 import com.solutionplus.altasherat.common.data.models.Resource
@@ -29,7 +30,7 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
         when (action) {
             is CountryLocalContract.CountryLocalAction.FetchCountriesFromLocal -> fetchCountriesFromLocal()
             // Handle other actions if needed
-            is CountryLocalContract.CountryLocalAction.NextButtonClick ->navigateToOnboarding(action.userPreference)
+            is CountryLocalContract.CountryLocalAction.NextButtonClick ->savePreferenceAndNavigateToOnboarding(action.selectedCountry)
             is CountryLocalContract.CountryLocalAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
             is CountryLocalContract.CountryLocalAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)
 
@@ -38,7 +39,9 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
             }
         }
     }
-    private fun navigateToOnboarding(userPreference: UserPreference){
+
+    private fun savePreferenceAndNavigateToOnboarding(selectedCountry: String){
+       val userPreference= createUserPreference(selectedCountry)
         saveUserPreferenceUseCase.invoke(viewModelScope,userPreference){resource->
             when (resource) {
                 is Resource.Progress -> {
@@ -99,5 +102,9 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
         }
     }
 
+    private fun createUserPreference(preferredCountry: String): UserPreference {
+        val language = AppCompatDelegate.getApplicationLocales()
+        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
+    }
 
 }

@@ -10,7 +10,6 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
-import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 import com.solutionplus.altasherat.features.splash.presention.adapter.CustomSpinnerAdapter
 import com.solutionplus.altasherat.features.splash.presention.contracts.CountryLocalContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
@@ -35,8 +34,8 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
     override fun viewInit() {
         binding.buttonContinue.setOnClickListener {
-            val userPreference = getUserPreference()
-            viewModel.onActionTrigger(CountryLocalContract.CountryLocalAction.NextButtonClick(userPreference))
+            val preferredCountry = binding.spinner.selectedItem.toString()
+            viewModel.onActionTrigger(CountryLocalContract.CountryLocalAction.NextButtonClick(preferredCountry))
         }
 
          binding.radioButton2.setOnClickListener {
@@ -75,12 +74,12 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
     }
-    private fun getUserPreference():UserPreference {
-        val preferredCountry = binding.spinner.selectedItem.toString()
-        val language=  AppCompatDelegate.getApplicationLocales()
-        // Create a UserPreference object with the retrieved values
-        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
-        }
+//    private fun getUserPreference():UserPreference {
+//        val preferredCountry = binding.spinner.selectedItem.toString()
+//        val language=  AppCompatDelegate.getApplicationLocales()
+//        // Create a UserPreference object with the retrieved values
+//        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
+//        }
     companion object {
         private val logger = getClassLogger()
     }

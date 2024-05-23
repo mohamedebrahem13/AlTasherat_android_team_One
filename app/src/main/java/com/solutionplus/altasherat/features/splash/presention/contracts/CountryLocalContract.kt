@@ -5,13 +5,12 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.splash.domain.models.Country
-import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 
 sealed class CountryLocalContract {
 
     sealed class CountryLocalAction : ViewAction {
         data object FetchCountriesFromLocal: CountryLocalAction()
-        data class NextButtonClick(val userPreference: UserPreference) : CountryLocalAction()
+        data class NextButtonClick(val selectedCountry: String) : CountryLocalAction()
         data class StartCountriesWorkerEn(val language: String) : CountryLocalAction()
         data class StartCountriesWorkerAr(val language: String) : CountryLocalAction()
 

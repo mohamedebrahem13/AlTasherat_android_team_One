@@ -42,6 +42,14 @@ internal class FakeSplashRepository(
         TODO("Not yet implemented")
     }
 
+    override suspend fun setOnboardingShown(shown: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun isOnboardingShown(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getCountriesFromRemote(params: String): CountriesResponse {
         if (shouldThrowException) throw Exception("Error fetching countries")
         val countryResponseDto = remoteDS.getCountries(params)

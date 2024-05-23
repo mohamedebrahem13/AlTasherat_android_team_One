@@ -48,4 +48,11 @@ internal class FakeSplashLocalDS(private val preferenceStorage: IKeyValueStorage
     override suspend fun getUserPreferredLanguage(): String {
         return preferenceStorage.get(StorageKeyEnum.LANGUAGE, "DefaultLanguage", String::class.java) ?: "DefaultLanguage"
     }
+
+    override suspend fun setOnboardingShown(shown: Boolean) {
+    }
+
+    override suspend fun isOnboardingShown(): Boolean {
+        return true
+    }
 }
