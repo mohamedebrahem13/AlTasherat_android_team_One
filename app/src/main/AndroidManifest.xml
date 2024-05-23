@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AlTasherat"
         tools:targetApi="31">
         <activity
-            android:name=".features.splash.presention.OnboardingActivity"
+            android:name=".features.splash.presention.activity.OnboardingActivity"
             android:exported="false" />
         <activity
             android:name=".features.MainActivity"

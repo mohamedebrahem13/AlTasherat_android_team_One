@@ -8,9 +8,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 sealed class SplashContract {
 
     sealed class SplashAction : ViewAction {
-        data object CheckIsOnBoardingShown : SplashAction()
         data object CheckHasCountriesKey : SplashAction()
-
     }
 
     sealed class SplashEvent : ViewEvent {

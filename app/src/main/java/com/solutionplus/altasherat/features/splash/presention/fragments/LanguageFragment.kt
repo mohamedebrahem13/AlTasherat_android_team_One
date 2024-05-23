@@ -12,14 +12,14 @@ import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFrag
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
 import com.solutionplus.altasherat.features.splash.presention.adapter.CustomSpinnerAdapter
 import com.solutionplus.altasherat.features.splash.presention.contracts.CountryLocalContract
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.CountryLocalViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
-    private val viewModel: LanguageViewModel by viewModels()
+    private val viewModel: CountryLocalViewModel by viewModels()
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         viewModel.onActionTrigger( CountryLocalContract.CountryLocalAction.FetchCountriesFromLocal)
     }

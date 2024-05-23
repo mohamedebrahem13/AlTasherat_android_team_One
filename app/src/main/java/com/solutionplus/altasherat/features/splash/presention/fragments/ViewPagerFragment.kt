@@ -10,9 +10,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
 import com.solutionplus.altasherat.features.splash.presention.adapter.ViewPagerAdapter
-import com.solutionplus.altasherat.features.splash.presention.fragments.OnBoardingOneFragment
-import com.solutionplus.altasherat.features.splash.presention.fragments.OnBoardingThreeFragment
-import com.solutionplus.altasherat.features.splash.presention.fragments.OnBoardingTwoFragment
 
 
 class ViewPagerFragment : Fragment() {

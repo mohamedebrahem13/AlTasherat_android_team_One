@@ -9,7 +9,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSplashBinding
-import com.solutionplus.altasherat.features.splash.presention.OnboardingActivity
+import com.solutionplus.altasherat.features.splash.presention.activity.OnboardingActivity
 import com.solutionplus.altasherat.features.splash.presention.contracts.SplashContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint

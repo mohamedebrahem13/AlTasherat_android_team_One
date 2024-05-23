@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,
-                                            private val countriesWorkerImpl: CountriesWorkerImpl, private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase
+class CountryLocalViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,
+                                                private val countriesWorkerImpl: CountriesWorkerImpl, private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase
 ): AlTasheratViewModel<CountryLocalContract.CountryLocalAction, CountryLocalContract.CountryLocalEvent, CountryLocalContract.CountryLocalViewState>(
     CountryLocalContract.CountryLocalViewState.initial()){
     override fun clearState() {

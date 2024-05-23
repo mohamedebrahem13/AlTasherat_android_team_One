@@ -27,7 +27,6 @@ class SplashViewModel @Inject constructor(
     override fun onActionTrigger(action: ViewAction?) {
         setState(oldViewState.copy(action = action))
         when (action) {
-            is SplashContract.SplashAction.CheckIsOnBoardingShown -> checkIsOnBoardingShown()
             is SplashContract.SplashAction.CheckHasCountriesKey->checkCountryStringKey()
             // Handle other actions if needed
             else -> {
