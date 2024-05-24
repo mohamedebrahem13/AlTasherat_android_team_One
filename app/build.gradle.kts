@@ -81,7 +81,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
+    implementation(libs.androidx.recyclerview)
 
 
 
@@ -90,7 +90,9 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockwebserver)
     testImplementation(libs.mockk.v1124)
+    testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.inline)
 
 
     // Android Test
@@ -102,6 +104,7 @@ dependencies {
 
     // Fragment KTX
     implementation(libs.androidx.fragment.ktx)
+
 
     // Dagger Hilt
     implementation(libs.dagger.hilt.android)

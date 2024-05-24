@@ -9,11 +9,14 @@ import javax.inject.Inject
 
 class SignUpUC @Inject constructor(
     private val repository: SignUpRepository,
-    private val userInputsValidationUC: UserInputsValidationUC
+    private val userInputsValidationUC: UserInputsValidationUC,
 ) : BaseUseCase<UserInfo, UserSignUpRequest>() {
     override suspend fun execute(params: UserSignUpRequest?): UserInfo {
-        params?.let { userInputsValidationUC.validateUserInputs(it) }
-        return params?.let { repository.signup(it) }!!
+        val userInfo = params?.let {
+            userInputsValidationUC.validateUserInputs(it)
+            repository.signup(it)
+        }!!
+        return userInfo
     }
 
 

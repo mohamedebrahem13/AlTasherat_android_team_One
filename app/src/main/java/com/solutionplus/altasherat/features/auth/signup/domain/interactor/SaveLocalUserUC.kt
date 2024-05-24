@@ -11,8 +11,8 @@ import javax.inject.Inject
 class SaveLocalUserUC @Inject constructor(
     private val repository: SignUpRepository,
     private val encryptionService: IEncryptionService
-) : BaseUseCase<String, UserInfo>() {
-    override suspend fun execute(params: UserInfo?): String {
+) : BaseUseCase<Unit, UserInfo>() {
+    override suspend fun execute(params: UserInfo?) {
         params?.let { user ->
             val userToString = Gson().toJson(user)
             val userToByteArray = userToString.encodeToByteArray()
@@ -20,6 +20,5 @@ class SaveLocalUserUC @Inject constructor(
                 encryptionService.encrypt(SecretKeyAliasEnum.USER_SECRET_KEY, userToByteArray)
             repository.saveUser(encryptedUser.decodeToString())
         }
-        return "User Saved Successfully..."
     }
 }

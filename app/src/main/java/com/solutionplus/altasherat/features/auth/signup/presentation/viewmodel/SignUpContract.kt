@@ -5,6 +5,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
+import com.solutionplus.altasherat.features.services.country.domain.models.Country
 
 interface SignUpContract {
     sealed class MainAction : ViewAction {
@@ -14,8 +15,7 @@ interface SignUpContract {
 
     sealed class MainEvent : ViewEvent {
         data class SignUpIsSuccessfully(val message: String) : MainEvent()
-        data class UserWasSavedSuccessfully(val message: String) : MainEvent()
-        data class TokenWasSavedSuccessfully(val message: String) : MainEvent()
+        data class GetCountries(val countries: List<Country>) : MainEvent()
     }
 
     data class MainState(

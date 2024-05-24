@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
@@ -12,23 +13,16 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.databinding.ActivityAuthBinding
 import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFragment
 import com.solutionplus.altasherat.features.auth.signup.presentation.ui.SignUpFragment
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.auth.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AuthActivity : AppCompatActivity(), LoginSignupButtonListener {
+class AuthActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthBinding
     private lateinit var button: Button
     private lateinit var viewPager: ViewPager2
-
-    override fun updateButtonText(text: String) {
-        button.text = text
-    }
-
-    override fun triggerButton(trigger: () -> Unit) {
-        button.setOnClickListener { trigger() }
-    }
+    private lateinit var viewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +51,7 @@ class AuthActivity : AppCompatActivity(), LoginSignupButtonListener {
                 }
             }
         })
+
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> {
@@ -69,6 +64,16 @@ class AuthActivity : AppCompatActivity(), LoginSignupButtonListener {
                 }
             }
         }.attach()
+
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+        val listener = viewModel.listener
+        if (listener != null) {
+            viewModel.buttonText.observe(this) {
+                button.text = it
+            }
+        }
+        button.setOnClickListener { listener?.triggerButton() }
+
         setContentView(binding.root)
     }
 }

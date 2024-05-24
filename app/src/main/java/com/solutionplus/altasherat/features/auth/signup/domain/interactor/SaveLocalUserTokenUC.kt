@@ -10,8 +10,8 @@ import javax.inject.Inject
 class SaveLocalUserTokenUC @Inject constructor(
     private val repository: SignUpRepository,
     private val encryptionService: IEncryptionService
-) : BaseUseCase<String, UserInfo>() {
-    override suspend fun execute(params: UserInfo?): String {
+) : BaseUseCase<Unit, UserInfo>() {
+    override suspend fun execute(params: UserInfo?) {
         params?.let { user ->
             val userTokenToString = user.token
             val userTokenToByteArray = userTokenToString.encodeToByteArray()
@@ -19,6 +19,5 @@ class SaveLocalUserTokenUC @Inject constructor(
                 encryptionService.encrypt(SecretKeyAliasEnum.USER_TOKEN_SECRET_KEY, userTokenToByteArray)
             repository.saveUserToken(encryptedToken.decodeToString())
         }
-        return "Token Saved Successfully..."
     }
 }

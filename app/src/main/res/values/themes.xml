@@ -182,10 +182,10 @@
         <item name="android:layout_marginVertical">0dp</item>
         <item name="boxCornerRadiusBottomEnd">22dp</item>
         <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="android:clickable">true</item>
         <item name="boxCornerRadiusTopEnd">22dp</item>
         <item name="boxCornerRadiusTopStart">0dp</item>
         <item name="boxBackgroundColor">@color/primary</item>
-        <item name="endIconMode">none</item>
     </style>
     <!--endregion-->
 
@@ -270,6 +270,23 @@
         <item name="iconPadding">8dp</item>
         <item name="iconSize">20dp</item>
     </style>
+
+    <!--region BottomSheetDialog -->
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/bg</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+    <!--endregion-->
+
 
 
 </resources>

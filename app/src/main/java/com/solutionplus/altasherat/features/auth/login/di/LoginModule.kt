@@ -47,7 +47,7 @@ object LoginModule {
 
     @Provides
     fun provideSLoginUC(
-        loginRepository: LoginRepository
+        loginRepository: LoginRepository,
     ): LoginUC {
         return LoginUC(loginRepository)
     }

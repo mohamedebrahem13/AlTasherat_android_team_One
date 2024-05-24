@@ -54,9 +54,12 @@ object SignUpModule {
     @Provides
     fun provideSignUpUC(
         signupRepository: SignUpRepository,
-        userInputsValidationUC: UserInputsValidationUC
+        userInputsValidationUC: UserInputsValidationUC,
     ): SignUpUC {
-        return SignUpUC(signupRepository, userInputsValidationUC)
+        return SignUpUC(
+            signupRepository,
+            userInputsValidationUC,
+        )
     }
 
     @Provides

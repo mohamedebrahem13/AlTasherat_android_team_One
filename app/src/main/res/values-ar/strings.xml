@@ -17,7 +17,7 @@
     <string name="password_text">الرقم السري</string>
     <string name="signup_text">حساب جديد</string>
     <string name="forget_password_text" translatable="false">نسيت كلمة المرور؟</string>
-
+    <string name="selected_country_code">%1$s\t(+%2$s)</string>
 
     <string name="email_validation_error">البريد الإلكتروني الذي أدخلته غير صالح</string>
     <string name="firstname_validation_error">الاسم الاول الذي أدخلته غير صالح</string>

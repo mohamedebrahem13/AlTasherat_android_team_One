@@ -7,10 +7,11 @@ import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserIn
 import javax.inject.Inject
 
 class LoginUC @Inject constructor(
-    private val repository: LoginRepository
+    private val repository: LoginRepository,
 ) : BaseUseCase<LoginUserInfo, UserLoginRequest>() {
 
     override suspend fun execute(params: UserLoginRequest?): LoginUserInfo {
-        return params?.let { repository.loginWithPhone(it) }!!
+        val loginUserInfo = params?.let { repository.loginWithPhone(it) }!!
+        return loginUserInfo
     }
 }
