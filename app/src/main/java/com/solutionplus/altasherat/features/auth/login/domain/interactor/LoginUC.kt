@@ -12,6 +12,8 @@ class LoginUC @Inject constructor(
 
     override suspend fun execute(params: UserLoginRequest?): LoginUserInfo {
         val loginUserInfo = params?.let { repository.loginWithPhone(it) }!!
+        repository.saveUser(loginUserInfo)
+        repository.saveUserToken(loginUserInfo)
         return loginUserInfo
     }
 }

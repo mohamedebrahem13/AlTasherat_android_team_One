@@ -1,10 +1,10 @@
 package com.solutionplus.altasherat.features.auth.signup.presentation.ui
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -13,9 +13,7 @@ import com.solutionplus.altasherat.features.auth.signup.data.model.request.Phone
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpContract
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpViewModel
-import com.solutionplus.altasherat.features.auth.ui.CountryCodeAdapter
 import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
-import com.solutionplus.altasherat.features.auth.viewmodel.SharedViewModel
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,21 +22,17 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
     private val signUpViewModel by viewModels<SignUpViewModel>()
     private lateinit var countries: List<Country>
-    private lateinit var adapter: CountryCodeAdapter
-    private lateinit var countryId: String
-    private lateinit var countryCode: String
+    private val customCountiesList: ArrayList<String> = ArrayList()
+    private var countryId: Int = 2
+    private var countryCode: String = "0020"
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
 
-        val viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        viewModel.setUpListener(this)
-        viewModel.setButtonText(getString(R.string.signup_text))
-
         binding.etCountryCode.setOnItemClickListener { _, _, position, _ ->
-            val selectedCountryItem = adapter.getItem(position)
-            selectedCountryItem?.let { country ->
-                countryId = country.id.toString()
+            val selectedCountryItem = countries[position]
+            selectedCountryItem.let { country ->
+                countryId = country.id
                 countryCode = country.phoneCode
             }
 
@@ -48,11 +42,15 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             when (event) {
                 is SignUpContract.MainEvent.GetCountries -> {
                     countries = event.countries
+                    setCustomCountry()
                     setUpCountryCodeAdapter()
                 }
 
-                is SignUpContract.MainEvent.SignUpIsSuccessfully -> Unit
+                is SignUpContract.MainEvent.SignUpIsSuccessfully -> {
+                    Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                }
             }
+
         }
 
         collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
@@ -72,7 +70,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
     }
 
 
-    private fun signUp() {
+     private fun signUp() {
         val firstname: String = binding.etFirstName.text.toString().trim()
         val lastname: String = binding.etLastName.text.toString().trim()
         val email: String = binding.etEmail.text.toString().trim()
@@ -97,8 +95,8 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
     }
 
     private fun setUpCountryCodeAdapter() {
-        adapter = CountryCodeAdapter(requireContext(), countries)
-        binding.etCountryCode.setAdapter(adapter)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
+        binding.etCountryCode.setAdapter(arrayAdapter)
     }
 
 
@@ -108,6 +106,17 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
     override fun subscribeToObservables() {
 
+    }
+
+    private fun setCustomCountry() {
+        countries.forEach {
+            val formattedCountryCode = requireContext().getString(
+                R.string.selected_country_code,
+                it.flag,
+                it.phoneCode.substring(2)
+            )
+            customCountiesList.add(formattedCountryCode)
+        }
     }
 
     override fun triggerButton() {

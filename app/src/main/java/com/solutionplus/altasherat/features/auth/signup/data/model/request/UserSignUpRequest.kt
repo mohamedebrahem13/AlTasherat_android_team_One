@@ -17,8 +17,8 @@ data class UserSignUpRequest(
     val password: String,
     @SerializedName("password_confirmation")
     val passwordConfirmation: String,
-    @SerializedName("country_id")
-    val countryId: String,
+    @SerializedName("country")
+    val countryId: Int,
     @SerializedName("phone")
     val phoneSignUpRequest: PhoneSignUpRequest
 ) {
@@ -27,17 +27,17 @@ data class UserSignUpRequest(
     fun validateEmail(): Boolean {
         return !(
                 email.length > 50 ||
-                        !PatternsCompat.EMAIL_ADDRESS.matcher(email).matches() ||
-                        regex.matcher(email).find()
+                        !PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
+
                 )
     }
 
     fun validateFirstName(): Boolean {
-        return !(firstname.isBlank() || firstname.length < 3 || firstname.length > 15)
+        return !(firstname.isBlank() || firstname.length < 3 || firstname.length > 15 ||  regex.matcher(firstname).find())
     }
 
     fun validateLastName(): Boolean {
-        return !(lastname.isBlank() || lastname.length < 3 || lastname.length > 15)
+        return !(lastname.isBlank() || lastname.length < 3 || lastname.length > 15 ||  regex.matcher(firstname).find())
     }
 
     fun validatePassword(): Boolean {

@@ -5,7 +5,7 @@ import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserIn
 
 interface ILoginRepository {
     suspend fun loginWithPhone(userLoginRequest: UserLoginRequest): LoginUserInfo
-    suspend fun saveUser(user: String)
-    suspend fun saveUserToken(token: String)
+    suspend fun saveUser(user: LoginUserInfo)
+    suspend fun saveUserToken(token: LoginUserInfo)
 
 }

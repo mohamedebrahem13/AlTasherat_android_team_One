@@ -7,8 +7,6 @@ import com.solutionplus.altasherat.features.auth.login.data.repository.LoginRepo
 import com.solutionplus.altasherat.features.auth.login.data.repository.local.LoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.data.repository.remote.LoginRemoteDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.interactor.LoginUC
-import com.solutionplus.altasherat.features.auth.login.domain.interactor.SaveLoginTokenUC
-import com.solutionplus.altasherat.features.auth.login.domain.interactor.SaveLoginUserUC
 import com.solutionplus.altasherat.features.auth.login.domain.repository.ILoginRepository
 import com.solutionplus.altasherat.features.auth.login.domain.repository.local.ILoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.ILoginRemoteDataSource
@@ -40,9 +38,10 @@ object LoginModule {
     @Provides
     fun provideLoginRepository(
         loginRemoteDataSource: ILoginRemoteDataSource,
-        localLoginDataSource: ILoginLocalDataSource
+        localLoginDataSource: ILoginLocalDataSource,
+        encryptionService: IEncryptionService
     ): ILoginRepository {
-        return LoginRepository(loginRemoteDataSource, localLoginDataSource)
+        return LoginRepository(loginRemoteDataSource, localLoginDataSource, encryptionService)
     }
 
     @Provides
@@ -50,22 +49,6 @@ object LoginModule {
         loginRepository: LoginRepository,
     ): LoginUC {
         return LoginUC(loginRepository)
-    }
-
-    @Provides
-    fun provideSaveLoginUserUC(
-        loginRepository: LoginRepository,
-        encryptionService: IEncryptionService
-    ): SaveLoginUserUC {
-        return SaveLoginUserUC(loginRepository, encryptionService)
-    }
-
-    @Provides
-    fun provideSaveLoginTokenUC(
-        loginRepository: LoginRepository,
-        encryptionService: IEncryptionService
-    ): SaveLoginTokenUC {
-        return SaveLoginTokenUC(loginRepository, encryptionService)
     }
 
 

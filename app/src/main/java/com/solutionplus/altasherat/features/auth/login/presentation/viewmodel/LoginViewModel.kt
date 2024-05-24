@@ -30,7 +30,6 @@ class LoginViewModel @Inject constructor(
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> {
                     sendEvent(LoginContracts.MainEvent.LoginIsSuccessfully(result.model.message!!))
-
                 }
             }
         }

@@ -6,8 +6,6 @@ import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvi
 import com.solutionplus.altasherat.features.auth.signup.data.repository.SignUpRepository
 import com.solutionplus.altasherat.features.auth.signup.data.repository.local.SignUpLocalDataSource
 import com.solutionplus.altasherat.features.auth.signup.data.repository.remote.SignUpRemoteDataSource
-import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SaveLocalUserTokenUC
-import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SaveLocalUserUC
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.SignUpUC
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.validation.UserInputsValidationUC
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.ISignUpRepository
@@ -41,9 +39,10 @@ object SignUpModule {
     @Provides
     fun provideSignUpRepository(
         signUpRemoteDataSource: ISignUpRemoteDataSource,
-        signUpLocalDataSource: ISignUpLocalDataSource
+        signUpLocalDataSource: ISignUpLocalDataSource,
+        encryptionService: IEncryptionService
     ): ISignUpRepository {
-        return SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource)
+        return SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource, encryptionService)
     }
 
     @Provides
@@ -61,23 +60,6 @@ object SignUpModule {
             userInputsValidationUC,
         )
     }
-
-    @Provides
-    fun provideSaveUserUC(
-        signupRepository: SignUpRepository,
-        encryptionService: IEncryptionService
-    ): SaveLocalUserUC {
-        return SaveLocalUserUC(signupRepository, encryptionService)
-    }
-
-    @Provides
-    fun provideSaveUserTokenUC(
-        signupRepository: SignUpRepository,
-        encryptionService: IEncryptionService
-    ): SaveLocalUserTokenUC {
-        return SaveLocalUserTokenUC(signupRepository, encryptionService)
-    }
-
 
 }
 

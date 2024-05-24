@@ -1,58 +1,49 @@
 package com.solutionplus.altasherat.features.auth.ui
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.common.presentation.ui.base.activity.BaseActivity
 import com.solutionplus.altasherat.databinding.ActivityAuthBinding
 import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFragment
 import com.solutionplus.altasherat.features.auth.signup.presentation.ui.SignUpFragment
-import com.solutionplus.altasherat.features.auth.viewmodel.SharedViewModel
+import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AuthActivity : AppCompatActivity() {
+class AuthActivity : BaseActivity<ActivityAuthBinding>() {
 
-    private lateinit var binding: ActivityAuthBinding
-    private lateinit var button: Button
-    private lateinit var viewPager: ViewPager2
-    private lateinit var viewModel: SharedViewModel
+    private val fragments by lazy {
+        listOf<Fragment>(LoginFragment(), SignUpFragment())
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAuthBinding.inflate(layoutInflater)
-        button = binding.btnLoginSignup
-        viewPager = binding.viewPager
-        val fragments = listOf<Fragment>(SignUpFragment(), LoginFragment())
-        val adapter =
-            ViewPagerAdapter(fragments, supportFragmentManager, lifecycle)
-        viewPager.adapter = adapter
-        val tabLayout = binding.tabLayout
+    private val adapter by lazy {
+        ViewPagerAdapter(fragmentManager = supportFragmentManager, fragments = fragments, lifecycle = lifecycle)
+    }
 
-        viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+    override fun viewInit() {
+        binding.viewPager.adapter = adapter
+
+        binding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                val cardView = binding.cardView
-                cardView.apply {
-                    // Measure the CardView to get its intrinsic dimensions
-                    measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
 
-                    // Get the measured height
-                    val measuredHeight = measuredHeight
+                binding.cardView.requestLayout()
 
-                    // Set the CardView height to the measured height
-                    layoutParams?.height = measuredHeight
-                    layoutParams = layoutParams
+                when (position) {
+                    0 -> {
+                        binding.btnLoginSignup.text = getString(R.string.login_text)
+                    }
+
+                    1 -> {
+                        binding.btnLoginSignup.text = getString(R.string.signup_text)
+                    }
                 }
             }
         })
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> {
                     tab.text = getString(R.string.new_account)
@@ -65,15 +56,14 @@ class AuthActivity : AppCompatActivity() {
             }
         }.attach()
 
-        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
-        val listener = viewModel.listener
-        if (listener != null) {
-            viewModel.buttonText.observe(this) {
-                button.text = it
-            }
-        }
-        button.setOnClickListener { listener?.triggerButton() }
-
-        setContentView(binding.root)
     }
+
+    override fun onActivityReady(savedInstanceState: Bundle?) {
+        binding.btnLoginSignup.setOnClickListener {
+            val currentItem =
+                fragments[binding.viewPager.currentItem] as LoginSignupButtonListener
+            currentItem.triggerButton()
+        }
+    }
+
 }
