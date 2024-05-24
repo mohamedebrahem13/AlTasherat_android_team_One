@@ -1,12 +1,14 @@
 package com.solutionplus.altasherat.features.splash.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
 import com.solutionplus.altasherat.features.splash.data.repository.FakeSplashRemoteDS
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeKeyValueStorageProvider
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeSplashLocalDS
 import com.solutionplus.altasherat.features.splash.data.repository.remote.FakeNetworkProvider
 import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
@@ -79,5 +81,50 @@ class SaveUserPreferenceUseCaseTest{
         assertEquals("ar", splashRepository.getUserPreferredLanguage())
         assertEquals("USA", splashRepository.getUserPreferredCountry())
     }
+    @Test
+    fun `SaveUserPreferenceUseCase should emit failure state when an exception occurs saveUserPreferredCountry in the repository`() = runTest {
+        // Given
+        val exceptionMessage = "Error saving preferred country"
+        val expectedExceptionPrefix = "Unknown error in com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase: $exceptionMessage"
+        splashRepository.setShouldThrowException(true)
+
+        // When
+        val resultFlow = useCase(UserPreference(preferredLanguage = "ar", preferredCountry = "USA"))
+            .catch { throwable ->
+                // Ensure that the caught exception is the expected one
+                assertTrue(throwable is AlTasheratException.Unknown)
+                assertTrue(throwable.message!!.startsWith(expectedExceptionPrefix))
+            }
+        val resultList = resultFlow.take(2).toList()
+
+        // Then
+        assertEquals(2, resultList.size)
+        assertTrue(resultList[0] is Resource.Progress)
+        assertTrue((resultList[0] as Resource.Progress).loading)
+        assertTrue(resultList[1] is Resource.Failure)
+    }
+    @Test
+    fun `SaveUserPreferenceUseCase should emit failure state when an exception occurs saveUserPreferredLanguage in the repository`() = runTest {
+        // Given
+        val exceptionMessage = "Error saving preferred language"
+        val expectedExceptionPrefix = "Unknown error in com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase: $exceptionMessage"
+        splashRepository.setShouldThrowException(true)
+
+        // When
+        val resultFlow = useCase(UserPreference(preferredLanguage = "ar", preferredCountry = "USA"))
+            .catch { throwable ->
+                // Ensure that the caught exception is the expected one
+                assertTrue(throwable is AlTasheratException.Unknown)
+                assertTrue(throwable.message!!.startsWith(expectedExceptionPrefix))
+            }
+        val resultList = resultFlow.take(2).toList()
+
+        // Then
+        assertEquals(2, resultList.size)
+        assertTrue(resultList[0] is Resource.Progress)
+        assertTrue((resultList[0] as Resource.Progress).loading)
+        assertTrue(resultList[1] is Resource.Failure)
+    }
+
 
 }

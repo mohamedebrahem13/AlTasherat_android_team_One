@@ -27,6 +27,7 @@ internal class FakeSplashRepository(
     }
 
     override suspend fun saveUserPreferredCountry(country: String) {
+        if (shouldThrowException) throw Exception("Error saving preferred country")
         localDS.saveUserPreferredCountry(country)
     }
 
@@ -35,6 +36,7 @@ internal class FakeSplashRepository(
     }
 
     override suspend fun saveUserPreferredLanguage(language: String) {
+        if (shouldThrowException) throw Exception("Error saving preferred language")
         localDS.saveUserPreferredLanguage(language)
     }
 
@@ -43,6 +45,7 @@ internal class FakeSplashRepository(
     }
 
     override suspend fun setOnboardingShown(shown: Boolean) {
+        if (shouldThrowException) throw Exception("Error setting onboarding shown")
         localDS.setOnboardingShown(shown)
     }
 

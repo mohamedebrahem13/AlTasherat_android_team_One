@@ -9,7 +9,6 @@ import com.solutionplus.altasherat.features.splash.data.repository.remote.FakeNe
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -83,6 +82,7 @@ class IsOnboardingShownUseCaseTest{
         val successResult = resultList[1] as Resource.Success<*>
         assertTrue(successResult.model == expectedValue) // Check if the result is as expected
     }
+
 
 
 }

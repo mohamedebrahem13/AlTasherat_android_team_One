@@ -1,11 +1,13 @@
 package com.solutionplus.altasherat.features.splash.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
 import com.solutionplus.altasherat.features.splash.data.repository.FakeSplashRemoteDS
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeKeyValueStorageProvider
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeSplashLocalDS
 import com.solutionplus.altasherat.features.splash.data.repository.remote.FakeNetworkProvider
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
@@ -87,5 +89,26 @@ class SetOnboardingShownUseCaseTest {
         // Then
         assertTrue(resultList[1] is Resource.Success)
         assertTrue(expectedValue) // Check if the value is updated in local data source
+    }
+    @Test
+    fun `execute IsOnboardingShownUseCase With exceptionMessage should emit failure state when an exception occurs in the repository`() = runTest {
+        // Given
+        val exceptionMessage = "Error setting onboarding shown"
+        val expectedExceptionPrefix = "Unknown error in com.solutionplus.altasherat.features.splash.domain.interactor.IsOnboardingShownUseCase: $exceptionMessage"
+        splashRepository.setShouldThrowException(true)
+
+        // When
+        val resultFlow = useCase(true)
+            .catch { throwable ->
+                // Ensure that the caught exception is the expected one
+                assertTrue(throwable is AlTasheratException.Unknown)
+                assertTrue(throwable.message!!.startsWith(expectedExceptionPrefix))
+            }
+        val resultList = resultFlow.take(2).toList()
+
+        // Then
+        assertTrue(resultList[0] is Resource.Progress)
+        assertTrue((resultList[0] as Resource.Progress).loading)
+        assertTrue(resultList[1] is Resource.Failure)
     }
 }

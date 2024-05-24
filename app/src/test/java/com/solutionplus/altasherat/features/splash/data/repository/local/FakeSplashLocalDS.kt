@@ -27,10 +27,7 @@ internal class FakeSplashLocalDS(private val preferenceStorage: IKeyValueStorage
         )
         // Define Type Token for a List of CountryEntity
         val countryListType = object : TypeToken<List<CountryEntity>>() {}.type
-        if (countriesJson != null) {
-            return  countriesJson.getModelFromJSON(countryListType)
-        }
-        return emptyList()
+        return  countriesJson.getModelFromJSON(countryListType)
     }
 
     override suspend fun saveUserPreferredCountry(country: String) {
