@@ -3,6 +3,7 @@ package com.solutionplus.altasherat.features.auth.signup.data.repository.local
 import com.google.gson.Gson
 import com.solutionplus.altasherat.common.data.repository.local.DataStoreKeyValueStorage
 import com.solutionplus.altasherat.common.data.repository.local.StorageKeyEnum
+import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
 import com.solutionplus.altasherat.features.auth.signup.data.model.entity.SignUpUserEntity
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -14,7 +15,7 @@ import org.junit.Test
 
 class SignUpLocalDataSourceTest {
 
-    private val localDataSource = mockk<DataStoreKeyValueStorage>(relaxed = true)
+    private val localDataSource = mockk<IKeyValueStorageProvider>(relaxed = true)
     private lateinit var signUpLocalDataSource: SignUpLocalDataSource
 
     @Before

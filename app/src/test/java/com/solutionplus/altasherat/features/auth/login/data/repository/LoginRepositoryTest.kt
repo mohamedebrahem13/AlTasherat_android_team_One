@@ -1,6 +1,8 @@
 package com.solutionplus.altasherat.features.auth.login.data.repository
 
 import com.google.gson.Gson
+import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEncryptionService
+import com.solutionplus.altasherat.features.auth.login.data.mapper.LoginMapper
 import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
 import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginUserResponse
 import com.solutionplus.altasherat.features.auth.login.data.models.entity.LoginUserEntity
@@ -21,11 +23,12 @@ class LoginRepositoryTest {
 
     private val loginLocalDataSource = mockk<LoginLocalDataSource>(relaxed = true)
     private val loginRemoteDataSource = mockk<LoginRemoteDataSource>(relaxed = true)
+    private val encryptionService = mockk<IEncryptionService>(relaxed = true)
     private lateinit var loginRepository: LoginRepository
 
     @Before
     fun setup() {
-        loginRepository = LoginRepository(loginRemoteDataSource, loginLocalDataSource)
+        loginRepository = LoginRepository(loginRemoteDataSource, loginLocalDataSource, encryptionService)
     }
 
     @Test
@@ -62,13 +65,13 @@ class LoginRepositoryTest {
             "countryCode",
             "number"
         )
-        val stringUser = Gson().toJson(userEntity)
-        loginRepository.saveUser(stringUser)
+        val userInfo = LoginMapper.entityToDomain(userEntity)
+        loginRepository.saveUser(userInfo)
 
         val captor = slot<String>()
         coVerify { loginLocalDataSource.saveUser(capture(captor)) }
 
-        assertEquals(stringUser, captor.captured)
+        assertEquals(userInfo, captor.captured)
 
     }
 
@@ -84,12 +87,13 @@ class LoginRepositoryTest {
             "countryCode",
             "number"
         )
-        loginRepository.saveUserToken(userEntity.token)
+        val userInfo = LoginMapper.entityToDomain(userEntity)
+        loginRepository.saveUserToken(userInfo)
 
         val captor = slot<String>()
         coVerify { loginLocalDataSource.saveToken(capture(captor)) }
 
-        assertEquals(userEntity.token, captor.captured)
+        assertEquals(userInfo.token, captor.captured)
 
     }
 }

@@ -2,11 +2,13 @@ package com.solutionplus.altasherat.features.auth.signup.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEncryptionService
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpResponseDto
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.repository.SignUpRepository
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.validation.UserInputsValidationUC
+import com.solutionplus.altasherat.features.auth.signup.domain.models.UserInfo
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.local.ISignUpLocalDataSource
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.remote.ISignUpRemoteDataSource
 import kotlinx.coroutines.flow.drop
@@ -27,6 +29,8 @@ class SignUpUCTest {
     private lateinit var signupLocalDataSource: ISignUpLocalDataSource
     private lateinit var signupRemoteDataSource: ISignUpRemoteDataSource
     private lateinit var signUpResponseDto: SignUpResponseDto
+    private lateinit var encryptionService: IEncryptionService
+    private lateinit var userInfo: UserInfo
 
 
     private lateinit var signUpRepository: SignUpRepository
@@ -44,11 +48,12 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
-        signUpResponseDto = mock<SignUpResponseDto> {on { message } doReturn "Successful" }
-
+        signUpResponseDto = mock<SignUpResponseDto> {on { message } doReturn "Signup is done successfully" }
+        userInfo = mock<UserInfo> { on { message } doReturn "userInfo" }
+        encryptionService = mock<IEncryptionService>()
         signupLocalDataSource = mock<ISignUpLocalDataSource> {
             onBlocking { saveUser(anyString()) } doReturn Unit
             onBlocking { saveUserToken(anyString()) } doReturn Unit
@@ -59,7 +64,7 @@ class SignUpUCTest {
             onBlocking { signup(userRequest) } doReturn signUpResponseDto
         }
 
-        signUpRepository = SignUpRepository(signupRemoteDataSource, signupLocalDataSource)
+        signUpRepository = SignUpRepository(signupRemoteDataSource, signupLocalDataSource, encryptionService)
         userInputsValidation = UserInputsValidationUC()
         signupUC = SignUpUC(signUpRepository, userInputsValidation)
 
@@ -76,7 +81,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -93,7 +98,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -111,7 +116,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -129,7 +134,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -147,7 +152,7 @@ class SignUpUCTest {
             "email989.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -165,7 +170,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -183,7 +188,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -201,7 +206,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -219,7 +224,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -237,7 +242,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "",
             "",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -256,7 +261,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "526",
             "526",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -274,7 +279,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "561451608495464641231231456478978975465156656555655",
             "561451608495464641231231456478978975465156656555655",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -292,7 +297,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "5699874113",
             "5699874113",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -310,7 +315,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "5699874113",
             "5699874113",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()
@@ -328,7 +333,7 @@ class SignUpUCTest {
             "email989@gmail.com",
             "password",
             "password",
-            "1",
+            1,
             phoneRequest
         )
         val expected = signupUC(userRequest).drop(1).first()

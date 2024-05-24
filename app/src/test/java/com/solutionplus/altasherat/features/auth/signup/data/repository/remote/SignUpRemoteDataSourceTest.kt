@@ -1,6 +1,6 @@
 package com.solutionplus.altasherat.features.auth.signup.data.repository.remote
 
-import com.solutionplus.altasherat.common.data.repository.remote.RetrofitNetworkProvider
+import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpResponseDto
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpUserResponse
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
@@ -16,7 +16,7 @@ import org.junit.Assert.*
 
 class SignUpRemoteDataSourceTest {
 
-    private val networkProvider = mockk<RetrofitNetworkProvider>(relaxed = true)
+    private val networkProvider = mockk<INetworkProvider>(relaxed = true)
     private lateinit var signUpRemoteDataSource: SignUpRemoteDataSource
 
     @Before
@@ -34,7 +34,7 @@ class SignUpRemoteDataSourceTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val userResponse = SignUpResponseDto(
@@ -67,7 +67,7 @@ class SignUpRemoteDataSourceTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val userResponse = SignUpResponseDto(

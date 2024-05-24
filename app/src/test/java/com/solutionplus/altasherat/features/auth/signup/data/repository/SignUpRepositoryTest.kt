@@ -1,13 +1,14 @@
 package com.solutionplus.altasherat.features.auth.signup.data.repository
 
-import com.google.gson.Gson
+import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEncryptionService
+import com.solutionplus.altasherat.features.auth.signup.data.mapper.SignUpMapper
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpResponseDto
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpUserResponse
 import com.solutionplus.altasherat.features.auth.signup.data.model.entity.SignUpUserEntity
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
-import com.solutionplus.altasherat.features.auth.signup.data.repository.local.SignUpLocalDataSource
-import com.solutionplus.altasherat.features.auth.signup.data.repository.remote.SignUpRemoteDataSource
+import com.solutionplus.altasherat.features.auth.signup.domain.repository.local.ISignUpLocalDataSource
+import com.solutionplus.altasherat.features.auth.signup.domain.repository.remote.ISignUpRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -19,13 +20,14 @@ import org.junit.Test
 
 class SignUpRepositoryTest {
 
-    private val signUpLocalDataSource = mockk<SignUpLocalDataSource>(relaxed = true)
-    private val signUpRemoteDataSource = mockk<SignUpRemoteDataSource>(relaxed = true)
+    private val signUpLocalDataSource = mockk<ISignUpLocalDataSource>(relaxed = true)
+    private val signUpRemoteDataSource = mockk<ISignUpRemoteDataSource>(relaxed = true)
+    private val encryptionService = mockk<IEncryptionService>(relaxed = true)
     private lateinit var signUpRepository: SignUpRepository
 
     @Before
     fun setup() {
-        signUpRepository = SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource)
+        signUpRepository = SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource, encryptionService)
     }
 
     @Test
@@ -38,7 +40,7 @@ class SignUpRepositoryTest {
             "email989@gmail.com",
             "1111255569",
             "1111255569",
-            "1",
+            1,
             phoneRequest
         )
         val userResponse = SignUpResponseDto(
@@ -67,13 +69,13 @@ class SignUpRepositoryTest {
             "countryCode",
             "number"
         )
-        val stringUser = Gson().toJson(userEntity)
-        signUpRepository.saveUser(stringUser)
+        val userInfo = SignUpMapper.entityToDomain(userEntity)
+        signUpRepository.saveUser(userInfo)
 
         val captor = slot<String>()
         coVerify { signUpLocalDataSource.saveUser(capture(captor)) }
 
-        assertEquals(stringUser, captor.captured)
+        assertEquals(userInfo, captor.captured)
 
     }
 
@@ -89,12 +91,13 @@ class SignUpRepositoryTest {
             "countryCode",
             "number"
         )
-        signUpRepository.saveUserToken(userEntity.token)
+        val userInfo = SignUpMapper.entityToDomain(userEntity)
+        signUpRepository.saveUserToken(userInfo)
 
         val captor = slot<String>()
         coVerify { signUpLocalDataSource.saveUserToken(capture(captor)) }
 
-        assertEquals(userEntity.token, captor.captured)
+        assertEquals(userInfo.token, captor.captured)
 
     }
 }
