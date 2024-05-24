@@ -5,7 +5,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 
-sealed class SplashContract {
+interface SplashContract {
 
     sealed class SplashAction : ViewAction {
         data object CheckHasCountriesKey : SplashAction()

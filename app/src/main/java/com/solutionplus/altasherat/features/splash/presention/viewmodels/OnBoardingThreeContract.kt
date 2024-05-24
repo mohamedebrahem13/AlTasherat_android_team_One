@@ -5,7 +5,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 
-sealed class OnBoardingThreeContract {
+interface OnBoardingThreeContract {
 
     sealed class OnBoardingThreeAction : ViewAction {
         data object SaveOnboardingShown : OnBoardingThreeAction()
