@@ -80,7 +80,5 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 //        // Create a UserPreference object with the retrieved values
 //        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
 //        }
-    companion object {
-        private val logger = getClassLogger()
-    }
+
 }
