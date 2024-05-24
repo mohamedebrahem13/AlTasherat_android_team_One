@@ -33,6 +33,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private lateinit var countries: ArrayList<Country>
     private lateinit var selectedCountry: Country
     private lateinit var selectedCountryCode: Country
+    private lateinit var selectedDate: LocalDate
 
     private val datePicker: MaterialDatePicker<Long> by lazy {
         val constraintsBuilder =
@@ -81,7 +82,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                 )
             }
 
-            inputBirthDate.setOnClickListener {
+            inputBirthDate.editText?.setOnClickListener {
                 datePicker.show(parentFragmentManager, datePicker.toString())
             }
 
@@ -102,7 +103,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                         countryCode = selectedCountryCode.phoneCode
                     ),
                     email = inputEmail.editText?.text.toString(),
-                    birthDate = inputBirthDate.editText?.text.toString(),
+                    birthDate = selectedDate.toString(),
                     image = "",
                     countryId = selectedCountry.id
                 )
@@ -114,7 +115,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private fun navigateToSelectionDialog(selectionType: SelectionType, selectedIndex: Int) {
         this.selectionType = selectionType
-        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(
+        Navigation.findNavController(requireActivity(), R.id.myNavHostFragment).navigate(
             PersonalInfoFragmentDirections.actionPersonalInfoFragmentToSelectionDialogFragment(
                 countries = countries.toTypedArray(),
                 selectedIndex = selectedIndex
@@ -147,7 +148,6 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             inputLastName.editText?.setText(user.lastname)
             inputPhoneNumber.editText?.setText(user.phone.number)
             inputEmail.editText?.setText(user.email)
-            inputBirthDate.editText?.setText(user.birthDate.toString())
             imageProfile.load(user.image.path) {
                 crossfade(true)
                 placeholder(R.drawable.ic_no_profile_image)
@@ -156,9 +156,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
         }
 
+
         selectedCountry = user.country
         selectedCountryCode = countries.first { it.phoneCode == user.country.phoneCode }
 
+        setBirthDateText(user.birthDate)
         setCountryText(selectedCountry.name)
         setCountryCodeText(selectedCountryCode)
     }
@@ -189,6 +191,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     }
 
     private fun setBirthDateText(date: LocalDate) {
+        selectedDate = date
         binding.inputBirthDate.editText?.setText(date.toString())
     }
 

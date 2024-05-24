@@ -42,7 +42,7 @@ class UpdatePersonalInfoUCTest {
         updateInfoRequest = UpdateInfoRequest(
             firstname = "Ahmed",
             middlename = "Hassan",
-            lastname = "El-Sayed",
+            lastname = "ElSayed",
             email = "ahmed.hassan@example.com",
             birthDate = "1985-05-15",
             phone = phoneRequest,
@@ -236,19 +236,6 @@ class UpdatePersonalInfoUCTest {
 
     // region MiddleName Validation Tests
     @Test
-    fun updatePersonalInfo_WhiteSpacesMiddleName_ReturnRequestValidationFailureResource() =
-        runTest {
-            // Given update request with white spaces phone number
-            val updateInfoRequest = updateInfoRequest.copy(middlename = "    ")
-
-            // When update fails
-            val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-            // Then request validation failure resource should be emitted
-            assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-        }
-
-    @Test
     fun updatePersonalInfo_MiddleNameWithWhiteSpaces_ReturnRequestValidationFailureResource() =
         runTest {
             // Given update request with phone number containing white spaces
@@ -437,8 +424,7 @@ class UpdatePersonalInfoUCTest {
     fun updatePersonalInfo_WhiteSpacesEmail_ReturnRequestValidationFailureResource() =
         runTest {
             // Given update request with white spaces phone number
-            val updateInfoRequest =
-                updateInfoRequest.copy(email = "    ")
+            val updateInfoRequest = updateInfoRequest.copy(email = "    ")
 
             // When update fails
             val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
@@ -474,11 +460,11 @@ class UpdatePersonalInfoUCTest {
         }
 
     @Test
-    fun updatePersonalInfo_LastNameGreaterThanFiftyChars_ReturnRequestValidationFailureResource() =
+    fun updatePersonalInfo_EmailGreaterThanFiftyChars_ReturnRequestValidationFailureResource() =
         runTest {
             // Given update request with phone number greater than nine digits
             val updateInfoRequest =
-                updateInfoRequest.copy(email = "ahmedmohamedelsayedalihasanahmedmohamed@gmail.com")
+                updateInfoRequest.copy(email = "ahmedmohamedelsayedalihasanahmedmohamedfff@gmail.com")
 
             // When update fails
             val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()

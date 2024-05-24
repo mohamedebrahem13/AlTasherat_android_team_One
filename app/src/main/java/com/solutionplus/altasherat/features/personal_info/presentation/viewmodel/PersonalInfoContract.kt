@@ -12,7 +12,7 @@ interface PersonalInfoContract {
     sealed class PersonalInfoAction : ViewAction {
         data object GetCountries : PersonalInfoAction()
         data object GetUserPersonalInfo : PersonalInfoAction()
-        data class UpdatePersonalInfo(val user: UpdateInfoRequest) : PersonalInfoAction()
+        data class UpdatePersonalInfo(val updateInfoRequest: UpdateInfoRequest) : PersonalInfoAction()
     }
 
     sealed class PersonalInfoEvent : ViewEvent {

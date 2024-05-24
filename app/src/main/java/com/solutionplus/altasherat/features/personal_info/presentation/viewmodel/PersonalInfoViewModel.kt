@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
+import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.GetCountriesUC
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.GetUserPersonalInfoUC
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.UpdatePersonalInfoUC
@@ -24,7 +25,7 @@ class PersonalInfoViewModel @Inject constructor(
         when (action) {
             is PersonalInfoAction.GetCountries -> getCountries()
             is PersonalInfoAction.GetUserPersonalInfo -> getUserPersonalInfo()
-            is PersonalInfoAction.UpdatePersonalInfo -> updatePersonalInfo()
+            is PersonalInfoAction.UpdatePersonalInfo -> updatePersonalInfo(action.updateInfoRequest)
         }
     }
 
@@ -48,8 +49,8 @@ class PersonalInfoViewModel @Inject constructor(
         }
     }
 
-    private fun updatePersonalInfo() {
-        updatePersonalInfoUC.invoke(viewModelScope) {
+    private fun updatePersonalInfo(updateInfoRequest: UpdateInfoRequest) {
+        updatePersonalInfoUC.invoke(viewModelScope, updateInfoRequest) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))

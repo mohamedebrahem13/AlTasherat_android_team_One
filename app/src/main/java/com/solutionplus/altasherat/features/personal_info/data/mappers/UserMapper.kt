@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.personal_info.data.mappers
 
+import com.solutionplus.altasherat.android.extentions.parseDateString
 import com.solutionplus.altasherat.common.data.mapper.Mapper
 import com.solutionplus.altasherat.features.personal_info.data.models.dto.CountryDto
 import com.solutionplus.altasherat.features.personal_info.data.models.dto.ImageDto
@@ -7,9 +8,6 @@ import com.solutionplus.altasherat.features.personal_info.data.models.dto.PhoneD
 import com.solutionplus.altasherat.features.personal_info.data.models.dto.UserDto
 import com.solutionplus.altasherat.features.personal_info.data.models.entity.UserEntity
 import com.solutionplus.altasherat.features.personal_info.domain.models.User
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 internal object UserMapper : Mapper<UserDto, User, UserEntity>() {
 
@@ -22,7 +20,7 @@ internal object UserMapper : Mapper<UserDto, User, UserEntity>() {
             email = model.email.orEmpty(),
             phone = PhoneMapper.dtoToDomain(model.phone ?: PhoneDto()),
             image = ImageMapper.dtoToDomain(model.image ?: ImageDto()),
-            birthDate = parseDate(model.birthDate.orEmpty()),
+            birthDate = model.birthDate.orEmpty().parseDateString(),
             country = CountryMapper.dtoToDomain(model.country ?: CountryDto())
         )
     }
@@ -36,15 +34,8 @@ internal object UserMapper : Mapper<UserDto, User, UserEntity>() {
             email = model.email,
             phone = PhoneMapper.entityToDomain(model.phone),
             image = ImageMapper.entityToDomain(model.image),
-            birthDate = parseDate(model.birthDate),
+            birthDate = model.birthDate.parseDateString(),
             country = CountryMapper.entityToDomain(model.country)
-        )
-    }
-
-    private fun parseDate(date: String): LocalDate {
-        return LocalDate.parse(
-            date,
-            DateTimeFormatter.ofPattern("d-M-yyyy").withZone(ZoneId.systemDefault())
         )
     }
 }
