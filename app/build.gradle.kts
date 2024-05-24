@@ -82,13 +82,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
-    // SDP & SSP
-    implementation(libs.intuit.sdp)
-    implementation(libs.intuit.ssp)
+    implementation(libs.androidx.recyclerview)
 
     // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     // Android Test
     androidTestImplementation(libs.androidx.junit)
@@ -125,4 +124,7 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // Coil
+    implementation(libs.coil.kt)
 }

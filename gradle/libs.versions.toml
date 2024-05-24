@@ -19,7 +19,7 @@ hiltCompiler = "1.2.0"
 hiltWork = "1.2.0"
 workManager = "2.9.0"
 coil = "2.6.0"
-mockitoKotlin = "3.2.0"
+mockitoKotlin = "5.3.1"
 navigation = "2.7.7"
 kotlinCoroutinesTest = "1.7.3"
 
