@@ -11,17 +11,17 @@ import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
 import com.solutionplus.altasherat.features.splash.presention.adapter.CustomSpinnerAdapter
-import com.solutionplus.altasherat.features.splash.presention.contracts.CountryLocalContract
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.CountryLocalViewModel
+import com.solutionplus.altasherat.features.splash.presention.contracts.LanguageContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
-    private val viewModel: CountryLocalViewModel by viewModels()
+    private val viewModel: LanguageViewModel by viewModels()
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        viewModel.onActionTrigger( CountryLocalContract.CountryLocalAction.FetchCountriesFromLocal)
+        viewModel.onActionTrigger( LanguageContract.CountryLocalAction.FetchCountriesFromLocal)
     }
 
     override fun onLoading(isLoading: Boolean) {}
@@ -35,34 +35,34 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     override fun viewInit() {
         binding.buttonContinue.setOnClickListener {
             val preferredCountry = binding.spinner.selectedItem.toString()
-            viewModel.onActionTrigger(CountryLocalContract.CountryLocalAction.NextButtonClick(preferredCountry))
+            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.NextButtonClick(preferredCountry))
         }
 
          binding.radioButton2.setOnClickListener {
-             viewModel.onActionTrigger( CountryLocalContract.CountryLocalAction.StartCountriesWorkerEn("en"))
+             viewModel.onActionTrigger( LanguageContract.CountryLocalAction.StartCountriesWorkerEn("en"))
         }
         binding.radioButton1.setOnClickListener {
-            viewModel.onActionTrigger(CountryLocalContract.CountryLocalAction.StartCountriesWorkerAr("ar"))
+            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerAr("ar"))
         }
 
 
     }
-    private fun handleSingleEvent(event: CountryLocalContract.CountryLocalEvent) {
+    private fun handleSingleEvent(event: LanguageContract.CountryLocalEvent) {
         // Handle single events
         when(event){
-            is CountryLocalContract.CountryLocalEvent.UpdateTheCountry->{
+            is LanguageContract.CountryLocalEvent.UpdateTheCountry->{
                 val spinnerAdapter = CustomSpinnerAdapter(requireContext(),event.countries)
                 binding.spinner.adapter = spinnerAdapter
             }
-            is CountryLocalContract.CountryLocalEvent.NavigateToOnBoarding->{
+            is LanguageContract.CountryLocalEvent.NavigateToOnBoarding->{
 
                 findNavController().navigate(R.id.action_languageFragment_to_viewPagerFragment)
             }
-            is CountryLocalContract.CountryLocalEvent.StartCountriesWorker->{
+            is LanguageContract.CountryLocalEvent.StartCountriesWorker->{
                     updateLocale(event.language)
             }
 
-            is CountryLocalContract.CountryLocalEvent.ShowWorkerStateToast ->showToast(event.workerState)
+            is LanguageContract.CountryLocalEvent.ShowWorkerStateToast ->showToast(event.workerState)
         }
     }
     private fun updateLocale(languageCode: String) {

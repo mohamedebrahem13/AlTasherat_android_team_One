@@ -50,9 +50,10 @@ internal class FakeSplashLocalDS(private val preferenceStorage: IKeyValueStorage
     }
 
     override suspend fun setOnboardingShown(shown: Boolean) {
+        preferenceStorage.save(key = StorageKeyEnum.ONBOARDING_SHOWN, value = shown, type = Boolean::class.java)
     }
 
     override suspend fun isOnboardingShown(): Boolean {
-        return true
+        return preferenceStorage.get(StorageKeyEnum.ONBOARDING_SHOWN, false, Boolean::class.java)
     }
 }

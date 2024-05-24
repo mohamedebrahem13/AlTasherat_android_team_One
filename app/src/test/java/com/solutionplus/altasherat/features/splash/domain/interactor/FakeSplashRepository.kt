@@ -27,27 +27,27 @@ internal class FakeSplashRepository(
     }
 
     override suspend fun saveUserPreferredCountry(country: String) {
-        TODO("Not yet implemented")
+        localDS.saveUserPreferredCountry(country)
     }
 
     override suspend fun getUserPreferredCountry(): String {
-        TODO("Not yet implemented")
+        return localDS.getUserPreferredCountry()
     }
 
     override suspend fun saveUserPreferredLanguage(language: String) {
-        TODO("Not yet implemented")
+        localDS.saveUserPreferredLanguage(language)
     }
 
     override suspend fun getUserPreferredLanguage(): String {
-        TODO("Not yet implemented")
+        return localDS.getUserPreferredLanguage()
     }
 
     override suspend fun setOnboardingShown(shown: Boolean) {
-        TODO("Not yet implemented")
+        localDS.setOnboardingShown(shown)
     }
 
     override suspend fun isOnboardingShown(): Boolean {
-        TODO("Not yet implemented")
+        return localDS.isOnboardingShown()
     }
 
     override suspend fun getCountriesFromRemote(params: String): CountriesResponse {

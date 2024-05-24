@@ -6,7 +6,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.splash.domain.models.Country
 
-sealed class CountryLocalContract {
+sealed class LanguageContract {
 
     sealed class CountryLocalAction : ViewAction {
         data object FetchCountriesFromLocal: CountryLocalAction()

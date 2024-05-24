@@ -17,4 +17,7 @@
     <string name="please_pick_lang">please choose the language</string>
     <string name="please_pick_country">please choose the country</string>
     <string name="splash_text">AlTasherat Platform</string>
+
+    <string name="you_can_change_langauge">You can change your country and language at any time from the menu</string>
+
 </resources>
