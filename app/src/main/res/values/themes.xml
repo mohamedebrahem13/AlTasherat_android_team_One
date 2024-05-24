@@ -1,13 +1,12 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Light theme colors -->
+        <item name="background">@color/bg</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
-
-
 
     <!-- textView -->
     <style name="TextView" parent="Widget.MaterialComponents.TextView">
@@ -27,8 +26,6 @@
         <item name="android:textColor">@color/text_input</item>
         <item name="android:textAppearance">@style/Font.SemiBold</item>
     </style>
-
-
 
 
     <style name="TextView.Black" parent="TextView">

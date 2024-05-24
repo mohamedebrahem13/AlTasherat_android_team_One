@@ -4,7 +4,6 @@ import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flowOn
@@ -15,13 +14,12 @@ abstract class BaseUseCase<out Model, in Params> {
 
     protected abstract suspend fun execute(params: Params?): Model
 
-     operator fun invoke(
+    protected operator fun invoke(
         scope: CoroutineScope,
         params: Params? = null,
         onResult: (Resource<Model>) -> Unit
     ) {
         scope.launch(Dispatchers.Main) {
-            delay(2000L)
             onResult.invoke(Resource.loading())
             try {
                 withContext(Dispatchers.IO) {
@@ -45,7 +43,7 @@ abstract class BaseUseCase<out Model, in Params> {
         }
     }
 
-    operator fun invoke(params: Params? = null): Flow<Resource<Model>> = channelFlow {
+    protected operator fun invoke(params: Params? = null): Flow<Resource<Model>> = channelFlow {
         send(Resource.loading())
         try {
             val result = execute(params)
