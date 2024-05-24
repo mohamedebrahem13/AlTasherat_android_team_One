@@ -34,6 +34,13 @@ class UserInputsValidationUC {
             )
         }
 
+        if (!userSignUpRequest.phoneSignUpRequest.validatePhoneNumber()) {
+            throw AlTasheratException.Local.RequestValidation(
+                UserSignUpRequest::class,
+                "Your input phone is not valid"
+            )
+        }
+
     }
 
 
