@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention.fragments
+package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.os.Bundle
 import android.widget.Toast
@@ -10,8 +10,8 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
-import com.solutionplus.altasherat.features.splash.presention.adapter.CustomSpinnerAdapter
-import com.solutionplus.altasherat.features.splash.presention.contracts.LanguageContract
+import com.solutionplus.altasherat.features.splash.presention.ui.adapter.CustomSpinnerAdapter
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

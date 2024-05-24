@@ -11,7 +11,6 @@ import com.solutionplus.altasherat.features.splash.domain.interactor.GetCountrie
 import com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase
 import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 import com.solutionplus.altasherat.features.splash.domain.worker.CountriesWorker
-import com.solutionplus.altasherat.features.splash.presention.contracts.LanguageContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -105,7 +104,12 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
 
     private fun createUserPreference(preferredCountry: String): UserPreference {
         val language = AppCompatDelegate.getApplicationLocales()
-        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
+        val preferredLanguage = if (language.isEmpty) {
+            "ar" // Default to "ar" if device locale is empty
+        } else {
+            language[0]?.toLanguageTag().toString()
+        }
+        return UserPreference(preferredCountry, preferredLanguage)
     }
 
 }

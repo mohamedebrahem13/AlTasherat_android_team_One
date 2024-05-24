@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image_on_boarding_background"
-    tools:context=".features.splash.presention.fragments.ViewPagerFragment">
+    tools:context=".features.splash.presention.ui.fragments.ViewPagerFragment">
 
     <ImageView
         android:id="@+id/image_background"

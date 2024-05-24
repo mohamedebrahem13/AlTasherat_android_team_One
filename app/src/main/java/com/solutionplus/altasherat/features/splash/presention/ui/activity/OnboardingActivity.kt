@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention.activity
+package com.solutionplus.altasherat.features.splash.presention.ui.activity
 
 import android.os.Bundle
 

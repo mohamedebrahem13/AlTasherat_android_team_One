@@ -5,7 +5,6 @@ import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.splash.domain.interactor.SetOnboardingShownUseCase
-import com.solutionplus.altasherat.features.splash.presention.contracts.OnBoardingThreeContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

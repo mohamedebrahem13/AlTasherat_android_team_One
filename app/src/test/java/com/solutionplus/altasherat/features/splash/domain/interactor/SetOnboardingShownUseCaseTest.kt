@@ -33,13 +33,17 @@ class SetOnboardingShownUseCaseTest {
     }
 
     @Test
-    fun ` SetOnboardingShownUseCase with isOnboardingShown false should emit loading and then update local data source`() = runTest {
+    fun ` SetOnboardingShownUseCase with isOnboardingShown false should emit loading and update local data source`() = runTest {
         // Given
         val isOnboardingShown = false // Set onboarding not shown
         val expectedValue = localDataSource.isOnboardingShown()
         // When
-        useCase(isOnboardingShown)
+        val resultFlow= useCase(isOnboardingShown)
+        val resultList = resultFlow.take(1).toList()
+
         // Then
+        assertTrue(resultList[0] is Resource.Progress)
+        assertTrue((resultList[0] as Resource.Progress).loading) // Ensure loading state is true
         assertTrue(expectedValue == isOnboardingShown) // Check if the value is updated in local data source
     }
     @Test
@@ -56,8 +60,11 @@ class SetOnboardingShownUseCaseTest {
     }
     @Test
     fun `SetOnboardingShownUseCase with isOnboardingShown false should emit loading state initially`() = runTest {
+        // Given
+        val isOnboardingShown = false
+        
         // When
-        val resultFlow = useCase(false)
+        val resultFlow = useCase(isOnboardingShown)
         val resultList = resultFlow.take(1).toList()
 
         // Then
@@ -68,16 +75,17 @@ class SetOnboardingShownUseCaseTest {
     @Test
     fun `SetOnboardingShownUseCase with isOnboardingShown true should emit loading and then update local data source`() = runTest {
         // Given
-        splashRepository.setOnboardingShown(true) // Set onboarding not shown
-
+        val isOnboardingShown = true
         // When
-        useCase(true)
-
+        val resultFlow = useCase(isOnboardingShown)
+        val resultList = resultFlow.take(2).toList()
+        println("state_value: $resultFlow")
         // Retrieve the updated value after the asynchronous operation completes
         val expectedValue = splashRepository.isOnboardingShown()
         println("Expected value: $expectedValue")
 
         // Then
+        assertTrue(resultList[1] is Resource.Success)
         assertTrue(expectedValue) // Check if the value is updated in local data source
     }
 }

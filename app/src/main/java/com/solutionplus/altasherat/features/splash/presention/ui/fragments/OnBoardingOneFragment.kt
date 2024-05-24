@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention.fragments
+package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.os.Bundle
 import com.solutionplus.altasherat.R

@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention.contracts
+package com.solutionplus.altasherat.features.splash.presention.viewmodels
 
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction

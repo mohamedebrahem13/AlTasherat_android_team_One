@@ -7,7 +7,6 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveCountriesUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.HasCountryStringKeyUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.IsOnboardingShownUseCase
-import com.solutionplus.altasherat.features.splash.presention.contracts.SplashContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

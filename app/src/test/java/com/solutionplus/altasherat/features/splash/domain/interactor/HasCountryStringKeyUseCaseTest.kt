@@ -33,7 +33,6 @@ class HasCountryStringKeyUseCaseTest{
     @Test
     fun `execute hasCountryStringKey when country string key exists in the repository should emit true`() = runTest {
         // Given
-        //  data
         val countries = listOf(
             CountryEntity(1, "USA", "American", "USD", "US", "+1", true, "us_flag.png")
         )

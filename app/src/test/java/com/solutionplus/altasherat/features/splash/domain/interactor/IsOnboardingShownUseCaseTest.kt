@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -40,8 +41,8 @@ class IsOnboardingShownUseCaseTest{
 
         // Then
         assertEquals(1, resultList.size)
-        Assert.assertTrue(resultList[0] is Resource.Progress)
-        Assert.assertTrue((resultList[0] as Resource.Progress).loading)
+        assertTrue(resultList[0] is Resource.Progress)
+        assertTrue((resultList[0] as Resource.Progress).loading)
     }
     @Test
     fun `execute IsOnboardingShownUseCase should return true when onboarding is shown`() = runTest {
@@ -51,7 +52,7 @@ class IsOnboardingShownUseCaseTest{
         val resultFlow = useCase(Unit)
         val resultList = resultFlow.take(2).toList()
         // Then
-        Assert.assertTrue((resultList[1] as Resource.Success<*>).model == true) // Check if the returned value is true
+        assertTrue((resultList[1] as Resource.Success<*>).model == true) // Check if the returned value is true
     }
     @Test
     fun `execute IsOnboardingShownUseCase should emit loading and then success states with correct result`() = runTest {
@@ -63,9 +64,9 @@ class IsOnboardingShownUseCaseTest{
         val resultList = resultFlow.take(2).toList()
 
         // Then
-        Assert.assertTrue(resultList[0] is Resource.Progress) // Check if the first state is loading
+        assertTrue(resultList[0] is Resource.Progress) // Check if the first state is loading
         val successResult = resultList[1] as Resource.Success<*>
-        Assert.assertTrue(successResult.model == false) // Check if the result is as expected
+        assertTrue(successResult.model == false) // Check if the result is as expected
     }
     @Test
     fun `execute IsOnboardingShownUseCase should emit loading and then success states with same value after saving`() = runTest {
@@ -74,14 +75,13 @@ class IsOnboardingShownUseCaseTest{
         val expectedValue = localDataSource.isOnboardingShown()
 
         // When
-        useCase(Unit) // First call to trigger save
         val resultFlow = useCase(Unit) // Second call to trigger get
         val resultList = resultFlow.take(2).toList()
 
         // Then
-        Assert.assertTrue(resultList[0] is Resource.Progress) // Check if the first state is loading
+        assertTrue(resultList[0] is Resource.Progress) // Check if the first state is loading
         val successResult = resultList[1] as Resource.Success<*>
-        Assert.assertTrue(successResult.model == expectedValue) // Check if the result is as expected
+        assertTrue(successResult.model == expectedValue) // Check if the result is as expected
     }
 
 

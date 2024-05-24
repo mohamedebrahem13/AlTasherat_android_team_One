@@ -2,8 +2,6 @@ package com.solutionplus.altasherat.features.splash.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
-import com.solutionplus.altasherat.features.splash.data.models.dto.CountryDto
-import com.solutionplus.altasherat.features.splash.data.models.dto.CountryResponseDto
 import com.solutionplus.altasherat.features.splash.data.repository.FakeSplashRemoteDS
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeKeyValueStorageProvider
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeSplashLocalDS
@@ -12,7 +10,6 @@ import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -38,20 +35,35 @@ class SaveUserPreferenceUseCaseTest{
     fun `SaveUserPreferenceUseCase with UserPreference should update local data source`() = runTest {
         // Given
         val userPreference = UserPreference(preferredLanguage = "ar", preferredCountry = "USA")
-        splashRepository.saveUserPreferredCountry("USA")
-        splashRepository.saveUserPreferredLanguage("ar")
         // When
-        useCase(userPreference)
+          useCase(userPreference).take(2).toList()
         // Then
         assertEquals("ar", splashRepository.getUserPreferredLanguage())
         assertEquals("USA", splashRepository.getUserPreferredCountry())
     }
     @Test
-    fun `SaveUserPreferenceUseCase with UserPreference should emit loading and then update local data source`() = runTest {
+    fun `SaveUserPreferenceUseCase with UserPreference should emit Success and then update local data source`() = runTest {
         // Given
         val userPreference = UserPreference(preferredLanguage = "ar", preferredCountry = "USA")
-        splashRepository.saveUserPreferredCountry("USA")
-        splashRepository.saveUserPreferredLanguage("ar")
+
+        // When
+        val resultFlow = useCase(userPreference)
+        val resultList = resultFlow.take(2).toList()
+
+        // Then
+        assertEquals(2, resultList.size) // Two states: loading, success
+        assertTrue(resultList[0] is Resource.Progress)
+        assertTrue((resultList[0] as Resource.Progress).loading)
+        assertTrue(resultList[1] is Resource.Success)
+
+        // Verify that local data source is updated
+        assertEquals("ar", splashRepository.getUserPreferredLanguage())
+        assertEquals("USA", splashRepository.getUserPreferredCountry())
+    }
+    @Test
+    fun `SaveUserPreferenceUseCase with UserPreference should emit Loading and then update local data source`() = runTest {
+        // Given
+        val userPreference = UserPreference(preferredLanguage = "ar", preferredCountry = "USA")
 
         // When
         val resultFlow = useCase(userPreference)

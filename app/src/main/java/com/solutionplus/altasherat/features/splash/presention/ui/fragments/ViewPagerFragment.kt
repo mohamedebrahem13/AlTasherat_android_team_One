@@ -1,23 +1,30 @@
-package com.solutionplus.altasherat.features.splash.presention.fragments
+package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
-import com.solutionplus.altasherat.features.splash.presention.adapter.ViewPagerAdapter
+import com.solutionplus.altasherat.features.splash.presention.ui.adapter.ViewPagerAdapter
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ViewPagerFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var adapter: ViewPagerAdapter
     private var _binding: FragmentViewPagerBinding? = null
+    private val viewModel: OnBoardingThreeViewModel by viewModels()
+
 
     private val binding get() = _binding!!
 
@@ -69,6 +76,8 @@ class ViewPagerFragment : Fragment() {
             if (currentPosition < adapter.itemCount - 1) {
                 viewPager.currentItem = currentPosition + 1
             } else if (currentPosition == adapter.itemCount - 1) {
+                logger.debug("onboardingThree action")
+                viewModel.onActionTrigger( OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown)
                 // Last fragment, you can navigate to another activity if needed
                 // Intent(requireActivity(), AnotherActivity::class.java).also { intent ->
                 //     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -97,5 +106,8 @@ class ViewPagerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    companion object {
+        private val logger = getClassLogger()
     }
 }

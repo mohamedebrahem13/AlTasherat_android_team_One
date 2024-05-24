@@ -38,7 +38,7 @@ internal class FakeSplashLocalDS(private val preferenceStorage: IKeyValueStorage
     }
 
     override suspend fun getUserPreferredCountry(): String {
-        return preferenceStorage.get(StorageKeyEnum.USER_PREFERRED_COUNTRY, "DefaultCountry", String::class.java) ?: "DefaultCountry"
+        return preferenceStorage.get(StorageKeyEnum.USER_PREFERRED_COUNTRY, "السعودية", String::class.java)
     }
 
     override suspend fun saveUserPreferredLanguage(language: String) {
@@ -46,7 +46,7 @@ internal class FakeSplashLocalDS(private val preferenceStorage: IKeyValueStorage
     }
 
     override suspend fun getUserPreferredLanguage(): String {
-        return preferenceStorage.get(StorageKeyEnum.LANGUAGE, "DefaultLanguage", String::class.java) ?: "DefaultLanguage"
+        return preferenceStorage.get(StorageKeyEnum.LANGUAGE, "ar", String::class.java)
     }
 
     override suspend fun setOnboardingShown(shown: Boolean) {
