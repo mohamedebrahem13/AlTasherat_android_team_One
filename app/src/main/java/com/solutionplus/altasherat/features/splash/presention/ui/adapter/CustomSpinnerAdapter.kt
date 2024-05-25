@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

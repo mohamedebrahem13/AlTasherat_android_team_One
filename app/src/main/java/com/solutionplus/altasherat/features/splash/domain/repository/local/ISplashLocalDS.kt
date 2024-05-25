@@ -11,4 +11,8 @@ internal interface ISplashLocalDS {
     suspend fun getUserPreferredCountry(): String
     suspend fun saveUserPreferredLanguage(language: String)
     suspend fun getUserPreferredLanguage(): String
+
+    // Methods to save and get onboarding shown status
+    suspend fun setOnboardingShown(shown: Boolean)
+    suspend fun isOnboardingShown(): Boolean
 }

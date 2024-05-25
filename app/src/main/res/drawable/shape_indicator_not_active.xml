@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/secondary" />
-    <corners android:radius="50dp" />
-    <size
-        android:width="8dp"
-        android:height="8dp" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thickness="5dp"
+            android:useLevel="false">
+            <solid android:color="@color/secondary"/>
+        </shape>
+    </item>
+</layer-list>

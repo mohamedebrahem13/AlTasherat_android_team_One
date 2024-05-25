@@ -25,4 +25,8 @@
 
     <string name="please_pick_lang">من فضلك اختر اللغة</string>
     <string name="please_pick_country">من فضلك اختر الدولة</string>
+
+
+    <string name="you_can_change_langauge">بإمكانك تغيير بلدك ولغتك  في اي وقت من القائمة</string>
+
 </resources>
