@@ -271,6 +271,14 @@
         <item name="iconSize">20dp</item>
     </style>
 
+    <style name="Button.Save" parent="Button">
+        <item name="icon">@drawable/ic_save</item>
+    </style>
+
+    <style name="Button.Next" parent="Button">
+        <item name="icon">@drawable/ic_next</item>
+    </style>
+
     <!--region BottomSheetDialog -->
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>

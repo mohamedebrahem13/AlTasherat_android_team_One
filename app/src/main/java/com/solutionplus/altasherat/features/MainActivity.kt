@@ -23,7 +23,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
         logger.debug("onActivityReady")
-        startActivity(Intent(this, AuthActivity::class.java))
     }
 
     companion object {
