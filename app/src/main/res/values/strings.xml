@@ -1,32 +1,6 @@
 <resources>
     <string name="app_name">AlTasherat</string>
-    <string name="unsupported_type" translatable="false">Unsupported type…</string>
-    <string name="hello_world" translatable="false">HelloWorld!</string>
-    <string name="skip_tv" translatable="false">Skip</string>
-
-    <string name="first_name" translatable="false">First Name</string>
-    <string name="last_name" translatable="false">Last Name</string>
-    <string name="new_account" translatable="false">New Account</string>
-    <string name="login_text" translatable="false">Login</string>
-    <string name="first_name_input_hint" translatable="false">enter your First Name</string>
-    <string name="last_name_input_hint" translatable="false">enter your Second Name</string>
-    <string name="email_input_hint" translatable="false">enter your Email</string>
-    <string name="phone_input_hint" translatable="false">enter your phone number</string>
-    <string name="password_input_hint" translatable="false">enter your password</string>
-    <string name="email_text" translatable="false">Email</string>
-    <string name="phone_text" translatable="false">Phone</string>
-    <string name="password_text" translatable="false">password</string>
-    <string name="country_code_text" translatable="false">🇸🇦 (+966)</string>
-    <string name="signup_text" translatable="false">Sign Up</string>
-    <string name="forget_password_text" translatable="false">forget password?</string>
-    <string name="selected_country_code" translatable="false">%1$s\t(+%2$s)</string>
-
-    <string name="email_validation_error" translatable="false">Your input email is not valid</string>
-    <string name="firstname_validation_error" translatable="false">Your input first name is not valid</string>
-    <string name="lastname_validation_error" translatable="false">Your input last name is not valid</string>
-    <string name="password_validation_error" translatable="false">Your input password is not valid</string>
-
-
+    <string name="unsupported_type">Unsupported type</string>
     <string name="unknown_network_error">Unknown network error</string>
     <string name="network_connection_error">Network connection error</string>
     <string name="encryption_error">Encryption error</string>
@@ -43,6 +17,9 @@
     <string name="please_pick_lang">please choose the language</string>
     <string name="please_pick_country">please choose the country</string>
     <string name="splash_text">AlTasherat Platform</string>
+
+    <string name="you_can_change_langauge">You can change your country and language at any time from the menu</string>
+
 
     <string-array name="names">
         <item>Ebram</item>

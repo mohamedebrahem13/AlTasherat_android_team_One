@@ -58,14 +58,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="@id/card"
-        app:layout_constraintEnd_toEndOf="@id/card"
-        app:layout_constraintStart_toStartOf="@id/card"
-        app:layout_constraintTop_toBottomOf="@id/card" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

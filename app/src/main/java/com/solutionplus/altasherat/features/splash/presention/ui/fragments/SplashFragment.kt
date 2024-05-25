@@ -1,5 +1,6 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -8,6 +9,9 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSplashBinding
+import com.solutionplus.altasherat.features.splash.presention.ui.activity.OnboardingActivity
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +21,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        viewModel.onActionTrigger(SplashContract.SplashAction.CheckCountryStringKey)
+        viewModel.onActionTrigger(SplashContract.SplashAction.CheckHasCountriesKey)
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -61,15 +65,19 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         // Handle single events
         when (event) {
             SplashContract.SplashEvent.NavigateToHome -> {
-                logger.debug("navigate to home")
+                logger.debug("navigate to NavigateToHome")
             }
 
             SplashContract.SplashEvent.NavigateToLanguage -> {
                 findNavController().navigate(R.id.action_splash_to_languageFragment)
 
             }
+            SplashContract.SplashEvent.NavigateToOnBoarding ->
+                Intent(requireActivity(), OnboardingActivity::class.java).also { intent ->
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                }
         }
-
 
     }
 

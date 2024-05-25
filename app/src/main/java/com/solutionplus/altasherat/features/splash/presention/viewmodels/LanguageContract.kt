@@ -1,17 +1,16 @@
-package com.solutionplus.altasherat.features.splash.presention
+package com.solutionplus.altasherat.features.splash.presention.viewmodels
 
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.splash.domain.models.Country
-import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 
-sealed class CountryLocalContract {
+ interface LanguageContract {
 
     sealed class CountryLocalAction : ViewAction {
         data object FetchCountriesFromLocal: CountryLocalAction()
-        data class NextButtonClick(val userPreference: UserPreference) : CountryLocalAction()
+        data class NextButtonClick(val selectedCountry: String) : CountryLocalAction()
         data class StartCountriesWorkerEn(val language: String) : CountryLocalAction()
         data class StartCountriesWorkerAr(val language: String) : CountryLocalAction()
 
