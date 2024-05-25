@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
+import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.ViewPagerAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeViewModel
@@ -32,7 +34,7 @@ class ViewPagerFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentViewPagerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -78,11 +80,11 @@ class ViewPagerFragment : Fragment() {
             } else if (currentPosition == adapter.itemCount - 1) {
                 logger.debug("onboardingThree action")
                 viewModel.onActionTrigger( OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown)
-                // Last fragment, you can navigate to another activity if needed
-                // Intent(requireActivity(), AnotherActivity::class.java).also { intent ->
-                //     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                //     startActivity(intent)
-                // }
+                 //Last fragment, you can navigate to another activity if needed
+                 Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                     startActivity(intent)
+                 }
             }
         }
     }

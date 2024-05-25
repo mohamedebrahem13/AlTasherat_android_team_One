@@ -8,7 +8,7 @@
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
 
-    <!-- textView -->
+    <!--region TextView -->
     <style name="TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -26,7 +26,6 @@
         <item name="android:textColor">@color/text_input</item>
         <item name="android:textAppearance">@style/Font.SemiBold</item>
     </style>
-
 
     <style name="TextView.Black" parent="TextView">
         <item name="android:textAppearance">@style/Font.Black</item>
@@ -59,12 +58,9 @@
     <style name="TextView.Error" parent="TextView">
         <item name="android:textColor">@color/error</item>
     </style>
+    <!--endregion-->
 
-
-    <!-- textView -->
-
-
-    <!-- Font -->
+    <!--region Fonts -->
     <style name="Font" parent="@android:style/TextAppearance" />
 
     <style name="Font.Black" parent="Font">
@@ -94,9 +90,7 @@
     <style name="Font.Thin" parent="Font">
         <item name="android:fontFamily">@font/app_font_thin</item>
     </style>
-    <!-- Font -->
-
-
+    <!--endregion-->
 
     <!--region TextInputLayout-->
     <style name="TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
@@ -263,7 +257,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textAppearance">@style/Font.Bold</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/button_background</item>
+        <item name="android:background">@drawable/shape_button</item>
         <item name="backgroundTint">@null</item>
         <item name="cornerSize">50dp</item>
         <item name="iconGravity">textEnd</item>
@@ -278,6 +272,7 @@
     <style name="Button.Next" parent="Button">
         <item name="icon">@drawable/ic_next</item>
     </style>
+    <!--endregion-->
 
     <!--region BottomSheetDialog -->
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
@@ -294,7 +289,4 @@
         <item name="cornerSize">22dp</item>
     </style>
     <!--endregion-->
-
-
-
 </resources>
