@@ -60,4 +60,10 @@
 
     <string name="you_can_change_langauge">بإمكانك تغيير بلدك ولغتك  في اي وقت من القائمة</string>
 
+
+    <!--region Home-->
+    <string name="visa_platform">منصة التأشيرات</string>
+    <string name="visa_requests">طلبات التأشيرات</string>
+    <string name="profile">الملف الشخصي</string>
+    <!--endregion-->
 </resources>
