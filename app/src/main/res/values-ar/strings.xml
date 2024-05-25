@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AlTasherat</string>
+    <string name="hello_world">مرحبا</string>
+    <string name="skip_tv">تخطي</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="last_name">الاسم الاخير</string>
+    <string name="new_account">حساب جديد</string>
+    <string name="login_text">تسجيل الدخول</string>
+    <string name="first_name_input_hint">ادخل الاسم اولا</string>
+    <string name="last_name_input_hint">ادخل الاسم الاخير</string>
+    <string name="email_input_hint">ادخل البريد الالكتروني</string>
+    <string name="phone_input_hint">ادخل كلمة المرور</string>
+    <string name="password_input_hint">ادخل جوال للمتابعة</string>
+    <string name="email_text" >البريد الالكتروني</string>
+    <string name="phone_text">الجوال</string>
+    <string name="password_text">الرقم السري</string>
+    <string name="signup_text">حساب جديد</string>
+    <string name="forget_password_text" translatable="false">نسيت كلمة المرور؟</string>
+    <string name="selected_country_code">%1$s\t(+%2$s)</string>
+
+    <string name="email_validation_error">البريد الإلكتروني الذي أدخلته غير صالح</string>
+    <string name="firstname_validation_error">الاسم الاول الذي أدخلته غير صالح</string>
+    <string name="lastname_validation_error">الاسم الاخير الذي أدخلته غير صالح</string>
+    <string name="password_validation_error">الرقم السري الذي أدخلته غير صالح</string>
+
+
+
+
+
+
+
+
+
     <string name="continue_text">الاستمرار</string>
     <string name="unsupported_type">نوع غير مدعوم</string>
     <string name="unknown_network_error">خطأ غير معروف في الشبكة</string>

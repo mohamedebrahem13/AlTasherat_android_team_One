@@ -20,4 +20,33 @@
 
     <string name="you_can_change_langauge">You can change your country and language at any time from the menu</string>
 
+    <string name="hello_world">Hello</string>
+    <string name="skip_tv">Skip</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="new_account">New Account</string>
+    <string name="login_text">Login</string>
+    <string name="first_name_input_hint">Enter your first name</string>
+    <string name="last_name_input_hint">Enter your last name</string>
+    <string name="email_input_hint">Enter your email</string>
+    <string name="phone_input_hint">Enter your password</string>
+    <string name="password_input_hint">Enter your phone to continue</string>
+    <string name="email_text">Email</string>
+    <string name="phone_text">Phone</string>
+    <string name="password_text">Password</string>
+    <string name="signup_text">Sign Up</string>
+    <string name="forget_password_text">Forgot your password?</string>
+    <string name="selected_country_code">%1$s\t(+%2$s)</string>
+    <string name="country_code_text" translatable="false">🇸🇦 (+966)</string>
+    <string name="email_validation_error">The email you entered is invalid</string>
+    <string name="firstname_validation_error">The first name you entered is invalid</string>
+    <string name="lastname_validation_error">The last name you entered is invalid</string>
+    <string name="password_validation_error">The password you entered is invalid</string>
+
+    <string-array name="names">
+        <item>Ebram</item>
+        <item>Ibrahem</item>
+        <item>Aziz</item>
+        <item>Gerges</item>
+    </string-array>
 </resources>

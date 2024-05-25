@@ -29,6 +29,12 @@ object NetworkModule {
         return RetrofitNetworkProvider(altasheratApiService)
     }
 
+    @Singleton
+    @Provides
+    fun provideGsonConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
+    }
+
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -64,12 +70,6 @@ object NetworkModule {
             writeTimeout(30L, TimeUnit.SECONDS)
             addInterceptor(httpLoggingInterceptor)
         }
-    }
-
-    @Provides
-    @Singleton
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
     }
 
     @Provides
