@@ -53,4 +53,19 @@
     <string name="visa_requests">Visa Requests</string>
     <string name="profile">Profile</string>
     <!--endregion-->
+
+    <!--region Visa Platform-->
+    <string name="first_title_first_part">Obtain tourist</string>
+    <string name="first_title_second_part">visas easily</string>
+    <string name="first_button_text">Tourism Visa</string>
+    <string name="first_action_text">Request\nyour visa now</string>
+    <string name="second_title_first_part">Request an employment visa</string>
+    <string name="second_title_second_part">easily with the visa platform</string>
+    <string name="second_button_text">Employment Visa</string>
+    <string name="second_action_text">Request\nyour visa now</string>
+    <string name="third_title_first_part">You can sell visa</string>
+    <string name="third_title_second_part">through the visa platform</string>
+    <string name="third_button_text">Sell Visa</string>
+    <string name="third_action_text">Fill out\nthe form now</string>
+    <!--endregion-->
 </resources>
