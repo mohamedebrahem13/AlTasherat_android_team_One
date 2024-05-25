@@ -3,29 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/onboarding"
-    app:startDestination="@id/onBoardingOneFragment2">
-
+    app:startDestination="@id/viewPagerFragment2">
     <fragment
-        android:id="@+id/onBoardingOneFragment2"
-        android:name="com.solutionplus.altasherat.features.splash.presention.OnBoardingOneFragment"
-        android:label="fragment_on_boarding_one"
-        tools:layout="@layout/fragment_on_boarding_one" >
-        <action
-            android:id="@+id/action_onBoardingOneFragment1_to_onBoardingTwoFragment2"
-            app:destination="@id/onBoardingTwoFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/onBoardingTwoFragment2"
-        android:name="com.solutionplus.altasherat.features.splash.presention.OnBoardingTwoFragment"
-        android:label="fragment_on_boarding_two"
-        tools:layout="@layout/fragment_on_boarding_two" >
-        <action
-            android:id="@+id/action_onBoardingTwoFragment2_to_onBoardingThreeFragment3"
-            app:destination="@id/onBoardingThreeFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/onBoardingThreeFragment2"
-        android:name="com.solutionplus.altasherat.features.splash.presention.OnBoardingThreeFragment"
-        android:label="fragment_on_boarding_three"
-        tools:layout="@layout/fragment_on_boarding_three" />
+        android:id="@+id/viewPagerFragment2"
+        android:name="com.solutionplus.altasherat.features.splash.presention.ui.fragments.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" />
 </navigation>

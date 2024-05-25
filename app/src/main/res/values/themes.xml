@@ -96,6 +96,8 @@
     </style>
     <!-- Font -->
 
+
+
     <!--region TextInputLayout-->
     <style name="TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">match_parent</item>
@@ -126,16 +128,29 @@
         <item name="boxCornerRadiusBottomStart">22dp</item>
         <item name="boxCornerRadiusTopEnd">0dp</item>
         <item name="boxCornerRadiusTopStart">22dp</item>
-        <item name="startIconDrawable">@drawable/ic_phone</item>
+        <item name="startIconDrawable">@drawable/ic_mobile</item>
     </style>
+
+    <!--    <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox">
+            <item name="android:layout_marginStart">0dp</item>
+            <item name="android:layout_marginEnd">16dp</item>
+            <item name="android:layout_marginVertical">0dp</item>
+            <item name="boxCornerRadiusBottomEnd">22dp</item>
+            <item name="boxCornerRadiusBottomStart">0dp</item>
+            <item name="boxCornerRadiusTopEnd">22dp</item>
+            <item name="boxCornerRadiusTopStart">0dp</item>
+            <item name="boxBackgroundColor">@color/primary</item>
+        </style>-->
 
     <style name="TextInputLayout.Email" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
 
-    <style name="TextInputLayout.BirthDate" parent="TextInputLayout.OutlinedBox">
-        <item name="startIconDrawable">@drawable/ic_calender</item>
+
+    <style name="TextInputLayout.Password" parent="TextInputLayout.OutlinedBox">
+        <item name="startIconDrawable">@drawable/ic_pass</item>
     </style>
+
 
     <style name="TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_width">match_parent</item>
@@ -167,10 +182,10 @@
         <item name="android:layout_marginVertical">0dp</item>
         <item name="boxCornerRadiusBottomEnd">22dp</item>
         <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="android:clickable">true</item>
         <item name="boxCornerRadiusTopEnd">22dp</item>
         <item name="boxCornerRadiusTopStart">0dp</item>
         <item name="boxBackgroundColor">@color/primary</item>
-        <item name="endIconMode">none</item>
     </style>
     <!--endregion-->
 
@@ -248,7 +263,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textAppearance">@style/Font.Bold</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/shape_button</item>
+        <item name="android:background">@drawable/button_background</item>
         <item name="backgroundTint">@null</item>
         <item name="cornerSize">50dp</item>
         <item name="iconGravity">textEnd</item>
@@ -263,7 +278,6 @@
     <style name="Button.Next" parent="Button">
         <item name="icon">@drawable/ic_next</item>
     </style>
-    <!--endregion-->
 
     <!--region BottomSheetDialog -->
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
@@ -280,4 +294,7 @@
         <item name="cornerSize">22dp</item>
     </style>
     <!--endregion-->
+
+
+
 </resources>

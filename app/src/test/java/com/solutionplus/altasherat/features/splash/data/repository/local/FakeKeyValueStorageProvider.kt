@@ -18,7 +18,7 @@ class FakeKeyValueStorageProvider : IKeyValueStorageProvider {
         type: Type
     ): Model {
         @Suppress("UNCHECKED_CAST")
-        val storedValue = storageMap[key.keyValue] as? Model
+        val storedValue = storageMap[key.keyValue] as Model
         return storedValue ?: defaultValue
     }
 
