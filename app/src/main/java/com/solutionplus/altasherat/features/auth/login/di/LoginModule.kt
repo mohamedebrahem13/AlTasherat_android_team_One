@@ -6,7 +6,7 @@ import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvi
 import com.solutionplus.altasherat.features.auth.login.data.repository.LoginRepository
 import com.solutionplus.altasherat.features.auth.login.data.repository.local.LoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.data.repository.remote.LoginRemoteDataSource
-import com.solutionplus.altasherat.features.auth.login.domain.interactor.LoginUC
+import com.solutionplus.altasherat.features.auth.login.domain.interactor.LoginWithPhoneUC
 import com.solutionplus.altasherat.features.auth.login.domain.repository.ILoginRepository
 import com.solutionplus.altasherat.features.auth.login.domain.repository.local.ILoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.ILoginRemoteDataSource
@@ -31,24 +31,25 @@ object LoginModule {
     @Provides
     fun provideLoginUpLocalDS(
         localProvider: IKeyValueStorageProvider,
+        encryptionService: IEncryptionService
+
     ): ILoginLocalDataSource {
-        return LoginLocalDataSource(localProvider)
+        return LoginLocalDataSource(localProvider, encryptionService)
     }
 
     @Provides
     fun provideLoginRepository(
         loginRemoteDataSource: ILoginRemoteDataSource,
         localLoginDataSource: ILoginLocalDataSource,
-        encryptionService: IEncryptionService
     ): ILoginRepository {
-        return LoginRepository(loginRemoteDataSource, localLoginDataSource, encryptionService)
+        return LoginRepository(loginRemoteDataSource, localLoginDataSource)
     }
 
     @Provides
     fun provideSLoginUC(
         loginRepository: LoginRepository,
-    ): LoginUC {
-        return LoginUC(loginRepository)
+    ): LoginWithPhoneUC {
+        return LoginWithPhoneUC(loginRepository)
     }
 
 

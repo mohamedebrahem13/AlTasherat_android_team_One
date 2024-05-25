@@ -9,19 +9,19 @@ object SignUpMapper : Mapper<SignUpResponseDto, UserInfo, SignUpUserEntity>() {
     override fun dtoToDomain(model: SignUpResponseDto): UserInfo {
         return UserInfo(
             token = model.token.orEmpty(),
-            username = model.signUpUserResponse?.username.orEmpty(),
-            firstname = model.signUpUserResponse?.firstname.orEmpty(),
-            lastname = model.signUpUserResponse?.lastname.orEmpty(),
-            email = model.signUpUserResponse?.email.orEmpty(),
-            countryCode = model.signUpUserResponse?.signUpPhoneResponse?.countryCode.orEmpty(),
-            number = model.signUpUserResponse?.signUpPhoneResponse?.number.orEmpty(),
+            username = model.signUpUserDto?.username.orEmpty(),
+            firstname = model.signUpUserDto?.firstname.orEmpty(),
+            lastname = model.signUpUserDto?.lastname.orEmpty(),
+            email = model.signUpUserDto?.email.orEmpty(),
+            countryCode = model.signUpUserDto?.signUpPhoneDto?.countryCode.orEmpty(),
+            number = model.signUpUserDto?.signUpPhoneDto?.number.orEmpty(),
             message = model.message.orEmpty()
         )
     }
 
     override fun entityToDomain(model: SignUpUserEntity): UserInfo {
         return UserInfo(
-            token = model.token,
+            token = null,
             username = model.username,
             firstname = model.firstname,
             lastname = model.lastname,
@@ -29,6 +29,17 @@ object SignUpMapper : Mapper<SignUpResponseDto, UserInfo, SignUpUserEntity>() {
             countryCode = model.countryCode,
             number = model.number,
             message = null
+        )
+    }
+
+    override fun domainToEntity(model: UserInfo): SignUpUserEntity {
+        return SignUpUserEntity(
+            username = model.username,
+            firstname = model.firstname,
+            lastname = model.lastname,
+            email = model.email,
+            countryCode = model.countryCode,
+            number = model.number
         )
     }
 

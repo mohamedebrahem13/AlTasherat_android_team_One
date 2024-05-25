@@ -32,17 +32,17 @@ object SignUpModule {
     @Provides
     fun provideSignUpLocalDS(
         localProvider: IKeyValueStorageProvider,
+        encryptionService: IEncryptionService
     ): ISignUpLocalDataSource {
-        return SignUpLocalDataSource(localProvider)
+        return SignUpLocalDataSource(localProvider, encryptionService)
     }
 
     @Provides
     fun provideSignUpRepository(
         signUpRemoteDataSource: ISignUpRemoteDataSource,
         signUpLocalDataSource: ISignUpLocalDataSource,
-        encryptionService: IEncryptionService
     ): ISignUpRepository {
-        return SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource, encryptionService)
+        return SignUpRepository(signUpRemoteDataSource, signUpLocalDataSource)
     }
 
     @Provides

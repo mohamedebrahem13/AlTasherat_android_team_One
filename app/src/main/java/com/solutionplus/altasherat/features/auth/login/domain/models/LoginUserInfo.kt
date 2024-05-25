@@ -1,7 +1,7 @@
 package com.solutionplus.altasherat.features.auth.login.domain.models
 
 data class LoginUserInfo(
-    val token: String,
+    val token: String?,
     val username: String,
     val firstname: String,
     val lastname: String,

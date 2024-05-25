@@ -2,7 +2,7 @@ package com.solutionplus.altasherat.features.auth.signup.data.repository.remote
 
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpResponseDto
-import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpUserResponse
+import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpUserDto
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import io.mockk.coEvery
@@ -40,7 +40,7 @@ class SignUpRemoteDataSourceTest {
         val userResponse = SignUpResponseDto(
             message = "Signup is done successfully,",
             token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9",
-            SignUpUserResponse(firstname = "Ebram")
+            SignUpUserDto(firstname = "Ebram")
         )
         coEvery {
             networkProvider.post(
@@ -73,7 +73,7 @@ class SignUpRemoteDataSourceTest {
         val userResponse = SignUpResponseDto(
             message = "Signup is done successfully,",
             token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9",
-            SignUpUserResponse(firstname = "Ebram")
+            SignUpUserDto(firstname = "Ebram")
         )
         val expectedError = Exception("Network error")
         coEvery {

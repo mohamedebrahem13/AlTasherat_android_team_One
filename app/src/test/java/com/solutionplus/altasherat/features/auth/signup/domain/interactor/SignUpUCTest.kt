@@ -2,8 +2,8 @@ package com.solutionplus.altasherat.features.auth.signup.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
-import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEncryptionService
 import com.solutionplus.altasherat.features.auth.signup.data.model.dto.SignUpResponseDto
+import com.solutionplus.altasherat.features.auth.signup.data.model.entity.SignUpUserEntity
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.repository.SignUpRepository
@@ -20,6 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
@@ -29,7 +30,6 @@ class SignUpUCTest {
     private lateinit var signupLocalDataSource: ISignUpLocalDataSource
     private lateinit var signupRemoteDataSource: ISignUpRemoteDataSource
     private lateinit var signUpResponseDto: SignUpResponseDto
-    private lateinit var encryptionService: IEncryptionService
     private lateinit var userInfo: UserInfo
 
 
@@ -53,9 +53,8 @@ class SignUpUCTest {
         )
         signUpResponseDto = mock<SignUpResponseDto> {on { message } doReturn "Signup is done successfully" }
         userInfo = mock<UserInfo> { on { message } doReturn "userInfo" }
-        encryptionService = mock<IEncryptionService>()
         signupLocalDataSource = mock<ISignUpLocalDataSource> {
-            onBlocking { saveUser(anyString()) } doReturn Unit
+            onBlocking { saveUser(any<SignUpUserEntity>()) } doReturn Unit
             onBlocking { saveUserToken(anyString()) } doReturn Unit
         }
 
@@ -64,12 +63,29 @@ class SignUpUCTest {
             onBlocking { signup(userRequest) } doReturn signUpResponseDto
         }
 
-        signUpRepository = SignUpRepository(signupRemoteDataSource, signupLocalDataSource, encryptionService)
+        signUpRepository = SignUpRepository(signupRemoteDataSource, signupLocalDataSource)
         userInputsValidation = UserInputsValidationUC()
         signupUC = SignUpUC(signUpRepository, userInputsValidation)
 
     }
 
+    @Test
+    fun userSignUp_SignUpProgress_returnLoadingState() = runTest {
+        val phoneRequest = PhoneSignUpRequest("0020", "4452233699")
+        val userRequest = UserSignUpRequest(
+            "Ebram",
+            "Ibrahem",
+            "Aziz",
+            "email989@gmail.com",
+            "1111255569",
+            "1111255569",
+            1,
+            phoneRequest
+        )
+
+        val expected = signupUC(userRequest).first()
+        assertTrue((expected as Resource.Progress).loading)
+    }
 
     @Test
     fun userValidation_emptyFirstName_returnException() = runTest {

@@ -9,19 +9,19 @@ object LoginMapper: Mapper<LoginResponseDto, LoginUserInfo, LoginUserEntity>() {
     override fun dtoToDomain(model: LoginResponseDto): LoginUserInfo {
         return LoginUserInfo(
             token = model.token ?: "",
-            username = model.loginUserResponse?.username ?: "",
-            firstname = model.loginUserResponse?.firstname ?: "",
-            lastname = model.loginUserResponse?.lastname ?: "",
-            email = model.loginUserResponse?.email ?: "",
-            countryCode = model.loginUserResponse?.phone?.countryCode ?: "",
-            number = model.loginUserResponse?.phone?.number ?: "",
-            message = model.message ?: ""
+            username = model.loginUserDto?.username.orEmpty(),
+            firstname = model.loginUserDto?.firstname.orEmpty(),
+            lastname = model.loginUserDto?.lastname.orEmpty(),
+            email = model.loginUserDto?.email.orEmpty(),
+            countryCode = model.loginUserDto?.phone?.countryCode.orEmpty(),
+            number = model.loginUserDto?.phone?.number.orEmpty(),
+            message = model.message.orEmpty()
         )
     }
 
     override fun entityToDomain(model: LoginUserEntity): LoginUserInfo {
         return LoginUserInfo(
-            token = model.token,
+            token = null,
             username = model.username,
             firstname = model.firstname,
             lastname = model.lastname,
@@ -29,6 +29,17 @@ object LoginMapper: Mapper<LoginResponseDto, LoginUserInfo, LoginUserEntity>() {
             countryCode = model.countryCode,
             number = model.number,
             message = null
+        )
+    }
+
+    override fun domainToEntity(model: LoginUserInfo): LoginUserEntity {
+        return LoginUserEntity(
+            username = model.username,
+            firstname = model.firstname,
+            lastname = model.lastname,
+            email = model.email,
+            countryCode = model.countryCode,
+            number = model.number
         )
     }
 }

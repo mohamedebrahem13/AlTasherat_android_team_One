@@ -1,9 +1,6 @@
 package com.solutionplus.altasherat.features.auth.signup.domain.interactor
 
-import com.google.gson.Gson
-import com.solutionplus.altasherat.common.data.repository.local.encryption.SecretKeyAliasEnum
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
-import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEncryptionService
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.repository.SignUpRepository
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.validation.UserInputsValidationUC
@@ -20,7 +17,7 @@ class SignUpUC @Inject constructor(
             repository.signup(it)
         }!!
         repository.saveUser(userInfo)
-        repository.saveUserToken(userInfo)
+        repository.saveUserToken(userInfo.token.orEmpty())
         return userInfo
     }
 

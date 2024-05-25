@@ -8,5 +8,5 @@ data class SignUpResponseDto(
     @SerializedName("token")
     val token: String? = null,
     @SerializedName("user")
-    val signUpUserResponse: SignUpUserResponse? = null
+    val signUpUserDto: SignUpUserDto? = null
 )

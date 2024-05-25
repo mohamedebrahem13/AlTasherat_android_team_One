@@ -7,10 +7,10 @@ import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.
 import javax.inject.Inject
 
 class LoginRemoteDataSource @Inject constructor(
-    private val netWorkProvider: INetworkProvider
+    private val networkProvider: INetworkProvider
 ) : ILoginRemoteDataSource {
     override suspend fun loginWithPhone(userLoginRequest: UserLoginRequest): LoginResponseDto {
-        return netWorkProvider.post(
+        return networkProvider.post(
             responseWrappedModel = LoginResponseDto::class.java,
             pathUrl = "login",
             headers = hashMapOf("accept" to "application/json"),

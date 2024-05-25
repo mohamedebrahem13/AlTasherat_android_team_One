@@ -2,7 +2,7 @@ package com.solutionplus.altasherat.features.auth.login.data.repository.remote
 
 import com.solutionplus.altasherat.common.data.repository.remote.RetrofitNetworkProvider
 import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
-import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginUserResponse
+import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginUserDto
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import io.mockk.coEvery
@@ -34,7 +34,7 @@ class LoginRemoteDataSourceTest {
         val userResponse = LoginResponseDto(
             message = "Signup is done successfully,",
             token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9",
-            LoginUserResponse(firstname = "Ebram")
+            LoginUserDto(firstname = "Ebram")
         )
         coEvery {
             networkProvider.post(
@@ -62,7 +62,7 @@ class LoginRemoteDataSourceTest {
         val userResponse = LoginResponseDto(
             message = "Signup is done successfully,",
             token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9",
-            LoginUserResponse(firstname = "Ebram")
+            LoginUserDto(firstname = "Ebram")
         )
         val expectedError = Exception("Network error")
         coEvery {

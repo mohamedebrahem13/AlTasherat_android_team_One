@@ -3,6 +3,7 @@ package com.solutionplus.altasherat.features.auth.login.presentation.ui
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -52,21 +53,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
                         .show()
                 }
             }
+            onLoading(result.isLoading)
         }
 
     }
 
     override fun onLoading(isLoading: Boolean) {
-
+        binding.progressbar.isVisible = isLoading
     }
 
     override fun subscribeToObservables() {
 
     }
 
-    override fun viewInit() {
-
-    }
+    override fun viewInit() {}
 
      fun login() {
         val phoneNumber = binding.etPhoneNumber.text.toString().trim()

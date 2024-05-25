@@ -1,10 +1,12 @@
 package com.solutionplus.altasherat.features.auth.login.data.models.dto
 
+import android.provider.MediaStore.Images.Media
 import com.google.gson.annotations.SerializedName
+import java.time.LocalDate
 
-data class LoginUserResponse(
+data class LoginUserDto(
     @SerializedName("birth_date")
-    val birthDate: Any? = null,
+    val birthDate: LocalDate? = null,
     @SerializedName("email")
     val email: String? = null,
     @SerializedName("email_verified")
@@ -14,7 +16,7 @@ data class LoginUserResponse(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("image")
-    val image: Any? = null,
+    val image: Media? = null,
     @SerializedName("is_blocked")
     val isBlocked: Int? = null,
     @SerializedName("lastname")
@@ -22,9 +24,9 @@ data class LoginUserResponse(
     @SerializedName("middlename")
     val middleName: String? = null,
     @SerializedName("phone")
-    val phone: LoginPhoneResponse? = null,
+    val phone: LoginPhoneDto? = null,
     @SerializedName("phone_verified")
-    val phoneVerified: Boolean? = null,
+    val isPhoneVerified: Boolean? = null,
     @SerializedName("username")
     val username: String? = null
 )

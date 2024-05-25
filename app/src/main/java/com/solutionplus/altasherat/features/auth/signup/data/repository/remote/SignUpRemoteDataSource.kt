@@ -15,6 +15,6 @@ class SignUpRemoteDataSource @Inject constructor(
             "signup",
             headers = hashMapOf("accept" to "application/json"),
             requestBody = userSignUpRequest
-        ) ?: SignUpResponseDto()
+        )
     }
 }

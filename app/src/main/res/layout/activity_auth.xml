@@ -8,94 +8,17 @@
     android:background="@drawable/screens_background"
     tools:context=".features.auth.ui.AuthActivity">
 
-    <TextView
-        android:id="@+id/skipTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextView.Heavy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/skip_tv"
-        android:layout_marginTop="69dp"
-        android:layout_marginStart="16dp"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentHost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_viewpager"
-        app:layout_constraintStart_toStartOf="parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/auth_graph"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
-                android:layout_margin="12dp"
-                app:cardBackgroundColor="@color/bg_card"
-                android:foregroundGravity="center"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardElevation="11dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/bg_card"
-                        app:tabIndicatorAnimationMode="linear"
-                        app:tabIndicatorFullWidth="true"
-                        app:tabIndicatorColor="@color/accent"
-                        app:tabIndicatorGravity="top"
-                        app:tabIndicatorHeight="4dp"
-                        app:tabSelectedTextAppearance="@style/TextView.Heavy"
-                        app:tabTextAppearance="@style/TextView.InputText"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewPager"
-                        android:layout_marginBottom="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logo"
-        app:layout_constraintStart_toStartOf="@id/layout_viewpager"
-        app:layout_constraintEnd_toEndOf="@id/layout_viewpager"
-        app:layout_constraintTop_toTopOf="@id/layout_viewpager"
-        app:layout_constraintBottom_toTopOf="@id/layout_viewpager"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login_signup"
-        android:layout_width="204dp"
-        android:padding="8dp"
-        android:drawableStart="@drawable/ic_signup"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textAppearance="@style/TextView"
-        app:layout_constraintStart_toStartOf="@id/layout_viewpager"
-        app:layout_constraintEnd_toEndOf="@id/layout_viewpager"
-        app:layout_constraintTop_toBottomOf="@id/layout_viewpager"
-        app:layout_constraintBottom_toBottomOf="@id/layout_viewpager"
-        tools:text="@string/signup_text"
-        style="@style/Button"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
