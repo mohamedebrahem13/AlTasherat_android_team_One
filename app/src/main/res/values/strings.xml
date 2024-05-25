@@ -1,10 +1,14 @@
 <resources>
+    <!--region General-->
     <string name="app_name">AlTasherat</string>
     <string name="unsupported_type">Unsupported type</string>
     <string name="unknown_network_error">Unknown network error</string>
     <string name="network_connection_error">Network connection error</string>
     <string name="encryption_error">Encryption error</string>
     <string name="decryption_error">Decryption error</string>
+    <!--endregion-->
+
+    <!--region Onboarding-->
     <string name="continue_text">Continue</string>
     <string name="next">next</string>
     <string name="back_text">Previous</string>
@@ -17,10 +21,10 @@
     <string name="please_pick_lang">please choose the language</string>
     <string name="please_pick_country">please choose the country</string>
     <string name="splash_text">AlTasherat Platform</string>
-
     <string name="you_can_change_langauge">You can change your country and language at any time from the menu</string>
+    <!--endregion-->
 
-    <string name="hello_world">Hello</string>
+    <!--region Authentication-->
     <string name="skip_tv">Skip</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
@@ -42,13 +46,7 @@
     <string name="firstname_validation_error">The first name you entered is invalid</string>
     <string name="lastname_validation_error">The last name you entered is invalid</string>
     <string name="password_validation_error">The password you entered is invalid</string>
-
-    <string-array name="names">
-        <item>Ebram</item>
-        <item>Ibrahem</item>
-        <item>Aziz</item>
-        <item>Gerges</item>
-    </string-array>
+    <!--endregion-->
 
     <!--region Home-->
     <string name="visa_platform">Visa Platform</string>

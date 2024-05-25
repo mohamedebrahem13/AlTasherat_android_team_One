@@ -9,6 +9,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSplashBinding
+import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.activity.OnboardingActivity
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashViewModel
@@ -66,6 +67,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         when (event) {
             SplashContract.SplashEvent.NavigateToHome -> {
                 logger.debug("navigate to NavigateToHome")
+                Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
             }
 
             SplashContract.SplashEvent.NavigateToLanguage -> {
