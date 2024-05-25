@@ -17,4 +17,10 @@
     <string name="please_pick_lang">please choose the language</string>
     <string name="please_pick_country">please choose the country</string>
     <string name="splash_text">AlTasherat Platform</string>
+
+    <!--region Home-->
+    <string name="visa_platform">Visa Platform</string>
+    <string name="visa_requests">Visa Requests</string>
+    <string name="profile">Profile</string>
+    <!--endregion-->
 </resources>

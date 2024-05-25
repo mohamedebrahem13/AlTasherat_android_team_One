@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/platform"
-        android:icon="@drawable/ic_stamp_selector"
+        android:id="@+id/fragment_visa_platform"
+        android:icon="@drawable/selector_stamp_icon"
         android:title="@string/visa_platform" />
 
     <item
-        android:id="@+id/request"
-        android:icon="@drawable/ic_request_selector"
+        android:id="@+id/fragment_visa_request"
+        android:icon="@drawable/selector_request_icon"
         android:title="@string/visa_requests" />
 
     <item
-        android:id="@+id/profile"
-        android:icon="@drawable/ic_profile_selector"
+        android:id="@+id/fragment_profile"
+        android:icon="@drawable/selector_profile_icon"
         android:title="@string/profile" />
 </menu>

@@ -25,4 +25,10 @@
 
     <string name="please_pick_lang">من فضلك اختر اللغة</string>
     <string name="please_pick_country">من فضلك اختر الدولة</string>
+
+    <!--region Home-->
+    <string name="visa_platform">منصة التأشيرات</string>
+    <string name="visa_requests">طلبات التأشيرات</string>
+    <string name="profile">الملف الشخصي</string>
+    <!--endregion-->
 </resources>
