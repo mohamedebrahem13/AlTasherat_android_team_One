@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="error">#CE6679</color>
+    <color name="gray">#87FFFFFF</color>
 
 
     <!-- light mode colors -->
@@ -16,5 +17,4 @@
     <color name="icon_input">#D5D4DC</color>
     <color name="bg_card">#FFFFFFFF</color>
     <color name="bg">#FFFFFFFF</color>
-    <!-- light mode colors -->
 </resources>
