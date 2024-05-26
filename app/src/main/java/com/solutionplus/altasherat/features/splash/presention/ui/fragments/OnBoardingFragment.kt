@@ -17,7 +17,6 @@ import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoard
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 data class OnboardingPage(val imageResId: Int, val description: Int)
-
 @AndroidEntryPoint
 class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
 
