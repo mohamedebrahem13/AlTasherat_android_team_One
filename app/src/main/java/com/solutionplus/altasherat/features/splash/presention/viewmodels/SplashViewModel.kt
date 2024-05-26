@@ -19,6 +19,7 @@ class SplashViewModel @Inject constructor(
     SplashContract.SplashViewState.initial()
 
 ) {
+
     override fun clearState() {
         setState(SplashContract.SplashViewState.initial())
     }

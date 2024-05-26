@@ -2,15 +2,13 @@ package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
+import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
 import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.ViewPagerAdapter
@@ -19,33 +17,14 @@ import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ViewPagerFragment : Fragment() {
+class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding>() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var adapter: ViewPagerAdapter
-    private var _binding: FragmentViewPagerBinding? = null
     private val viewModel: OnBoardingThreeViewModel by viewModels()
 
-
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentViewPagerBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewPager = binding.viewpager
-        tabLayout = binding.tabLayout
-        setupViewPager()
-        setupTabLayout()
-
+    override fun onFragmentReady(savedInstanceState: Bundle?) {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -80,13 +59,38 @@ class ViewPagerFragment : Fragment() {
             } else if (currentPosition == adapter.itemCount - 1) {
                 logger.debug("onboardingThree action")
                 viewModel.onActionTrigger( OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown)
-                 //Last fragment, you can navigate to HomeActivity if needed
-                 Intent(requireActivity(), HomeActivity::class.java).also { intent ->
-                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                     startActivity(intent)
-                 }
             }
         }
+    }
+
+    override fun onLoading(isLoading: Boolean) {
+    }
+
+    override fun subscribeToObservables() {
+        collectFlowWithLifecycle(viewModel.singleEvent) { event ->
+            handleSingleEvent(event)
+        }
+    }
+    private fun handleSingleEvent(event: OnBoardingThreeContract.OnBoardingThreeEvent) {
+        //Last fragment, you can navigate to HomeActivity if needed
+        when(event){
+            is OnBoardingThreeContract.OnBoardingThreeEvent.NavigateToHome->{
+                Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
+            }
+        }
+
+
+    }
+
+
+        override fun viewInit() {
+        viewPager = binding.viewpager
+        tabLayout = binding.tabLayout
+        setupViewPager()
+        setupTabLayout()
     }
 
     private fun setupViewPager() {
@@ -105,10 +109,6 @@ class ViewPagerFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
     companion object {
         private val logger = getClassLogger()
     }
