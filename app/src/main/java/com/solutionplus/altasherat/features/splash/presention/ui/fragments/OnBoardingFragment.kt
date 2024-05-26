@@ -17,7 +17,7 @@ import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding>() {
+class OnBoardingFragment : BaseFragment<FragmentViewPagerBinding>() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout

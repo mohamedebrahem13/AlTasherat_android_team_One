@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.solutionplus.altasherat.features.splash.presention.ui.fragments.ViewPagerFragment"
+        android:name="com.solutionplus.altasherat.features.splash.presention.ui.fragments.OnBoardingFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" />
 </navigation>
