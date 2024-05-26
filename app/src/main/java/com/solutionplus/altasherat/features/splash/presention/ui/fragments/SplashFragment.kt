@@ -39,20 +39,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     private fun handleViewState(state: SplashContract.SplashViewState) {
-        // Handle different states here
         when {
             state.isLoading -> {
-                // Show loading UI
             }
 
             state.exception != null -> {
-                // Handle error state
                 val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
             }
 
             else -> {
-                // Handle success state
                 showToast("Data loaded successfully")
             }
         }
@@ -63,7 +59,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     private fun handleSingleEvent(event: SplashContract.SplashEvent) {
-        // Handle single events
         when (event) {
             SplashContract.SplashEvent.NavigateToHome -> {
                 logger.debug("navigate to NavigateToHome")

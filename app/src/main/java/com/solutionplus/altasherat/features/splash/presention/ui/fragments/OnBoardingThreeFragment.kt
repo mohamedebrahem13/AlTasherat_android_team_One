@@ -20,12 +20,9 @@ class OnBoardingThreeFragment : BaseFragment<FragmentOnBoardingThreeBinding>() {
     }
 
     override fun subscribeToObservables() {
-        logger.debug("Three")
-
     }
 
     override fun viewInit() {
-        logger.debug("Three")
         binding.card.textWelcome1.text = getString(R.string.onboarding_1_welcome)
         binding.card.textWelcome2.text = getString(R.string.onboarding_3_welcome_2)
     }

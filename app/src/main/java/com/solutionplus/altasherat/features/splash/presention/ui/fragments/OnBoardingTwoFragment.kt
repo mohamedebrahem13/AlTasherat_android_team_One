@@ -22,7 +22,6 @@ class OnBoardingTwoFragment : BaseFragment<FragmentOnBoardingTwoBinding>() {
     }
 
     override fun viewInit() {
-        logger.debug("Two")
         binding.card.textWelcome1.text = getString(R.string.onboarding_1_welcome)
         binding.card.textWelcome2.text = getString(R.string.onboarding_2_welcome_2)
     }

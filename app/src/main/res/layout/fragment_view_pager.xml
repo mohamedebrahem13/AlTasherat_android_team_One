@@ -44,7 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:tabGravity="center"
-        app:tabBackground="@drawable/tab_indicator_selector"
+        app:tabBackground="@drawable/selector_tab_indicator"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="@id/button_next"
         app:layout_constraintStart_toStartOf="@id/button_next"

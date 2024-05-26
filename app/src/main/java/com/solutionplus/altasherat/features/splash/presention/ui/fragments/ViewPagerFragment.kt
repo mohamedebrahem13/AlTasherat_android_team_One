@@ -80,7 +80,7 @@ class ViewPagerFragment : Fragment() {
             } else if (currentPosition == adapter.itemCount - 1) {
                 logger.debug("onboardingThree action")
                 viewModel.onActionTrigger( OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown)
-                 //Last fragment, you can navigate to another activity if needed
+                 //Last fragment, you can navigate to HomeActivity if needed
                  Intent(requireActivity(), HomeActivity::class.java).also { intent ->
                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                      startActivity(intent)
