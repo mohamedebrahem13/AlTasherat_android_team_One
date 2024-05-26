@@ -67,5 +67,6 @@
     <string name="third_title_second_part">through the visa platform</string>
     <string name="third_button_text">Sell Visa</string>
     <string name="third_action_text">Fill out\nthe form now</string>
+    <string name="header_title">Do you have jobs and visas you want to tell us about?\nStart by filling out the form\nand let us know the details.\nDo you have jobs and visas you want to tell us about?\nStart by filling out the form</string>
     <!--endregion-->
 </resources>
