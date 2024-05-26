@@ -99,4 +99,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
     override fun triggerButton() {
         login()
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.root.requestLayout()
+    }
 }

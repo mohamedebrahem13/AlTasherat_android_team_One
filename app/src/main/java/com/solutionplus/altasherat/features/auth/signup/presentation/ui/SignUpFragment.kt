@@ -127,6 +127,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
         val logger = getClassLogger()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.root.requestLayout()
+    }
+
 }
 
 
