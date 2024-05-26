@@ -9,7 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.FragmentViewPagerBinding
+import com.solutionplus.altasherat.databinding.FragmentOnboardingBinding
 import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.ViewPagerAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeContract
@@ -17,7 +17,7 @@ import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OnBoardingFragment : BaseFragment<FragmentViewPagerBinding>() {
+class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
@@ -81,8 +81,6 @@ class OnBoardingFragment : BaseFragment<FragmentViewPagerBinding>() {
                 }
             }
         }
-
-
     }
 
 

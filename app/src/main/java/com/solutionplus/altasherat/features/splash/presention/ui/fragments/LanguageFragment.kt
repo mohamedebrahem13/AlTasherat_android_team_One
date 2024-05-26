@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
-import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.CustomSpinnerAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
@@ -21,7 +20,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
     private val viewModel: LanguageViewModel by viewModels()
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-       getLocal()
+        getLocal()
         viewModel.onActionTrigger( LanguageContract.CountryLocalAction.FetchCountriesFromLocal)
     }
 
