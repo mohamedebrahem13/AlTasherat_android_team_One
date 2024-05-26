@@ -4,31 +4,54 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.solutionplus.altasherat.databinding.ItemVisaPlatformBinding
+import com.solutionplus.altasherat.databinding.ItemVisaPlatformHeaderBinding
 
 class VisaPlatformAdapter(
     private val items: List<VisaItem>
-) : RecyclerView.Adapter<VisaPlatformAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): VisaPlatformAdapter.ViewHolder {
-        val binding =
-            ItemVisaPlatformBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+    ): RecyclerView.ViewHolder {
+        when (viewType) {
+            HEADER_ITEM -> {
+                val binding = ItemVisaPlatformHeaderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                return ViewHolderHeader(binding)
+            }
+
+            NORMAL_ITEM -> {
+                val binding = ItemVisaPlatformBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                return ViewHolder(binding)
+            }
+
+            else -> throw Exception("View type not supported...")
+        }
     }
 
-    override fun onBindViewHolder(holder: VisaPlatformAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder.itemViewType) {
+            HEADER_ITEM -> (holder as ViewHolderHeader).bind()
+            NORMAL_ITEM -> (holder as ViewHolder).bind(items[position - 1])
+        }
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return items.size + 1
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> FIRST_ITEM
-            else -> VISA_WITH_BUTTON
+            0 -> HEADER_ITEM
+            else -> NORMAL_ITEM
         }
     }
 
@@ -46,8 +69,15 @@ class VisaPlatformAdapter(
         }
     }
 
+    inner class ViewHolderHeader(val binding: ItemVisaPlatformHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+
+        }
+    }
+
     companion object {
-        const val FIRST_ITEM = 0
-        const val VISA_WITH_BUTTON = 1
+        const val HEADER_ITEM = 0
+        const val NORMAL_ITEM = 1
     }
 }
