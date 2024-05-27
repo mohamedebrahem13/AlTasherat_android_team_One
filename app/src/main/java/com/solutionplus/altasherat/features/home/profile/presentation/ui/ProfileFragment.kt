@@ -2,16 +2,22 @@ package com.solutionplus.altasherat.features.home.profile.presentation.ui
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
+import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
+import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileViewModel
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private lateinit var adapter: ArrayAdapter<Item>
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         setupListView()
@@ -22,6 +28,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun subscribeToObservables() {
+
+        collectFlowWithLifecycle(viewModel.singleEvent) { event ->
+            handleSingleEvent(event)
+        }
+    }
+    private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
+        when (event) {
+            is ProfileContract.ProfileEvent.UserLoaded -> {
+                binding.profileName.text=event.user.firstname
+            }
+            is ProfileContract.ProfileEvent.SignOutSuccess->{
+
+            }
+        }
     }
 
     override fun viewInit() {

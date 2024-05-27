@@ -59,6 +59,8 @@
     <string name="terms_and_conditions">الشروط والأحكام</string>
     <string name="language">اللغة</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="Current_version">النسخة الحالية </string>
 
     <!--endregion-->
 </resources>
