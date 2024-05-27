@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/fragment_visa_platform">
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.solutionplus.altasherat.features.home.profile.presentation.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/fragment_visa_platform"
+        android:name="com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.VisaPlatformFragment"
+        android:label="fragment_visa_platform"
+        tools:layout="@layout/fragment_visa_platform" />
+    <fragment
+        android:id="@+id/fragment_visa_request"
+        android:name="com.solutionplus.altasherat.features.home.visa_request.presentation.ui.VisaRequestFragment"
+        android:label="fragment_visa_request"
+        tools:layout="@layout/fragment_visa_request" />
+</navigation>

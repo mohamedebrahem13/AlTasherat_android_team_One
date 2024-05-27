@@ -86,8 +86,13 @@ dependencies {
 
     // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.mockk.v1124)
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.inline)
+
 
     // Android Test
     androidTestImplementation(libs.androidx.junit)

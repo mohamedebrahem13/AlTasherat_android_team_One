@@ -8,8 +8,8 @@ import com.solutionplus.altasherat.features.splash.domain.repository.local.ISpla
 import com.solutionplus.altasherat.features.splash.domain.repository.remote.ISplashRemoteDS
 
 internal class SplashRepository (private val localDataSource: ISplashLocalDS, private val remoteDataSource: ISplashRemoteDS, private val countryMapper: CountryMapper):ISplashRepository{
-    override suspend fun getCountriesFromRemote(locale: String): CountriesResponse {
-        val countryResponseDto = remoteDataSource.getCountries(locale)
+    override suspend fun getCountriesFromRemote(params: String): CountriesResponse {
+        val countryResponseDto = remoteDataSource.getCountries(params)
         return countryMapper.mapDtoListToDomain(countryResponseDto.data)    }
 
     override suspend fun saveCountries(countries: List<Country>) {
@@ -39,5 +39,13 @@ internal class SplashRepository (private val localDataSource: ISplashLocalDS, pr
 
     override suspend fun getUserPreferredLanguage(): String {
       return localDataSource.getUserPreferredLanguage()
+    }
+
+    override suspend fun setOnboardingShown(shown: Boolean) {
+        localDataSource.setOnboardingShown(shown)
+    }
+
+    override suspend fun isOnboardingShown(): Boolean {
+      return  localDataSource.isOnboardingShown()
     }
 }
