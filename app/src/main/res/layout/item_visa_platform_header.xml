@@ -8,7 +8,7 @@
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#f1f4fb"
+        android:background="@color/header_bg"
         app:layout_constraintBottom_toBottomOf="@id/text_title"
         app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintStart_toStartOf="@id/text_title"
@@ -30,7 +30,7 @@
         android:lineSpacingExtra="4dp"
         android:padding="8dp"
         android:text="@string/header_title"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/image_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/image_header" />
@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/image_header"
+        android:contentDescription="@string/visa_platform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

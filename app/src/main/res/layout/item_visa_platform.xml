@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
     android:orientation="vertical"
     android:paddingVertical="12dp">
 
@@ -51,10 +52,14 @@
 
             <Button
                 android:id="@+id/button_visa"
+                style="@style/Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
                 android:backgroundTint="@color/secondary"
+                android:paddingVertical="0dp"
                 android:textAppearance="@style/Font.Heavy"
                 tools:text="تأشيرات سياحية" />
 

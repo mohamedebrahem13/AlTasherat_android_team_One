@@ -55,6 +55,7 @@
     <!--endregion-->
 
     <!--region Visa Platform-->
+    <string name="visa_platform_image">صورة منصة التأشيرات</string>
     <string name="first_title_first_part">استخرج التأشيرات</string>
     <string name="first_title_second_part">السياحية بسهولة</string>
     <string name="first_button_text">تأشيرات سياحية</string>

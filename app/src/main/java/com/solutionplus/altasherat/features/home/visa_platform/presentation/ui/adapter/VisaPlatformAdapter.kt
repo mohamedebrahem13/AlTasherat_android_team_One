@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.home.visa_platform.presentation.ui
+package com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,8 @@ import com.solutionplus.altasherat.databinding.ItemVisaPlatformBinding
 import com.solutionplus.altasherat.databinding.ItemVisaPlatformHeaderBinding
 
 class VisaPlatformAdapter(
-    private val items: List<VisaItem>
+    private val items: List<VisaPlatformItem>,
+    private val visaPlatformCallback: VisaPlatformCallback
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -58,7 +59,13 @@ class VisaPlatformAdapter(
     inner class ViewHolder(val binding: ItemVisaPlatformBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: VisaItem) {
+        init {
+            binding.buttonVisa.setOnClickListener {
+                visaPlatformCallback.onVisaItemClicked(items[bindingAdapterPosition - 1].type)
+            }
+        }
+
+        fun bind(item: VisaPlatformItem) {
             with(binding) {
                 textTitleFirstPart.text = root.context.getString(item.titleFirstPart)
                 textTitleSecondPart.text = root.context.getString(item.titleSecondPart)

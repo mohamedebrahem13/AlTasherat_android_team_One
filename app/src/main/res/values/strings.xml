@@ -55,6 +55,7 @@
     <!--endregion-->
 
     <!--region Visa Platform-->
+    <string name="visa_platform_image">Visa Platform Image</string>
     <string name="first_title_first_part">Obtain tourist</string>
     <string name="first_title_second_part">visas easily</string>
     <string name="first_button_text">Tourism Visa</string>
