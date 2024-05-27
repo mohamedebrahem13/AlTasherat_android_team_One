@@ -47,6 +47,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             is ProfileContract.ProfileEvent.SignOutSuccess->{
                 //sign out
             }
+
+            ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
+            ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.EditProfileNavigation -> TODO()
+            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
+            ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
+            ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
         }
     }
     private fun handleViewState(state: ProfileContract.ProfileViewState) {
@@ -72,12 +80,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     private fun getItems(): List<Item> {
         // Replace this with your logic to get the list of items for the ListView
         return listOf(
-            Item( R.drawable.editpass,getString(R.string.Change_Password)),
-            Item( R.drawable.about, getString(R.string.about_us)),
-            Item( R.drawable.contactus, getString(R.string.contact_us)),
-            Item( R.drawable.terms,  getString(R.string.terms_and_conditions)),
-            Item( R.drawable.policy,  getString(R.string.privacy_policy)),
-            Item( R.drawable.language,  getString(R.string.language))
+            Item( 1,R.drawable.editpass,getString(R.string.Change_Password)),
+            Item(2, R.drawable.about, getString(R.string.about_us)),
+            Item(3,R.drawable.contactus, getString(R.string.contact_us)),
+            Item(4, R.drawable.terms,  getString(R.string.terms_and_conditions)),
+            Item(5, R.drawable.policy,  getString(R.string.privacy_policy)),
+            Item(6, R.drawable.language,  getString(R.string.language))
 
         )
     }
@@ -101,7 +109,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     }
 
     override fun onItemClick(item: Item) {
-        Toast.makeText(requireContext(), "Clicked item: ${item.text}", Toast.LENGTH_SHORT).show()
+        val action = when (item.id) {
+           1 -> ProfileContract.ProfileAction.ChangePassword
+          2-> ProfileContract.ProfileAction.AboutUs
+          3 -> ProfileContract.ProfileAction.ContactUs
+           4 -> ProfileContract.ProfileAction.TermsAndConditions
+            5 -> ProfileContract.ProfileAction.PrivacyPolicy
+         6 -> ProfileContract.ProfileAction.Language
+            else -> null
+        }
+
+        action?.let {
+            viewModel.onActionTrigger(it)
+        }
     }
 
 }
