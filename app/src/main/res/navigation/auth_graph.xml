@@ -8,5 +8,14 @@
         android:id="@+id/authViewPagerFragment"
         tools:layout="@layout/fragment_signup_login"
         android:name="com.solutionplus.altasherat.features.auth.ui.AuthViewPagerFragment"
-        android:label="AuthViewPagerFragment" />
+        android:label="AuthViewPagerFragment" >
+        <action
+            android:id="@+id/action_authViewPagerFragment_to_fragmentViewPagerResetPassword"
+            app:destination="@id/fragmentViewPagerResetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewPagerResetPassword"
+        tools:layout="@layout/fragment_view_pager_reset_password"
+        android:name="com.solutionplus.altasherat.features.reset_password.presentation.FragmentViewPagerResetPassword"
+        android:label="FragmentViewPagerResetPassword" />
 </navigation>

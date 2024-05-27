@@ -13,12 +13,12 @@ import com.solutionplus.altasherat.features.auth.signup.data.model.request.Phone
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpContract
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpViewModel
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.common.presentation.ui.listener.SharedButtonListener
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonListener {
+class SignUpFragment : BaseFragment<FragmentSignupBinding>(), SharedButtonListener {
 
     private val signUpViewModel by viewModels<SignUpViewModel>()
     private lateinit var countries: List<Country>
