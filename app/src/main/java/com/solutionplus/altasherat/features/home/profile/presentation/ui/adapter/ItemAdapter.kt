@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.databinding.ItemListBinding
 
-class ItemAdapter(context: Context, private val items: List<Item>) :
+class ItemAdapter(context: Context, private val items: List<Item>, private val itemClickListener: ItemClickListener) :
     ArrayAdapter<Item>(context, 0, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -28,6 +28,16 @@ class ItemAdapter(context: Context, private val items: List<Item>) :
         binding.itemButton.setImageResource(item.buttonImageRes)
         binding.itemText.text = item.text
 
+        // Set click listener
+        view.setOnClickListener {
+            itemClickListener.onItemClick(item)
+        }
+
         return view
+    }
+
+    // Define click listener interface
+    interface ItemClickListener {
+        fun onItemClick(item: Item)
     }
 }

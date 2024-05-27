@@ -5,8 +5,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import coil.load
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
@@ -17,7 +17,7 @@ import com.solutionplus.altasherat.features.services.user.domain.models.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.ItemClickListener {
     private lateinit var adapter: ArrayAdapter<Item>
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -40,14 +40,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     }
     private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
-        logger.debug("USERRRR${event}")
-
         when (event) {
             is ProfileContract.ProfileEvent.UserLoaded -> {
                 viewsForMenuWithSignedUser(event.user)
             }
             is ProfileContract.ProfileEvent.SignOutSuccess->{
-
+                //sign out
             }
         }
     }
@@ -84,21 +82,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         )
     }
     private fun setupListView() {
-        adapter = ItemAdapter(requireContext(), getItems())
+        adapter = ItemAdapter(requireContext(), getItems(),this)
         binding.listView.adapter = adapter
     }
     private fun viewsForMenuWithSignedUser(user: User){
         binding.signOut.visibility= View.VISIBLE
+        binding.signOut.setOnClickListener {
+            viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
+        }
         binding.profileName.visibility= View.VISIBLE
         binding.profileImage.visibility=View.VISIBLE
         binding.editProfile.visibility=View.VISIBLE
         binding.horizontalLine.visibility=View.VISIBLE
         binding.profileName.text=user.firstname
-        binding.profileImage.setImageResource(user.image.id)
-
+        binding.profileImage.load(user.image.path) {
+            placeholder(R.drawable.profile_placeholder)
+        }
     }
-    companion object {
-        private val logger = getClassLogger()
+
+    override fun onItemClick(item: Item) {
+        Toast.makeText(requireContext(), "Clicked item: ${item.text}", Toast.LENGTH_SHORT).show()
     }
 
 }

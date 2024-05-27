@@ -10,11 +10,25 @@ interface ProfileContract {
 
     sealed class ProfileAction : ViewAction {
         data object SignOut : ProfileAction()
+        data object EditProfile : ProfileAction()
+        data object ChangePassword : ProfileAction()
+        data object AboutUs : ProfileAction()
+        data object ContactUs : ProfileAction()
+        data object TermsAndConditions : ProfileAction()
+        data object Language : ProfileAction()
+        data object PrivacyPolicy : ProfileAction()
     }
 
     sealed class ProfileEvent : ViewEvent {
         data class UserLoaded(val user: User) : ProfileEvent()
-        data object SignOutSuccess : ProfileEvent()
+        data class SignOutSuccess(val message: String) : ProfileEvent()
+        data object EditProfileNavigation : ProfileEvent()
+        data object ChangePasswordNavigation : ProfileEvent()
+        data object AboutUsNavigation : ProfileEvent()
+        data object ContactUsNavigation : ProfileEvent()
+        data object TermsAndConditionsNavigation : ProfileEvent()
+        data object LanguageSelectionNavigation : ProfileEvent()
+        data object PrivacyPolicyNavigation : ProfileEvent()
     }
 
     data class ProfileViewState(

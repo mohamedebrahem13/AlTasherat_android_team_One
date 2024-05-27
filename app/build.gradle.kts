@@ -133,4 +133,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.coil)
 
+    //circle imageview
+    implementation (libs.circleimageview)
+
 }
