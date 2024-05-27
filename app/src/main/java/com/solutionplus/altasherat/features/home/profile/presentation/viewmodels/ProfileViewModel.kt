@@ -41,7 +41,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
        logoutUC.invoke(viewModelScope){resource ->
            when (resource) {
                is Resource.Failure -> {
-                   logger.debug("sigout,${resource.exception.message}")
+                   logger.debug("sig out,${resource.exception.message}")
                    setState(oldViewState.copy(exception = resource.exception))
                }
                is Resource.Progress -> {
@@ -49,7 +49,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                }
                is Resource.Success -> {
                    val message = resource.model
-                   logger.debug("sigout,$message")
+                   logger.debug("sig out,$message")
                    sendEvent(ProfileContract.ProfileEvent.SignOutSuccess(message))
                }
            }
