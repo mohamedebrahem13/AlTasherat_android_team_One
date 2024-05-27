@@ -1,17 +1,19 @@
 package com.solutionplus.altasherat.features.home.profile.presentation.ui
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileViewModel
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashViewModel
+import com.solutionplus.altasherat.features.services.user.domain.models.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,18 +34,41 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             handleSingleEvent(event)
         }
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            handleViewState(state)
+        }
+
     }
     private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
+        logger.debug("USERRRR${event}")
+
         when (event) {
             is ProfileContract.ProfileEvent.UserLoaded -> {
-                binding.profileName.text=event.user.firstname
+                viewsForMenuWithSignedUser(event.user)
             }
             is ProfileContract.ProfileEvent.SignOutSuccess->{
 
             }
         }
     }
+    private fun handleViewState(state: ProfileContract.ProfileViewState) {
+        // Handle different states here
+        when {
+            state.isLoading -> {
+                // Show loading UI
+            }
 
+            state.exception != null -> {
+                // Handle error state
+                val errorMessage = state.exception.message ?: "Unknown error"
+                showToast("Error: $errorMessage")
+            }
+
+        }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    }
     override fun viewInit() {
     }
     private fun getItems(): List<Item> {
@@ -62,4 +87,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         adapter = ItemAdapter(requireContext(), getItems())
         binding.listView.adapter = adapter
     }
+    private fun viewsForMenuWithSignedUser(user: User){
+        binding.signOut.visibility= View.VISIBLE
+        binding.profileName.visibility= View.VISIBLE
+        binding.profileImage.visibility=View.VISIBLE
+        binding.editProfile.visibility=View.VISIBLE
+        binding.horizontalLine.visibility=View.VISIBLE
+        binding.profileName.text=user.firstname
+        binding.profileImage.setImageResource(user.image.id)
+
+    }
+    companion object {
+        private val logger = getClassLogger()
+    }
+
 }

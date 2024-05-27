@@ -15,12 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:visibility="gone"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/profile_name"
             style="@style/TextView.Bold"
             android:layout_width="wrap_content"
@@ -34,6 +36,7 @@
         <Button
             android:id="@+id/edit_profile"
             style="@style/Button"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -48,6 +51,7 @@
             android:id="@+id/horizontalLine"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
+            android:visibility="gone"
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
@@ -93,6 +97,7 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/rectangle_shape"
             android:text="@string/sign_out"
+            android:visibility="gone"
             android:drawablePadding="8dp"
             android:drawableEnd="@drawable/signout"
             android:textColor="@color/red"

@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.home.profile.presentation.viewmodels
 
 import androidx.lifecycle.viewModelScope
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
@@ -19,6 +20,8 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
         getCachedUserUC.invoke(viewModelScope) { resource ->
             when (resource) {
                 is Resource.Failure -> {
+                    logger.debug("falier${resource}")
+
                     setState(oldViewState.copy(exception = resource.exception))
                 }
                 is Resource.Progress -> {
@@ -26,6 +29,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                 }
                 is Resource.Success -> {
                     // User retrieval successful, handle the user data
+                    logger.debug("user_success${resource.model}")
                     val user = resource.model
                     sendEvent(ProfileContract.ProfileEvent.UserLoaded(user))
                 }
@@ -39,5 +43,8 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
 
     override fun onActionTrigger(action: ViewAction?) {
         // Handle incoming actions specific to ProfileViewModel
+    }
+    companion object {
+        private val logger = getClassLogger()
     }
 }
