@@ -1,6 +1,6 @@
 package com.solutionplus.altasherat.features.services.user.data.repository.local
 
-import android.util.Base64
+import com.solutionplus.altasherat.android.extentions.base64Decode
 import com.solutionplus.altasherat.android.extentions.getModelFromJSON
 import com.solutionplus.altasherat.common.data.repository.local.StorageKeyEnum
 import com.solutionplus.altasherat.common.data.repository.local.encryption.SecretKeyAliasEnum
@@ -22,7 +22,7 @@ internal class UserLocalDS(
 
         val decryptedUser = encryptionService.decrypt(
             keyAlias = SecretKeyAliasEnum.USER,
-            data = Base64.decode(encryptedUser, Base64.NO_WRAP)
+            data = encryptedUser.base64Decode()
         )
 
         return decryptedUser.decodeToString().getModelFromJSON(UserEntity::class.java)
