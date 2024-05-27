@@ -1,8 +1,8 @@
 package com.solutionplus.altasherat.features.auth.login.data.repository.remote
 
 import com.solutionplus.altasherat.common.data.repository.remote.RetrofitNetworkProvider
-import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
-import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginUserDto
+import com.solutionplus.altasherat.features.services.user.data.models.dto.ResponseDto
+import com.solutionplus.altasherat.features.services.user.data.models.dto.UserDto
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import io.mockk.coEvery
@@ -31,10 +31,10 @@ class LoginRemoteDataSourceTest {
             "1111255569",
             phoneLoginRequest = phoneRequest
         )
-        val userResponse = LoginResponseDto(
+        val userResponse = ResponseDto(
             message = "Signup is done successfully,",
             token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9",
-            LoginUserDto(firstname = "Ebram")
+            UserDto(firstname = "Ebram")
         )
         coEvery {
             networkProvider.post(
@@ -42,7 +42,7 @@ class LoginRemoteDataSourceTest {
                 pathUrl = "login",
                 headers = hashMapOf("accept" to "application/json"),
                 requestBody = userRequest
-            ) ?: LoginResponseDto()
+            ) ?: ResponseDto()
         } returns userResponse
 
         val result = loginRemoteDataSource.loginWithPhone(userRequest)
@@ -59,10 +59,10 @@ class LoginRemoteDataSourceTest {
             "1111255569",
             phoneLoginRequest = phoneRequest
         )
-        val userResponse = LoginResponseDto(
+        val userResponse = ResponseDto(
             message = "Signup is done successfully,",
             token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9",
-            LoginUserDto(firstname = "Ebram")
+            UserDto(firstname = "Ebram")
         )
         val expectedError = Exception("Network error")
         coEvery {
@@ -71,7 +71,7 @@ class LoginRemoteDataSourceTest {
                 pathUrl = "login",
                 headers = hashMapOf("accept" to "application/json"),
                 requestBody = userRequest
-            ) ?: LoginResponseDto()
+            ) ?: ResponseDto()
         } throws expectedError
 
         val caughtException = assertThrows(expectedError::class.java) {
