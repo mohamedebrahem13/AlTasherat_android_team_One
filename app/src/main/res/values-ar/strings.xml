@@ -70,4 +70,10 @@
     <string name="third_action_text">املأ\nالاستمارة الآن</string>
     <string name="header_title">لديك وظائف وتأشيرات تريد\nاخبارنا بها بادر بملأ الاستماره\nواخبارنا بالتفاصيل لديك\nوظائف وتأشيرات تريد\nاخبارنا بها بادر بملأ الاستماره</string>
     <!--endregion-->
+
+    <!--region UnAuthorizedDialog-->
+    <string name="un_authorized_dialog_title">تسجيل الدخول للمتابعة</string>
+    <string name="un_authorized_dialog_description">يجب عليك تسجيل الدخول للمتابعة في استكمال الطلب</string>
+    <string name="un_authorized_dialog_image">صورة تسجيل الدخول</string>
+    <!--endregion-->
 </resources>
