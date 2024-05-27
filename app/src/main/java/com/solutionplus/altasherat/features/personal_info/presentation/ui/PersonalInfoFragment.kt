@@ -3,23 +3,23 @@ package com.solutionplus.altasherat.features.personal_info.presentation.ui
 import android.os.Bundle
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelection
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
 import com.solutionplus.altasherat.features.personal_info.data.models.request.PhoneRequest
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.domain.models.Country
 import com.solutionplus.altasherat.features.personal_info.domain.models.User
-import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelection
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoAction
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoEvent
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoViewModel
+import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Instant
 import java.time.LocalDate
@@ -30,7 +30,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private val viewModel: PersonalInfoViewModel by viewModels()
 
-    private lateinit var countries: ArrayList<Country>
+    private lateinit var countries: Array<Country>
     private lateinit var selectedCountry: Country
     private lateinit var selectedCountryCode: Country
     private lateinit var selectedDate: LocalDate
@@ -49,7 +49,6 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private var selectionType = SelectionType.NONE
 
     override fun viewInit() {
-
         setFragmentResultListener(SelectionDialogFragment.REQUEST_KEY) { _, bundle ->
             val selectedCountryIndex =
                 bundle.getInt(SelectionDialogFragment.SELECTED_COUNTRY_INDEX_KEY)
@@ -115,12 +114,13 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private fun navigateToSelectionDialog(selectionType: SelectionType, selectedIndex: Int) {
         this.selectionType = selectionType
-        Navigation.findNavController(requireActivity(), R.id.myNavHostFragment).navigate(
+
+        val action =
             PersonalInfoFragmentDirections.actionPersonalInfoFragmentToSelectionDialogFragment(
-                countries = countries.toTypedArray(),
+                countries = countries,
                 selectedIndex = selectedIndex
             )
-        )
+        findNavController().navigate(action)
     }
 
     override fun subscribeToObservables() {
@@ -136,8 +136,8 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         }
     }
 
-    private fun handleCountriesIndex(countriesList: ArrayList<Country>) {
-        countries = countriesList
+    private fun handleCountriesIndex(countriesList: List<Country>) {
+        countries = countriesList.toTypedArray()
         viewModel.processIntent(PersonalInfoAction.GetUserPersonalInfo)
     }
 
@@ -156,8 +156,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
         }
 
-
-        selectedCountry = user.country
+        //selectedCountry = user.country
         selectedCountryCode = countries.first { it.phoneCode == user.country.phoneCode }
 
         setBirthDateText(user.birthDate)
@@ -193,9 +192,5 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private fun setBirthDateText(date: LocalDate) {
         selectedDate = date
         binding.inputBirthDate.editText?.setText(date.toString())
-    }
-
-    companion object {
-
     }
 }

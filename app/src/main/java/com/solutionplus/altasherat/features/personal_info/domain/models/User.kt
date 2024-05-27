@@ -12,10 +12,4 @@ data class User(
     val image: Image,
     val birthDate: LocalDate,
     val country: Country,
-) {
-    constructor() : this(
-        id = 0, firstname = "", middlename = "", lastname = "", email = "",
-        phone = Phone(), image = Image(), birthDate = LocalDate.now(),
-        country = Country()
-    )
-}
+)

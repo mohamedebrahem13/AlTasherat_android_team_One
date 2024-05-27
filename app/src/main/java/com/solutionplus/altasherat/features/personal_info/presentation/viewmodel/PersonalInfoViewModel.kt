@@ -5,18 +5,18 @@ import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.domain.interactor.GetCountriesUC
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.GetUserPersonalInfoUC
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.UpdatePersonalInfoUC
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoAction
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoEvent
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoState
+import com.solutionplus.altasherat.features.services.country.domain.interactor.GetCachedCountriesUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class PersonalInfoViewModel @Inject constructor(
-    private val getCountriesUC: GetCountriesUC,
+    private val getCountriesUC: GetCachedCountriesUC,
     private val getUserPersonalInfoUC: GetUserPersonalInfoUC,
     private val updatePersonalInfoUC: UpdatePersonalInfoUC,
 ) : AlTasheratViewModel<PersonalInfoAction, PersonalInfoEvent, PersonalInfoState>(PersonalInfoState.initial()) {

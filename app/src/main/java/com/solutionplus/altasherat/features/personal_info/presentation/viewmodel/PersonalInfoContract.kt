@@ -5,8 +5,8 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.domain.models.Country
 import com.solutionplus.altasherat.features.personal_info.domain.models.User
+import com.solutionplus.altasherat.features.services.country.domain.models.Country
 
 interface PersonalInfoContract {
     sealed class PersonalInfoAction : ViewAction {
@@ -16,7 +16,7 @@ interface PersonalInfoContract {
     }
 
     sealed class PersonalInfoEvent : ViewEvent {
-        data class CountriesIndex(val countries: ArrayList<Country>) : PersonalInfoEvent()
+        data class CountriesIndex(val countries: List<Country>) : PersonalInfoEvent()
         data class UserPersonalInfo(val user: User) : PersonalInfoEvent()
         data object PersonalInfoUpdated : PersonalInfoEvent()
     }

@@ -9,11 +9,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelection
+import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelectionAdapter
+import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelectionCallback
+import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelectionViewType
 import com.solutionplus.altasherat.databinding.FragmentCountrySelectionDialogBinding
-import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelection
-import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionAdapter
-import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionCallback
-import com.solutionplus.altasherat.features.personal_info.presentation.ui.single_selection.SingleSelectionViewType
 
 class SelectionDialogFragment : BottomSheetDialogFragment(), SingleSelectionCallback {
 

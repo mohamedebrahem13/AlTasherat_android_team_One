@@ -6,7 +6,6 @@ import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvi
 import com.solutionplus.altasherat.features.personal_info.data.repository.PersonalInfoRepository
 import com.solutionplus.altasherat.features.personal_info.data.repository.local.PersonalInfoLocalDS
 import com.solutionplus.altasherat.features.personal_info.data.repository.remote.PersonalInfoRemoteDS
-import com.solutionplus.altasherat.features.personal_info.domain.interactor.GetCountriesUC
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.GetUserPersonalInfoUC
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.UpdatePersonalInfoUC
 import com.solutionplus.altasherat.features.personal_info.domain.repository.IPersonalInfoRepository

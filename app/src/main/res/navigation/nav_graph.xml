@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_country_selection_dialog">
         <argument
             android:name="countries"
-            app:argType="com.solutionplus.altasherat.features.personal_info.domain.models.Country[]" />
+            app:argType="com.solutionplus.altasherat.features.services.country.domain.models.Country[]" />
         <argument
             android:name="selectedIndex"
             app:argType="integer" />
