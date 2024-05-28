@@ -3,7 +3,6 @@ package com.solutionplus.altasherat.features.home.profile.domain.intractor
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.features.home.profile.domain.repository.local.IProfileLocalDataSource
-import com.solutionplus.altasherat.features.home.profile.domain.repository.remote.IProfileRemoteDataSource
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
