@@ -6,7 +6,7 @@ import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserS
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.remote.ISignUpRemoteDataSource
 import javax.inject.Inject
 
-class SignUpRemoteDataSource @Inject constructor(
+internal class SignUpRemoteDataSource @Inject constructor(
     private val netWorkProvider: INetworkProvider
 ) : ISignUpRemoteDataSource {
     override suspend fun signup(userSignUpRequest: UserSignUpRequest): SignUpResponseDto {

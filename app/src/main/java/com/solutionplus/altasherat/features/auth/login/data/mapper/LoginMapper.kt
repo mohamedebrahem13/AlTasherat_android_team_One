@@ -1,15 +1,17 @@
 package com.solutionplus.altasherat.features.auth.login.data.mapper
 
 import com.solutionplus.altasherat.common.data.mapper.Mapper
-import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
+import com.solutionplus.altasherat.features.services.user.data.models.dto.ResponseDto
+import com.solutionplus.altasherat.features.services.user.data.models.dto.UserDto
 import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserResponse
+import com.solutionplus.altasherat.features.services.user.data.mappers.UserMapper
 
-object LoginMapper: Mapper<LoginResponseDto, LoginUserResponse, Unit>() {
+internal object LoginMapper: Mapper<ResponseDto, LoginUserResponse, Unit>() {
 
-    override fun dtoToDomain(model: LoginResponseDto): LoginUserResponse {
+    override fun dtoToDomain(model: ResponseDto): LoginUserResponse {
         return LoginUserResponse(
             token = model.token.orEmpty(),
-            user = model.loginUserDto?.let { LoginUserMapper.dtoToDomain(it) }!!,
+            user = UserMapper.dtoToDomain(model.userDto ?: UserDto()),
             message = model.message.orEmpty()
         )
     }

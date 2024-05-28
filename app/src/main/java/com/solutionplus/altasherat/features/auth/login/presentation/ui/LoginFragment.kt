@@ -5,7 +5,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLoginBinding
@@ -13,7 +12,7 @@ import com.solutionplus.altasherat.features.auth.login.data.models.request.UserL
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginContracts
-import com.solutionplus.altasherat.common.presentation.ui.listener.SharedButtonListener
+import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,21 +31,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), SharedButtonListener
                 countryCode = country.phoneCode
             }
 
-            binding.textForgetPassword.setOnClickListener {
-                findNavController().navigate(R.id.action_authViewPagerFragment_to_fragmentViewPagerResetPassword)
-            }
-
         }
+    }
 
+    override fun onLoading(isLoading: Boolean) {
+        binding.progressbar.isVisible = isLoading
+    }
+
+    override fun subscribeToObservables() {
         collectFlowWithLifecycle(loginViewMode.singleEvent) { event ->
-            when (event) {
-                is LoginContracts.MainEvent.GetCountries -> {
+            when(event) {
+                is LoginContracts.LoginEvent.GetCountries -> {
                     countries = event.countries
                     setCustomCountry()
                     setUpCountryCodeAdapter()
                 }
-
-                is LoginContracts.MainEvent.LoginIsSuccessfully -> {
+                is LoginContracts.LoginEvent.LoginIsSuccessfully -> {
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -61,15 +61,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), SharedButtonListener
             }
             onLoading(result.isLoading)
         }
-
-    }
-
-    override fun onLoading(isLoading: Boolean) {
-        binding.progressbar.isVisible = isLoading
-    }
-
-    override fun subscribeToObservables() {
-
     }
 
     override fun viewInit() {}
@@ -82,13 +73,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), SharedButtonListener
             password = password,
             phoneLoginRequest = phoneRequest
         )
-        loginViewMode.processIntent(LoginContracts.MainAction.Login(userLoginRequest))
+        loginViewMode.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
 
     }
 
     private fun setUpCountryCodeAdapter() {
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
         binding.etCountryCode.setAdapter(arrayAdapter)
     }
 
