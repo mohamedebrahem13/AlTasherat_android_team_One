@@ -11,6 +11,7 @@ import com.solutionplus.altasherat.features.auth.signup.domain.interactor.valida
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.ISignUpRepository
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.local.ISignUpLocalDataSource
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.remote.ISignUpRemoteDataSource
+import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +20,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object SignUpModule {
+internal object SignUpModule {
 
 
     @Provides
@@ -54,10 +55,12 @@ object SignUpModule {
     fun provideSignUpUC(
         signupRepository: SignUpRepository,
         userInputsValidationUC: UserInputsValidationUC,
+        saveUserUC: SaveUserUC
     ): SignUpUC {
         return SignUpUC(
             signupRepository,
             userInputsValidationUC,
+            saveUserUC
         )
     }
 

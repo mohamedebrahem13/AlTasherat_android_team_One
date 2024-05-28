@@ -1,6 +1,9 @@
 package com.solutionplus.altasherat.android
 
 import android.app.Application
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.solutionplus.altasherat.android.helpers.logging.LoggerProvider
@@ -17,6 +20,7 @@ class AlTasheratApp : Application(), Configuration.Provider {
         super.onCreate()
         LoggerProvider.provideLogger()
     }
+
     override val workManagerConfiguration: Configuration
         get() =  Configuration.Builder()
             .setWorkerFactory(hiltWorkerFactory) // Set your custom worker factory

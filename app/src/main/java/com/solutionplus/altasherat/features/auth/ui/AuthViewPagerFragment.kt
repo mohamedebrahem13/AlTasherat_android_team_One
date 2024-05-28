@@ -56,12 +56,12 @@ class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = getString(R.string.new_account)
+                    tab.text = getString(R.string.login_text)
 
                 }
 
                 1 -> {
-                    tab.text = getString(R.string.login_text)
+                    tab.text = getString(R.string.new_account)
                 }
             }
         }.attach()

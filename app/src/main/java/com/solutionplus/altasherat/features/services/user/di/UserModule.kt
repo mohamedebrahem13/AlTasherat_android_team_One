@@ -5,6 +5,7 @@ import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEn
 import com.solutionplus.altasherat.features.services.user.data.repository.UserRepository
 import com.solutionplus.altasherat.features.services.user.data.repository.local.UserLocalDS
 import com.solutionplus.altasherat.features.services.user.domain.interactor.GetCachedUserUC
+import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 import com.solutionplus.altasherat.features.services.user.domain.repository.IUserRepository
 import com.solutionplus.altasherat.features.services.user.domain.repository.local.IUserLocalDS
 import dagger.Module
@@ -35,5 +36,10 @@ internal object UserModule {
     @Provides
     fun provideGetCacheUserUC(repository: IUserRepository): GetCachedUserUC {
         return GetCachedUserUC(repository = repository)
+    }
+
+    @Provides
+    fun provideSaveUserUC(repository: IUserRepository): SaveUserUC {
+        return SaveUserUC(repository = repository)
     }
 }
