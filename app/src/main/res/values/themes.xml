@@ -263,6 +263,7 @@
         <item name="iconGravity">textEnd</item>
         <item name="iconPadding">8dp</item>
         <item name="iconSize">20dp</item>
+        <item name="iconTint">@color/white</item>
     </style>
 
     <style name="Button.Save" parent="Button">
