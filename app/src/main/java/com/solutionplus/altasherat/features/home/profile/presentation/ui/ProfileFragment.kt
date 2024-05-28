@@ -1,5 +1,7 @@
 package com.solutionplus.altasherat.features.home.profile.presentation.ui
 
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -76,6 +78,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
     override fun viewInit() {
+        // Get the current text of the TextView
+        val currentText = binding.currentVersion.text.toString()
+
+        // Append the app version string to the current text
+        val updatedText = "$currentText ${getAppVersion(requireContext())}"
+
+        // Set the updated text back to the TextView
+        binding.currentVersion.text = updatedText
+
     }
     private fun getItems(): List<Item> {
         // Replace this with your logic to get the list of items for the ListView
@@ -95,9 +106,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     }
     private fun viewsForMenuWithSignedUser(user: User){
         binding.signOut.visibility= View.VISIBLE
-        binding.signOut.setOnClickListener {
-            viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
-        }
         binding.profileName.visibility= View.VISIBLE
         binding.profileImage.visibility=View.VISIBLE
         binding.editProfile.visibility=View.VISIBLE
@@ -105,6 +113,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.profileName.text=user.firstname
         binding.profileImage.load(user.image.path) {
             placeholder(R.drawable.profile_placeholder)
+        }
+        binding.signOut.setOnClickListener {
+            viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
         }
     }
 
@@ -122,6 +133,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         action?.let {
             viewModel.onActionTrigger(it)
         }
+    }
+    private fun getAppVersion(context: Context): String {
+        try {
+            val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            return packageInfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return "Unknown"
     }
 
 }
