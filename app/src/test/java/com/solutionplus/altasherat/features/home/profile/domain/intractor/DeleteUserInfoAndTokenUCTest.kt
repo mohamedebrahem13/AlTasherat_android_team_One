@@ -25,7 +25,7 @@ class DeleteUserInfoAndTokenUCTest{
         useCase = DeleteUserInfoAndTokenUC(repository)
     }
     @Test
-    fun `execute should emit success state`() = runTest {
+    fun `execute use case should emit success state`() = runTest {
         // When
         val resultFlow = useCase(Unit)
         val resultList = resultFlow.take(2).toList()
@@ -39,7 +39,7 @@ class DeleteUserInfoAndTokenUCTest{
         assertTrue(successState is Resource.Success)
     }
     @Test
-    fun `execute should emit loading state`() = runTest {
+    fun `execute use case should emit loading state`() = runTest {
         // When
         val resultFlow = useCase(Unit)
         val resultList = resultFlow.take(1).toList()
@@ -54,7 +54,7 @@ class DeleteUserInfoAndTokenUCTest{
         assertTrue((loadingState as Resource.Progress).loading)
     }
     @Test
-    fun `execute should emit failure state when an error occurs`() = runTest {
+    fun `execute use case should emit failure state when an error occurs`() = runTest {
         // Given that the delete operations fail
         repository.shouldThrowException = true
 
