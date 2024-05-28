@@ -5,14 +5,15 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.ui.listener.SharedButtonListener
 import com.solutionplus.altasherat.databinding.FragmentLoginBinding
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginContracts
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +31,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), SharedButtonListener
             selectedCountryItem.let { country ->
                 countryCode = country.phoneCode
             }
-
+        }
+        binding.textForgetPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_authViewPagerFragment_to_fragmentViewPagerResetPassword)
         }
     }
 

@@ -2,6 +2,9 @@ package com.solutionplus.altasherat.features.auth.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.R
@@ -26,6 +29,7 @@ class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
                 fragments[binding.viewPager.currentItem] as SharedButtonListener
             currentItem.triggerButton()
         }
+
     }
 
     override fun onLoading(isLoading: Boolean) {

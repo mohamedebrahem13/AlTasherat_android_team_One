@@ -7,19 +7,20 @@ import com.solutionplus.altasherat.databinding.FragmentSecondResetPasswordBindin
 class FragmentSecondResetPassword: BaseFragment<FragmentSecondResetPasswordBinding>() {
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
     }
 
     override fun onLoading(isLoading: Boolean) {
-        TODO("Not yet implemented")
     }
 
     override fun subscribeToObservables() {
-        TODO("Not yet implemented")
     }
 
     override fun viewInit() {
-        TODO("Not yet implemented")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.root.requestLayout()
     }
 }
 
