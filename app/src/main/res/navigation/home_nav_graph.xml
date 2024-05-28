@@ -14,10 +14,19 @@
         android:id="@+id/fragment_visa_platform"
         android:name="com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.VisaPlatformFragment"
         android:label="fragment_visa_platform"
-        tools:layout="@layout/fragment_visa_platform" />
+        tools:layout="@layout/fragment_visa_platform" >
+        <action
+            android:id="@+id/action_fragment_visa_platform_to_unAuthorizedDialogFragment"
+            app:destination="@id/unAuthorizedDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_visa_request"
         android:name="com.solutionplus.altasherat.features.home.visa_request.presentation.ui.VisaRequestFragment"
         android:label="fragment_visa_request"
         tools:layout="@layout/fragment_visa_request" />
+    <dialog
+        android:id="@+id/unAuthorizedDialogFragment"
+        android:name="com.solutionplus.altasherat.features.home.presentation.UnAuthorizedDialogFragment"
+        android:label="fragment_un_authorized_dialog"
+        tools:layout="@layout/fragment_un_authorized_dialog" />
 </navigation>
