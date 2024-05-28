@@ -2,7 +2,10 @@ package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
@@ -22,7 +25,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        viewModel.onActionTrigger(SplashContract.SplashAction.CheckHasCountriesKey)
+        setLocal()
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -39,20 +42,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     private fun handleViewState(state: SplashContract.SplashViewState) {
-        // Handle different states here
         when {
             state.isLoading -> {
-                // Show loading UI
             }
 
             state.exception != null -> {
-                // Handle error state
                 val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
             }
 
             else -> {
-                // Handle success state
                 showToast("Data loaded successfully")
             }
         }
@@ -63,7 +62,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     private fun handleSingleEvent(event: SplashContract.SplashEvent) {
-        // Handle single events
         when (event) {
             SplashContract.SplashEvent.NavigateToHome -> {
                 logger.debug("navigate to NavigateToHome")
@@ -93,6 +91,15 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     companion object {
         private val logger = getClassLogger()
+    }
+    private fun setLocal() {
+        if (AppCompatDelegate.getApplicationLocales().isEmpty) {
+            val localeList = LocaleListCompat.forLanguageTags("ar")
+            AppCompatDelegate.setApplicationLocales(localeList)
+        }else{
+            viewModel.onActionTrigger(SplashContract.SplashAction.CheckHasCountriesKey)
+
+        }
     }
 
 
