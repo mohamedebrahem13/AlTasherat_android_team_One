@@ -2,6 +2,6 @@ package com.solutionplus.altasherat.features.home.profile.domain.repository.remo
 
 import com.solutionplus.altasherat.features.home.profile.data.models.LogoutResponse
 
-interface IProfileRemoteDataSource {
+internal interface IProfileRemoteDataSource {
     suspend fun logout(): LogoutResponse
 }

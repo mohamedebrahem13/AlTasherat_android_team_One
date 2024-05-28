@@ -1,17 +1,19 @@
 package com.solutionplus.altasherat.features.home.profile.presentation.viewmodels
 
+import android.os.Message
 import androidx.lifecycle.viewModelScope
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
+import com.solutionplus.altasherat.features.home.profile.domain.intractor.DeleteUserInfoAndTokenUC
 import com.solutionplus.altasherat.features.home.profile.domain.intractor.LogoutUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.GetCachedUserUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCachedUserUC, private val logoutUC: LogoutUC) :
+class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCachedUserUC, private val logoutUC: LogoutUC,private val deleteUserInfoAndTokenUC:DeleteUserInfoAndTokenUC) :
     AlTasheratViewModel<ProfileContract.ProfileAction, ProfileContract.ProfileEvent, ProfileContract.ProfileViewState>(ProfileContract.ProfileViewState.initial()) {
         init {
             fetchUser()
@@ -21,7 +23,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
         getCachedUserUC.invoke(viewModelScope) { resource ->
             when (resource) {
                 is Resource.Failure -> {
-                    logger.debug("falier${resource}")
+                    logger.debug("flier${resource}")
 
                     setState(oldViewState.copy(exception = resource.exception))
                 }
@@ -41,7 +43,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
        logoutUC.invoke(viewModelScope){resource ->
            when (resource) {
                is Resource.Failure -> {
-                   logger.debug("sig out,${resource.exception.message}")
+                   logger.debug("sign out,${resource.exception.message}")
                    setState(oldViewState.copy(exception = resource.exception))
                }
                is Resource.Progress -> {
@@ -49,12 +51,29 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                }
                is Resource.Success -> {
                    val message = resource.model
-                   logger.debug("sig out,$message")
-                   sendEvent(ProfileContract.ProfileEvent.SignOutSuccess(message))
+                   logger.debug("sign out,$message")
+                   deleteUserInfoAndToken(message)
                }
            }
        }
    }
+    private fun deleteUserInfoAndToken(message: String) {
+        deleteUserInfoAndTokenUC.invoke(viewModelScope) { resource ->
+            when (resource) {
+                is Resource.Failure -> {
+                    logger.debug("delete user info and token failed: ${resource.exception.message}")
+                    // Handle failure if needed
+                }
+                is Resource.Progress -> {
+                    // Handle progress if needed
+                }
+                is Resource.Success -> {
+                    logger.debug("delete user info and token success")
+                    sendEvent(ProfileContract.ProfileEvent.SignOutSuccess(message))
+                }
+            }
+        }
+    }
 
     override fun clearState() {
         setState(ProfileContract.ProfileViewState.initial())
