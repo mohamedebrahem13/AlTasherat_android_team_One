@@ -14,10 +14,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-
 @Module
 @InstallIn(ViewModelComponent::class)
 internal object ProfileRemoteDataSourceModule {
+    @Provides
+    fun provideProfileLocalDataSource(localProvider: IKeyValueStorageProvider): IProfileLocalDataSource {
+        return ProfileLocalDataSource(localProvider)
+    }
     @Provides
     fun provideProfileRemoteDataSource(networkProvider: INetworkProvider): IProfileRemoteDataSource {
         return ProfileRemoteDataSource(networkProvider)
@@ -30,15 +33,11 @@ internal object ProfileRemoteDataSourceModule {
     fun provideLogoutUC(repository: IProfileRepository): LogoutUC {
         return LogoutUC(repository)
     }
-    @Provides
-    fun provideProfileLocalDataSource(
-        localProvider: IKeyValueStorageProvider
-    ): IProfileLocalDataSource {
-        return ProfileLocalDataSource(localProvider)
-    }
+
     @Provides
     fun provideDeleteUserInfoAndTokenUC(repository: IProfileRepository): DeleteUserInfoAndTokenUC {
         return DeleteUserInfoAndTokenUC(repository)
     }
+
 
 }

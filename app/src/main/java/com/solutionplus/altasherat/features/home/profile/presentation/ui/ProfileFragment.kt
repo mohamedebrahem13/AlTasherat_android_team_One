@@ -18,7 +18,6 @@ import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileViewModel
 import com.solutionplus.altasherat.features.services.user.domain.models.User
-import com.solutionplus.altasherat.features.splash.presention.ui.activity.OnboardingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

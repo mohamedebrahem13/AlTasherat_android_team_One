@@ -5,7 +5,7 @@ import com.solutionplus.altasherat.features.home.profile.data.models.LogoutRespo
 import com.solutionplus.altasherat.features.home.profile.domain.repository.remote.IProfileRemoteDataSource
 import javax.inject.Inject
 
-internal class ProfileRemoteDataSource @Inject constructor(
+internal class ProfileRemoteDataSource (
     private val networkProvider: INetworkProvider
 ) :IProfileRemoteDataSource{
     override suspend fun logout(): LogoutResponse {

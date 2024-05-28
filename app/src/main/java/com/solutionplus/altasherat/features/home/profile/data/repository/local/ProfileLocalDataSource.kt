@@ -5,8 +5,7 @@ import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStora
 import com.solutionplus.altasherat.features.home.profile.domain.repository.local.IProfileLocalDataSource
 import javax.inject.Inject
 
-internal class ProfileLocalDataSource @Inject constructor(private val localProvider: IKeyValueStorageProvider,
-):IProfileLocalDataSource {
+internal class ProfileLocalDataSource @Inject constructor(private val localProvider: IKeyValueStorageProvider):IProfileLocalDataSource {
     override suspend fun deleteUserInfo() {
         localProvider.delete<String>(StorageKeyEnum.USER_KEY, String::class.java)
     }
