@@ -8,21 +8,21 @@ import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserS
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 
 interface SignUpContract {
-    sealed class MainAction : ViewAction {
-        data object GetCountries : MainAction()
-        data class SignUp(val userSignUpRequest: UserSignUpRequest) : MainAction()
+    sealed class SignUpAction : ViewAction {
+        data object GetCountries : SignUpAction()
+        data class SignUp(val userSignUpRequest: UserSignUpRequest) : SignUpAction()
     }
 
-    sealed class MainEvent : ViewEvent {
-        data class SignUpIsSuccessfully(val message: String) : MainEvent()
-        data class GetCountries(val countries: List<Country>) : MainEvent()
+    sealed class SignUpEvent : ViewEvent {
+        data class SignUpIsSuccessfully(val message: String) : SignUpEvent()
+        data class GetCountries(val countries: List<Country>) : SignUpEvent()
     }
 
-    data class MainState(
+    data class SignUpState(
         val isLoading: Boolean, val exception: AlTasheratException?, val action: ViewAction?
     ) : ViewState {
         companion object {
-            fun initial() = MainState(
+            fun initial() = SignUpState(
                 isLoading = false, exception = null, action = null
             )
         }

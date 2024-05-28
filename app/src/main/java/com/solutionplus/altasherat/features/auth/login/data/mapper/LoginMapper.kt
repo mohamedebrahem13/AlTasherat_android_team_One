@@ -1,45 +1,18 @@
 package com.solutionplus.altasherat.features.auth.login.data.mapper
 
 import com.solutionplus.altasherat.common.data.mapper.Mapper
-import com.solutionplus.altasherat.features.auth.login.data.models.dto.LoginResponseDto
-import com.solutionplus.altasherat.features.auth.login.data.models.entity.LoginUserEntity
-import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserInfo
+import com.solutionplus.altasherat.features.auth.login.data.models.dto.ResponseDto
+import com.solutionplus.altasherat.features.services.user.data.models.dto.UserDto
+import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserResponse
+import com.solutionplus.altasherat.features.services.user.data.mappers.UserMapper
 
-object LoginMapper: Mapper<LoginResponseDto, LoginUserInfo, LoginUserEntity>() {
-    override fun dtoToDomain(model: LoginResponseDto): LoginUserInfo {
-        return LoginUserInfo(
-            token = model.token ?: "",
-            username = model.loginUserDto?.username.orEmpty(),
-            firstname = model.loginUserDto?.firstname.orEmpty(),
-            lastname = model.loginUserDto?.lastname.orEmpty(),
-            email = model.loginUserDto?.email.orEmpty(),
-            countryCode = model.loginUserDto?.phone?.countryCode.orEmpty(),
-            number = model.loginUserDto?.phone?.number.orEmpty(),
+internal object LoginMapper: Mapper<ResponseDto, LoginUserResponse, Unit>() {
+
+    override fun dtoToDomain(model: ResponseDto): LoginUserResponse {
+        return LoginUserResponse(
+            token = model.token.orEmpty(),
+            user = UserMapper.dtoToDomain(model.userDto ?: UserDto()),
             message = model.message.orEmpty()
-        )
-    }
-
-    override fun entityToDomain(model: LoginUserEntity): LoginUserInfo {
-        return LoginUserInfo(
-            token = null,
-            username = model.username,
-            firstname = model.firstname,
-            lastname = model.lastname,
-            email = model.email,
-            countryCode = model.countryCode,
-            number = model.number,
-            message = null
-        )
-    }
-
-    override fun domainToEntity(model: LoginUserInfo): LoginUserEntity {
-        return LoginUserEntity(
-            username = model.username,
-            firstname = model.firstname,
-            lastname = model.lastname,
-            email = model.email,
-            countryCode = model.countryCode,
-            number = model.number
         )
     }
 }

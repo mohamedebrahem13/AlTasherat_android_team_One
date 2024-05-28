@@ -274,7 +274,7 @@
         <item name="icon">@drawable/ic_next</item>
     </style>
 
-    <style name="Button.SignUp" parent="Button">
+    <style name="Button.Auth" parent="Button">
         <item name="icon">@drawable/ic_signup</item>
     </style>
     <!--endregion-->

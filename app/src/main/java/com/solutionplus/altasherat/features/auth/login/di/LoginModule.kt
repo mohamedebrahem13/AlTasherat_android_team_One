@@ -10,6 +10,7 @@ import com.solutionplus.altasherat.features.auth.login.domain.interactor.LoginWi
 import com.solutionplus.altasherat.features.auth.login.domain.repository.ILoginRepository
 import com.solutionplus.altasherat.features.auth.login.domain.repository.local.ILoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.ILoginRemoteDataSource
+import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +19,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object LoginModule {
+internal object LoginModule {
 
 
     @Provides
@@ -47,9 +48,10 @@ object LoginModule {
 
     @Provides
     fun provideSLoginUC(
-        loginRepository: LoginRepository,
+        loginRepository: ILoginRepository,
+        saveUserUC: SaveUserUC
     ): LoginWithPhoneUC {
-        return LoginWithPhoneUC(loginRepository)
+        return LoginWithPhoneUC(loginRepository, saveUserUC)
     }
 
 

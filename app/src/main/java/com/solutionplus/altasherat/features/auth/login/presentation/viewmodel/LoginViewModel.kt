@@ -15,12 +15,12 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginWithPhoneUC: LoginWithPhoneUC,
     private val getCachedCountriesUC: GetCachedCountriesUC
-) : AlTasheratViewModel<LoginContracts.MainAction, LoginContracts.MainEvent, LoginContracts.MainState>(
-    LoginContracts.MainState.initial()
+) : AlTasheratViewModel<LoginContracts.LoginAction, LoginContracts.LoginEvent, LoginContracts.LoginState>(
+    LoginContracts.LoginState.initial()
 ) {
 
     init {
-        onActionTrigger(LoginContracts.MainAction.GetCountries)
+        onActionTrigger(LoginContracts.LoginAction.GetCountries)
     }
 
     private fun login(userLoginRequest: UserLoginRequest) {
@@ -29,7 +29,7 @@ class LoginViewModel @Inject constructor(
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> {
-                    sendEvent(LoginContracts.MainEvent.LoginIsSuccessfully(result.model.message!!))
+                    sendEvent(LoginContracts.LoginEvent.LoginIsSuccessfully(result.model.message!!))
                 }
             }
         }
@@ -41,7 +41,7 @@ class LoginViewModel @Inject constructor(
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> sendEvent(
-                    LoginContracts.MainEvent.GetCountries(result.model)
+                    LoginContracts.LoginEvent.GetCountries(result.model)
                 )
             }
         }
@@ -49,13 +49,13 @@ class LoginViewModel @Inject constructor(
 
     override fun onActionTrigger(action: ViewAction?) {
         when (action) {
-            is LoginContracts.MainAction.Login -> login(action.loginUserRequest)
-            is LoginContracts.MainAction.GetCountries -> getCountries()
+            is LoginContracts.LoginAction.Login -> login(action.loginUserRequest)
+            is LoginContracts.LoginAction.GetCountries -> getCountries()
         }
     }
 
     override fun clearState() {
-        setState(LoginContracts.MainState.initial())
+        setState(LoginContracts.LoginState.initial())
 
     }
 }

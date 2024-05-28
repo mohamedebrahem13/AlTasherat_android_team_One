@@ -1,12 +1,10 @@
-package com.solutionplus.altasherat.features.auth.signup.data.model.dto
+package com.solutionplus.altasherat.features.services.user.data.models.dto
 
-import android.provider.MediaStore.Images.Media
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDate
 
-data class SignUpUserDto(
-    @SerializedName("birth_date")
-    val birthDate: LocalDate? = null,
+internal data class UserDto(
+    @SerializedName("birthdate")
+    val birthDate: String? = null,
     @SerializedName("email")
     val email: String? = null,
     @SerializedName("email_verified")
@@ -16,17 +14,22 @@ data class SignUpUserDto(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("image")
-    val image: Media? = null,
-    @SerializedName("is_blocked")
+    val image: ImageDto? = null,
+    @SerializedName("blocked")
     val isBlocked: Int? = null,
     @SerializedName("lastname")
     val lastname: String? = null,
     @SerializedName("middlename")
     val middleName: String? = null,
     @SerializedName("phone")
-    val signUpPhoneDto: SignUpPhoneDto? = null,
+    val phone: PhoneDto? = null,
     @SerializedName("phone_verified")
     val isPhoneVerified: Boolean? = null,
     @SerializedName("username")
-    val username: String? = null
-)
+    val username: String? = null,
+    @SerializedName("country")
+    val country: CountryDto? = null,
+    @SerializedName("all_permissions")
+    val allPermissions: List<String>? = null,
+
+    )
