@@ -52,5 +52,9 @@
     <string name="visa_platform">منصة التأشيرات</string>
     <string name="visa_requests">طلبات التأشيرات</string>
     <string name="profile">الملف الشخصي</string>
+    <string name="save">حفظ</string>
+    <string name="language">اللغة</string>
+
+
     <!--endregion-->
 </resources>
