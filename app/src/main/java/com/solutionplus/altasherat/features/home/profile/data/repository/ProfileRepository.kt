@@ -6,7 +6,8 @@ import com.solutionplus.altasherat.features.home.profile.domain.repository.remot
 import javax.inject.Inject
 
 internal class ProfileRepository @Inject constructor (
-    private val remoteDataSource: IProfileRemoteDataSource,private val localDataSource:IProfileLocalDataSource
+    private val remoteDataSource: IProfileRemoteDataSource,
+    private val localDataSource:IProfileLocalDataSource
 ):IProfileRepository{
     override suspend fun logout(): String {
         return  remoteDataSource.logout().message ?: "Logout successful"
