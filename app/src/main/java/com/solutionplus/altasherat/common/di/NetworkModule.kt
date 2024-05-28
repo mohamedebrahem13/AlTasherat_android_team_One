@@ -3,11 +3,13 @@ package com.solutionplus.altasherat.common.di
 import com.solutionplus.altasherat.BuildConfig
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.repository.remote.AlTasheratApiServices
+import com.solutionplus.altasherat.common.data.repository.remote.AlTasheratAuthInterceptor
 import com.solutionplus.altasherat.common.data.repository.remote.RetrofitNetworkProvider
 import com.solutionplus.altasherat.common.data.repository.remote.call_factory.AlTasheratCallAdapterFactory
 import com.solutionplus.altasherat.common.data.repository.remote.converter.ExceptionConverter
 import com.solutionplus.altasherat.common.data.repository.remote.converter.IExceptionConverter
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
+import com.solutionplus.altasherat.features.services.token.domain.interactor.GetCachedTokenUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -58,7 +60,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authInterceptor: AlTasheratAuthInterceptor
     ): OkHttpClient.Builder {
         return OkHttpClient().newBuilder().apply {
             connectTimeout(30L, TimeUnit.SECONDS)
@@ -69,6 +72,7 @@ object NetworkModule {
             readTimeout(30L, TimeUnit.SECONDS)
             writeTimeout(30L, TimeUnit.SECONDS)
             addInterceptor(httpLoggingInterceptor)
+            addInterceptor(authInterceptor)
         }
     }
 
@@ -82,6 +86,14 @@ object NetworkModule {
     @Singleton
     fun provideExceptionConverter(): IExceptionConverter {
         return ExceptionConverter()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAlTasheratInterceptor(
+        getCachedTokenUC: GetCachedTokenUC
+    ): AlTasheratAuthInterceptor {
+        return AlTasheratAuthInterceptor(getCachedTokenUC)
     }
 
     @Provides
