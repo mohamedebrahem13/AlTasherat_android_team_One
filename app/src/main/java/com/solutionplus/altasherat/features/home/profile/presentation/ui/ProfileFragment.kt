@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.home.profile.presentation.ui
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
@@ -11,11 +12,13 @@ import coil.load
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
+import com.solutionplus.altasherat.features.MainActivity
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileViewModel
 import com.solutionplus.altasherat.features.services.user.domain.models.User
+import com.solutionplus.altasherat.features.splash.presention.ui.activity.OnboardingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +27,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        setupListView()
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -48,6 +50,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
             is ProfileContract.ProfileEvent.SignOutSuccess->{
                 //sign out
+                Intent(requireActivity(), MainActivity::class.java).also { intent ->
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
             }
 
             ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
@@ -78,6 +84,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
     override fun viewInit() {
+        setupListView()
         // Get the current text of the TextView
         val currentText = binding.currentVersion.text.toString()
 
@@ -112,7 +119,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.horizontalLine.visibility=View.VISIBLE
         binding.profileName.text=user.firstname
         binding.profileImage.load(user.image.path) {
-            placeholder(R.drawable.profile_placeholder)
+            placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
         }
         binding.signOut.setOnClickListener {
             viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
