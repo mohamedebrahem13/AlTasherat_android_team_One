@@ -57,4 +57,27 @@
 
 
     <!--endregion-->
+
+    <!--region Visa Platform-->
+    <string name="visa_platform_image">صورة منصة التأشيرات</string>
+    <string name="first_title_first_part">استخرج التأشيرات</string>
+    <string name="first_title_second_part">السياحية بسهولة</string>
+    <string name="first_button_text">تأشيرات سياحية</string>
+    <string name="first_action_text">اطـــلب\nالآن التأشيرة</string>
+    <string name="second_title_first_part">اطلب فيزا توظيف</string>
+    <string name="second_title_second_part">بكل سهولة مع منصة التأشيرات</string>
+    <string name="second_button_text">تأشيرات وظائف</string>
+    <string name="second_action_text">اطـــلب\nالآن التأشيرة</string>
+    <string name="third_title_first_part">تستطيع عرض فيزا</string>
+    <string name="third_title_second_part">من خلال منصة التأشيرات</string>
+    <string name="third_button_text">عـــــرض  تأشيرات</string>
+    <string name="third_action_text">املأ\nالاستمارة الآن</string>
+    <string name="header_title">لديك وظائف وتأشيرات تريد\nاخبارنا بها بادر بملأ الاستماره\nواخبارنا بالتفاصيل لديك\nوظائف وتأشيرات تريد\nاخبارنا بها بادر بملأ الاستماره</string>
+    <!--endregion-->
+
+    <!--region UnAuthorizedDialog-->
+    <string name="un_authorized_dialog_title">تسجيل الدخول للمتابعة</string>
+    <string name="un_authorized_dialog_description">يجب عليك تسجيل الدخول للمتابعة في استكمال الطلب</string>
+    <string name="un_authorized_dialog_image">صورة تسجيل الدخول</string>
+    <!--endregion-->
 </resources>

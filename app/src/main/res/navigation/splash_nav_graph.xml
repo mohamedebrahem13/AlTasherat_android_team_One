@@ -21,11 +21,11 @@
         tools:layout="@layout/fragment_language" >
         <action
             android:id="@+id/action_languageFragment_to_viewPagerFragment"
-            app:destination="@id/viewPagerFragment" />
+            app:destination="@id/fragment_onboarding" />
     </fragment>
     <fragment
-        android:id="@+id/viewPagerFragment"
-        android:name="com.solutionplus.altasherat.features.splash.presention.ui.fragments.ViewPagerFragment"
+        android:id="@+id/fragment_onboarding"
+        android:name="com.solutionplus.altasherat.features.splash.presention.ui.fragments.OnBoardingFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" />
+        tools:layout="@layout/fragment_onboarding" />
 </navigation>

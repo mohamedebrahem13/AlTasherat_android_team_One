@@ -8,14 +8,13 @@
     tools:context=".features.splash.presention.ui.activity.OnboardingActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/onBoarding_fragment_nav_host"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:id="@+id/onBoardingFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
+        app:defaultNavHost="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:navGraph="@navigation/onboarding" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
