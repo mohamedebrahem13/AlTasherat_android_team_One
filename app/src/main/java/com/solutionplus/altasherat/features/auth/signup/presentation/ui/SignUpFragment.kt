@@ -23,8 +23,8 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
     private val signUpViewModel by viewModels<SignUpViewModel>()
     private lateinit var countries: List<Country>
     private val customCountiesList: ArrayList<String> = ArrayList()
-    private var countryId: Int = 2
-    private var countryCode: String = "0020"
+    private var countryId: Int? = null
+    private var countryCode: String? = null
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
@@ -44,26 +44,29 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
 
     private fun signUp() {
-        val firstname: String = binding.etFirstName.text.toString().trim()
-        val lastname: String = binding.etLastName.text.toString().trim()
-        val email: String = binding.etEmail.text.toString().trim()
-        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-        val passwordConfirmation = binding.etPassword.text.toString().trim()
-        val phoneRequest = PhoneSignUpRequest(countryCode, number = phoneNumber)
+        countryId?.let { id ->
+            val firstname: String = binding.etFirstName.text.toString().trim()
+            val lastname: String = binding.etLastName.text.toString().trim()
+            val email: String = binding.etEmail.text.toString().trim()
+            val phoneNumber = binding.etPhoneNumber.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            val passwordConfirmation = binding.etPassword.text.toString().trim()
+            val phoneRequest = PhoneSignUpRequest(countryCode = countryCode!!, number = phoneNumber)
 
-        val signUpUserRequest = UserSignUpRequest(
-            firstname,
-            middleName = "",
-            lastname,
-            email,
-            password,
-            passwordConfirmation,
-            countryId,
-            phoneRequest
-        )
+            val signUpUserRequest = UserSignUpRequest(
+                firstname,
+                middleName = "",
+                lastname,
+                email,
+                password,
+                passwordConfirmation,
+                id,
+                phoneRequest
+            )
 
-        signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+            signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+        }
+
 
     }
 
@@ -84,6 +87,8 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             when (event) {
                 is SignUpContract.SignUpEvent.GetCountries -> {
                     countries = event.countries
+                    countryId = countries[0].id
+                    countryCode = countries[0].phoneCode
                     setCustomCountry()
                     setUpCountryCodeAdapter()
                 }
@@ -92,15 +97,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
-
         collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
             result.exception?.let {
-                if (it.message?.isNotEmpty()!!) {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
-                        .show()
-                }
+                Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    .show()
             }
             onLoading(result.isLoading)
         }

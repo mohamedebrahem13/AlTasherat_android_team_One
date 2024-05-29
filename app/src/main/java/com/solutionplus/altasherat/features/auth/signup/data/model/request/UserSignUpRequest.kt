@@ -33,11 +33,15 @@ data class UserSignUpRequest(
     }
 
     fun validateFirstName(): Boolean {
-        return !(firstname.isBlank() || firstname.length < 3 || firstname.length > 15 ||  regex.matcher(firstname).find())
+        return !(firstname.isBlank() || firstname.length < 3 || firstname.length > 15 || regex.matcher(
+            firstname
+        ).find())
     }
 
     fun validateLastName(): Boolean {
-        return !(lastname.isBlank() || lastname.length < 3 || lastname.length > 15 ||  regex.matcher(firstname).find())
+        return !(lastname.isBlank() || lastname.length < 3 || lastname.length > 15 || regex.matcher(
+            firstname
+        ).find())
     }
 
     fun validatePassword(): Boolean {
