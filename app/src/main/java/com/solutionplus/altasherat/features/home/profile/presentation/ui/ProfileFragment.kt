@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -59,9 +60,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
             ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
             ProfileContract.ProfileEvent.EditProfileNavigation -> TODO()
-            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
+            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> findNavController().navigate(R.id.action_fragment_profile_to_languageFragment2)
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
+            else -> {}
         }
     }
     private fun handleViewState(state: ProfileContract.ProfileViewState) {
@@ -135,7 +137,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
          6 -> ProfileContract.ProfileAction.Language
             else -> null
         }
-
         action?.let {
             viewModel.onActionTrigger(it)
         }

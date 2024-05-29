@@ -9,7 +9,11 @@
         android:id="@+id/fragment_profile"
         android:name="com.solutionplus.altasherat.features.home.profile.presentation.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragment_profile_to_languageFragment2"
+            app:destination="@id/languageFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
         android:name="com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.VisaPlatformFragment"
@@ -29,4 +33,9 @@
         android:name="com.solutionplus.altasherat.features.home.presentation.UnAuthorizedDialogFragment"
         android:label="fragment_un_authorized_dialog"
         tools:layout="@layout/fragment_un_authorized_dialog" />
+    <fragment
+        android:id="@+id/languageFragment2"
+        android:name="com.solutionplus.altasherat.features.home.language.LanguageFragment"
+        android:label="fragment_language2"
+        tools:layout="@layout/fragment_language2" />
 </navigation>

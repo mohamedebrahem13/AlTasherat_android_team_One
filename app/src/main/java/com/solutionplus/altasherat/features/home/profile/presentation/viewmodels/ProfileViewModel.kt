@@ -83,6 +83,9 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
         setState(oldViewState.copy(action = action))
         when(action) {
             is ProfileContract.ProfileAction.SignOut->{ logout() }
+            is ProfileContract.ProfileAction.Language->{
+                sendEvent(ProfileContract.ProfileEvent.LanguageSelectionNavigation)
+            }
         }
     }
     companion object {
