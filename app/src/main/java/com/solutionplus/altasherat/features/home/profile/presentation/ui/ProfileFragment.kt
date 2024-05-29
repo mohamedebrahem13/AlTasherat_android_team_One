@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -26,9 +27,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
-        binding.editProfile.setOnClickListener {
-            viewModel.onActionTrigger(ProfileContract.ProfileAction.EditProfile)
-        }
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -60,10 +58,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
             ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
-                val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
+                val action = ProfileFragmentDirections.actionProfileFragmentToPersonalInfoFragment()
                 findNavController().navigate(action)
             }
-            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
+            ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLanguageFragment2())
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
             else -> {}
