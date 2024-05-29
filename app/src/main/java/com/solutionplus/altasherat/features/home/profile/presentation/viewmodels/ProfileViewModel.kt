@@ -34,7 +34,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                     // User retrieval successful, handle the user data
                     logger.debug("user_success${resource.model}")
                     val user = resource.model
-                    sendEvent(ProfileContract.ProfileEvent.UserLoaded(user))
+                    setState(oldViewState.copy(user=user))
                 }
             }
         }
