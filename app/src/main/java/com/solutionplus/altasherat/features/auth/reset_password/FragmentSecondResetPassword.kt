@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.reset_password.presentation
+package com.solutionplus.altasherat.features.auth.reset_password
 
 import android.os.Bundle
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment

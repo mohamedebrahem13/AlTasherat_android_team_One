@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.auth.ui
+package com.solutionplus.altasherat.features.auth.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,8 @@ import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFrag
 import com.solutionplus.altasherat.common.presentation.ui.view_pager.ViewPagerAdapter
 import com.solutionplus.altasherat.databinding.FragmentSignupLoginBinding
 import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFragment
+import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.auth.signup.presentation.ui.SignUpFragment
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 
 class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
@@ -33,7 +33,7 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.btnLoginSignup.setOnClickListener {
             val currentItem =
-                fragments[viewPager.currentItem] as SharedButtonListener
+                fragments[viewPager.currentItem] as LoginSignupButtonListener
             currentItem.triggerButton()
         }
 

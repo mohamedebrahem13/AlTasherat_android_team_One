@@ -1,11 +1,10 @@
-package com.solutionplus.altasherat.features.reset_password.presentation
+package com.solutionplus.altasherat.features.auth.reset_password
 
 import android.os.Bundle
-import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.FragmentFirstResetPasswordBinding
+import com.solutionplus.altasherat.databinding.FragmentThirdResetPasswordBinding
 
-class FragmentFirstResetPassword: BaseFragment<FragmentFirstResetPasswordBinding>() {
+class FragmentThirdResetPassword: BaseFragment<FragmentThirdResetPasswordBinding>() {
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
     }
@@ -22,10 +21,5 @@ class FragmentFirstResetPassword: BaseFragment<FragmentFirstResetPasswordBinding
     override fun onResume() {
         super.onResume()
         binding.root.requestLayout()
-    }
-
-
-    companion object {
-        val logger = getClassLogger()
     }
 }

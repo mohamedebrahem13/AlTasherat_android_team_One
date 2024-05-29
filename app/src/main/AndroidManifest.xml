@@ -18,7 +18,7 @@
 
 
         <activity
-            android:name=".features.auth.presentation.AuthActivity"
+            android:name=".features.auth.ui.AuthActivity"
             android:exported="true">
 
             <intent-filter>
