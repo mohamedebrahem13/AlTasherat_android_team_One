@@ -106,4 +106,13 @@
     <string name="country_code">كود الدولة</string>
     <string name="choose_country">اختر الدولة</string>
     <!--endregion-->
+
+    <!--region Change Password Fragment -->
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="confirm_password">إعادة كلمة المرور</string>
+    <string name="enter_old_password">ادخل كلمة المرور القديمة</string>
+    <string name="enter_new_password">ادخل كلمة المرور الجديدة</string>
+    <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
+    <!--endregion-->
 </resources>
