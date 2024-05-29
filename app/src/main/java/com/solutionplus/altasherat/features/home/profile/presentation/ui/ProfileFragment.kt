@@ -48,9 +48,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     }
     private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
         when (event) {
-            is ProfileContract.ProfileEvent.UserLoaded -> {
-                viewsForMenuWithSignedUser(event.user)
-            }
+
             is ProfileContract.ProfileEvent.SignOutSuccess->{
                 //sign out
                 Intent(requireActivity(), MainActivity::class.java).also { intent ->
@@ -82,6 +80,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 // Handle error state
                 val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
+            }
+            state.user != null -> {
+                viewsForMenuWithSignedUser(state.user)
             }
 
         }
