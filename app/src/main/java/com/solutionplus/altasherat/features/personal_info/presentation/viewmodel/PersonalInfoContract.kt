@@ -5,14 +5,15 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.domain.models.User
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
+import com.solutionplus.altasherat.features.services.user.domain.models.User
 
 interface PersonalInfoContract {
     sealed class PersonalInfoAction : ViewAction {
         data object GetCountries : PersonalInfoAction()
         data object GetUserPersonalInfo : PersonalInfoAction()
-        data class UpdatePersonalInfo(val updateInfoRequest: UpdateInfoRequest) : PersonalInfoAction()
+        data class UpdatePersonalInfo(val updateInfoRequest: UpdateInfoRequest) :
+            PersonalInfoAction()
     }
 
     sealed class PersonalInfoEvent : ViewEvent {

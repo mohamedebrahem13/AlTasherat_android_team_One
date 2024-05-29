@@ -13,7 +13,9 @@ internal class PersonalInfoRemoteDS(
         return networkProvider.post(
             pathUrl = "update-account",
             requestBody = updateInfoRequest,
-            headers = hashMapOf("accept" to "application/json"),
+            headers = hashMapOf(
+                "Authorization-Required" to "true",
+            ),
             responseWrappedModel = UpdateInfoResponseDto::class.java
         )
     }

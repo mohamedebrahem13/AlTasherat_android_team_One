@@ -10,16 +10,15 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelection
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
 import com.solutionplus.altasherat.features.personal_info.data.models.request.PhoneRequest
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.domain.models.User
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoAction
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoEvent
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoViewModel
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
+import com.solutionplus.altasherat.features.services.user.domain.models.User
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Instant
 import java.time.LocalDate
@@ -30,9 +29,9 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private val viewModel: PersonalInfoViewModel by viewModels()
 
-    private lateinit var countries: Array<Country>
-    private lateinit var selectedCountry: Country
-    private lateinit var selectedCountryCode: Country
+    private lateinit var countries: List<Country>
+    private var selectedCountryIndex: Int = -1
+    private var selectedCountryCodeIndex: Int = -1
     private lateinit var selectedDate: LocalDate
 
     private val datePicker: MaterialDatePicker<Long> by lazy {
@@ -50,15 +49,20 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     override fun viewInit() {
         setFragmentResultListener(SelectionDialogFragment.REQUEST_KEY) { _, bundle ->
-            val selectedCountryIndex =
+            val selectedIndex =
                 bundle.getInt(SelectionDialogFragment.SELECTED_COUNTRY_INDEX_KEY)
-
-            val selectedCountry = countries[selectedCountryIndex]
 
             when (selectionType) {
                 SelectionType.NONE -> {}
-                SelectionType.COUNTRY -> onCountrySelected(selectedCountry)
-                SelectionType.COUNTRY_CODE -> onCountryCodeSelected(selectedCountry)
+                SelectionType.COUNTRY -> {
+                    selectedCountryIndex = selectedIndex
+                    setCountryText(selectedIndex)
+                }
+
+                SelectionType.COUNTRY_CODE -> {
+                    selectedCountryCodeIndex = selectedIndex
+                    setCountryCodeText(selectedIndex)
+                }
             }
         }
     }
@@ -69,7 +73,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                 editText.setOnClickListener {
                     navigateToSelectionDialog(
                         SelectionType.COUNTRY_CODE,
-                        countries.indexOf(selectedCountryCode)
+                        selectedCountryCodeIndex
                     )
                 }
             }
@@ -77,7 +81,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             inputCountry.setEndIconOnClickListener {
                 navigateToSelectionDialog(
                     SelectionType.COUNTRY,
-                    countries.indexOf(selectedCountry)
+                    selectedCountryIndex
                 )
             }
 
@@ -99,12 +103,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                     lastname = inputLastName.editText?.text.toString(),
                     phone = PhoneRequest(
                         number = inputPhoneNumber.editText?.text.toString(),
-                        countryCode = selectedCountryCode.phoneCode
+                        countryCode = countries[selectedCountryIndex].phoneCode
                     ),
                     email = inputEmail.editText?.text.toString(),
                     birthDate = selectedDate.toString(),
-                    image = "",
-                    countryId = selectedCountry.id
+                    countryId = countries[selectedCountryIndex].id
                 )
 
                 viewModel.processIntent(PersonalInfoAction.UpdatePersonalInfo(updateInfoRequest))
@@ -117,7 +120,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
         val action =
             PersonalInfoFragmentDirections.actionPersonalInfoFragmentToSelectionDialogFragment(
-                countries = countries,
+                countries = countries.toTypedArray(),
                 selectedIndex = selectedIndex
             )
         findNavController().navigate(action)
@@ -131,13 +134,13 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             when (event) {
                 is PersonalInfoEvent.CountriesIndex -> handleCountriesIndex(event.countries)
                 is PersonalInfoEvent.UserPersonalInfo -> bindUser(event.user)
-                is PersonalInfoEvent.PersonalInfoUpdated -> TODO()
+                is PersonalInfoEvent.PersonalInfoUpdated -> {}
             }
         }
     }
 
     private fun handleCountriesIndex(countriesList: List<Country>) {
-        countries = countriesList.toTypedArray()
+        countries = countriesList
         viewModel.processIntent(PersonalInfoAction.GetUserPersonalInfo)
     }
 
@@ -156,37 +159,28 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
         }
 
-        //selectedCountry = user.country
-        selectedCountryCode = countries.first { it.phoneCode == user.country.phoneCode }
+        selectedCountryIndex = countries.indexOfFirst { it.id == user.country.id }
+        selectedCountryCodeIndex = countries.indexOfFirst { it.phoneCode == user.phone.countryCode }
 
         setBirthDateText(user.birthDate)
-        setCountryText(selectedCountry.name)
-        setCountryCodeText(selectedCountryCode)
+        setCountryText(selectedCountryIndex)
+        setCountryCodeText(selectedCountryCodeIndex)
     }
 
     override fun onLoading(isLoading: Boolean) {
     }
 
-    private fun onCountryCodeSelected(selectedItem: SingleSelection) {
-        selectedCountryCode = selectedItem as Country
-        setCountryCodeText(selectedCountryCode)
+    private fun setCountryText(index: Int) {
+        binding.inputCountry.editText?.setText(countries[index].name)
     }
 
-    private fun onCountrySelected(selectedItem: SingleSelection) {
-        selectedCountry = selectedItem as Country
-        setCountryText(selectedCountry.name)
-    }
-
-    private fun setCountryCodeText(country: Country) {
+    private fun setCountryCodeText(index: Int) {
+        val country = countries[index]
         binding.inputCountryCode.editText?.setText(
             requireContext().getString(
                 R.string.selected_country_code, country.flag, country.phoneCode.substring(2)
             )
         )
-    }
-
-    private fun setCountryText(countryName: String) {
-        binding.inputCountry.editText?.setText(countryName)
     }
 
     private fun setBirthDateText(date: LocalDate) {

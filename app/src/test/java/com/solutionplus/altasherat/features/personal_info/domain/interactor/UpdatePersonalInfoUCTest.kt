@@ -7,7 +7,6 @@ import com.solutionplus.altasherat.features.personal_info.data.models.request.Ph
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.personal_info.data.repository.PersonalInfoRepository
 import com.solutionplus.altasherat.features.personal_info.domain.repository.IPersonalInfoRepository
-import com.solutionplus.altasherat.features.personal_info.domain.repository.local.IPersonalInfoLocalDS
 import com.solutionplus.altasherat.features.personal_info.domain.repository.remote.IPersonalInfoRemoteDS
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
@@ -28,7 +27,6 @@ import org.mockito.kotlin.whenever
 @RunWith(MockitoJUnitRunner::class)
 class UpdatePersonalInfoUCTest {
 
-    private lateinit var personalInfoLocalDS: IPersonalInfoLocalDS
     private lateinit var personalInfoRemoteDS: IPersonalInfoRemoteDS
     private lateinit var personalInfoRepository: IPersonalInfoRepository
     private lateinit var updatePersonalInfoUC: UpdatePersonalInfoUC
@@ -53,11 +51,10 @@ class UpdatePersonalInfoUCTest {
         updatePersonalInfoResponse = mock<UpdateInfoResponseDto> {
             on { message } doReturn "Updated successfully"
         }
-        personalInfoLocalDS = mock()
         personalInfoRemoteDS = mock<IPersonalInfoRemoteDS> {
             onBlocking { updatePersonalInfo(any<UpdateInfoRequest>()) } doReturn updatePersonalInfoResponse
         }
-        personalInfoRepository = PersonalInfoRepository(personalInfoRemoteDS, personalInfoLocalDS)
+        personalInfoRepository = PersonalInfoRepository(personalInfoRemoteDS)
         updatePersonalInfoUC = UpdatePersonalInfoUC(personalInfoRepository)
     }
 

@@ -20,7 +20,7 @@ data class UpdateInfoRequest(
     @SerializedName("phone")
     val phone: PhoneRequest,
     @SerializedName("image")
-    val image: String,
+    val image: String? = null,
     @SerializedName("country")
     val countryId: Int,
 ) {

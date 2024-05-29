@@ -125,26 +125,17 @@
         <item name="startIconDrawable">@drawable/ic_mobile</item>
     </style>
 
-    <!--    <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox">
-            <item name="android:layout_marginStart">0dp</item>
-            <item name="android:layout_marginEnd">16dp</item>
-            <item name="android:layout_marginVertical">0dp</item>
-            <item name="boxCornerRadiusBottomEnd">22dp</item>
-            <item name="boxCornerRadiusBottomStart">0dp</item>
-            <item name="boxCornerRadiusTopEnd">22dp</item>
-            <item name="boxCornerRadiusTopStart">0dp</item>
-            <item name="boxBackgroundColor">@color/primary</item>
-        </style>-->
-
     <style name="TextInputLayout.Email" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
 
+    <style name="TextInputLayout.BirthDate" parent="TextInputLayout.OutlinedBox">
+        <item name="startIconDrawable">@drawable/ic_calender</item>
+    </style>
 
     <style name="TextInputLayout.Password" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_pass</item>
     </style>
-
 
     <style name="TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_width">match_parent</item>
@@ -162,7 +153,7 @@
         <item name="hintEnabled">false</item>
         <item name="hintTextAppearance">@style/Font.SemiBold</item>
         <item name="startIconTint">@color/icon_input</item>
-        <item name="endIconDrawable">@drawable/selector_menu_icon</item>
+        <item name="endIconDrawable">@drawable/ic_arrow_down</item>
         <item name="endIconTint">@color/icon_input</item>
     </style>
 

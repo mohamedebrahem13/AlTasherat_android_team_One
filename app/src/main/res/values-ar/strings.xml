@@ -80,11 +80,9 @@
     <!--region Personal Info Fragment -->
     <string name="more">المزيد</string>
     <string name="back_arrow">زر الرجوع</string>
-    <string name="first_name">الاسم الاول</string>
     <string name="enter_first_name">ادخل الاسم الاول</string>
     <string name="middle_name">الاسم الاوسط</string>
     <string name="enter_middle_name">ادخل الاسم الاوسط</string>
-    <string name="last_name">الاسم الاخير</string>
     <string name="enter_last_name">ادخل الاسم الاخير</string>
     <string name="phone_number">الجوال</string>
     <string name="enter_phone_number">ادخل رقم الجوال للمتابعة</string>
@@ -96,6 +94,6 @@
     <string name="select_country">ادخل دولتك</string>
     <string name="save">حفظ</string>
     <string name="country_code">كود الدولة</string>
-    <string name="selected_country_code">%1$s\t(+%2$s)</string>
+    <string name="choose_country">اختر الدولة</string>
     <!--endregion-->
 </resources>

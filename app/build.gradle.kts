@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     alias(libs.plugins.dagger.hilt)
 }
 
