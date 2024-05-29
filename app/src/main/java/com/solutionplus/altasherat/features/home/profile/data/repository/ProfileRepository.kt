@@ -3,9 +3,8 @@ package com.solutionplus.altasherat.features.home.profile.data.repository
 import com.solutionplus.altasherat.features.home.profile.domain.repository.IProfileRepository
 import com.solutionplus.altasherat.features.home.profile.domain.repository.local.IProfileLocalDataSource
 import com.solutionplus.altasherat.features.home.profile.domain.repository.remote.IProfileRemoteDataSource
-import javax.inject.Inject
 
-internal class ProfileRepository @Inject constructor (
+internal class ProfileRepository (
     private val remoteDataSource: IProfileRemoteDataSource,
     private val localDataSource:IProfileLocalDataSource
 ):IProfileRepository{
