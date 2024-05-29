@@ -10,7 +10,7 @@ internal class ProfileRemoteDataSource (private val networkProvider: INetworkPro
         return networkProvider.delete(
             responseWrappedModel = LogoutResponse::class.java,
             pathUrl = "logout",
-            headers = hashMapOf("accept" to "application/json"),
+            headers = hashMapOf("Authorization-Required" to "true")
         )
     }
 }
