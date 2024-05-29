@@ -84,7 +84,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
 
-
     // Unit Test
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -104,7 +103,6 @@ dependencies {
 
     // Fragment KTX
     implementation(libs.androidx.fragment.ktx)
-
 
     // Dagger Hilt
     implementation(libs.dagger.hilt.android)
@@ -131,9 +129,10 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // Coil
     implementation(libs.coil)
 
-    //circle imageview
+    // Circle Imageview
     implementation (libs.circleimageview)
-
 }
