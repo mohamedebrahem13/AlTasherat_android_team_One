@@ -69,7 +69,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageFragment2())
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
-            else -> {}
         }
     }
     private fun handleViewState(state: ProfileContract.ProfileViewState) {
