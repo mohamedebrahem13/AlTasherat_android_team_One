@@ -117,6 +117,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             buttonBack.setOnClickListener {
                 findNavController().popBackStack()
             }
+
+            binding.swipeRefreshLayout.setOnRefreshListener {
+                viewModel.processIntent(PersonalInfoAction.GetUpdatedUserPersonalInfo)
+                binding.swipeRefreshLayout.isRefreshing = true
+            }
         }
     }
 
@@ -138,7 +143,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is PersonalInfoEvent.CountriesIndex -> handleCountriesIndex(event.countries)
-                is PersonalInfoEvent.UserPersonalInfo -> bindUser(event.user)
+                is PersonalInfoEvent.UserPersonalInfo -> {
+                    bindUser(event.user)
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+
                 is PersonalInfoEvent.PersonalInfoUpdated -> {
                     Toast.makeText(
                         requireContext(),
@@ -153,7 +162,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private fun handleCountriesIndex(countriesList: List<Country>) {
         countries = countriesList
-        viewModel.processIntent(PersonalInfoAction.GetUserPersonalInfo)
+        viewModel.processIntent(PersonalInfoAction.GetCachedUserPersonalInfo)
     }
 
     private fun bindUser(user: User) {

@@ -11,21 +11,24 @@ import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel
 import com.solutionplus.altasherat.features.personal_info.presentation.viewmodel.PersonalInfoContract.PersonalInfoState
 import com.solutionplus.altasherat.features.services.country.domain.interactor.GetCachedCountriesUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.GetCachedUserUC
+import com.solutionplus.altasherat.features.services.user.domain.interactor.GetUserUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class PersonalInfoViewModel @Inject constructor(
     private val getCountriesUC: GetCachedCountriesUC,
-    private val getUserPersonalInfoUC: GetCachedUserUC,
+    private val getCachedUserUC: GetCachedUserUC,
+    private val getUserUC: GetUserUC,
     private val updatePersonalInfoUC: UpdatePersonalInfoUC,
 ) : AlTasheratViewModel<PersonalInfoAction, PersonalInfoEvent, PersonalInfoState>(PersonalInfoState.initial()) {
 
     override fun onActionTrigger(action: ViewAction?) {
         when (action) {
             is PersonalInfoAction.GetCountries -> getCountries()
-            is PersonalInfoAction.GetUserPersonalInfo -> getUserPersonalInfo()
+            is PersonalInfoAction.GetCachedUserPersonalInfo -> getCachedUserPersonalInfo()
             is PersonalInfoAction.UpdatePersonalInfo -> updatePersonalInfo(action.updateInfoRequest)
+            is PersonalInfoAction.GetUpdatedUserPersonalInfo -> getUserPersonalInfo()
         }
     }
 
@@ -39,8 +42,18 @@ class PersonalInfoViewModel @Inject constructor(
         }
     }
 
+    private fun getCachedUserPersonalInfo() {
+        getCachedUserUC.invoke(viewModelScope) {
+            when (it) {
+                is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
+                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
+                is Resource.Success -> sendEvent(PersonalInfoEvent.UserPersonalInfo(it.model))
+            }
+        }
+    }
+
     private fun getUserPersonalInfo() {
-        getUserPersonalInfoUC.invoke(viewModelScope) {
+        getUserUC.invoke(viewModelScope) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
