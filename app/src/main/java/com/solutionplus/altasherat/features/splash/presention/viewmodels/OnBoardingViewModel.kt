@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class OnBoardingThreeViewModel@Inject constructor(private val setOnboardingShownUseCase: SetOnboardingShownUseCase): AlTasheratViewModel<OnBoardingThreeContract.OnBoardingThreeAction, OnBoardingThreeContract.OnBoardingThreeEvent, OnBoardingThreeContract.OnBoardingThreeViewState>(
+class OnBoardingViewModel@Inject constructor(private val setOnboardingShownUseCase: SetOnboardingShownUseCase): AlTasheratViewModel<OnBoardingThreeContract.OnBoardingThreeAction, OnBoardingThreeContract.OnBoardingThreeEvent, OnBoardingThreeContract.OnBoardingThreeViewState>(
     OnBoardingThreeContract.OnBoardingThreeViewState.initial()
 ) {
     override fun clearState() {

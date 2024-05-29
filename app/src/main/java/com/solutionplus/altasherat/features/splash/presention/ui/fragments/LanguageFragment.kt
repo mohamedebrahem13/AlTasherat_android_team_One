@@ -16,7 +16,6 @@ import com.solutionplus.altasherat.features.splash.domain.models.Country
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.CustomSpinnerAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
 import dagger.hilt.android.AndroidEntryPoint
 
 
