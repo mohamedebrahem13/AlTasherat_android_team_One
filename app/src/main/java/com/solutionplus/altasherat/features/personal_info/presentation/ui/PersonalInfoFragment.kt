@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.personal_info.presentation.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -112,6 +113,10 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
                 viewModel.processIntent(PersonalInfoAction.UpdatePersonalInfo(updateInfoRequest))
             }
+
+            buttonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
@@ -134,7 +139,14 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             when (event) {
                 is PersonalInfoEvent.CountriesIndex -> handleCountriesIndex(event.countries)
                 is PersonalInfoEvent.UserPersonalInfo -> bindUser(event.user)
-                is PersonalInfoEvent.PersonalInfoUpdated -> {}
+                is PersonalInfoEvent.PersonalInfoUpdated -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Personal info updated successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    findNavController().popBackStack()
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentOnboardingBinding
-import com.solutionplus.altasherat.features.home.presentation.HomeActivity
+import com.solutionplus.altasherat.features.auth.ui.AuthActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.OnboardingPageAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeViewModel
@@ -70,7 +70,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
     private fun handleSingleEvent(event: OnBoardingThreeContract.OnBoardingThreeEvent) {
         when (event) {
             is OnBoardingThreeContract.OnBoardingThreeEvent.NavigateToHome -> {
-                Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                Intent(requireActivity(), AuthActivity::class.java).also { intent ->
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 }

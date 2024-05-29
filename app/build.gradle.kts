@@ -88,11 +88,10 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockwebserver)
-    testImplementation(libs.mockk.v1124)
+    testImplementation(libs.mockk)
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockito.inline)
-
 
     // Android Test
     androidTestImplementation(libs.androidx.junit)
@@ -131,8 +130,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     // Coil
-    implementation(libs.coil)
+    implementation(libs.coil.kt)
 
     // Circle Imageview
-    implementation (libs.circleimageview)
+    implementation(libs.circleimageview)
 }

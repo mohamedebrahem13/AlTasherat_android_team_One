@@ -83,6 +83,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
         setState(oldViewState.copy(action = action))
         when(action) {
             is ProfileContract.ProfileAction.SignOut->{ logout() }
+            is ProfileContract.ProfileAction.EditProfile->{ sendEvent(ProfileContract.ProfileEvent.EditProfileNavigation) }
         }
     }
     companion object {
