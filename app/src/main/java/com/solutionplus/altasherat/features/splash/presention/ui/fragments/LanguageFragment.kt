@@ -49,7 +49,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
   }
     private fun setSpinner(selectedCountry: String) {
         // Extract the ID from the selectedCountry string
-        val countryId = selectedCountry.substringAfter("id=").substringBefore(",")?.toIntOrNull()
+        val countryId = selectedCountry.substringAfter("id=").substringBefore(",").toIntOrNull()
 
         // Check if the extracted countryId is not null
         countryId?.let { id ->
