@@ -1,17 +1,22 @@
 package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
+import com.solutionplus.altasherat.features.splash.domain.models.Country
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.CustomSpinnerAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageViewModel
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -30,7 +35,41 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             handleSingleEvent(event)
         }
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            handleViewState(state)
+        }
     }
+  private fun handleViewState(state: LanguageContract.CountryLocalViewState){
+      when {
+          state.selectedCountry != null -> {
+              setSpinner( state.selectedCountry)
+          }
+
+      }
+
+  }
+    private fun setSpinner(selectedCountry: String) {
+        // Extract the ID from the selectedCountry string
+        val countryId = selectedCountry.substringAfter("id=").substringBefore(",")?.toIntOrNull()
+
+        // Check if the extracted countryId is not null
+        countryId?.let { id ->
+            // Retrieve the adapter and countries list
+            val adapter = binding.spinner.adapter as? CustomSpinnerAdapter
+            val countries = adapter?.countries
+
+            // Iterate through the countries list to find the matching country by ID
+            countries?.forEachIndexed { index, country ->
+                if (country.id == id) {
+                    // If the country's ID matches id,
+                    // set the spinner selection to the corresponding position
+                    binding.spinner.setSelection(index)
+                    return@forEachIndexed
+                }
+            }
+        }
+    }
+
 
     override fun viewInit() {
 
@@ -48,6 +87,19 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
             viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerAr("ar"))
 
         }
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedCountry = parent?.getItemAtPosition(position) as? Country
+                val selectedCountryName = selectedCountry?.name ?: ""
+                logger.debug("selectedspinner: $selectedCountryName")
+                viewModel.onActionTrigger(LanguageContract.CountryLocalAction.SpinnerClicked(selectedCountryName))
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Handle case where nothing is selected
+            }
+        }
+
 
     }
     private fun handleSingleEvent(event: LanguageContract.CountryLocalEvent) {
@@ -74,18 +126,24 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
     private fun getLocal() {
         val language = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
-      if (language == "ar") {
-          binding.radioButton1.isEnabled = false
-          binding.radioButton2.isEnabled = true
+        logger.debug("langauges $language")
+        if (language == "ar") {
+            binding.radioButton1.isEnabled = false
+            binding.radioButton2.isEnabled = true
+            binding.radioButton1.isChecked = true
         } else{
-          binding.radioButton2.isEnabled = false
-          binding.radioButton1.isEnabled = true
-
-      }
+            binding.radioButton2.isEnabled = false
+            binding.radioButton1.isEnabled = true
+            binding.radioButton2.isChecked = true
+        }
     }
+
     private fun showToast(message: String){
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
+    }
+    companion object {
+        private val logger = getClassLogger()
     }
 
 }

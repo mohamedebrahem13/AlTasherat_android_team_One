@@ -9,10 +9,11 @@ import com.solutionplus.altasherat.features.splash.domain.models.Country
  interface LanguageContract {
 
     sealed class CountryLocalAction : ViewAction {
-        data object FetchCountriesFromLocal: CountryLocalAction()
+        data object FetchCountriesFromLocal : CountryLocalAction()
         data class NextButtonClick(val selectedCountry: String) : CountryLocalAction()
         data class StartCountriesWorkerEn(val language: String) : CountryLocalAction()
         data class StartCountriesWorkerAr(val language: String) : CountryLocalAction()
+        data class SpinnerClicked(val selectedCountry: String):CountryLocalAction()
 
     }
 
@@ -26,13 +27,14 @@ import com.solutionplus.altasherat.features.splash.domain.models.Country
 
     }
 
-    data class CountryLocalViewState(
-        val isLoading: Boolean,
-        val exception: AlTasheratException?,
-        val action: ViewAction?
-    ) : ViewState {
-        companion object {
-            fun initial() = CountryLocalViewState(isLoading = false, exception = null, action = null)
-        }
-    }
+     data class CountryLocalViewState(
+         val isLoading: Boolean,
+         val selectedCountry: String?,
+         val exception: AlTasheratException?,
+         val action: ViewAction?
+     ) : ViewState {
+         companion object {
+             fun initial() = CountryLocalViewState(isLoading = false,selectedCountry=null, exception = null, action = null)
+         }
+     }
 }

@@ -129,8 +129,6 @@
                         android:paddingStart="8dp"
                         android:paddingEnd="16dp"
                         android:text="@string/arabic"
-                        android:checked="true"
-                        android:enabled="false"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/TextView.Bold" />
 

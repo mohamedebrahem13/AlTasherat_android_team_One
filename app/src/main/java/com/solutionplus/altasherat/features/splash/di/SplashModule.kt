@@ -8,6 +8,7 @@ import com.solutionplus.altasherat.features.splash.data.repository.local.SplashL
 import com.solutionplus.altasherat.features.splash.data.repository.remote.SplashRemoteDS
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveCountriesUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetCountriesFromLocalUseCase
+import com.solutionplus.altasherat.features.splash.domain.interactor.GetUserPreferredCountryUC
 import com.solutionplus.altasherat.features.splash.domain.interactor.HasCountryStringKeyUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.IsOnboardingShownUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase
@@ -83,5 +84,11 @@ internal object SplashModule {
         splashRepository: ISplashRepository
     ): SetOnboardingShownUseCase {
         return SetOnboardingShownUseCase(splashRepository)
+    }
+    @Provides
+    fun provideGetUserPreferredCountryUC(
+        splashRepository: ISplashRepository
+    ): GetUserPreferredCountryUC {
+        return GetUserPreferredCountryUC(splashRepository)
     }
 }
