@@ -10,7 +10,7 @@ internal class ProfileRepository @Inject constructor (
     private val localDataSource:IProfileLocalDataSource
 ):IProfileRepository{
     override suspend fun logout(): String {
-        return  remoteDataSource.logout().message ?: "Logout successful"
+        return  remoteDataSource.logout().message.orEmpty()
 
     }
 

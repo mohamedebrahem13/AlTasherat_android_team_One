@@ -26,7 +26,7 @@ internal object ProfileRemoteDataSourceModule {
         return ProfileRemoteDataSource(networkProvider)
     }
     @Provides
-   fun provideProfileRepository(profileRemoteDataSource:IProfileRemoteDataSource,profileLocalDataSource:ProfileLocalDataSource):IProfileRepository{
+   fun provideProfileRepository(profileRemoteDataSource:IProfileRemoteDataSource,profileLocalDataSource:IProfileLocalDataSource):IProfileRepository{
         return ProfileRepository(profileRemoteDataSource,profileLocalDataSource)
    }
     @Provides
