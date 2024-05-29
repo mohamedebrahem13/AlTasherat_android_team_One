@@ -12,7 +12,7 @@ import com.solutionplus.altasherat.features.auth.login.data.models.request.UserL
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginContracts
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 

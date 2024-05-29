@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.auth.ui
+package com.solutionplus.altasherat.features.auth.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFrag
 import com.solutionplus.altasherat.databinding.FragmentSignupLoginBinding
 import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFragment
 import com.solutionplus.altasherat.features.auth.signup.presentation.ui.SignUpFragment
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
 
 class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
 

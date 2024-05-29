@@ -7,6 +7,6 @@
     <fragment
         android:id="@+id/authViewPagerFragment"
         tools:layout="@layout/fragment_signup_login"
-        android:name="com.solutionplus.altasherat.features.auth.ui.AuthViewPagerFragment"
+        android:name="com.solutionplus.altasherat.features.auth.presentation.AuthViewPagerFragment"
         android:label="AuthViewPagerFragment" />
 </navigation>

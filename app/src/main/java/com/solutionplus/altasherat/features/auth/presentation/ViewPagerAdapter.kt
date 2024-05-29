@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.auth.ui
+package com.solutionplus.altasherat.features.auth.presentation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
