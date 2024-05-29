@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLoginBinding
@@ -30,6 +31,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             selectedCountryItem.let { country ->
                 countryCode = country?.phoneCode
             }
+        }
+
+        binding.textForgetPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_authViewPagerFragment_to_fragmentViewPagerResetPassword)
         }
     }
 
