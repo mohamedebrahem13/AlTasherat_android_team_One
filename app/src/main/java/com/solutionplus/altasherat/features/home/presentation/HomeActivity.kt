@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.home.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.solutionplus.altasherat.R
@@ -20,6 +21,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         with(binding) {
             bottomNavHome.itemIconTintList = null
             bottomNavHome.setupWithNavController(navController)
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.personalInfoFragment, R.id.selectionDialogFragment -> {
+                    binding.bottomNavHome.visibility = View.GONE
+                }
+
+                else -> {
+                    binding.bottomNavHome.visibility = View.VISIBLE
+                }
+            }
         }
     }
 

@@ -52,5 +52,58 @@
     <string name="visa_platform">منصة التأشيرات</string>
     <string name="visa_requests">طلبات التأشيرات</string>
     <string name="profile">الملف الشخصي</string>
+    <string name="Edit_Profile">تعديل الملف الشخصي</string>
+    <string name="Change_Password">تعديل كلمة المرور</string>
+    <string name="about_us">من نحن</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="terms_and_conditions">الشروط والأحكام</string>
+    <string name="language">اللغة</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="Current_version">النسخة الحالية </string>
+
+    <!--endregion-->
+
+    <!--region Visa Platform-->
+    <string name="visa_platform_image">صورة منصة التأشيرات</string>
+    <string name="first_title_first_part">استخرج التأشيرات</string>
+    <string name="first_title_second_part">السياحية بسهولة</string>
+    <string name="first_button_text">تأشيرات سياحية</string>
+    <string name="first_action_text">اطـــلب\nالآن التأشيرة</string>
+    <string name="second_title_first_part">اطلب فيزا توظيف</string>
+    <string name="second_title_second_part">بكل سهولة مع منصة التأشيرات</string>
+    <string name="second_button_text">تأشيرات وظائف</string>
+    <string name="second_action_text">اطـــلب\nالآن التأشيرة</string>
+    <string name="third_title_first_part">تستطيع عرض فيزا</string>
+    <string name="third_title_second_part">من خلال منصة التأشيرات</string>
+    <string name="third_button_text">عـــــرض  تأشيرات</string>
+    <string name="third_action_text">املأ\nالاستمارة الآن</string>
+    <string name="header_title">لديك وظائف وتأشيرات تريد\nاخبارنا بها بادر بملأ الاستماره\nواخبارنا بالتفاصيل لديك\nوظائف وتأشيرات تريد\nاخبارنا بها بادر بملأ الاستماره</string>
+    <!--endregion-->
+
+    <!--region UnAuthorizedDialog-->
+    <string name="un_authorized_dialog_title">تسجيل الدخول للمتابعة</string>
+    <string name="un_authorized_dialog_description">يجب عليك تسجيل الدخول للمتابعة في استكمال الطلب</string>
+    <string name="un_authorized_dialog_image">صورة تسجيل الدخول</string>
+    <!--endregion-->
+
+    <!--region Personal Info Fragment -->
+    <string name="more">المزيد</string>
+    <string name="back_arrow">زر الرجوع</string>
+    <string name="enter_first_name">ادخل الاسم الاول</string>
+    <string name="middle_name">الاسم الاوسط</string>
+    <string name="enter_middle_name">ادخل الاسم الاوسط</string>
+    <string name="enter_last_name">ادخل الاسم الاخير</string>
+    <string name="phone_number">الجوال</string>
+    <string name="enter_phone_number">ادخل رقم الجوال للمتابعة</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="enter_email_address">ادخل البريد الالكتروني</string>
+    <string name="birth_date">تاريخ الميلاد</string>
+    <string name="enter_birth_date">ادخل تاريخ الميلاد</string>
+    <string name="country">الدولة</string>
+    <string name="select_country">ادخل دولتك</string>
+    <string name="save">حفظ</string>
+    <string name="country_code">كود الدولة</string>
+    <string name="choose_country">اختر الدولة</string>
     <!--endregion-->
 </resources>

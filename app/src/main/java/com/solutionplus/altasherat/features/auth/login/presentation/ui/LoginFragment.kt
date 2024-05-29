@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.auth.login.presentation.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.solutionplus.altasherat.features.auth.login.data.models.request.Phone
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginContracts
 import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,16 +34,26 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             }
 
         }
+    }
 
+    override fun onLoading(isLoading: Boolean) {
+        binding.progressbar.isVisible = isLoading
+    }
+
+    override fun subscribeToObservables() {
         collectFlowWithLifecycle(loginViewMode.singleEvent) { event ->
             when(event) {
-                is LoginContracts.MainEvent.GetCountries -> {
+                is LoginContracts.LoginEvent.GetCountries -> {
                     countries = event.countries
                     setCustomCountry()
                     setUpCountryCodeAdapter()
                 }
-                is LoginContracts.MainEvent.LoginIsSuccessfully -> {
+                is LoginContracts.LoginEvent.LoginIsSuccessfully -> {
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                    Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    }
                 }
             }
         }
@@ -55,15 +67,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             }
             onLoading(result.isLoading)
         }
-
-    }
-
-    override fun onLoading(isLoading: Boolean) {
-        binding.progressbar.isVisible = isLoading
-    }
-
-    override fun subscribeToObservables() {
-
     }
 
     override fun viewInit() {}
@@ -76,7 +79,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             password = password,
             phoneLoginRequest = phoneRequest
         )
-        loginViewMode.processIntent(LoginContracts.MainAction.Login(userLoginRequest))
+        loginViewMode.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
 
     }
 
@@ -98,5 +101,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
 
     override fun triggerButton() {
         login()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.root.requestLayout()
     }
 }

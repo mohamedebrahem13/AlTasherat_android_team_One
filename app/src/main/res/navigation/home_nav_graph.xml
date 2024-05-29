@@ -6,18 +6,52 @@
     app:startDestination="@id/fragment_visa_platform">
 
     <fragment
+        android:id="@+id/personalInfoFragment"
+        android:name="com.solutionplus.altasherat.features.personal_info.presentation.ui.PersonalInfoFragment"
+        android:label="fragment_personal_info"
+        tools:layout="@layout/fragment_personal_info">
+        <action
+            android:id="@+id/action_personalInfoFragment_to_selectionDialogFragment"
+            app:destination="@id/selectionDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/selectionDialogFragment"
+        android:name="com.solutionplus.altasherat.features.personal_info.presentation.ui.SelectionDialogFragment"
+        android:label="fragment_country_selection_dialog"
+        tools:layout="@layout/fragment_country_selection_dialog">
+        <argument
+            android:name="countries"
+            app:argType="com.solutionplus.altasherat.features.services.country.domain.models.Country[]" />
+        <argument
+            android:name="selectedIndex"
+            app:argType="integer" />
+    </dialog>
+    <fragment
         android:id="@+id/fragment_profile"
         android:name="com.solutionplus.altasherat.features.home.profile.presentation.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragment_profile_to_personalInfoFragment"
+            app:destination="@id/personalInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
         android:name="com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.VisaPlatformFragment"
         android:label="fragment_visa_platform"
-        tools:layout="@layout/fragment_visa_platform" />
+        tools:layout="@layout/fragment_visa_platform" >
+        <action
+            android:id="@+id/action_fragment_visa_platform_to_unAuthorizedDialogFragment"
+            app:destination="@id/unAuthorizedDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_visa_request"
         android:name="com.solutionplus.altasherat.features.home.visa_request.presentation.ui.VisaRequestFragment"
         android:label="fragment_visa_request"
         tools:layout="@layout/fragment_visa_request" />
+    <dialog
+        android:id="@+id/unAuthorizedDialogFragment"
+        android:name="com.solutionplus.altasherat.features.home.presentation.UnAuthorizedDialogFragment"
+        android:label="fragment_un_authorized_dialog"
+        tools:layout="@layout/fragment_un_authorized_dialog" />
 </navigation>

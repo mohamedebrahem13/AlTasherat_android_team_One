@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.auth.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -10,6 +11,7 @@ import com.solutionplus.altasherat.databinding.FragmentSignupLoginBinding
 import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFragment
 import com.solutionplus.altasherat.features.auth.signup.presentation.ui.SignUpFragment
 import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 
 class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
 
@@ -24,6 +26,13 @@ class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
             val currentItem =
                 fragments[binding.viewPager.currentItem] as LoginSignupButtonListener
             currentItem.triggerButton()
+        }
+
+        binding.skipTv.setOnClickListener {
+            Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
         }
     }
 
@@ -56,12 +65,12 @@ class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = getString(R.string.new_account)
+                    tab.text = getString(R.string.login_text)
 
                 }
 
                 1 -> {
-                    tab.text = getString(R.string.login_text)
+                    tab.text = getString(R.string.new_account)
                 }
             }
         }.attach()

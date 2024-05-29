@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.auth.signup.presentation.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -14,6 +15,7 @@ import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserS
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpContract
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpViewModel
 import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,17 +39,63 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             }
 
         }
+    }
+
+    override fun viewInit() {
+    }
+
+
+    private fun signUp() {
+        val firstname: String = binding.etFirstName.text.toString().trim()
+        val lastname: String = binding.etLastName.text.toString().trim()
+        val email: String = binding.etEmail.text.toString().trim()
+        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        val passwordConfirmation = binding.etPassword.text.toString().trim()
+        val phoneRequest = PhoneSignUpRequest(countryCode, number = phoneNumber)
+
+        val signUpUserRequest = UserSignUpRequest(
+            firstname,
+            middleName = "",
+            lastname,
+            email,
+            password,
+            passwordConfirmation,
+            countryId,
+            phoneRequest
+        )
+
+        signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+
+    }
+
+    private fun setUpCountryCodeAdapter() {
+        val arrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
+        binding.etCountryCode.setAdapter(arrayAdapter)
+    }
+
+
+    override fun onLoading(isLoading: Boolean) {
+        binding.progressbar.isVisible = isLoading
+    }
+
+    override fun subscribeToObservables() {
 
         collectFlowWithLifecycle(signUpViewModel.singleEvent) { event ->
             when (event) {
-                is SignUpContract.MainEvent.GetCountries -> {
+                is SignUpContract.SignUpEvent.GetCountries -> {
                     countries = event.countries
                     setCustomCountry()
                     setUpCountryCodeAdapter()
                 }
 
-                is SignUpContract.MainEvent.SignUpIsSuccessfully -> {
+                is SignUpContract.SignUpEvent.SignUpIsSuccessfully -> {
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                    Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    }
                 }
             }
 
@@ -62,50 +110,6 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             }
             onLoading(result.isLoading)
         }
-
-
-    }
-
-    override fun viewInit() {
-    }
-
-
-     private fun signUp() {
-        val firstname: String = binding.etFirstName.text.toString().trim()
-        val lastname: String = binding.etLastName.text.toString().trim()
-        val email: String = binding.etEmail.text.toString().trim()
-        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-        val passwordConfirmation = binding.etPassword.text.toString().trim()
-        val phoneRequest = PhoneSignUpRequest(countryCode, number = phoneNumber)
-
-        val signUpUserRequest = UserSignUpRequest(
-            firstname,
-            "Ibrahem",
-            lastname,
-            email,
-            password,
-            passwordConfirmation,
-            countryId,
-            phoneRequest
-        )
-
-        signUpViewModel.processIntent(SignUpContract.MainAction.SignUp(signUpUserRequest))
-
-    }
-
-    private fun setUpCountryCodeAdapter() {
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
-        binding.etCountryCode.setAdapter(arrayAdapter)
-    }
-
-
-    override fun onLoading(isLoading: Boolean) {
-        binding.progressbar.isVisible = isLoading
-    }
-
-    override fun subscribeToObservables() {
-
     }
 
     private fun setCustomCountry() {
@@ -125,6 +129,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
     companion object {
         val logger = getClassLogger()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.root.requestLayout()
     }
 
 }
