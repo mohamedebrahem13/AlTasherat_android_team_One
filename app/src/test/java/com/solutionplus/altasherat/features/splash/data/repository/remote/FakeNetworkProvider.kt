@@ -19,12 +19,11 @@ class FakeNetworkProvider : INetworkProvider {
         return castResponse(responseWrappedModel, pathUrl)
     }
 
-    override suspend fun <ResponseBody, RequestBody> delete(
+    override suspend fun <ResponseBody> delete(
         responseWrappedModel: Type,
         pathUrl: String,
         headers: Map<String, Any>?,
         queryParams: Map<String, Any>?,
-        requestBody: RequestBody?
     ): ResponseBody {
         return castResponse(responseWrappedModel, pathUrl)
     }

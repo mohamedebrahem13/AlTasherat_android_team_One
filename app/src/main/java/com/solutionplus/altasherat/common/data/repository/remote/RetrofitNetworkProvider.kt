@@ -2,7 +2,6 @@ package com.solutionplus.altasherat.common.data.repository.remote
 
 import com.solutionplus.altasherat.android.extentions.getModelFromJSON
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
-import okhttp3.ResponseBody
 import java.lang.reflect.Type
 
 class RetrofitNetworkProvider(private val apiServices: AlTasheratApiServices) : INetworkProvider {
@@ -17,19 +16,19 @@ class RetrofitNetworkProvider(private val apiServices: AlTasheratApiServices) : 
         return response.string().getModelFromJSON(responseWrappedModel)
     }
 
-    override suspend fun <ResponseBody, RequestBody> delete(
+    override suspend fun <ResponseBody> delete(
         responseWrappedModel: Type,
         pathUrl: String,
         headers: Map<String, Any>?,
-        queryParams: Map<String, Any>?,
-        requestBody: RequestBody?
+        queryParams: Map<String, Any>?
     ): ResponseBody {
         val response = apiServices.delete(
             pathUrl = pathUrl, headers = headers ?: hashMapOf(),
-            queryParams = queryParams ?: hashMapOf(), requestBody = requestBody ?: Unit
+            queryParams = queryParams ?: hashMapOf()
         )
         return response.string().getModelFromJSON(responseWrappedModel)
     }
+
 
     override suspend fun <ResponseBody, RequestBody> put(
         responseWrappedModel: Type,

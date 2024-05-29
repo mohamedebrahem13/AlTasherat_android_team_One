@@ -8,9 +8,9 @@ interface INetworkProvider {
         queryParams: Map<String, Any>? = null, requestBody: RequestBody? = null
     ): ResponseBody
 
-    suspend fun <ResponseBody, RequestBody> delete(
+    suspend fun <ResponseBody> delete(
         responseWrappedModel: Type, pathUrl: String, headers: Map<String, Any>? = null,
-        queryParams: Map<String, Any>? = null, requestBody: RequestBody? = null
+        queryParams: Map<String, Any>? = null
     ): ResponseBody
 
     suspend fun <ResponseBody, RequestBody> put(

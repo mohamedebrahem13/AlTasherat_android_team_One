@@ -15,12 +15,12 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val signUpUC: SignUpUC,
     private val getCountryUC: GetCachedCountriesUC,
-) : AlTasheratViewModel<SignUpContract.MainAction, SignUpContract.MainEvent, SignUpContract.MainState>(
-    SignUpContract.MainState.initial()
+) : AlTasheratViewModel<SignUpContract.SignUpAction, SignUpContract.SignUpEvent, SignUpContract.SignUpState>(
+    SignUpContract.SignUpState.initial()
 ) {
 
     init {
-        onActionTrigger(SignUpContract.MainAction.GetCountries)
+        onActionTrigger(SignUpContract.SignUpAction.GetCountries)
     }
 
     private fun signup(userSignUpRequest: UserSignUpRequest) {
@@ -29,7 +29,7 @@ class SignUpViewModel @Inject constructor(
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> {
-                    sendEvent(SignUpContract.MainEvent.SignUpIsSuccessfully(result.model.message.toString()))
+                    sendEvent(SignUpContract.SignUpEvent.SignUpIsSuccessfully(result.model.message.toString()))
                 }
             }
         }
@@ -42,7 +42,7 @@ class SignUpViewModel @Inject constructor(
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
                 is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> sendEvent(
-                    SignUpContract.MainEvent.GetCountries(result.model)
+                    SignUpContract.SignUpEvent.GetCountries(result.model)
                 )
             }
         }
@@ -52,10 +52,10 @@ class SignUpViewModel @Inject constructor(
     override fun onActionTrigger(action: ViewAction?) {
         setState(oldViewState.copy(action = action))
         when (action) {
-            is SignUpContract.MainAction.SignUp -> {
+            is SignUpContract.SignUpAction.SignUp -> {
                 signup(action.userSignUpRequest)
             }
-            is SignUpContract.MainAction.GetCountries -> {
+            is SignUpContract.SignUpAction.GetCountries -> {
                 getCountries()
             }
         }
@@ -63,6 +63,6 @@ class SignUpViewModel @Inject constructor(
 
 
     override fun clearState() {
-        setState(SignUpContract.MainState.initial())
+        setState(SignUpContract.SignUpState.initial())
     }
 }

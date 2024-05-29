@@ -274,7 +274,7 @@
         <item name="icon">@drawable/ic_next</item>
     </style>
 
-    <style name="Button.SignUp" parent="Button">
+    <style name="Button.Auth" parent="Button">
         <item name="icon">@drawable/ic_signup</item>
     </style>
     <!--endregion-->
@@ -291,7 +291,7 @@
 
     <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">22dp</item>
+        <item name="cornerSize">50dp</item>
     </style>
     <!--endregion-->
 </resources>

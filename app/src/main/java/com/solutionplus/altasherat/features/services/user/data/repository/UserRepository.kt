@@ -12,4 +12,9 @@ internal class UserRepository(
         val user = localDS.getUser()
         return UserMapper.entityToDomain(user)
     }
+
+    override suspend fun saveUser(user: User) {
+        val userEntity = UserMapper.domainToEntity(user)
+        localDS.saveUser(userEntity)
+    }
 }

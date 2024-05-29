@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     alias(libs.plugins.dagger.hilt)
 }
 
@@ -84,7 +85,6 @@ dependencies {
     implementation(libs.androidx.recyclerview)
 
 
-
     // Unit Test
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -131,4 +131,9 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.coil)
+
+    //circle imageview
+    implementation (libs.circleimageview)
+
 }

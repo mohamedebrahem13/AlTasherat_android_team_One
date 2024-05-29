@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.home.visa_platform.presentation.ui
 
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentVisaPlatformBinding
@@ -65,6 +66,9 @@ class VisaPlatformFragment : BaseFragment<FragmentVisaPlatformBinding>(), VisaPl
     override fun onVisaItemClicked(clickedItemType: VisaTypeEnum) {
         when (clickedItemType) {
             VisaTypeEnum.TOURISM_VISA -> {
+                val action =
+                    VisaPlatformFragmentDirections.actionFragmentVisaPlatformToUnAuthorizedDialogFragment()
+                findNavController().navigate(action)
             }
 
             VisaTypeEnum.EMPLOYMENT_VISA -> {

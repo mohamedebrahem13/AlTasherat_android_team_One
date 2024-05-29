@@ -32,15 +32,21 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             }
 
         }
+    }
 
+    override fun onLoading(isLoading: Boolean) {
+        binding.progressbar.isVisible = isLoading
+    }
+
+    override fun subscribeToObservables() {
         collectFlowWithLifecycle(loginViewMode.singleEvent) { event ->
             when(event) {
-                is LoginContracts.MainEvent.GetCountries -> {
+                is LoginContracts.LoginEvent.GetCountries -> {
                     countries = event.countries
                     setCustomCountry()
                     setUpCountryCodeAdapter()
                 }
-                is LoginContracts.MainEvent.LoginIsSuccessfully -> {
+                is LoginContracts.LoginEvent.LoginIsSuccessfully -> {
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -55,15 +61,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             }
             onLoading(result.isLoading)
         }
-
-    }
-
-    override fun onLoading(isLoading: Boolean) {
-        binding.progressbar.isVisible = isLoading
-    }
-
-    override fun subscribeToObservables() {
-
     }
 
     override fun viewInit() {}
@@ -76,7 +73,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             password = password,
             phoneLoginRequest = phoneRequest
         )
-        loginViewMode.processIntent(LoginContracts.MainAction.Login(userLoginRequest))
+        loginViewMode.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
 
     }
 
@@ -98,5 +95,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
 
     override fun triggerButton() {
         login()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.root.requestLayout()
     }
 }
