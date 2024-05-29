@@ -57,5 +57,62 @@
     <string name="visa_platform">Visa Platform</string>
     <string name="visa_requests">Visa Requests</string>
     <string name="profile">Profile</string>
+    <string name="Edit_Profile">Edit Profile</string>
+    <string name="Change_Password">Change Password</string>
+    <string name="about_us">About Us</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="language">Language</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="sign_out">Sign out</string>
+    <string name="Current_version">Current Version</string>
+
+
+
+
+
+    <!--endregion-->
+
+    <!--region Visa Platform-->
+    <string name="visa_platform_image">Visa Platform Image</string>
+    <string name="first_title_first_part">Obtain tourist</string>
+    <string name="first_title_second_part">visas easily</string>
+    <string name="first_button_text">Tourism Visa</string>
+    <string name="first_action_text">Request\nyour visa now</string>
+    <string name="second_title_first_part">Request an employment visa</string>
+    <string name="second_title_second_part">easily with the visa platform</string>
+    <string name="second_button_text">Employment Visa</string>
+    <string name="second_action_text">Request\nyour visa now</string>
+    <string name="third_title_first_part">You can sell visa</string>
+    <string name="third_title_second_part">through the visa platform</string>
+    <string name="third_button_text">Sell Visa</string>
+    <string name="third_action_text">Fill out\nthe form now</string>
+    <string name="header_title">Do you have jobs and visas you want to tell us about?\nStart by filling out the form\nand let us know the details.\nDo you have jobs and visas you want to tell us about?\nStart by filling out the form</string>
+    <!--endregion-->
+
+    <!--region UnAuthorizedDialog-->
+    <string name="un_authorized_dialog_title">Login to continue</string>
+    <string name="un_authorized_dialog_description">You must log in to continue to complete the request</string>
+    <string name="un_authorized_dialog_image">Login Image</string>
+    <!--endregion-->
+
+    <!--region Personal Info Fragment -->
+    <string name="more">More</string>
+    <string name="back_arrow">Back Arrow</string>
+    <string name="enter_first_name">Enter FirstName</string>
+    <string name="middle_name">Middle Name</string>
+    <string name="enter_middle_name">Enter Middle Name</string>
+    <string name="enter_last_name">Enter LastName</string>
+    <string name="phone_number">Phone</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="email">Email Address</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="enter_birth_date">Enter Birth Date</string>
+    <string name="country">Country</string>
+    <string name="select_country">Enter Country</string>
+    <string name="save">Save</string>
+    <string name="country_code">Country Code</string>
+    <string name="choose_country">Select Country</string>
     <!--endregion-->
 </resources>

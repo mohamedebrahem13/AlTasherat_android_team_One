@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.solutionplus.altasherat.databinding.SpinnerItemBinding
+import com.solutionplus.altasherat.databinding.ItemSpinnerBinding
 import com.solutionplus.altasherat.features.splash.domain.models.Country
 
 class CustomSpinnerAdapter(private val context: Context, private val countries: List<Country>) : BaseAdapter() {
@@ -17,15 +17,15 @@ class CustomSpinnerAdapter(private val context: Context, private val countries: 
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val binding: SpinnerItemBinding
+        val binding: ItemSpinnerBinding
         val view: View
 
         if (convertView == null) {
-            binding = SpinnerItemBinding.inflate(LayoutInflater.from(context), parent, false)
+            binding = ItemSpinnerBinding.inflate(LayoutInflater.from(context), parent, false)
             view = binding.root
             view.tag = binding
         } else {
-            binding = convertView.tag as SpinnerItemBinding
+            binding = convertView.tag as ItemSpinnerBinding
             view = convertView
         }
 

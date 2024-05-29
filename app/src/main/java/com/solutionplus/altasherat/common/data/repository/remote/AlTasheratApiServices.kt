@@ -36,6 +36,6 @@ interface AlTasheratApiServices {
     @JvmSuppressWildcards
     suspend fun delete(
         @Path("path") pathUrl: String, @QueryMap queryParams: Map<String, Any>,
-        @HeaderMap headers: Map<String, Any>, @Body requestBody: Any,
+        @HeaderMap headers: Map<String, Any>
     ): ResponseBody
 }

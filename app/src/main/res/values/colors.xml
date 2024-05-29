@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="error">#CE6679</color>
     <color name="gray">#87FFFFFF</color>
+    <color name="red">#FB1C1F</color>
 
 
     <!-- light mode colors -->
@@ -19,4 +20,6 @@
     <color name="bg">#FFFFFFFF</color>
     <color name="stroke_input">#4426F5</color>
     <!-- light mode colors -->
+
+    <color name="header_bg">#F1F4FB</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.auth.signup.data.repository.local
 
+import com.solutionplus.altasherat.android.extentions.base64Encode
 import com.solutionplus.altasherat.common.data.repository.local.StorageKeyEnum
 import com.solutionplus.altasherat.common.data.repository.local.encryption.SecretKeyAliasEnum
 import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStorageProvider
@@ -18,7 +19,7 @@ internal class SignUpLocalDataSource @Inject constructor(
             encryptionService.encrypt(SecretKeyAliasEnum.USER_TOKEN, userTokenToByteArray)
         localProvider.save(
             StorageKeyEnum.USER_TOKEN_KEY,
-            encryptedToken.decodeToString(),
+            encryptedToken.base64Encode(),
             String::class.java
         )
     }

@@ -1,7 +1,7 @@
 package com.solutionplus.altasherat.features.auth.login.data.mapper
 
 import com.solutionplus.altasherat.common.data.mapper.Mapper
-import com.solutionplus.altasherat.features.services.user.data.models.dto.ResponseDto
+import com.solutionplus.altasherat.features.auth.login.data.models.dto.ResponseDto
 import com.solutionplus.altasherat.features.services.user.data.models.dto.UserDto
 import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserResponse
 import com.solutionplus.altasherat.features.services.user.data.mappers.UserMapper

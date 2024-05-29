@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     alias(libs.plugins.dagger.hilt)
 }
 
@@ -83,17 +84,14 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
 
-
-
     // Unit Test
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockwebserver)
-    testImplementation(libs.mockk.v1124)
+    testImplementation(libs.mockk)
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockito.inline)
-
 
     // Android Test
     androidTestImplementation(libs.androidx.junit)
@@ -104,7 +102,6 @@ dependencies {
 
     // Fragment KTX
     implementation(libs.androidx.fragment.ktx)
-
 
     // Dagger Hilt
     implementation(libs.dagger.hilt.android)
@@ -131,4 +128,10 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // Coil
+    implementation(libs.coil.kt)
+
+    // Circle Imageview
+    implementation(libs.circleimageview)
 }

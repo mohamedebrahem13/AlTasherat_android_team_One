@@ -1,7 +1,7 @@
 package com.solutionplus.altasherat.features.auth.login.data.repository.remote
 
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
-import com.solutionplus.altasherat.features.services.user.data.models.dto.ResponseDto
+import com.solutionplus.altasherat.features.auth.login.data.models.dto.ResponseDto
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.ILoginRemoteDataSource
 import javax.inject.Inject

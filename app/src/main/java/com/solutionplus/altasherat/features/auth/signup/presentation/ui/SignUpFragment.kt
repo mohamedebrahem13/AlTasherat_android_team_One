@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.features.auth.signup.presentation.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -13,7 +14,8 @@ import com.solutionplus.altasherat.features.auth.signup.data.model.request.Phone
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpContract
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpViewModel
-import com.solutionplus.altasherat.common.presentation.ui.listener.SharedButtonListener
+import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
+import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -90,6 +92,10 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), SharedButtonListen
 
                 is SignUpContract.SignUpEvent.SignUpIsSuccessfully -> {
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                    Intent(requireActivity(), HomeActivity::class.java).also { intent ->
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    }
                 }
             }
 
