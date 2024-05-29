@@ -27,6 +27,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
+        binding.editProfile.setOnClickListener {
+            viewModel.onActionTrigger(ProfileContract.ProfileAction.EditProfile)
+        }
+
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -58,11 +62,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
             ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
-                val action = ProfileFragmentDirections.actionProfileFragmentToPersonalInfoFragment()
+                val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
                 findNavController().navigate(action)
             }
             ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLanguageFragment2())
+                findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageFragment2())
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
             else -> {}
