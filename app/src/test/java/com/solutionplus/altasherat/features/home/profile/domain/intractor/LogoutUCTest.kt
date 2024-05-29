@@ -93,6 +93,6 @@ class LogoutUCTest{
         // Verify the success state
         val successState = resultList.last()
         assertTrue(successState is Resource.Success)
-        assertEquals("Logout successful", (successState as Resource.Success).model)
+        assertEquals("", (successState as Resource.Success).model)
     }
 }

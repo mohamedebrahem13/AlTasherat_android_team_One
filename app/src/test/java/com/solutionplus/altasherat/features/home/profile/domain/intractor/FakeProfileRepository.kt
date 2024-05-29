@@ -17,7 +17,7 @@ internal class FakeProfileRepository(
             throw AlTasheratException.Unknown("Logout operation failed")
         }
         // Otherwise, simulate successful logout and return a message
-        return fakeRemoteDataSource.logout().message?: "Logout successful"
+        return fakeRemoteDataSource.logout().message.orEmpty()
     }
 
     override suspend fun deleteUserInfo() {
