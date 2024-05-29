@@ -8,21 +8,21 @@ import com.solutionplus.altasherat.features.auth.login.data.models.request.UserL
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 
 interface LoginContracts {
-    sealed class MainAction : ViewAction {
-        data object GetCountries : MainAction()
-        data class Login(val loginUserRequest: UserLoginRequest) : MainAction()
+    sealed class LoginAction : ViewAction {
+        data object GetCountries : LoginAction()
+        data class Login(val loginUserRequest: UserLoginRequest) : LoginAction()
     }
 
-    sealed class MainEvent : ViewEvent {
-        data class LoginIsSuccessfully(val message: String) : MainEvent()
-        data class GetCountries(val countries: List<Country>) : MainEvent()
+    sealed class LoginEvent : ViewEvent {
+        data class LoginIsSuccessfully(val message: String) : LoginEvent()
+        data class GetCountries(val countries: List<Country>) : LoginEvent()
     }
 
-    data class MainState(
+    data class LoginState(
         val isLoading: Boolean, val exception: AlTasheratException?, val action: ViewAction?
     ) : ViewState {
         companion object {
-            fun initial() = MainState(
+            fun initial() = LoginState(
                 isLoading = false, exception = null, action = null
             )
         }

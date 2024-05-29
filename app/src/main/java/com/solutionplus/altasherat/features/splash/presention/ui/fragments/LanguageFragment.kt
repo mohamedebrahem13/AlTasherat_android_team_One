@@ -7,7 +7,6 @@ import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.CustomSpinnerAdapter
@@ -21,6 +20,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
     private val viewModel: LanguageViewModel by viewModels()
     override fun onFragmentReady(savedInstanceState: Bundle?) {
+        getLocal()
         viewModel.onActionTrigger( LanguageContract.CountryLocalAction.FetchCountriesFromLocal)
     }
 
@@ -33,18 +33,21 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
 
     override fun viewInit() {
+
         binding.buttonContinue.setOnClickListener {
             val preferredCountry = binding.spinner.selectedItem.toString()
             viewModel.onActionTrigger(LanguageContract.CountryLocalAction.NextButtonClick(preferredCountry))
         }
 
-         binding.radioButton2.setOnClickListener {
-             viewModel.onActionTrigger( LanguageContract.CountryLocalAction.StartCountriesWorkerEn("en"))
-        }
-        binding.radioButton1.setOnClickListener {
-            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerAr("ar"))
+        binding.radioButton2.setOnClickListener {
+            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerEn("en"))
+
         }
 
+        binding.radioButton1.setOnClickListener {
+            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerAr("ar"))
+
+        }
 
     }
     private fun handleSingleEvent(event: LanguageContract.CountryLocalEvent) {
@@ -66,19 +69,23 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         }
     }
     private fun updateLocale(languageCode: String) {
-        // Set the application locale using AppCompatDelegate
         val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags(languageCode)
         AppCompatDelegate.setApplicationLocales(appLocale)
+    }
+    private fun getLocal() {
+        val language = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
+      if (language == "ar") {
+          binding.radioButton1.isEnabled = false
+          binding.radioButton2.isEnabled = true
+        } else{
+          binding.radioButton2.isEnabled = false
+          binding.radioButton1.isEnabled = true
+
+      }
     }
     private fun showToast(message: String){
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
     }
-//    private fun getUserPreference():UserPreference {
-//        val preferredCountry = binding.spinner.selectedItem.toString()
-//        val language=  AppCompatDelegate.getApplicationLocales()
-//        // Create a UserPreference object with the retrieved values
-//        return UserPreference(preferredCountry, language[0]?.toLanguageTag().toString())
-//        }
 
 }

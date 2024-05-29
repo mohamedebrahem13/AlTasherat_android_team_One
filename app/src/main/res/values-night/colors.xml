@@ -15,4 +15,6 @@
     <color name="stroke_input">#ce667d</color>
 
     <color name="gray">#871C204C</color>
+
+    <color name="header_bg">#1C204C</color>
 </resources>

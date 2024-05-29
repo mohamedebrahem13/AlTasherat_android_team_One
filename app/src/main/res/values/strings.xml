@@ -67,4 +67,27 @@
 
 
     <!--endregion-->
+
+    <!--region Visa Platform-->
+    <string name="visa_platform_image">Visa Platform Image</string>
+    <string name="first_title_first_part">Obtain tourist</string>
+    <string name="first_title_second_part">visas easily</string>
+    <string name="first_button_text">Tourism Visa</string>
+    <string name="first_action_text">Request\nyour visa now</string>
+    <string name="second_title_first_part">Request an employment visa</string>
+    <string name="second_title_second_part">easily with the visa platform</string>
+    <string name="second_button_text">Employment Visa</string>
+    <string name="second_action_text">Request\nyour visa now</string>
+    <string name="third_title_first_part">You can sell visa</string>
+    <string name="third_title_second_part">through the visa platform</string>
+    <string name="third_button_text">Sell Visa</string>
+    <string name="third_action_text">Fill out\nthe form now</string>
+    <string name="header_title">Do you have jobs and visas you want to tell us about?\nStart by filling out the form\nand let us know the details.\nDo you have jobs and visas you want to tell us about?\nStart by filling out the form</string>
+    <!--endregion-->
+
+    <!--region UnAuthorizedDialog-->
+    <string name="un_authorized_dialog_title">Login to continue</string>
+    <string name="un_authorized_dialog_description">You must log in to continue to complete the request</string>
+    <string name="un_authorized_dialog_image">Login Image</string>
+    <!--endregion-->
 </resources>
