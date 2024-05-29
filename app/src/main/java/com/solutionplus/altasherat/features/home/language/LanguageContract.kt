@@ -9,10 +9,14 @@ interface LanguageContract: ViewAction {
     sealed class LanguageAction : ViewAction {
         data class StartCountriesWorkerEn(val language: String) :LanguageAction()
         data class StartCountriesWorkerAr(val language: String) : LanguageAction()
+        data object SaveClick : LanguageAction()
+
     }
     sealed class LanguageEvent : ViewEvent {
         data class StartCountriesWorker(val language: String) : LanguageEvent()
         data class ShowWorkerStateToast(val workerState: String) : LanguageEvent()
+        data object SaveNavigation : LanguageEvent()
+
     }
     data class LanguageViewState(
         val isLoading: Boolean,
