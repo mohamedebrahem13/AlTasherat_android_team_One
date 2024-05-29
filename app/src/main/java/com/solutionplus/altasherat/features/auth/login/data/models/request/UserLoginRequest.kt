@@ -7,4 +7,13 @@ data class UserLoginRequest(
     val password: String? = null,
     @SerializedName("phone")
     val phoneLoginRequest: PhoneLoginRequest
-)
+) {
+    fun validatePassword(): Boolean {
+        return !(
+                password?.isBlank()!! ||
+                        password.length < 8 ||
+                        password.length > 50 ||
+                        !password.any { it.isDigit() }
+                )
+    }
+}

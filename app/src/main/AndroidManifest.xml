@@ -19,16 +19,13 @@
             android:name=".features.home.presentation.HomeActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".features.auth.ui.AuthActivity"
-            android:exported="false" />
 
         <activity
             android:name=".features.splash.presention.ui.activity.OnboardingActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.MainActivity"
+            android:name=".features.auth.ui.AuthActivity"
             android:exported="true">
 
             <intent-filter>

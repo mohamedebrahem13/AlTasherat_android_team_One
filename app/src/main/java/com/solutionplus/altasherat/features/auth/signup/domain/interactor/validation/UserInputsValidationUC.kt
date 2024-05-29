@@ -16,28 +16,30 @@ class UserInputsValidationUC {
         if (!userSignUpRequest.validateFirstName()) {
             throw AlTasheratException.Local.RequestValidation(
                 UserSignUpRequest::class,
-                "Your input first name is not valid"
+                "First name must be between 3 and 15 & doesn't contain Special Characters."
             )
         }
 
         if (!userSignUpRequest.validateLastName()) {
             throw AlTasheratException.Local.RequestValidation(
                 UserSignUpRequest::class,
-                "Your input last name is not valid"
+                "Last name must be between 3 and 15 & doesn't contain Special Characters."
             )
         }
 
         if (!userSignUpRequest.validatePassword()) {
             throw AlTasheratException.Local.RequestValidation(
                 UserSignUpRequest::class,
-                "Your input password is not valid"
+                "Password must be between 8 and 50 & contain Lower&Upper Character"
+
             )
         }
 
         if (!userSignUpRequest.phoneSignUpRequest.validatePhoneNumber()) {
             throw AlTasheratException.Local.RequestValidation(
                 UserSignUpRequest::class,
-                "Your input phone is not valid"
+                "Phone must be between 9 and 15 digits"
+
             )
         }
 
