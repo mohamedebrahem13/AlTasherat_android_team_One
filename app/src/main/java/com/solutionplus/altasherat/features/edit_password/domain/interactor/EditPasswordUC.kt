@@ -17,7 +17,25 @@ class EditPasswordUC(
                 message = "Request is null"
             )
         }
+        validateRequest(params)?.let { message ->
+            throw AlTasheratException.Local.RequestValidation(
+                clazz = UpdateInfoRequest::class,
+                message = message
+            )
+        }
+
 
         repository.editPassword(params)
+    }
+
+    private fun validateRequest(request: EditPasswordRequest): String? {
+        return request.run {
+            when {
+                !isOldPasswordValid() -> "Old password is not valid"
+                !isNewPasswordValid() -> "New password is not valid"
+                !isConfirmPasswordValid() -> "Confirm password is not valid"
+                else -> null
+            }
+        }
     }
 }

@@ -10,7 +10,9 @@ import com.solutionplus.altasherat.features.edit_password.data.models.request.Ed
 import com.solutionplus.altasherat.features.edit_password.presentation.viewmodel.EditPasswordContract.EditPasswordAction
 import com.solutionplus.altasherat.features.edit_password.presentation.viewmodel.EditPasswordContract.EditPasswordEvent
 import com.solutionplus.altasherat.features.edit_password.presentation.viewmodel.EditPasswordViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
 
     private val viewModel: EditPasswordViewModel by viewModels()
@@ -42,7 +44,7 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
                 is EditPasswordEvent.PasswordUpdated -> {
                     Toast.makeText(
                         requireContext(),
-                        "Personal info updated successfully",
+                        "Password updated successfully",
                         Toast.LENGTH_SHORT
                     ).show()
                     findNavController().popBackStack()

@@ -9,4 +9,16 @@ data class EditPasswordRequest(
     val newPassword: String,
     @SerializedName("new_password_confirmation")
     val confirmPassword: String
-)
+) {
+    fun isOldPasswordValid(): Boolean {
+        return oldPassword.isNotEmpty() && oldPassword.length >= 8 && oldPassword.length <= 50
+    }
+
+    fun isNewPasswordValid(): Boolean {
+        return newPassword.isNotEmpty() && newPassword.length >= 8 && newPassword.length <= 50 && newPassword != oldPassword
+    }
+
+    fun isConfirmPasswordValid(): Boolean {
+        return confirmPassword == newPassword
+    }
+}

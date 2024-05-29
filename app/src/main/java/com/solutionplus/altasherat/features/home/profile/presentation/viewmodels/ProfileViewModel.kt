@@ -84,6 +84,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
         when(action) {
             is ProfileContract.ProfileAction.SignOut->{ logout() }
             is ProfileContract.ProfileAction.EditProfile->{ sendEvent(ProfileContract.ProfileEvent.EditProfileNavigation) }
+            is ProfileContract.ProfileAction.ChangePassword->{ sendEvent(ProfileContract.ProfileEvent.ChangePasswordNavigation) }
         }
     }
     companion object {
