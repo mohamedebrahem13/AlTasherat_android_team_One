@@ -19,31 +19,11 @@ class FragmentFirstResetPassword: BaseFragment<FragmentFirstResetPasswordBinding
     override fun viewInit() {
     }
 
-    override fun onStart() {
-        super.onStart()
-        logger.debug("start")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        logger.debug("pause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        logger.debug("destroy")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        logger.debug("create")
-
-    }
-
     override fun onResume() {
         super.onResume()
         binding.root.requestLayout()
     }
+
 
     companion object {
         val logger = getClassLogger()

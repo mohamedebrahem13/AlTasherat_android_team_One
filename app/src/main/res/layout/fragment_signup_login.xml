@@ -95,5 +95,4 @@
         app:layout_constraintBottom_toBottomOf="@id/layout_viewpager"
         tools:text="@string/signup_text"
         style="@style/Button.Auth"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

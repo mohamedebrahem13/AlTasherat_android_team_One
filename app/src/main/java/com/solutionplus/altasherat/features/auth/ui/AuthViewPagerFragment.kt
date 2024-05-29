@@ -2,9 +2,7 @@ package com.solutionplus.altasherat.features.auth.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.R
@@ -15,18 +13,25 @@ import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFrag
 import com.solutionplus.altasherat.features.auth.signup.presentation.ui.SignUpFragment
 import com.solutionplus.altasherat.common.presentation.ui.listener.SharedButtonListener
 
-class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
+class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
 
     private val fragments by lazy {
         listOf<Fragment>(LoginFragment(), SignUpFragment())
     }
     private val adapter by lazy {
-        ViewPagerAdapter(fragmentManager = requireActivity().supportFragmentManager, fragments = fragments, lifecycle = lifecycle)
+        ViewPagerAdapter(
+            fragmentManager = requireActivity().supportFragmentManager,
+            fragments = fragments,
+            lifecycle = lifecycle
+        )
     }
+
+    private lateinit var viewPager: ViewPager2
+
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.btnLoginSignup.setOnClickListener {
             val currentItem =
-                fragments[binding.viewPager.currentItem] as SharedButtonListener
+                fragments[viewPager.currentItem] as SharedButtonListener
             currentItem.triggerButton()
         }
 
@@ -39,9 +44,10 @@ class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
     }
 
     override fun viewInit() {
-        binding.viewPager.adapter = adapter
+        viewPager = binding.viewPager
+        viewPager.adapter = adapter
 
-        binding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+        viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
 
                 binding.cardView.requestLayout()
@@ -58,7 +64,7 @@ class AuthViewPagerFragment: BaseFragment<FragmentSignupLoginBinding>() {
             }
         })
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> {
                     tab.text = getString(R.string.login_text)

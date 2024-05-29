@@ -17,5 +17,9 @@
         android:id="@+id/fragmentViewPagerResetPassword"
         tools:layout="@layout/fragment_view_pager_reset_password"
         android:name="com.solutionplus.altasherat.features.reset_password.presentation.FragmentViewPagerResetPassword"
-        android:label="FragmentViewPagerResetPassword" />
+        android:label="FragmentViewPagerResetPassword" >
+        <action
+            android:id="@+id/action_fragmentViewPagerResetPassword_to_authViewPagerFragment"
+            app:destination="@id/authViewPagerFragment" />
+    </fragment>
 </navigation>
