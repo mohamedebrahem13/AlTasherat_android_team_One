@@ -20,7 +20,6 @@ interface ProfileContract {
     }
 
     sealed class ProfileEvent : ViewEvent {
-        data class UserLoaded(val user: User) : ProfileEvent()
         data class SignOutSuccess(val message: String) : ProfileEvent()
         data object EditProfileNavigation : ProfileEvent()
         data object ChangePasswordNavigation : ProfileEvent()

@@ -51,9 +51,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                 showToast("Error: $errorMessage")
             }
 
-            else -> {
+            /*else -> {
                 showToast("Data loaded successfully")
-            }
+            }*/
         }
     }
 

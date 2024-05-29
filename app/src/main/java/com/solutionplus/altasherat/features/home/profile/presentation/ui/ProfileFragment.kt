@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import coil.load
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -27,6 +26,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
+        binding.editProfile.setOnClickListener {
+            viewModel.onActionTrigger(ProfileContract.ProfileAction.EditProfile)
+        }
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -45,9 +47,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     }
     private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
         when (event) {
-            is ProfileContract.ProfileEvent.UserLoaded -> {
-                viewsForMenuWithSignedUser(event.user)
-            }
+
             is ProfileContract.ProfileEvent.SignOutSuccess->{
                 //sign out
                 Intent(requireActivity(), MainActivity::class.java).also { intent ->
@@ -59,8 +59,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
             ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
-            ProfileContract.ProfileEvent.EditProfileNavigation -> TODO()
-            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> findNavController().navigate(R.id.action_fragment_profile_to_languageFragment2)
+            ProfileContract.ProfileEvent.EditProfileNavigation -> {
+                val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
+                findNavController().navigate(action)
+            }
+            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
             else -> {}
@@ -77,6 +80,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 // Handle error state
                 val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
+            }
+            state.user != null -> {
+                viewsForMenuWithSignedUser(state.user)
             }
 
         }
@@ -137,6 +143,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
          6 -> ProfileContract.ProfileAction.Language
             else -> null
         }
+
         action?.let {
             viewModel.onActionTrigger(it)
         }

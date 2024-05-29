@@ -89,4 +89,24 @@
     <string name="un_authorized_dialog_description">يجب عليك تسجيل الدخول للمتابعة في استكمال الطلب</string>
     <string name="un_authorized_dialog_image">صورة تسجيل الدخول</string>
     <!--endregion-->
+
+    <!--region Personal Info Fragment -->
+    <string name="more">المزيد</string>
+    <string name="back_arrow">زر الرجوع</string>
+    <string name="enter_first_name">ادخل الاسم الاول</string>
+    <string name="middle_name">الاسم الاوسط</string>
+    <string name="enter_middle_name">ادخل الاسم الاوسط</string>
+    <string name="enter_last_name">ادخل الاسم الاخير</string>
+    <string name="phone_number">الجوال</string>
+    <string name="enter_phone_number">ادخل رقم الجوال للمتابعة</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="enter_email_address">ادخل البريد الالكتروني</string>
+    <string name="birth_date">تاريخ الميلاد</string>
+    <string name="enter_birth_date">ادخل تاريخ الميلاد</string>
+    <string name="country">الدولة</string>
+    <string name="select_country">ادخل دولتك</string>
+    <string name="save">حفظ</string>
+    <string name="country_code">كود الدولة</string>
+    <string name="choose_country">اختر الدولة</string>
+    <!--endregion-->
 </resources>
