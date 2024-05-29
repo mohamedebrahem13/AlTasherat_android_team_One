@@ -122,18 +122,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.listView.adapter = adapter
     }
     private fun viewsForMenuWithSignedUser(user: User){
-        binding.signOut.visibility= View.VISIBLE
-        binding.profileName.visibility= View.VISIBLE
-        binding.profileImage.visibility=View.VISIBLE
-        binding.editProfile.visibility=View.VISIBLE
-        binding.horizontalLine.visibility=View.VISIBLE
-        binding.profileName.text=user.firstname
-        binding.profileImage.load(user.image.path) {
-            placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
+        with(binding){
+            signOut.visibility= View.VISIBLE
+            profileName.visibility= View.VISIBLE
+            profileImage.visibility=View.VISIBLE
+            editProfile.visibility=View.VISIBLE
+            horizontalLine.visibility=View.VISIBLE
+            profileName.text=user.firstname
+            profileImage.load(user.image.path) {
+                placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
+            }
+           signOut.setOnClickListener {
+                viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
+            }
+
         }
-        binding.signOut.setOnClickListener {
-            viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
-        }
+
     }
 
     override fun onItemClick(item: Item) {
