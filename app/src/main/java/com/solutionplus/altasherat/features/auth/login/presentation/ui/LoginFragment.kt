@@ -20,17 +20,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonListener {
 
     private val loginViewMode by viewModels<LoginViewModel>()
-    private lateinit var countries: List<Country>
+    private var countries: List<Country>? = null
     private val customCountiesList: ArrayList<String> = ArrayList()
-    private var countryCode: String = "0020"
+    private var countryCode: String? = null
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.etCountryCode.setOnItemClickListener { _, _, position, _ ->
-            val selectedCountryItem = countries[position]
+            val selectedCountryItem = countries?.get(position)
             selectedCountryItem.let { country ->
-                countryCode = country.phoneCode
+                countryCode = country?.phoneCode
             }
-
         }
     }
 
@@ -40,12 +39,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
 
     override fun subscribeToObservables() {
         collectFlowWithLifecycle(loginViewMode.singleEvent) { event ->
-            when(event) {
+            when (event) {
                 is LoginContracts.LoginEvent.GetCountries -> {
-                    countries = event.countries
-                    setCustomCountry()
-                    setUpCountryCodeAdapter()
+                    if (event.countries?.isNotEmpty() == true) {
+                        countries = event.countries
+                        countryCode = countries!![0].phoneCode
+                        setCustomCountry()
+                        setUpCountryCodeAdapter()
+                    }
+
                 }
+
                 is LoginContracts.LoginEvent.LoginIsSuccessfully -> {
                     Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
                 }
@@ -65,25 +69,29 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
 
     override fun viewInit() {}
 
-     fun login() {
-        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
-        val password = binding.etPassword.text.toString()
-        val phoneRequest = PhoneLoginRequest(countryCode, phoneNumber)
-        val userLoginRequest = UserLoginRequest(
-            password = password,
-            phoneLoginRequest = phoneRequest
-        )
-        loginViewMode.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
+    fun login() {
+        countryCode?.let { code ->
+            val phoneNumber = binding.etPhoneNumber.text.toString().trim()
+            val password = binding.etPassword.text.toString()
+            val phoneRequest = PhoneLoginRequest(code, phoneNumber)
+            val userLoginRequest = UserLoginRequest(
+                password = password,
+                phoneLoginRequest = phoneRequest
+            )
+            loginViewMode.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
+
+        }
 
     }
 
     private fun setUpCountryCodeAdapter() {
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
+        val arrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
         binding.etCountryCode.setAdapter(arrayAdapter)
     }
 
     private fun setCustomCountry() {
-        countries.forEach {
+        countries?.forEach {
             val formattedCountryCode = requireContext().getString(
                 R.string.selected_country_code,
                 it.flag,
