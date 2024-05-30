@@ -37,6 +37,8 @@ class DeleteAccountDialogFragment : BaseSheetFragment<FragmentDeleteAccountDialo
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is DeleteAccountEvent.AccountDeleted -> {
+                    requireActivity().finish()
+                    startActivity(requireActivity().intent)
                 }
             }
         }
