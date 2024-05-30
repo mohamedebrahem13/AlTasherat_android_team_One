@@ -19,9 +19,6 @@ class LanguageTwoFragment : BaseFragment<FragmentLanguage2Binding>() {
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         getLocal()
-        binding.buttonBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 
 
@@ -36,11 +33,15 @@ class LanguageTwoFragment : BaseFragment<FragmentLanguage2Binding>() {
   private fun handleSingleEvent(event: LanguageTwoContract.LanguageTwoContractEvent){
       when(event){
           is LanguageTwoContract.LanguageTwoContractEvent.ShowWorkerStateToast ->showToast(event.workerState)
-          is LanguageTwoContract.LanguageTwoContractEvent.SaveNavigation -> TODO()
+          is LanguageTwoContract.LanguageTwoContractEvent.SaveNavigation -> findNavController().popBackStack()
+
           is LanguageTwoContract.LanguageTwoContractEvent.StartCountriesWorker -> {
               updateLocale(event.language)
 
           }
+
+          LanguageTwoContract.LanguageTwoContractEvent.BackNavigation ->findNavController().popBackStack()
+
       }
 
   }
@@ -57,6 +58,10 @@ class LanguageTwoFragment : BaseFragment<FragmentLanguage2Binding>() {
         }
         binding.save.setOnClickListener {
             viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.SaveClick)
+        }
+        binding.buttonBack.setOnClickListener {
+            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.BackClick)
+
         }
     }
     private fun updateLocale(languageCode: String) {

@@ -9,7 +9,6 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.home.language.domain.repository.intractor.SaveUserPreferenceLanguageUseCase
 import com.solutionplus.altasherat.features.services.country.data.worker.CountriesWorkerImpl
 import com.solutionplus.altasherat.features.services.country.domain.worker.CountriesWorker
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.LanguageContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,6 +22,7 @@ class LanguageTwoViewModel@Inject constructor(private val countriesWorkerImpl: C
     override fun onActionTrigger(action: ViewAction?) {
         setState(oldViewState.copy(action = action))
         when (action) {
+            is LanguageTwoContract.LanguageTwoContractAction.BackClick->sendEvent(LanguageTwoContract.LanguageTwoContractEvent.BackNavigation)
             is LanguageTwoContract.LanguageTwoContractAction.SaveClick->saveUserPreferenceLanguage()
             is LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
             is LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)

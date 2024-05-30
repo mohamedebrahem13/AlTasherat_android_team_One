@@ -10,12 +10,16 @@ interface LanguageTwoContract: ViewAction {
         data class StartCountriesWorkerEn(val language: String) : LanguageTwoContractAction()
         data class StartCountriesWorkerAr(val language: String) : LanguageTwoContractAction()
         data object SaveClick : LanguageTwoContractAction()
+        data object BackClick : LanguageTwoContractAction()
+
 
     }
     sealed class LanguageTwoContractEvent : ViewEvent {
         data class StartCountriesWorker(val language: String) : LanguageTwoContractEvent()
         data class ShowWorkerStateToast(val workerState: String) : LanguageTwoContractEvent()
         data object SaveNavigation : LanguageTwoContractEvent()
+        data object BackNavigation : LanguageTwoContractEvent()
+
 
     }
     data class LanguageTwoContractViewState(
