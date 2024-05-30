@@ -14,7 +14,7 @@ import com.solutionplus.altasherat.databinding.FragmentOnboardingBinding
 import com.solutionplus.altasherat.features.auth.ui.AuthActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.OnboardingPage
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.OnboardingPageAdapter
-import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingThreeContract
+import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingContract
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,7 +55,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
                 viewPager.currentItem = currentPosition + 1
             } else if (currentPosition == adapter.itemCount - 1) {
                 logger.debug("onboardingThree action")
-                viewModel.onActionTrigger(OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown)
+                viewModel.onActionTrigger(OnBoardingContract.OnBoardingAction.SaveOnboardingShown)
             }
         }
     }
@@ -69,9 +69,9 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         }
     }
 
-    private fun handleSingleEvent(event: OnBoardingThreeContract.OnBoardingThreeEvent) {
+    private fun handleSingleEvent(event: OnBoardingContract.OnBoardingEvent) {
         when (event) {
-            is OnBoardingThreeContract.OnBoardingThreeEvent.NavigateToHome -> {
+            is OnBoardingContract.OnBoardingEvent.NavigateToHome -> {
                 Intent(requireActivity(), AuthActivity::class.java).also { intent ->
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)

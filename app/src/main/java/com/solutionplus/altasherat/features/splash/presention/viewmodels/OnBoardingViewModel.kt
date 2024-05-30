@@ -9,16 +9,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class OnBoardingViewModel@Inject constructor(private val setOnboardingShownUseCase: SetOnboardingShownUseCase): AlTasheratViewModel<OnBoardingThreeContract.OnBoardingThreeAction, OnBoardingThreeContract.OnBoardingThreeEvent, OnBoardingThreeContract.OnBoardingThreeViewState>(
-    OnBoardingThreeContract.OnBoardingThreeViewState.initial()
+class OnBoardingViewModel@Inject constructor(private val setOnboardingShownUseCase: SetOnboardingShownUseCase): AlTasheratViewModel<OnBoardingContract.OnBoardingAction, OnBoardingContract.OnBoardingEvent, OnBoardingContract.OnBoardingViewState>(
+    OnBoardingContract.OnBoardingViewState.initial()
 ) {
     override fun clearState() {
-        setState(OnBoardingThreeContract.OnBoardingThreeViewState.initial())
+        setState(OnBoardingContract.OnBoardingViewState.initial())
     }
 
     override fun onActionTrigger(action: ViewAction?) {
         when (action) {
-            is OnBoardingThreeContract.OnBoardingThreeAction.SaveOnboardingShown -> {
+            is OnBoardingContract.OnBoardingAction.SaveOnboardingShown -> {
                 // Execute the use case to save the onboarding shown boolean to true
                 executeSaveOnboardingShownUseCase()
             }
@@ -37,7 +37,7 @@ class OnBoardingViewModel@Inject constructor(private val setOnboardingShownUseCa
 
                     }
                     is Resource.Success -> {
-                        sendEvent(OnBoardingThreeContract.OnBoardingThreeEvent.NavigateToHome)
+                        sendEvent(OnBoardingContract.OnBoardingEvent.NavigateToHome)
 
                     }
                 }
