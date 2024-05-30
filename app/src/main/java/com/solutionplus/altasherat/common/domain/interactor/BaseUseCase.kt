@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 abstract class BaseUseCase<out Model, in Params> {
 
-     abstract suspend fun execute(params: Params?): Model
+     abstract suspend fun execute(params: Params? = null): Model
 
      operator fun invoke(
         scope: CoroutineScope,

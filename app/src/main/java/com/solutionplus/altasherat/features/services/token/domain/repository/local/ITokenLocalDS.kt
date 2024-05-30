@@ -2,4 +2,5 @@ package com.solutionplus.altasherat.features.services.token.domain.repository.lo
 
 internal interface ITokenLocalDS {
     suspend fun getToken(): ByteArray
+    suspend fun deleteToken()
 }

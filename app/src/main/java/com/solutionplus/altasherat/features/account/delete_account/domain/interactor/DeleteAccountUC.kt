@@ -4,9 +4,13 @@ import com.solutionplus.altasherat.common.data.models.exception.AlTasheratExcept
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.delete_account.domain.repository.IDeleteAccountRepository
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
+import com.solutionplus.altasherat.features.services.token.domain.interactor.DeleteCachedTokenUC
+import com.solutionplus.altasherat.features.services.user.domain.interactor.DeleteCachedUserUC
 
 class DeleteAccountUC(
-    private val repository: IDeleteAccountRepository
+    private val repository: IDeleteAccountRepository,
+    private val deleteCachedUserUC: DeleteCachedUserUC,
+    private val deleteCachedTokenUC: DeleteCachedTokenUC
 ) : BaseUseCase<Unit, String>() {
 
     override suspend fun execute(params: String?) {
@@ -17,5 +21,7 @@ class DeleteAccountUC(
             )
         }
         repository.deleteAccount(params)
+        deleteCachedUserUC.execute()
+        deleteCachedTokenUC.execute()
     }
 }
