@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_fragment_profile_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_unAuthorizedDialogFragment"
+            app:destination="@id/unAuthorizedDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"

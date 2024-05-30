@@ -17,6 +17,8 @@ interface ProfileContract {
         data object TermsAndConditions : ProfileAction()
         data object Language : ProfileAction()
         data object PrivacyPolicy : ProfileAction()
+        data object Login : ProfileAction()
+
     }
 
     sealed class ProfileEvent : ViewEvent {
@@ -28,6 +30,8 @@ interface ProfileContract {
         data object TermsAndConditionsNavigation : ProfileEvent()
         data object LanguageSelectionNavigation : ProfileEvent()
         data object PrivacyPolicyNavigation : ProfileEvent()
+        data object Login : ProfileEvent()
+
     }
 
     data class ProfileViewState(

@@ -110,4 +110,6 @@
     <string name="country_code">Country Code</string>
     <string name="choose_country">Select Country</string>
     <!--endregion-->
+    <string name="user_full_name" translatable="false">%1$s %2$s %3$s</string>
+
 </resources>
