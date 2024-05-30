@@ -5,6 +5,7 @@ import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvi
 import com.solutionplus.altasherat.features.home.profile.data.repository.ProfileRepository
 import com.solutionplus.altasherat.features.home.profile.data.repository.local.ProfileLocalDataSource
 import com.solutionplus.altasherat.features.home.profile.data.repository.remote.ProfileRemoteDataSource
+import com.solutionplus.altasherat.features.home.profile.domain.intractor.CheckTokenKeyUC
 import com.solutionplus.altasherat.features.home.profile.domain.intractor.DeleteUserInfoAndTokenUC
 import com.solutionplus.altasherat.features.home.profile.domain.intractor.LogoutUC
 import com.solutionplus.altasherat.features.home.profile.domain.repository.IProfileRepository
@@ -16,7 +17,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
-internal object ProfileRemoteDataSourceModule {
+internal object ProfileModule {
     @Provides
     fun provideProfileLocalDataSource(localProvider: IKeyValueStorageProvider): IProfileLocalDataSource {
         return ProfileLocalDataSource(localProvider)
@@ -38,6 +39,9 @@ internal object ProfileRemoteDataSourceModule {
     fun provideDeleteUserInfoAndTokenUC(repository: IProfileRepository): DeleteUserInfoAndTokenUC {
         return DeleteUserInfoAndTokenUC(repository)
     }
-
+    @Provides
+    fun provideCheckTokenKeyUC(repository: IProfileRepository): CheckTokenKeyUC {
+        return CheckTokenKeyUC(repository)
+    }
 
 }

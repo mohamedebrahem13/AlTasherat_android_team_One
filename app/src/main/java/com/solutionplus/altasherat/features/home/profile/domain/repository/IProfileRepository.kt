@@ -5,4 +5,6 @@ package com.solutionplus.altasherat.features.home.profile.domain.repository
     suspend fun logout(): String
     suspend fun deleteUserInfo()
     suspend fun deleteUserToken()
-}
+     suspend fun hasTokenKey(): Boolean
+
+ }

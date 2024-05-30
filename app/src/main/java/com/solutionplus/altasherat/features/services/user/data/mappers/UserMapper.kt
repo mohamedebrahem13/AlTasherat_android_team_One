@@ -1,6 +1,7 @@
 package com.solutionplus.altasherat.features.services.user.data.mappers
 
 import com.solutionplus.altasherat.android.extentions.parseDateString
+import com.solutionplus.altasherat.android.extentions.parseLocalDate
 import com.solutionplus.altasherat.common.data.mapper.Mapper
 import com.solutionplus.altasherat.features.services.user.data.models.dto.CountryDto
 import com.solutionplus.altasherat.features.services.user.data.models.dto.ImageDto
@@ -59,7 +60,7 @@ internal object UserMapper : Mapper<UserDto, User, UserEntity>() {
             email = model.email,
             phone = PhoneMapper.domainToEntity(model.phone),
             image = ImageMapper.domainToEntity(model.image),
-            birthDate = model.birthDate.toString(),
+            birthDate = model.birthDate.parseLocalDate(),
             isEmailVerified = model.isEmailVerified,
             isPhoneVerified = model.isPhoneVerified,
             isBlocked = model.isBlocked,
