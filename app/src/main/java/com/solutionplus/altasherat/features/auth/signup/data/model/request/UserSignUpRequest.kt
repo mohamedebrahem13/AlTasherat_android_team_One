@@ -2,7 +2,6 @@ package com.solutionplus.altasherat.features.auth.signup.data.model.request
 
 import androidx.core.util.PatternsCompat
 import com.google.gson.annotations.SerializedName
-import java.util.regex.Pattern
 
 data class UserSignUpRequest(
     @SerializedName("firstname")
@@ -23,7 +22,6 @@ data class UserSignUpRequest(
     val phoneSignUpRequest: PhoneSignUpRequest
 ) {
 
-    private val regex = Pattern.compile("[^a-zA-Z0-9 ]")
     fun validateEmail(): Boolean {
         return !(
                 email.length > 50 ||
@@ -33,11 +31,11 @@ data class UserSignUpRequest(
     }
 
     fun validateFirstName(): Boolean {
-        return !(firstname.isBlank() || firstname.length < 3 || firstname.length > 15 ||  regex.matcher(firstname).find())
+        return !(firstname.isBlank() || firstname.length < 3 || firstname.length > 15)
     }
 
     fun validateLastName(): Boolean {
-        return !(lastname.isBlank() || lastname.length < 3 || lastname.length > 15 ||  regex.matcher(firstname).find())
+        return !(lastname.isBlank() || lastname.length < 3 || lastname.length > 15)
     }
 
     fun validatePassword(): Boolean {
@@ -45,8 +43,6 @@ data class UserSignUpRequest(
                 password.isBlank() ||
                         password.length < 8 ||
                         password.length > 50 ||
-                        !password.any { it.isUpperCase() } ||
-                        !password.any { it.isLowerCase() } ||
                         !password.any { it.isDigit() }
                 )
     }

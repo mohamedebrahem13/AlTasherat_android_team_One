@@ -7,9 +7,11 @@ import com.solutionplus.altasherat.features.auth.login.data.repository.LoginRepo
 import com.solutionplus.altasherat.features.auth.login.data.repository.local.LoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.data.repository.remote.LoginRemoteDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.interactor.LoginWithPhoneUC
+import com.solutionplus.altasherat.features.auth.login.domain.interactor.validation.LoginInputValidation
 import com.solutionplus.altasherat.features.auth.login.domain.repository.ILoginRepository
 import com.solutionplus.altasherat.features.auth.login.domain.repository.local.ILoginLocalDataSource
 import com.solutionplus.altasherat.features.auth.login.domain.repository.remote.ILoginRemoteDataSource
+import com.solutionplus.altasherat.features.auth.signup.domain.interactor.validation.UserInputsValidationUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 import dagger.Module
 import dagger.Provides
@@ -47,11 +49,17 @@ internal object LoginModule {
     }
 
     @Provides
+    fun provideUserInputValidationUC(): LoginInputValidation {
+        return LoginInputValidation()
+    }
+
+    @Provides
     fun provideSLoginUC(
         loginRepository: ILoginRepository,
-        saveUserUC: SaveUserUC
+        saveUserUC: SaveUserUC,
+        loginInputValidation: LoginInputValidation
     ): LoginWithPhoneUC {
-        return LoginWithPhoneUC(loginRepository, saveUserUC)
+        return LoginWithPhoneUC(loginRepository, saveUserUC, loginInputValidation)
     }
 
 

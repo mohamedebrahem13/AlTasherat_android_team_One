@@ -20,7 +20,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".features.auth.ui.AuthActivity"
+            android:name=".features.auth.presentation.AuthActivity"
             android:exported="false" />
 
         <activity

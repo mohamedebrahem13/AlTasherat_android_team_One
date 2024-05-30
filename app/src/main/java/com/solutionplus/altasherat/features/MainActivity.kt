@@ -1,17 +1,12 @@
 package com.solutionplus.altasherat.features
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.activity.BaseActivity
 import com.solutionplus.altasherat.databinding.ActivityMainBinding
-import com.solutionplus.altasherat.features.auth.ui.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
