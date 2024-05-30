@@ -14,6 +14,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.MainActivity
+import com.solutionplus.altasherat.features.auth.ui.AuthActivity
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
@@ -68,8 +69,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
             ProfileContract.ProfileEvent.Login -> {
-                val action = ProfileFragmentDirections.actionFragmentProfileToUnAuthorizedDialogFragment()
-                findNavController().navigate(action)
+                Intent(requireActivity(), AuthActivity::class.java).also { intent ->
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
             }
         }
     }
