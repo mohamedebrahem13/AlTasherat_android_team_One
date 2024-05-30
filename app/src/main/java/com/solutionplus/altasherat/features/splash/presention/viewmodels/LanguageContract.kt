@@ -8,33 +8,33 @@ import com.solutionplus.altasherat.features.splash.domain.models.Country
 
  interface LanguageContract {
 
-    sealed class CountryLocalAction : ViewAction {
-        data object FetchCountriesFromLocal : CountryLocalAction()
-        data class NextButtonClick(val selectedCountry: String) : CountryLocalAction()
-        data class StartCountriesWorkerEn(val language: String) : CountryLocalAction()
-        data class StartCountriesWorkerAr(val language: String) : CountryLocalAction()
-        data class SpinnerClicked(val selectedCountry: String):CountryLocalAction()
+    sealed class LanguageAction : ViewAction {
+        data object FetchCountriesFromLocal : LanguageAction()
+        data class NextButtonClick(val selectedCountry: String) : LanguageAction()
+        data class StartCountriesWorkerEn(val language: String) : LanguageAction()
+        data class StartCountriesWorkerAr(val language: String) : LanguageAction()
+        data class SpinnerClicked(val selectedCountry: String):LanguageAction()
 
     }
 
-    sealed class CountryLocalEvent : ViewEvent {
+    sealed class LanguageEvent : ViewEvent {
         // Define events here if needed
-        data class UpdateTheCountry(val countries: List<Country>) : CountryLocalEvent()
-        data object NavigateToOnBoarding : CountryLocalEvent()
-        data class StartCountriesWorker(val language: String) : CountryLocalEvent()
-        data class ShowWorkerStateToast(val workerState: String) : CountryLocalEvent()
+        data class UpdateTheCountry(val countries: List<Country>) : LanguageEvent()
+        data object NavigateToOnBoarding : LanguageEvent()
+        data class StartCountriesWorker(val language: String) : LanguageEvent()
+        data class ShowWorkerStateToast(val workerState: String) : LanguageEvent()
 
 
     }
 
-     data class CountryLocalViewState(
+     data class LanguageViewState(
          val isLoading: Boolean,
          val selectedCountry: String?,
          val exception: AlTasheratException?,
          val action: ViewAction?
      ) : ViewState {
          companion object {
-             fun initial() = CountryLocalViewState(isLoading = false,selectedCountry=null, exception = null, action = null)
+             fun initial() = LanguageViewState(isLoading = false,selectedCountry=null, exception = null, action = null)
          }
      }
 }

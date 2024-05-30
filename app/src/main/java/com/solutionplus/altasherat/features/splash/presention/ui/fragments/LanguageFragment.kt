@@ -25,7 +25,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     private val viewModel: LanguageViewModel by viewModels()
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         getLocal()
-        viewModel.onActionTrigger( LanguageContract.CountryLocalAction.FetchCountriesFromLocal)
+        viewModel.onActionTrigger( LanguageContract.LanguageAction.FetchCountriesFromLocal)
     }
 
     override fun onLoading(isLoading: Boolean) {}
@@ -38,7 +38,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
             handleViewState(state)
         }
     }
-  private fun handleViewState(state: LanguageContract.CountryLocalViewState){
+  private fun handleViewState(state: LanguageContract.LanguageViewState){
       when {
           state.selectedCountry != null -> {
               setSpinner( state.selectedCountry)
@@ -74,16 +74,16 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
         binding.buttonContinue.setOnClickListener {
             val preferredCountry = binding.spinner.selectedItem.toString()
-            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.NextButtonClick(preferredCountry))
+            viewModel.onActionTrigger(LanguageContract.LanguageAction.NextButtonClick(preferredCountry))
         }
 
         binding.radioButton2.setOnClickListener {
-            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerEn("en"))
+            viewModel.onActionTrigger(LanguageContract.LanguageAction.StartCountriesWorkerEn("en"))
 
         }
 
         binding.radioButton1.setOnClickListener {
-            viewModel.onActionTrigger(LanguageContract.CountryLocalAction.StartCountriesWorkerAr("ar"))
+            viewModel.onActionTrigger(LanguageContract.LanguageAction.StartCountriesWorkerAr("ar"))
 
         }
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -91,7 +91,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
                 val selectedCountry = parent?.getItemAtPosition(position) as? Country
                 val selectedCountryName = selectedCountry?.name ?: ""
                 logger.debug("selectedspinner: $selectedCountryName")
-                viewModel.onActionTrigger(LanguageContract.CountryLocalAction.SpinnerClicked(selectedCountryName))
+                viewModel.onActionTrigger(LanguageContract.LanguageAction.SpinnerClicked(selectedCountryName))
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -101,22 +101,22 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
 
     }
-    private fun handleSingleEvent(event: LanguageContract.CountryLocalEvent) {
+    private fun handleSingleEvent(event: LanguageContract.LanguageEvent) {
         // Handle single events
         when(event){
-            is LanguageContract.CountryLocalEvent.UpdateTheCountry->{
+            is LanguageContract.LanguageEvent.UpdateTheCountry->{
                 val spinnerAdapter = CustomSpinnerAdapter(requireContext(),event.countries)
                 binding.spinner.adapter = spinnerAdapter
             }
-            is LanguageContract.CountryLocalEvent.NavigateToOnBoarding->{
+            is LanguageContract.LanguageEvent.NavigateToOnBoarding->{
 
                 findNavController().navigate(R.id.action_languageFragment_to_viewPagerFragment)
             }
-            is LanguageContract.CountryLocalEvent.StartCountriesWorker->{
+            is LanguageContract.LanguageEvent.StartCountriesWorker->{
                     updateLocale(event.language)
             }
 
-            is LanguageContract.CountryLocalEvent.ShowWorkerStateToast ->showToast(event.workerState)
+            is LanguageContract.LanguageEvent.ShowWorkerStateToast ->showToast(event.workerState)
         }
     }
     private fun updateLocale(languageCode: String) {

@@ -23,23 +23,23 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                                             private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase,
                                             private val getUserPreferredCountryUC: GetUserPreferredCountryUC
 
-): AlTasheratViewModel<LanguageContract.CountryLocalAction, LanguageContract.CountryLocalEvent, LanguageContract.CountryLocalViewState>(
-    LanguageContract.CountryLocalViewState.initial()){
+): AlTasheratViewModel<LanguageContract.LanguageAction, LanguageContract.LanguageEvent, LanguageContract.LanguageViewState>(
+    LanguageContract.LanguageViewState.initial()){
     override fun clearState() {
-        setState(LanguageContract.CountryLocalViewState.initial())
+        setState(LanguageContract.LanguageViewState.initial())
     }
 
     override fun onActionTrigger(action: ViewAction?) {
         setState(oldViewState.copy(action = action))
         when (action) {
-            is LanguageContract.CountryLocalAction.SpinnerClicked->  {
+            is LanguageContract.LanguageAction.SpinnerClicked->  {
                 setState(oldViewState.copy(selectedCountry=action.selectedCountry))
             }
-            is LanguageContract.CountryLocalAction.FetchCountriesFromLocal -> fetchCountriesFromLocal()
+            is LanguageContract.LanguageAction.FetchCountriesFromLocal -> fetchCountriesFromLocal()
             // Handle other actions if needed
-            is LanguageContract.CountryLocalAction.NextButtonClick ->savePreferenceAndNavigateToOnboarding(action.selectedCountry)
-            is LanguageContract.CountryLocalAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
-            is LanguageContract.CountryLocalAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)
+            is LanguageContract.LanguageAction.NextButtonClick ->savePreferenceAndNavigateToOnboarding(action.selectedCountry)
+            is LanguageContract.LanguageAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
+            is LanguageContract.LanguageAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)
 
             else -> {
                 // Do nothing or handle unknown action
@@ -55,7 +55,7 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                     setState(oldViewState.copy(isLoading = resource.loading))
                 }
                 is Resource.Success -> {
-                    sendEvent(LanguageContract.CountryLocalEvent.NavigateToOnBoarding)
+                    sendEvent(LanguageContract.LanguageEvent.NavigateToOnBoarding)
                     // Handle success scenario
                 }
                 is Resource.Failure -> {
@@ -91,7 +91,7 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                     // If the user preferred country is not null, update the list of countries accordingly
                     resource.model.let {
                         // Update the list of countries based on the preferred language
-                        sendEvent(LanguageContract.CountryLocalEvent.UpdateTheCountry(countries))
+                        sendEvent(LanguageContract.LanguageEvent.UpdateTheCountry(countries))
                         setState(oldViewState.copy(selectedCountry = resource.model))
 
                     }
@@ -111,7 +111,7 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                         "Worker ENQUEUED"
                     }                    WorkInfo.State.RUNNING -> "Worker RUNNING"
                     WorkInfo.State.SUCCEEDED -> {
-                        sendEvent(LanguageContract.CountryLocalEvent.StartCountriesWorker(language))
+                        sendEvent(LanguageContract.LanguageEvent.StartCountriesWorker(language))
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
 
@@ -125,7 +125,7 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                     WorkInfo.State.BLOCKED -> "Worker BLOCKED"
                     WorkInfo.State.CANCELLED -> "Worker is cancelled"
                 }
-                sendEvent(LanguageContract.CountryLocalEvent.ShowWorkerStateToast(workInfo.state.toString()+message))
+                sendEvent(LanguageContract.LanguageEvent.ShowWorkerStateToast(workInfo.state.toString()+message))
 
             }
         }
