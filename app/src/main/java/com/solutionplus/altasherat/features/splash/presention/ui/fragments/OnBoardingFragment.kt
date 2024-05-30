@@ -11,7 +11,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentOnboardingBinding
-import com.solutionplus.altasherat.features.auth.ui.AuthActivity
+import com.solutionplus.altasherat.features.auth.presentation.AuthActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.OnboardingPage
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.OnboardingPageAdapter
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.OnBoardingContract

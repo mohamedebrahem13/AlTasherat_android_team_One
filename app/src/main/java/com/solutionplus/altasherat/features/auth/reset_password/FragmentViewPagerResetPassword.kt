@@ -2,10 +2,9 @@ package com.solutionplus.altasherat.features.auth.reset_password
 
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
-import com.solutionplus.altasherat.android.extentions.onBackButtonPressed
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.FragmentViewPagerResetPasswordBinding
 import com.solutionplus.altasherat.common.presentation.ui.view_pager.ViewPagerAdapter
+import com.solutionplus.altasherat.databinding.FragmentViewPagerResetPasswordBinding
 
 class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswordBinding>() {
 
@@ -17,14 +16,6 @@ class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswo
         )
     }
 
-    private val adapter by lazy {
-        ViewPagerAdapter(
-            fragmentManager = requireActivity().supportFragmentManager,
-            fragments = fragments,
-            lifecycle = lifecycle
-        )
-    }
-
     private lateinit var viewPager: ViewPager2
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
@@ -32,7 +23,6 @@ class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswo
             if (viewPager.currentItem < 2)
                 viewPager.currentItem += 1
         }
-        onBackButtonPressed()
     }
 
     override fun onLoading(isLoading: Boolean) {
@@ -44,7 +34,7 @@ class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswo
 
     override fun viewInit() {
         viewPager = binding.viewPager
-        viewPager.adapter = adapter
+        viewPager.adapter = ViewPagerAdapter(fragments = fragments, container = this)
         viewPager.isUserInputEnabled = false
     }
 }

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.solutionplus.altasherat.databinding.FragmentUnAuthorizedDialogBinding
-import com.solutionplus.altasherat.features.auth.ui.AuthActivity
+import com.solutionplus.altasherat.features.auth.presentation.AuthActivity
 
 class UnAuthorizedDialogFragment : BottomSheetDialogFragment() {
 
