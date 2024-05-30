@@ -6,19 +6,19 @@ import androidx.work.WorkInfo
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
-import com.solutionplus.altasherat.features.splash.data.worker.CountriesWorkerImpl
-import com.solutionplus.altasherat.features.splash.domain.interactor.GetCountriesFromLocalUseCase
+import com.solutionplus.altasherat.features.services.country.data.worker.CountriesWorkerImpl
+import com.solutionplus.altasherat.features.services.country.domain.interactor.GetCachedCountriesUC
 import com.solutionplus.altasherat.features.splash.domain.interactor.GetUserPreferredCountryUC
 import com.solutionplus.altasherat.features.splash.domain.interactor.SaveUserPreferenceUseCase
-import com.solutionplus.altasherat.features.splash.domain.models.Country
 import com.solutionplus.altasherat.features.splash.domain.models.UserPreference
-import com.solutionplus.altasherat.features.splash.domain.worker.CountriesWorker
+import com.solutionplus.altasherat.features.services.country.domain.worker.CountriesWorker
+import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCountriesFromLocalUseCase,
+class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUseCase: GetCachedCountriesUC,
                                             private val countriesWorkerImpl: CountriesWorkerImpl,
                                             private val saveUserPreferenceUseCase: SaveUserPreferenceUseCase,
                                             private val getUserPreferredCountryUC: GetUserPreferredCountryUC

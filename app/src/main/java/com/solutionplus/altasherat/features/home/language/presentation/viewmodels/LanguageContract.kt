@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.home.language
+package com.solutionplus.altasherat.features.home.language.presentation.viewmodels
 
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
@@ -7,7 +7,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 
 interface LanguageContract: ViewAction {
     sealed class LanguageAction : ViewAction {
-        data class StartCountriesWorkerEn(val language: String) :LanguageAction()
+        data class StartCountriesWorkerEn(val language: String) : LanguageAction()
         data class StartCountriesWorkerAr(val language: String) : LanguageAction()
         data object SaveClick : LanguageAction()
 

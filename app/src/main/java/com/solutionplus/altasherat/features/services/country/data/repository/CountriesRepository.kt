@@ -11,9 +11,14 @@ internal class CountriesRepository(
     private val localDS: ICountriesLocalDS
 ) : ICountriesRepository {
 
-    override suspend fun getCountriesFromRemote(): List<Country> {
-        val result = remoteDS.getCountries().data
+    override suspend fun getCountriesFromRemote(params: String): List<Country> {
+        val result =  remoteDS.getCountries(params).data
         return CountryMapper.dtoToDomain(result)
+    }
+
+    override suspend fun saveCountries(countries: List<Country>) {
+     val result = CountryMapper.domainToEntity(countries)
+       localDS.saveCountryString(result)
     }
 
     override suspend fun getCountriesFromLocal(): List<Country> {

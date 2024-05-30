@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.solutionplus.altasherat.databinding.ItemSpinnerBinding
-import com.solutionplus.altasherat.features.splash.domain.models.Country
+import com.solutionplus.altasherat.features.services.country.domain.models.Country
 
 class CustomSpinnerAdapter(private val context: Context, val countries: List<Country>) : BaseAdapter() {
 
