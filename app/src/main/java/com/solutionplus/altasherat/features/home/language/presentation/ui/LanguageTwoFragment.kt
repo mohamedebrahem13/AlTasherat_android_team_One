@@ -33,24 +33,15 @@ class LanguageTwoFragment : BaseFragment<FragmentLanguage2Binding>() {
   private fun handleSingleEvent(event: LanguageTwoContract.LanguageTwoContractEvent){
       when(event){
           is LanguageTwoContract.LanguageTwoContractEvent.ShowWorkerStateToast ->showToast(event.workerState)
-          is LanguageTwoContract.LanguageTwoContractEvent.SaveNavigation -> findNavController().popBackStack()
-
-          is LanguageTwoContract.LanguageTwoContractEvent.StartCountriesWorker -> {
-              updateLocale(event.language)
-
-          }
-
-          LanguageTwoContract.LanguageTwoContractEvent.BackNavigation ->findNavController().popBackStack()
-
+          is LanguageTwoContract.LanguageTwoContractEvent.SaveNavigation,LanguageTwoContract.LanguageTwoContractEvent.BackNavigation -> findNavController().popBackStack()
+          is LanguageTwoContract.LanguageTwoContractEvent.StartCountriesWorker -> { updateLocale(event.language) }
       }
 
   }
 
     override fun viewInit() {
         binding.radioButton2.setOnClickListener {
-            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerEn("en"))
-
-        }
+            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerEn("en")) }
 
         binding.radioButton1.setOnClickListener {
             viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerAr("ar"))
@@ -70,7 +61,7 @@ class LanguageTwoFragment : BaseFragment<FragmentLanguage2Binding>() {
     }
     private fun getLocal() {
         val language = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
-        logger.debug("langauges $language")
+        logger.debug("languages $language")
         if (language == "ar") {
             binding.radioButton1.isEnabled = false
             binding.radioButton2.isEnabled = true
