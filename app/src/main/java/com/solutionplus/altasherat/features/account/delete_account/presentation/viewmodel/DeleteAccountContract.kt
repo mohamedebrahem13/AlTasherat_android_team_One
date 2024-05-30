@@ -7,9 +7,11 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 
 interface DeleteAccountContract {
     sealed class DeleteAccountAction : ViewAction {
+        data class DeleteAccount(val password: String) : DeleteAccountAction()
     }
 
     sealed class DeleteAccountEvent : ViewEvent {
+        data object AccountDeleted : DeleteAccountEvent()
     }
 
     data class DeleteAccountState(

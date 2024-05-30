@@ -1,32 +1,26 @@
 package com.solutionplus.altasherat.features.account.delete_account.presentation.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseSheetFragment
 import com.solutionplus.altasherat.databinding.FragmentDeleteAccountDialogBinding
+import com.solutionplus.altasherat.features.account.delete_account.presentation.viewmodel.DeleteAccountContract.DeleteAccountAction
+import com.solutionplus.altasherat.features.account.delete_account.presentation.viewmodel.DeleteAccountContract.DeleteAccountEvent
 import com.solutionplus.altasherat.features.account.delete_account.presentation.viewmodel.DeleteAccountViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class DeleteAccountDialogFragment : BottomSheetDialogFragment() {
-
-    private var _binding: FragmentDeleteAccountDialogBinding? = null
-    private val binding get() = _binding!!
+@AndroidEntryPoint
+class DeleteAccountDialogFragment : BaseSheetFragment<FragmentDeleteAccountDialogBinding>() {
 
     private val viewModel: DeleteAccountViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDeleteAccountDialogBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun viewInit() {
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.buttonConfirm.setOnClickListener {
-
+            val password = binding.inputPassword.editText?.text.toString()
+            viewModel.processIntent(DeleteAccountAction.DeleteAccount(password))
         }
 
         binding.buttonCancel.setOnClickListener {
@@ -34,11 +28,17 @@ class DeleteAccountDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun subscribeToObservables() {
+    override fun onLoading(isLoading: Boolean) {
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun subscribeToObservables() {
+        collectFlowWithLifecycle(viewModel.viewState) {}
+
+        collectFlowWithLifecycle(viewModel.singleEvent) { event ->
+            when (event) {
+                is DeleteAccountEvent.AccountDeleted -> {
+                }
+            }
+        }
     }
 }

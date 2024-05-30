@@ -20,8 +20,20 @@ class DeleteAccountUC(
                 message = "Request is null"
             )
         }
+
+        if (!isPasswordValid(params)) {
+            throw AlTasheratException.Local.RequestValidation(
+                clazz = UpdateInfoRequest::class,
+                message = "Password is not valid"
+            )
+        }
+
         repository.deleteAccount(params)
         deleteCachedUserUC.execute()
         deleteCachedTokenUC.execute()
+    }
+
+    private fun isPasswordValid(password: String): Boolean {
+        return password.isNotEmpty() && password.length >= 8 && password.length <= 50
     }
 }
