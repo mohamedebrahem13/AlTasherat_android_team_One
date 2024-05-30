@@ -66,11 +66,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="sign_out">Sign out</string>
     <string name="Current_version">Current Version</string>
-
-
-
-
-
+    <string name="user_full_name" translatable="false">%1$s %2$s %3$s</string>
     <!--endregion-->
 
     <!--region Visa Platform-->
@@ -114,5 +110,14 @@
     <string name="save">Save</string>
     <string name="country_code">Country Code</string>
     <string name="choose_country">Select Country</string>
+    <!--endregion-->
+
+    <!--region Edit Password Fragment -->
+    <string name="old_password">Old Password</string>
+    <string name="enter_old_password">Enter Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_confirm_password">Enter Confirm Password</string>
     <!--endregion-->
 </resources>

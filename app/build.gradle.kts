@@ -134,4 +134,7 @@ dependencies {
 
     // Circle Imageview
     implementation(libs.circleimageview)
+
+    // Swipe Refresh Layout
+    implementation(libs.swiperefreshlayout)
 }

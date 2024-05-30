@@ -117,37 +117,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <RadioButton
-                        android:id="@+id/radioButton1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/selector_radio_button_background"
-                        android:button="@null"
-                        android:drawableStart="@drawable/image_flag_ar"
-                        android:drawablePadding="8dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/arabic"
-                        android:checked="true"
-                        android:enabled="false"
-                        android:textAlignment="viewStart"
-                        android:textAppearance="@style/TextView.Bold" />
+                        style="@style/CustomRadioButton1"
+                        android:id="@+id/radioButton1" />
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/selector_radio_button_background"
-                        android:button="@null"
-                        android:drawableStart="@drawable/image_flag_en"
-                        android:drawablePadding="8dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/english"
-                        android:textAlignment="viewStart"
-                        android:textAppearance="@style/TextView.Bold" />
+                        style="@style/CustomRadioButton2"
+                        android:id="@+id/radioButton2" />
                 </RadioGroup>
 
                 <Spinner

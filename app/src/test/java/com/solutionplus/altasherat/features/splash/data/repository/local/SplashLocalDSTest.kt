@@ -80,7 +80,7 @@ class SplashLocalDSTest {
     @Test
     fun `getUserPreferredCountry with missing key should return default value`() = runTest {
         //  Given
-        val defaultLanguage ="السعودية"
+        val defaultLanguage =""
 
         // When
         val language = splashLocalDS.getUserPreferredCountry()

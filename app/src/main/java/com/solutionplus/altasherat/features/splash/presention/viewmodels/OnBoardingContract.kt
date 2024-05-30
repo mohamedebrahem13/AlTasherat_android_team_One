@@ -5,23 +5,23 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 
-interface OnBoardingThreeContract {
+interface OnBoardingContract {
 
-    sealed class OnBoardingThreeAction : ViewAction {
-        data object SaveOnboardingShown : OnBoardingThreeAction()
+    sealed class OnBoardingAction : ViewAction {
+        data object SaveOnboardingShown : OnBoardingAction()
     }
 
-    sealed class OnBoardingThreeEvent : ViewEvent {
-        data object NavigateToHome : OnBoardingThreeEvent()
+    sealed class OnBoardingEvent : ViewEvent {
+        data object NavigateToHome : OnBoardingEvent()
     }
 
-    data class OnBoardingThreeViewState(
+    data class OnBoardingViewState(
         val isLoading: Boolean,
         val exception: AlTasheratException?,
         val action: ViewAction?
     ) : ViewState {
         companion object {
-            fun initial() = OnBoardingThreeViewState(isLoading = false, exception = null, action = null)
+            fun initial() = OnBoardingViewState(isLoading = false, exception = null, action = null)
         }
     }
 }

@@ -1,275 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    android:clipToPadding="false"
-    android:paddingVertical="24dp"
-    android:scrollbars="none"
     tools:context=".features.personal_info.presentation.ui.PersonalInfoFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingVertical="24dp"
+        android:scrollbars="none">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/shape_back_arrow"
-            android:clickable="true"
-            android:contentDescription="@string/back_arrow"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/text" />
-
-        <Button
-            android:id="@+id/button_more"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="72dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/bg_input"
-            android:clickable="true"
-            android:padding="0dp"
-            android:text="@string/more"
-            android:textAppearance="@style/Font.Bold"
-            android:textColor="@color/primary"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_profile"
-            android:layout_width="91dp"
-            android:layout_height="91dp"
-            android:padding="2dp"
-            android:scaleType="centerCrop"
-            app:contentPadding="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_back"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-            app:strokeColor="@color/primary"
-            app:strokeWidth="2dp"
-            tools:src="@tools:sample/avatars" />
-
-        <ImageButton
-            android:id="@+id/button_edit_image"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:background="@drawable/shape_back_arrow"
-            android:backgroundTint="@color/primary"
-            android:clickable="true"
-            android:contentDescription="@string/back_arrow"
-            android:src="@drawable/ic_pen"
-            app:layout_constraintBottom_toBottomOf="@id/image_profile"
-            app:layout_constraintStart_toStartOf="@id/image_profile"
-            app:tint="@color/white" />
-
-        <TextView
-            android:id="@+id/text_first_name"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/first_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_profile" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_first_name"
-            style="@style/TextInputLayout.Name"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_first_name">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextInputEditText.Name"
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/shape_back_arrow"
+                android:clickable="true"
+                android:contentDescription="@string/back_arrow"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/text" />
+
+            <Button
+                android:id="@+id/button_more"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="72dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/bg_input"
+                android:clickable="true"
+                android:padding="0dp"
+                android:text="@string/more"
+                android:textAppearance="@style/Font.Bold"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_profile"
+                android:layout_width="91dp"
+                android:layout_height="91dp"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                app:contentPadding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_back"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="2dp"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/button_edit_image"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:background="@drawable/shape_back_arrow"
+                android:backgroundTint="@color/primary"
+                android:clickable="true"
+                android:contentDescription="@string/back_arrow"
+                android:src="@drawable/ic_pen"
+                app:layout_constraintBottom_toBottomOf="@id/image_profile"
+                app:layout_constraintStart_toStartOf="@id/image_profile"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/text_first_name"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/first_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_profile" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_first_name"
+                style="@style/TextInputLayout.Name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/enter_first_name"
-                android:text="@{state.userPersonalInfo.firstname}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_first_name">
 
-        <TextView
-            android:id="@+id/text_middle_name"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/middle_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_first_name" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_first_name" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_middle_name"
-            style="@style/TextInputLayout.Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_middle_name">
+            <TextView
+                android:id="@+id/text_middle_name"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/middle_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_first_name" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextInputEditText.Name"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_middle_name"
+                style="@style/TextInputLayout.Name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/enter_middle_name" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_middle_name">
 
-        <TextView
-            android:id="@+id/text_last_name"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/last_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_middle_name" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_middle_name" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_last_name"
-            style="@style/TextInputLayout.Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_last_name">
+            <TextView
+                android:id="@+id/text_last_name"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/last_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_middle_name" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextInputEditText.Name"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_last_name"
+                style="@style/TextInputLayout.Name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/enter_last_name" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_last_name">
 
-        <TextView
-            android:id="@+id/text_phone_number"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/phone_number"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_last_name" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_last_name" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_phone_number"
-            style="@style/TextInputLayout.Phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/input_country_code"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_phone_number">
+            <TextView
+                android:id="@+id/text_phone_number"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/phone_number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_last_name" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextInputEditText.Phone"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_phone_number"
+                style="@style/TextInputLayout.Phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/input_country_code"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_phone_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_phone_number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_country_code"
+                style="@style/TextInputLayout.CountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:endIconMode="none"
+                app:layout_constraintBottom_toBottomOf="@id/input_phone_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/input_phone_number"
+                app:layout_constraintTop_toTopOf="@id/input_phone_number">
+
+                <AutoCompleteTextView
+                    style="@style/AutoCompleteTextView.CountryCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/country_code"
+                    tools:hint="🇸🇦 (+966)" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/text_email"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_phone_number" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_email"
+                style="@style/TextInputLayout.Email"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/enter_phone_number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_email">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_country_code"
-            style="@style/TextInputLayout.CountryCode"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:endIconMode="none"
-            app:layout_constraintBottom_toBottomOf="@id/input_phone_number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/input_phone_number"
-            app:layout_constraintTop_toTopOf="@id/input_phone_number">
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_email_address" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <AutoCompleteTextView
-                style="@style/AutoCompleteTextView.CountryCode"
+            <TextView
+                android:id="@+id/text_birth_date"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/birth_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_email" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_birth_date"
+                style="@style/TextInputLayout.BirthDate"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/country_code"
-                tools:hint="🇸🇦 (+966)" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_birth_date">
 
-        <TextView
-            android:id="@+id/text_email"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_phone_number" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.BirthDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_birth_date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_email"
-            style="@style/TextInputLayout.Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_email">
+            <TextView
+                android:id="@+id/text_country"
+                style="@style/TextView.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/country"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_birth_date" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextInputEditText.Email"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_country"
+                style="@style/TextInputLayout.Country"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/enter_email_address" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_country">
 
-        <TextView
-            android:id="@+id/text_birth_date"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/birth_date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_email" />
+                <AutoCompleteTextView
+                    style="@style/AutoCompleteTextView.Country"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/select_country" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_birth_date"
-            style="@style/TextInputLayout.BirthDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_birth_date">
-
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextInputEditText.BirthDate"
+            <Button
+                android:id="@+id/button_save"
+                style="@style/Button.Save"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/enter_birth_date" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                app:layout_constraintTop_toBottomOf="@id/input_country" />
 
-        <TextView
-            android:id="@+id/text_country"
-            style="@style/TextView.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/country"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_birth_date" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_country"
-            style="@style/TextInputLayout.Country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_country">
-
-            <AutoCompleteTextView
-                style="@style/AutoCompleteTextView.Country"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/select_country" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/button_save"
-            style="@style/Button.Save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            app:layout_constraintTop_toBottomOf="@id/input_country" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

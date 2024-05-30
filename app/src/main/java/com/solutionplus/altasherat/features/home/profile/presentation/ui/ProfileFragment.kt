@@ -14,6 +14,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.MainActivity
+import com.solutionplus.altasherat.features.auth.ui.AuthActivity
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
@@ -58,7 +59,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
 
             ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
-            ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
+            ProfileContract.ProfileEvent.ChangePasswordNavigation -> {
+                val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
+                findNavController().navigate(action)
+            }
             ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
@@ -67,6 +71,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
+            ProfileContract.ProfileEvent.Login -> {
+                Intent(requireActivity(), AuthActivity::class.java).also { intent ->
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
+            }
         }
     }
     private fun handleViewState(state: ProfileContract.ProfileViewState) {
@@ -83,7 +93,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
             state.user != null -> {
                 viewsForMenuWithSignedUser(state.user)
-            }
+                // Update the list of items with the user information
+                setupListView(state.user)
+            } else -> {
+            // User not signed in, setup list view without user information
+            setupListView(null)
+        }
 
         }
     }
@@ -91,7 +106,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
     override fun viewInit() {
-        setupListView()
         // Get the current text of the TextView
         val currentText = binding.currentVersion.text.toString()
 
@@ -102,20 +116,28 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.currentVersion.text = updatedText
 
     }
-    private fun getItems(): List<Item> {
-        // Replace this with your logic to get the list of items for the ListView
-        return listOf(
-            Item( 1,R.drawable.editpass,getString(R.string.Change_Password)),
-            Item(2, R.drawable.about, getString(R.string.about_us)),
-            Item(3,R.drawable.contactus, getString(R.string.contact_us)),
-            Item(4, R.drawable.terms,  getString(R.string.terms_and_conditions)),
-            Item(5, R.drawable.policy,  getString(R.string.privacy_policy)),
-            Item(6, R.drawable.language,  getString(R.string.language))
+    private fun getItems(user: User?): List<Item> {
+        val items = mutableListOf<Item>()
 
-        )
+        // Add default items
+        items.add(Item(1, R.drawable.login, getString(R.string.login_text)))
+        items.add(Item(2, R.drawable.about, getString(R.string.about_us)))
+        items.add(Item(3, R.drawable.contactus, getString(R.string.contact_us)))
+        items.add(Item(4, R.drawable.terms, getString(R.string.terms_and_conditions)))
+        items.add(Item(5, R.drawable.policy, getString(R.string.privacy_policy)))
+        items.add(Item(6, R.drawable.language, getString(R.string.language)))
+
+        // Update the first item based on user status
+        if (user != null) {
+            // Replace the first item for signed-in users
+            items[0] = Item(7, R.drawable.editpass, getString(R.string.Change_Password))
+        }
+
+        return items
     }
-    private fun setupListView() {
-        adapter = ItemAdapter(requireContext(), getItems(),this)
+
+    private fun setupListView(user: User?) {
+        adapter = ItemAdapter(requireContext(), getItems(user), this)
         binding.listView.adapter = adapter
     }
     private fun viewsForMenuWithSignedUser(user: User){
@@ -124,7 +146,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.profileImage.visibility=View.VISIBLE
         binding.editProfile.visibility=View.VISIBLE
         binding.horizontalLine.visibility=View.VISIBLE
-        binding.profileName.text=user.firstname
+        val fullName = getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
+        binding.profileName.text = fullName
         binding.profileImage.load(user.image.path) {
             placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
         }
@@ -135,12 +158,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
     override fun onItemClick(item: Item) {
         val action = when (item.id) {
-           1 -> ProfileContract.ProfileAction.ChangePassword
-          2-> ProfileContract.ProfileAction.AboutUs
+           1-> ProfileContract.ProfileAction.Login
+            2-> ProfileContract.ProfileAction.AboutUs
           3 -> ProfileContract.ProfileAction.ContactUs
            4 -> ProfileContract.ProfileAction.TermsAndConditions
             5 -> ProfileContract.ProfileAction.PrivacyPolicy
-         6 -> ProfileContract.ProfileAction.Language
+           6 -> ProfileContract.ProfileAction.Language
+            7 -> ProfileContract.ProfileAction.ChangePassword
+
             else -> null
         }
 
