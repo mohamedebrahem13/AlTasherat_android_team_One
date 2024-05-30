@@ -39,7 +39,7 @@
 
         <Button
             android:id="@+id/edit_profile"
-            style="@style/Button"
+            style="@style/Button.Primary"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

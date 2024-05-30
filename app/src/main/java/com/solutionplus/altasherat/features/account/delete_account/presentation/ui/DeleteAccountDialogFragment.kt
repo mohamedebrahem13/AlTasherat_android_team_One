@@ -28,6 +28,10 @@ class DeleteAccountDialogFragment : BottomSheetDialogFragment() {
         binding.buttonConfirm.setOnClickListener {
 
         }
+
+        binding.buttonCancel.setOnClickListener {
+            dismiss()
+        }
     }
 
     private fun subscribeToObservables() {
