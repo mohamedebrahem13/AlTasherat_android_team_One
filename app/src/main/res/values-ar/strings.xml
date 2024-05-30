@@ -122,4 +122,16 @@
     <string name="enter_new_password">ادخل كلمة المرور الجديدة</string>
     <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
     <!--endregion-->
+
+    <!--region Delete Account Fragment -->
+    <string name="account_setting">إدارة الحساب</string>
+    <string name="delete_account_settings">اعدادات الحساب والغاء تنشيط الحساب وحذفه</string>
+    <string name="deactivate_account">إلغاء تنشيط الحساب نهائياً</string>
+    <string name="deactivate_account_description">سوف يتم فقد كل المعلومات والمعاملات والحجوزات</string>
+    <string name="image_deactivate_account">صورة إلغاء تنشيط الحساب</string>
+    <string name="cancel">إلغاء</string>
+    <string name="confirm_delete">تأكيد الحذف</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="password__to_confirm">كلمة المرور للتأكيد</string>
+    <!--endregion-->
 </resources>
