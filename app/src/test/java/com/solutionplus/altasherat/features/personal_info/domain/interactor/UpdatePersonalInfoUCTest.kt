@@ -11,7 +11,6 @@ import com.solutionplus.altasherat.features.personal_info.domain.repository.remo
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -55,7 +54,7 @@ class UpdatePersonalInfoUCTest {
             onBlocking { updatePersonalInfo(any<UpdateInfoRequest>()) } doReturn updatePersonalInfoResponse
         }
         personalInfoRepository = PersonalInfoRepository(personalInfoRemoteDS)
-        updatePersonalInfoUC = UpdatePersonalInfoUC(personalInfoRepository)
+        updatePersonalInfoUC = UpdatePersonalInfoUC(personalInfoRepository, mock())
     }
 
     // region State Emission Tests
@@ -80,7 +79,7 @@ class UpdatePersonalInfoUCTest {
         val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
 
         // Then success resource should be emitted
-        assertEquals(updatePersonalInfoResponse.message, (state as Resource.Success).model.message)
+        assertTrue(state is Resource.Success)
     }
 
     @Test

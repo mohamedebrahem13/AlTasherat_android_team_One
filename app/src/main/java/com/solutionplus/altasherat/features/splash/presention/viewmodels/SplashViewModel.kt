@@ -49,7 +49,7 @@ class SplashViewModel @Inject constructor(
                     if (resource.model) {
                         sendEvent(SplashContract.SplashEvent.NavigateToHome)
                     } else {
-                        sendEvent(SplashContract.SplashEvent.NavigateToOnBoarding)
+                        sendEvent(SplashContract.SplashEvent.NavigateToLanguage)
                     }
                 }
             }

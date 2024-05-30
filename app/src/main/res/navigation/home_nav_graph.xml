@@ -35,6 +35,9 @@
             android:id="@+id/action_fragment_profile_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment" />
         <action
+            android:id="@+id/action_fragment_profile_to_editPasswordFragment"
+            app:destination="@id/editPasswordFragment" />
+        <action
             android:id="@+id/action_fragment_profile_to_languageFragment2"
             app:destination="@id/languageFragment2" />
     </fragment>
@@ -57,6 +60,11 @@
         android:name="com.solutionplus.altasherat.features.home.presentation.UnAuthorizedDialogFragment"
         android:label="fragment_un_authorized_dialog"
         tools:layout="@layout/fragment_un_authorized_dialog" />
+    <fragment
+        android:id="@+id/editPasswordFragment"
+        android:name="com.solutionplus.altasherat.features.edit_password.presentation.ui.EditPasswordFragment"
+        android:label="fragment_edit_password"
+        tools:layout="@layout/fragment_edit_password" />
     <fragment
         android:id="@+id/languageFragment2"
         android:name="com.solutionplus.altasherat.features.home.language.LanguageFragment"

@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import com.solutionplus.altasherat.databinding.ItemSpinnerBinding
 import com.solutionplus.altasherat.features.splash.domain.models.Country
 
-class CustomSpinnerAdapter(private val context: Context, private val countries: List<Country>) : BaseAdapter() {
+class CustomSpinnerAdapter(private val context: Context, val countries: List<Country>) : BaseAdapter() {
 
     override fun getCount(): Int = countries.size
 

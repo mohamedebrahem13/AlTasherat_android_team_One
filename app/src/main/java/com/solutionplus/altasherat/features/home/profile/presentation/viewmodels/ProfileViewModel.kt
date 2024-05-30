@@ -87,6 +87,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                 sendEvent(ProfileContract.ProfileEvent.LanguageSelectionNavigation)
             }
             is ProfileContract.ProfileAction.EditProfile->{ sendEvent(ProfileContract.ProfileEvent.EditProfileNavigation) }
+            is ProfileContract.ProfileAction.ChangePassword->{ sendEvent(ProfileContract.ProfileEvent.ChangePasswordNavigation) }
         }
     }
     companion object {
