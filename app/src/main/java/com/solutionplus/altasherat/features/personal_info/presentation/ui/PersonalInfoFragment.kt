@@ -24,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.util.Calendar
 
 @AndroidEntryPoint
 class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
@@ -36,12 +37,16 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private lateinit var selectedDate: LocalDate
 
     private val datePicker: MaterialDatePicker<Long> by lazy {
-        val constraintsBuilder =
-            CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now())
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.YEAR, -13)
+        val thirteenYearsAgoInMillis = calendar.timeInMillis
+
+        val constraintsBuilder = CalendarConstraints.Builder()
+            .setValidator(DateValidatorPointBackward.before(thirteenYearsAgoInMillis))
 
         MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select date")
-            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setSelection(thirteenYearsAgoInMillis)
             .setCalendarConstraints(constraintsBuilder.build())
             .build()
     }
@@ -49,6 +54,8 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private var selectionType = SelectionType.NONE
 
     override fun viewInit() {
+        binding.swipeRefreshLayout.setColorSchemeResources(R.color.primary)
+
         setFragmentResultListener(SelectionDialogFragment.REQUEST_KEY) { _, bundle ->
             val selectedIndex =
                 bundle.getInt(SelectionDialogFragment.SELECTED_COUNTRY_INDEX_KEY)
@@ -107,7 +114,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                         countryCode = countries[selectedCountryIndex].phoneCode
                     ),
                     email = inputEmail.editText?.text.toString(),
-                    birthDate = selectedDate.toString(),
+                    birthDate = if (::selectedDate.isInitialized) selectedDate.toString() else "",
                     countryId = countries[selectedCountryIndex].id
                 )
 
@@ -116,6 +123,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
             buttonBack.setOnClickListener {
                 findNavController().popBackStack()
+            }
+
+            binding.swipeRefreshLayout.setOnRefreshListener {
+                viewModel.processIntent(PersonalInfoAction.GetUpdatedUserPersonalInfo)
+                binding.swipeRefreshLayout.isRefreshing = true
             }
         }
     }
@@ -138,7 +150,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is PersonalInfoEvent.CountriesIndex -> handleCountriesIndex(event.countries)
-                is PersonalInfoEvent.UserPersonalInfo -> bindUser(event.user)
+                is PersonalInfoEvent.UserPersonalInfo -> {
+                    bindUser(event.user)
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+
                 is PersonalInfoEvent.PersonalInfoUpdated -> {
                     Toast.makeText(
                         requireContext(),
@@ -153,7 +169,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private fun handleCountriesIndex(countriesList: List<Country>) {
         countries = countriesList
-        viewModel.processIntent(PersonalInfoAction.GetUserPersonalInfo)
+        viewModel.processIntent(PersonalInfoAction.GetCachedUserPersonalInfo)
     }
 
     private fun bindUser(user: User) {
@@ -196,7 +212,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     }
 
     private fun setBirthDateText(date: LocalDate) {
-        selectedDate = date
-        binding.inputBirthDate.editText?.setText(date.toString())
+        if (date != LocalDate.MIN) {
+            selectedDate = date
+            binding.inputBirthDate.editText?.setText(date.toString())
+        }else {
+            binding.inputBirthDate.editText?.text = null
+        }
     }
 }

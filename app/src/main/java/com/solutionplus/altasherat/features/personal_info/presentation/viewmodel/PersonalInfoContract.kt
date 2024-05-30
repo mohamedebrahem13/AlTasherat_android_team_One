@@ -11,7 +11,8 @@ import com.solutionplus.altasherat.features.services.user.domain.models.User
 interface PersonalInfoContract {
     sealed class PersonalInfoAction : ViewAction {
         data object GetCountries : PersonalInfoAction()
-        data object GetUserPersonalInfo : PersonalInfoAction()
+        data object GetCachedUserPersonalInfo : PersonalInfoAction()
+        data object GetUpdatedUserPersonalInfo : PersonalInfoAction()
         data class UpdatePersonalInfo(val updateInfoRequest: UpdateInfoRequest) :
             PersonalInfoAction()
     }
