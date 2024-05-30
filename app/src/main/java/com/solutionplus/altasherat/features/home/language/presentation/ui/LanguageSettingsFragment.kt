@@ -40,9 +40,11 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
 
     override fun viewInit() {
         binding.radioButton2.setOnClickListener {
+            updateRadioButtons("en")
             viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker("en")) }
 
         binding.radioButton1.setOnClickListener {
+            updateRadioButtons("ar")
             viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker("ar"))
 
         }
@@ -62,12 +64,21 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
         val language = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
         logger.debug("languages $language")
         if (language == "ar") {
+            updateRadioButtons("ar")
+        } else {
+            updateRadioButtons("en")
+        }
+    }
+    private fun updateRadioButtons(selectedLanguage: String) {
+        if (selectedLanguage == "ar") {
             binding.radioButton1.isEnabled = false
-            binding.radioButton2.isEnabled = true
             binding.radioButton1.isChecked = true
-        } else{
-            binding.radioButton2.isEnabled = false
+            binding.radioButton2.isEnabled = true
+            binding.radioButton2.isChecked = false
+        } else {
             binding.radioButton1.isEnabled = true
+            binding.radioButton1.isChecked = false
+            binding.radioButton2.isEnabled = false
             binding.radioButton2.isChecked = true
         }
     }
