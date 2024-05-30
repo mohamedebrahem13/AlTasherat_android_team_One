@@ -130,10 +130,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                 // Handle the terms and conditions action
                 sendEvent(ProfileContract.ProfileEvent.TermsAndConditionsNavigation)
             }
-            is ProfileContract.ProfileAction.Language -> {
-                // Handle the language selection action
-                sendEvent(ProfileContract.ProfileEvent.LanguageSelectionNavigation)
-            }
+
             is ProfileContract.ProfileAction.PrivacyPolicy -> {
                 // Handle the privacy policy action
                 sendEvent(ProfileContract.ProfileEvent.PrivacyPolicyNavigation)

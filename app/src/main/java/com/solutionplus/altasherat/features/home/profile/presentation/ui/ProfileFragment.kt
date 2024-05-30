@@ -142,43 +142,33 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.listView.adapter = adapter
     }
     private fun viewsForMenuWithSignedUser(user: User){
-        binding.signOut.visibility= View.VISIBLE
-        binding.profileName.visibility= View.VISIBLE
-        binding.profileImage.visibility=View.VISIBLE
-        binding.editProfile.visibility=View.VISIBLE
-        binding.horizontalLine.visibility=View.VISIBLE
-        val fullName = getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
-        binding.profileName.text = fullName
-        binding.profileImage.load(user.image.path) {
-            placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
-        }
-        binding.signOut.setOnClickListener {
-            viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
         with(binding){
             signOut.visibility= View.VISIBLE
             profileName.visibility= View.VISIBLE
             profileImage.visibility=View.VISIBLE
             editProfile.visibility=View.VISIBLE
             horizontalLine.visibility=View.VISIBLE
-            profileName.text=user.firstname
+            val fullName = getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
+            profileName.text = fullName
             profileImage.load(user.image.path) {
                 placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
             }
-           signOut.setOnClickListener {
+            signOut.setOnClickListener {
                 viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
             }
-
         }
+
+
     }
 
     override fun onItemClick(item: Item) {
         val action = when (item.id) {
-           1-> ProfileContract.ProfileAction.Login
+            1-> ProfileContract.ProfileAction.Login
             2-> ProfileContract.ProfileAction.AboutUs
-          3 -> ProfileContract.ProfileAction.ContactUs
-           4 -> ProfileContract.ProfileAction.TermsAndConditions
+            3 -> ProfileContract.ProfileAction.ContactUs
+            4 -> ProfileContract.ProfileAction.TermsAndConditions
             5 -> ProfileContract.ProfileAction.PrivacyPolicy
-           6 -> ProfileContract.ProfileAction.Language
+            6 -> ProfileContract.ProfileAction.Language
             7 -> ProfileContract.ProfileAction.ChangePassword
 
             else -> null
@@ -188,6 +178,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             viewModel.onActionTrigger(it)
         }
     }
+
     private fun getAppVersion(context: Context): String {
         try {
             val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
