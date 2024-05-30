@@ -38,8 +38,7 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
             is LanguageContract.LanguageAction.FetchCountriesFromLocal -> fetchCountriesFromLocal()
             // Handle other actions if needed
             is LanguageContract.LanguageAction.NextButtonClick ->savePreferenceAndNavigateToOnboarding(action.selectedCountry)
-            is LanguageContract.LanguageAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
-            is LanguageContract.LanguageAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)
+            is LanguageContract.LanguageAction.StartCountriesWorker -> startCountriesWorker(action.language)
 
             else -> {
                 // Do nothing or handle unknown action

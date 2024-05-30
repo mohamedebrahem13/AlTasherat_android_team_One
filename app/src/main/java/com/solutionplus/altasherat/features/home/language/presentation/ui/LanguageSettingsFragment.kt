@@ -8,50 +8,49 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.FragmentLanguage2Binding
-import com.solutionplus.altasherat.features.home.language.presentation.viewmodels.LanguageTwoContract
-import com.solutionplus.altasherat.features.home.language.presentation.viewmodels.LanguageTwoViewModel
+import com.solutionplus.altasherat.databinding.FragmentLanguageSettingsBinding
+import com.solutionplus.altasherat.features.home.language.presentation.viewmodels.LanguageSettingsContract
+import com.solutionplus.altasherat.features.home.language.presentation.viewmodels.LanguageSettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LanguageTwoFragment : BaseFragment<FragmentLanguage2Binding>() {
-    private val viewModel: LanguageTwoViewModel by viewModels()
+class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>() {
+    private val viewModel: LanguageSettingsViewModel by viewModels()
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         getLocal()
     }
 
 
-    override fun onLoading(isLoading: Boolean) {
-    }
+    override fun onLoading(isLoading: Boolean) {}
 
     override fun subscribeToObservables() {
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             handleSingleEvent(event)
         }
     }
-  private fun handleSingleEvent(event: LanguageTwoContract.LanguageTwoContractEvent){
+  private fun handleSingleEvent(event: LanguageSettingsContract.LanguageSettingsContractEvent){
       when(event){
-          is LanguageTwoContract.LanguageTwoContractEvent.ShowWorkerStateToast ->showToast(event.workerState)
-          is LanguageTwoContract.LanguageTwoContractEvent.SaveNavigation,LanguageTwoContract.LanguageTwoContractEvent.BackNavigation -> findNavController().popBackStack()
-          is LanguageTwoContract.LanguageTwoContractEvent.StartCountriesWorker -> { updateLocale(event.language) }
+          is LanguageSettingsContract.LanguageSettingsContractEvent.ShowWorkerStateToast ->showToast(event.workerState)
+          is LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation,LanguageSettingsContract.LanguageSettingsContractEvent.BackNavigation -> findNavController().popBackStack()
+          is LanguageSettingsContract.LanguageSettingsContractEvent.StartCountriesWorker -> { updateLocale(event.language) }
       }
 
   }
 
     override fun viewInit() {
         binding.radioButton2.setOnClickListener {
-            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerEn("en")) }
+            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker("en")) }
 
         binding.radioButton1.setOnClickListener {
-            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerAr("ar"))
+            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker("ar"))
 
         }
         binding.save.setOnClickListener {
-            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.SaveClick)
+            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.SaveClick)
         }
         binding.buttonBack.setOnClickListener {
-            viewModel.onActionTrigger(LanguageTwoContract.LanguageTwoContractAction.BackClick)
+            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.BackClick)
 
         }
     }

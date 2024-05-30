@@ -11,8 +11,7 @@ import com.solutionplus.altasherat.features.services.country.domain.models.Count
     sealed class LanguageAction : ViewAction {
         data object FetchCountriesFromLocal : LanguageAction()
         data class NextButtonClick(val selectedCountry: String) : LanguageAction()
-        data class StartCountriesWorkerEn(val language: String) : LanguageAction()
-        data class StartCountriesWorkerAr(val language: String) : LanguageAction()
+        data class StartCountriesWorker(val language: String) : LanguageAction()
         data class SpinnerClicked(val selectedCountry: String):LanguageAction()
 
     }

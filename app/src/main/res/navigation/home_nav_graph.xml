@@ -67,6 +67,6 @@
         tools:layout="@layout/fragment_edit_password" />
     <fragment
         android:id="@+id/languageTwoFragment"
-        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageTwoFragment"
+        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
         android:label="LanguageTwoFragment" />
 </navigation>

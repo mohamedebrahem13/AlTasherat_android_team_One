@@ -6,26 +6,25 @@ import androidx.work.WorkInfo
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
-import com.solutionplus.altasherat.features.home.language.domain.repository.intractor.SaveUserPreferenceLanguageUseCase
+import com.solutionplus.altasherat.features.home.language.domain.repository.interactor.SaveUserPreferenceLanguageUseCase
 import com.solutionplus.altasherat.features.services.country.data.worker.CountriesWorkerImpl
 import com.solutionplus.altasherat.features.services.country.domain.worker.CountriesWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
-class LanguageTwoViewModel@Inject constructor(private val countriesWorkerImpl: CountriesWorkerImpl,private val saveUserPreferenceLanguageUseCase: SaveUserPreferenceLanguageUseCase) : AlTasheratViewModel <LanguageTwoContract.LanguageTwoContractAction, LanguageTwoContract.LanguageTwoContractEvent, LanguageTwoContract.LanguageTwoContractViewState>(
-    LanguageTwoContract.LanguageTwoContractViewState.initial()) {
+class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerImpl: CountriesWorkerImpl, private val saveUserPreferenceLanguageUseCase: SaveUserPreferenceLanguageUseCase) : AlTasheratViewModel <LanguageSettingsContract.LanguageSettingsContractAction, LanguageSettingsContract.LanguageSettingsContractEvent, LanguageSettingsContract.LanguageSettingsContractViewState>(
+    LanguageSettingsContract.LanguageSettingsContractViewState.initial()) {
     override fun clearState() {
-        setState(LanguageTwoContract.LanguageTwoContractViewState.initial())
+        setState(LanguageSettingsContract.LanguageSettingsContractViewState.initial())
     }
 
     override fun onActionTrigger(action: ViewAction?) {
         setState(oldViewState.copy(action = action))
         when (action) {
-            is LanguageTwoContract.LanguageTwoContractAction.BackClick->sendEvent(LanguageTwoContract.LanguageTwoContractEvent.BackNavigation)
-            is LanguageTwoContract.LanguageTwoContractAction.SaveClick->saveUserPreferenceLanguage()
-            is LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerEn -> startCountriesWorker(action.language)
-            is LanguageTwoContract.LanguageTwoContractAction.StartCountriesWorkerAr -> startCountriesWorker(action.language)
+            is LanguageSettingsContract.LanguageSettingsContractAction.BackClick->sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.BackNavigation)
+            is LanguageSettingsContract.LanguageSettingsContractAction.SaveClick->saveUserPreferenceLanguage()
+            is LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker -> startCountriesWorker(action.language)
         }
     }
     private fun startCountriesWorker(language: String) {
@@ -36,7 +35,7 @@ class LanguageTwoViewModel@Inject constructor(private val countriesWorkerImpl: C
                         "Worker ENQUEUED"
                     }                    WorkInfo.State.RUNNING -> "Worker RUNNING"
                     WorkInfo.State.SUCCEEDED -> {
-                        sendEvent(LanguageTwoContract.LanguageTwoContractEvent.StartCountriesWorker(language))
+                        sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.StartCountriesWorker(language))
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
 
@@ -50,7 +49,7 @@ class LanguageTwoViewModel@Inject constructor(private val countriesWorkerImpl: C
                     WorkInfo.State.BLOCKED -> "Worker BLOCKED"
                     WorkInfo.State.CANCELLED -> "Worker is cancelled"
                 }
-                sendEvent(LanguageTwoContract.LanguageTwoContractEvent.ShowWorkerStateToast(workInfo.state.toString()+message))
+                sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.ShowWorkerStateToast(workInfo.state.toString()+message))
 
             }
         }
@@ -66,7 +65,7 @@ class LanguageTwoViewModel@Inject constructor(private val countriesWorkerImpl: C
                 }
 
                 is Resource.Success -> {
-                    sendEvent(LanguageTwoContract.LanguageTwoContractEvent.SaveNavigation)
+                    sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation)
                 }
 
                 is Resource.Failure -> {

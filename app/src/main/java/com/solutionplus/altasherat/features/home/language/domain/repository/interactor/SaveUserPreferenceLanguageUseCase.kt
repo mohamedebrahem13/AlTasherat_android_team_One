@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.home.language.domain.repository.intractor
+package com.solutionplus.altasherat.features.home.language.domain.repository.interactor
 
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.home.language.domain.repository.ILanguageRepository
