@@ -20,13 +20,6 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
     private val fragments by lazy {
         listOf<Fragment>(LoginFragment(), SignUpFragment())
     }
-    private val adapter by lazy {
-        ViewPagerAdapter(
-            fragmentManager = requireActivity().supportFragmentManager,
-            fragments = fragments,
-            lifecycle = lifecycle
-        )
-    }
 
     private lateinit var viewPager: ViewPager2
 
@@ -53,7 +46,7 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
 
     override fun viewInit() {
         viewPager = binding.viewPager
-        viewPager.adapter = adapter
+        viewPager.adapter = ViewPagerAdapter(fragments = fragments, container = this)
 
         viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
