@@ -3,14 +3,15 @@ package com.solutionplus.altasherat.features.personal_info.domain.interactor
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.domain.models.UpdateInfo
 import com.solutionplus.altasherat.features.personal_info.domain.repository.IPersonalInfoRepository
+import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 
 class UpdatePersonalInfoUC(
-    private val repository: IPersonalInfoRepository
-) : BaseUseCase<UpdateInfo, UpdateInfoRequest>() {
+    private val repository: IPersonalInfoRepository,
+    private val saveUserUC: SaveUserUC
+) : BaseUseCase<Unit, UpdateInfoRequest>() {
 
-    override suspend fun execute(params: UpdateInfoRequest?): UpdateInfo {
+    override suspend fun execute(params: UpdateInfoRequest?) {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = UpdateInfoRequest::class,
@@ -25,7 +26,8 @@ class UpdatePersonalInfoUC(
             )
         }
 
-        return repository.updatePersonalInfo(params)
+        val result = repository.updatePersonalInfo(params)
+        saveUserUC.execute(result.user)
     }
 
     private fun validateRequest(request: UpdateInfoRequest): String? {

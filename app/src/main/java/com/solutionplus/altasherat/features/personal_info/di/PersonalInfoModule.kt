@@ -6,6 +6,7 @@ import com.solutionplus.altasherat.features.personal_info.data.repository.remote
 import com.solutionplus.altasherat.features.personal_info.domain.interactor.UpdatePersonalInfoUC
 import com.solutionplus.altasherat.features.personal_info.domain.repository.IPersonalInfoRepository
 import com.solutionplus.altasherat.features.personal_info.domain.repository.remote.IPersonalInfoRemoteDS
+import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +29,13 @@ internal object PersonalInfoModule {
     }
 
     @Provides
-    fun provideUpdatePersonalInfoUC(repository: IPersonalInfoRepository): UpdatePersonalInfoUC {
-        return UpdatePersonalInfoUC(repository = repository)
+    fun provideUpdatePersonalInfoUC(
+        repository: IPersonalInfoRepository,
+        saveUserUC: SaveUserUC
+    ): UpdatePersonalInfoUC {
+        return UpdatePersonalInfoUC(
+            repository = repository,
+            saveUserUC = saveUserUC
+        )
     }
 }
