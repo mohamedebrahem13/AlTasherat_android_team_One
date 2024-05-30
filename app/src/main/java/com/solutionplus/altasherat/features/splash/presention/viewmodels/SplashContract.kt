@@ -14,7 +14,6 @@ interface SplashContract {
     sealed class SplashEvent : ViewEvent {
         data object NavigateToLanguage : SplashEvent()
         data object NavigateToHome : SplashEvent()
-        data object NavigateToOnBoarding : SplashEvent()
 
     }
 

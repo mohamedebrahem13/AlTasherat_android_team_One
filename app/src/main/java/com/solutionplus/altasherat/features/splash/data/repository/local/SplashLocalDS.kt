@@ -33,7 +33,7 @@ internal class SplashLocalDS(private val preferenceStorage: IKeyValueStorageProv
     }
 
     override suspend fun getUserPreferredCountry(): String {
-        return preferenceStorage.get(StorageKeyEnum.USER_PREFERRED_COUNTRY, "السعودية", String::class.java)
+        return preferenceStorage.get(StorageKeyEnum.USER_PREFERRED_COUNTRY, "", String::class.java)
     }
 
     override suspend fun saveUserPreferredLanguage(language: String) {
