@@ -2,9 +2,6 @@ package com.solutionplus.altasherat.features.personal_info.data.models.request
 
 import androidx.core.util.PatternsCompat
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 data class UpdateInfoRequest(
     @SerializedName("firstname")
@@ -41,9 +38,7 @@ data class UpdateInfoRequest(
     }
 
     fun isBirthDateValid(): Boolean {
-        return Regex("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$").matches(birthDate) && parseDate(
-            birthDate
-        ).isBefore(LocalDate.now())
+        return Regex("(^$)|(^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$)").matches(birthDate)
     }
 
     fun isPhoneValid(): Boolean {
@@ -56,13 +51,5 @@ data class UpdateInfoRequest(
 
     fun isCountryIdValid(): Boolean {
         return countryId > 0
-    }
-
-    private fun parseDate(date: String): LocalDate {
-        if (date.isEmpty()) return LocalDate.now()
-        return LocalDate.parse(
-            date,
-            DateTimeFormatter.ofPattern("yyyy-M-d").withZone(ZoneId.systemDefault())
-        )
     }
 }

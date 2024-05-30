@@ -215,6 +215,8 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         if (date != LocalDate.MIN) {
             selectedDate = date
             binding.inputBirthDate.editText?.setText(date.toString())
+        }else {
+            binding.inputBirthDate.editText?.text = null
         }
     }
 }
