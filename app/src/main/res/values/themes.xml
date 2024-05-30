@@ -285,4 +285,35 @@
         <item name="cornerSize">50dp</item>
     </style>
     <!--endregion-->
+    <style name="CustomRadioButton1" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@drawable/selector_radio_button_background</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableStart">@drawable/image_flag_ar</item>
+        <item name="android:text">@string/arabic</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="CustomRadioButton2" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:background">@drawable/selector_radio_button_background</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableStart">@drawable/image_flag_en</item>
+        <item name="android:text">@string/english</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
 </resources>
