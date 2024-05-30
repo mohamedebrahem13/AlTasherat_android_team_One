@@ -15,7 +15,7 @@ interface LoginContracts {
 
     sealed class LoginEvent : ViewEvent {
         data class LoginIsSuccessfully(val message: String) : LoginEvent()
-        data class GetCountries(val countries: List<Country>) : LoginEvent()
+        data class GetCountries(val countries: List<Country>?) : LoginEvent()
     }
 
     data class LoginState(

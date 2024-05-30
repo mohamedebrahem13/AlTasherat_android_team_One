@@ -46,6 +46,13 @@
     <string name="firstname_validation_error">الاسم الاول الذي أدخلته غير صالح</string>
     <string name="lastname_validation_error">الاسم الاخير الذي أدخلته غير صالح</string>
     <string name="password_validation_error">الرقم السري الذي أدخلته غير صالح</string>
+    <string name="send">ارسال</string>
+    <string name="reset_password_text">استعادة كلمة المرور</string>
+    <string name="reset_password_hint">ادخل رقم جوالك لاستعادة كلمة المرو</string>
+    <string name="new_password_text">كلمة المرور</string>
+    <string name="repeat_new_password_text">اعادة ادخال كلمة المرور</string>
+
+
     <!--endregion-->
 
     <!--region Home-->

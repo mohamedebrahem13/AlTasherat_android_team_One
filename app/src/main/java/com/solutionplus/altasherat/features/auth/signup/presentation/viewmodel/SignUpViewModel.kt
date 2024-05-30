@@ -27,9 +27,9 @@ class SignUpViewModel @Inject constructor(
         signUpUC.invoke(viewModelScope, userSignUpRequest) { result ->
             when (result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
+                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading, exception = null))
                 is Resource.Success -> {
-                    sendEvent(SignUpContract.SignUpEvent.SignUpIsSuccessfully(result.model.message.toString()))
+                    sendEvent(SignUpContract.SignUpEvent.SignUpIsSuccessfully(result.model.message))
                 }
             }
         }
@@ -40,7 +40,7 @@ class SignUpViewModel @Inject constructor(
         getCountryUC(viewModelScope) { result ->
             when(result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
+                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading, exception = null))
                 is Resource.Success -> sendEvent(
                     SignUpContract.SignUpEvent.GetCountries(result.model)
                 )
@@ -50,7 +50,7 @@ class SignUpViewModel @Inject constructor(
 
 
     override fun onActionTrigger(action: ViewAction?) {
-        setState(oldViewState.copy(action = action))
+        setState(oldViewState.copy(action = action, exception = null))
         when (action) {
             is SignUpContract.SignUpAction.SignUp -> {
                 signup(action.userSignUpRequest)
