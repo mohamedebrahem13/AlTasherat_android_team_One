@@ -10,11 +10,11 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSignupBinding
+import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpContract
 import com.solutionplus.altasherat.features.auth.signup.presentation.viewmodel.SignUpViewModel
-import com.solutionplus.altasherat.features.auth.ui.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,19 +23,19 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonListener {
 
     private val signUpViewModel by viewModels<SignUpViewModel>()
-    private lateinit var countries: List<Country>
+    private var countries: List<Country>? = null
     private val customCountiesList: ArrayList<String> = ArrayList()
-    private var countryId: Int = 2
-    private var countryCode: String = "0020"
+    private var countryId: Int? = null
+    private var countryCode: String? = null
 
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
 
         binding.etCountryCode.setOnItemClickListener { _, _, position, _ ->
-            val selectedCountryItem = countries[position]
+            val selectedCountryItem = countries?.get(position)
             selectedCountryItem.let { country ->
-                countryId = country.id
-                countryCode = country.phoneCode
+                countryId = country?.id
+                countryCode = country?.phoneCode
             }
 
         }
@@ -46,26 +46,28 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
 
     private fun signUp() {
-        val firstname: String = binding.etFirstName.text.toString().trim()
-        val lastname: String = binding.etLastName.text.toString().trim()
-        val email: String = binding.etEmail.text.toString().trim()
-        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-        val passwordConfirmation = binding.etPassword.text.toString().trim()
-        val phoneRequest = PhoneSignUpRequest(countryCode, number = phoneNumber)
+        countryId?.let { id ->
+            val firstname: String = binding.etFirstName.text.toString().trim()
+            val lastname: String = binding.etLastName.text.toString().trim()
+            val email: String = binding.etEmail.text.toString().trim()
+            val phoneNumber = binding.etPhoneNumber.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            val passwordConfirmation = binding.etPassword.text.toString().trim()
+            val phoneRequest = PhoneSignUpRequest(countryCode = countryCode!!, number = phoneNumber)
 
-        val signUpUserRequest = UserSignUpRequest(
-            firstname,
-            middleName = "",
-            lastname,
-            email,
-            password,
-            passwordConfirmation,
-            countryId,
-            phoneRequest
-        )
+            val signUpUserRequest = UserSignUpRequest(
+                firstname,
+                middleName = "",
+                lastname,
+                email,
+                password,
+                passwordConfirmation,
+                id,
+                phoneRequest
+            )
 
-        signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+            signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+        }
 
     }
 
@@ -85,9 +87,13 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
         collectFlowWithLifecycle(signUpViewModel.singleEvent) { event ->
             when (event) {
                 is SignUpContract.SignUpEvent.GetCountries -> {
-                    countries = event.countries
-                    setCustomCountry()
-                    setUpCountryCodeAdapter()
+                    if (event.countries?.isNotEmpty() == true) {
+                        countries = event.countries
+                        countryId = countries!![0].id
+                        countryCode = countries!![0].phoneCode
+                        setCustomCountry()
+                        setUpCountryCodeAdapter()
+                    }
                 }
 
                 is SignUpContract.SignUpEvent.SignUpIsSuccessfully -> {
@@ -113,7 +119,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
     }
 
     private fun setCustomCountry() {
-        countries.forEach {
+        countries?.forEach {
             val formattedCountryCode = requireContext().getString(
                 R.string.selected_country_code,
                 it.flag,

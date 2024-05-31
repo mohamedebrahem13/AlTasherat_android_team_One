@@ -7,5 +7,9 @@ import java.time.format.DateTimeFormatter
 fun String.parseDateString(): LocalDate {
     val defaultZoneFormatter =
         DateTimeFormatter.ofPattern("yyyy-M-d").withZone(ZoneId.systemDefault())
-    return if (this.isEmpty()) LocalDate.now() else LocalDate.parse(this, defaultZoneFormatter)
+    return if (this.isEmpty()) LocalDate.MIN else LocalDate.parse(this, defaultZoneFormatter)
+}
+
+fun LocalDate.parseLocalDate(): String {
+    return if (this == LocalDate.MIN) "" else this.toString()
 }

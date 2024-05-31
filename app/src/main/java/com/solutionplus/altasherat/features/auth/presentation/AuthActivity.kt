@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features.auth.ui
+package com.solutionplus.altasherat.features.auth.presentation
 
 import android.os.Bundle
 import com.solutionplus.altasherat.common.presentation.ui.base.activity.BaseActivity

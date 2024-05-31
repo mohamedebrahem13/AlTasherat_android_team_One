@@ -15,6 +15,7 @@ import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.MainActivity
+import com.solutionplus.altasherat.features.auth.presentation.AuthActivity
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
 import com.solutionplus.altasherat.features.home.profile.presentation.viewmodels.ProfileContract
@@ -60,7 +61,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
 
             ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
-            ProfileContract.ProfileEvent.ChangePasswordNavigation -> TODO()
+            ProfileContract.ProfileEvent.ChangePasswordNavigation -> {
+                val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
+                findNavController().navigate(action)
+            }
             ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
@@ -70,6 +74,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
+            ProfileContract.ProfileEvent.Login -> {
+                Intent(requireActivity(), AuthActivity::class.java).also { intent ->
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
+            }
         }
     }
 
@@ -88,7 +98,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
             state.user != null -> {
                 viewsForMenuWithSignedUser(state.user)
-            }
+                // Update the list of items with the user information
+                setupListView(state.user)
+            } else -> {
+            // User not signed in, setup list view without user information
+            setupListView(null)
+        }
 
         }
     }
@@ -98,7 +113,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
     }
 
     override fun viewInit() {
-        setupListView()
         // Get the current text of the TextView
         val currentText = binding.currentVersion.text.toString()
 
@@ -119,7 +133,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             Item(5, R.drawable.policy, getString(R.string.privacy_policy)),
             Item(6, R.drawable.language, getString(R.string.language))
 
-        )
+        // Add default items
+        items.add(Item(1, R.drawable.login, getString(R.string.login_text)))
+        items.add(Item(2, R.drawable.about, getString(R.string.about_us)))
+        items.add(Item(3, R.drawable.contactus, getString(R.string.contact_us)))
+        items.add(Item(4, R.drawable.terms, getString(R.string.terms_and_conditions)))
+        items.add(Item(5, R.drawable.policy, getString(R.string.privacy_policy)))
+        items.add(Item(6, R.drawable.language, getString(R.string.language)))
+
+        // Update the first item based on user status
+        if (user != null) {
+            // Replace the first item for signed-in users
+            items[0] = Item(7, R.drawable.editpass, getString(R.string.Change_Password))
+        }
+
+        return items
     }
 
     private fun setupListView() {

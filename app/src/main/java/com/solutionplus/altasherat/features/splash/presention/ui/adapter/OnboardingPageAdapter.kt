@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.solutionplus.altasherat.databinding.ItemOnboardingPageBinding
-import com.solutionplus.altasherat.features.splash.presention.ui.fragments.OnboardingPage
 
 class OnboardingPageAdapter(
     private val context: Context,

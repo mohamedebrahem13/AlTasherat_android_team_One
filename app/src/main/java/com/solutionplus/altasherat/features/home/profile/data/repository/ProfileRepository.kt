@@ -10,7 +10,6 @@ internal class ProfileRepository (
 ):IProfileRepository{
     override suspend fun logout(): String {
         return  remoteDataSource.logout().message.orEmpty()
-
     }
 
     override suspend fun deleteUserInfo() {
@@ -19,5 +18,9 @@ internal class ProfileRepository (
 
     override suspend fun deleteUserToken() {
         localDataSource.deleteUserToken()
+    }
+
+    override suspend fun hasTokenKey(): Boolean {
+     return localDataSource.hasTokenKey()
     }
 }

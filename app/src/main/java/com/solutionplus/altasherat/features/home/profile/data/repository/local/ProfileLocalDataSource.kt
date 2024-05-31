@@ -12,4 +12,8 @@ internal class ProfileLocalDataSource (private val localProvider: IKeyValueStora
     override suspend fun deleteUserToken() {
         localProvider.delete<String>(StorageKeyEnum.USER_TOKEN_KEY, String::class.java)
     }
+
+    override suspend fun hasTokenKey(): Boolean {
+            return localProvider.hasKey<String>(StorageKeyEnum.USER_TOKEN_KEY, String::class.java)
+        }
 }
