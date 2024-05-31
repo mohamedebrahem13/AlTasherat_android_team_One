@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_fragment_profile_to_editPasswordFragment"
             app:destination="@id/editPasswordFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_languageTwoFragment"
+            app:destination="@id/languageTwoFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
@@ -65,6 +68,10 @@
         android:name="com.solutionplus.altasherat.features.edit_password.presentation.ui.EditPasswordFragment"
         android:label="fragment_edit_password"
         tools:layout="@layout/fragment_edit_password" />
+    <fragment
+        android:id="@+id/languageTwoFragment"
+        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
+        android:label="LanguageTwoFragment" />
     <fragment
         android:id="@+id/accountSettingFragment"
         android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.AccountSettingFragment"

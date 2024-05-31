@@ -4,4 +4,6 @@ import com.solutionplus.altasherat.features.services.country.data.models.entity.
 
 internal interface ICountriesLocalDS {
     suspend fun getCountries(): List<CountryEntity>
+    suspend fun saveCountryString(countries: List<CountryEntity>)
+
 }

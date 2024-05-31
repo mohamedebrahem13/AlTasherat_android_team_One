@@ -1,14 +1,13 @@
-package com.solutionplus.altasherat.features.splash.domain.worker
+package com.solutionplus.altasherat.features.services.country.domain.worker
 
 import android.content.Context
-import android.media.MediaFormat.KEY_LANGUAGE
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
-import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveCountriesUseCase
+import com.solutionplus.altasherat.features.services.country.domain.interactor.GetAndSaveCountriesUC
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CompletableDeferred
@@ -19,7 +18,7 @@ import kotlinx.coroutines.withContext
 class CountriesWorker  @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val getAndSaveCountriesUseCase: GetAndSaveCountriesUseCase
+    private val getAndSaveCountriesUseCase: GetAndSaveCountriesUC
 ) : CoroutineWorker(context, params) {
 
 

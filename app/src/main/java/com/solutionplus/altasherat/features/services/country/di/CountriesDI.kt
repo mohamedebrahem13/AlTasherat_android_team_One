@@ -5,6 +5,7 @@ import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvi
 import com.solutionplus.altasherat.features.services.country.data.repository.CountriesRepository
 import com.solutionplus.altasherat.features.services.country.data.repository.local.CountriesLocalDS
 import com.solutionplus.altasherat.features.services.country.data.repository.remote.CountriesRemoteDS
+import com.solutionplus.altasherat.features.services.country.domain.interactor.GetAndSaveCountriesUC
 import com.solutionplus.altasherat.features.services.country.domain.interactor.GetCachedCountriesUC
 import com.solutionplus.altasherat.features.services.country.domain.repository.ICountriesRepository
 import com.solutionplus.altasherat.features.services.country.domain.repository.local.ICountriesLocalDS
@@ -13,9 +14,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object CountriesDI {
 
     @Provides
@@ -39,5 +41,9 @@ internal object CountriesDI {
     @Provides
     fun provideGetCachedCountriesUC(repository: ICountriesRepository): GetCachedCountriesUC {
         return GetCachedCountriesUC(repository)
+    }
+    @Provides
+    fun provideGetAndSaveCountriesUC(repository: ICountriesRepository): GetAndSaveCountriesUC {
+        return GetAndSaveCountriesUC(repository)
     }
 }
