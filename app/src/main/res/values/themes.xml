@@ -110,9 +110,30 @@
         <item name="hintTextAppearance">@style/Font.SemiBold</item>
         <item name="startIconTint">@color/icon_input</item>
     </style>
+    <!-- Message Input Style -->
+    <style name="TextInputLayout.OutlinedBox_Message" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_width">370dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginHorizontal">21dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="boxBackgroundColor">@color/bg_input</item>
+        <item name="boxCornerRadiusBottomEnd">29dp</item>
+        <item name="boxCornerRadiusBottomStart">29dp</item>
+        <item name="boxCornerRadiusTopEnd">29dp</item>
+        <item name="boxCornerRadiusTopStart">29dp</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="hintTextAppearance">@style/Font.SemiBold</item>
+        <item name="startIconTint">@color/icon_input</item>
+    </style>
 
     <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_user</item>
+    </style>
+    <style name="TextInputLayout.Message" parent="TextInputLayout.OutlinedBox_Message">
+        <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
 
     <style name="TextInputLayout.Phone" parent="TextInputLayout.OutlinedBox">
@@ -191,8 +212,19 @@
         <item name="android:textAppearance">@style/Font.SemiBold</item>
     </style>
 
+
     <style name="TextInputEditText.Name" parent="TextInputEditText.OutlinedBox">
         <item name="android:inputType">textPersonName</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="TextInputEditText.Message" parent="TextInputEditText.OutlinedBox">
+        <item name="android:minLines">3</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:padding">21dp</item>
+        <item name="android:gravity">top</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:inputType">textMultiLine|text</item>
         <item name="android:imeOptions">actionNext</item>
     </style>
 

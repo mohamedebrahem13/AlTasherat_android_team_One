@@ -136,8 +136,8 @@
         app:layout_constraintTop_toTopOf="@+id/imageView_location" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="594dp"
-        android:layout_height="753dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -304,7 +304,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_country"
                 style="@style/TextInputLayout.Subject"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
@@ -335,18 +335,21 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_message"
-                style="@style/TextInputLayout.Email"
-                android:layout_width="538dp"
-                android:layout_height="179dp"
+                style="@style/TextInputLayout.Message"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_message"
-                    style="@style/TextInputEditText.Name"
+                    style="@style/TextInputEditText.Message"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:hint="@string/Contact_Message"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -26,7 +26,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.personalInfoFragment, R.id.selectionDialogFragment,
-                R.id.editPasswordFragment -> {
+                R.id.editPasswordFragment ,R.id.contactUsFragment-> {
                     binding.bottomNavHome.visibility = View.GONE
                 }
 
