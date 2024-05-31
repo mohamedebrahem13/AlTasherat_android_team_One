@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -25,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.ItemClickListener {
     private lateinit var adapter: ArrayAdapter<Item>
     private val viewModel: ProfileViewModel by viewModels()
+    private lateinit var verificationLayout: View
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.editProfile.setOnClickListener {
@@ -101,6 +103,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         // Set the updated text back to the TextView
         binding.currentVersion.text = updatedText
 
+        verificationLayout = LayoutInflater.from(requireActivity()).inflate(R.layout.verification_item, binding.root)
+
     }
     private fun getItems(): List<Item> {
         // Replace this with your logic to get the list of items for the ListView
@@ -130,6 +134,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         }
         binding.signOut.setOnClickListener {
             viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
+        }
+
+        if (user.isEmailVerified) {
+            binding.profileRootLayout.addView(verificationLayout)
         }
     }
 

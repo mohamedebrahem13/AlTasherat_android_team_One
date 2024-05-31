@@ -61,6 +61,8 @@
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="sign_out">تسجيل الخروج</string>
     <string name="Current_version">النسخة الحالية </string>
+    <string name="confirm_button_text">تاكيد</string>
+    <string name="email_confirm_text">البريد الإلكتروني غير مؤكد</string>
 
     <!--endregion-->
 
