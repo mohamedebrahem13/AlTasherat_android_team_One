@@ -35,4 +35,8 @@ internal class FakeProfileRepository(
         }
         fakeLocalDataSource.deleteUserToken()
     }
+
+    override suspend fun hasTokenKey(): Boolean {
+        return fakeLocalDataSource.hasTokenKey()
+    }
 }

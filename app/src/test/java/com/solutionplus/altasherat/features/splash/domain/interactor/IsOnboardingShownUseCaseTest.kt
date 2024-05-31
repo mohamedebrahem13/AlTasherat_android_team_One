@@ -1,11 +1,8 @@
 package com.solutionplus.altasherat.features.splash.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
-import com.solutionplus.altasherat.features.splash.data.mapper.CountryMapper
-import com.solutionplus.altasherat.features.splash.data.repository.FakeSplashRemoteDS
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeKeyValueStorageProvider
 import com.solutionplus.altasherat.features.splash.data.repository.local.FakeSplashLocalDS
-import com.solutionplus.altasherat.features.splash.data.repository.remote.FakeNetworkProvider
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
@@ -18,17 +15,11 @@ class IsOnboardingShownUseCaseTest{
     private lateinit var splashRepository: FakeSplashRepository
     private lateinit var useCase: IsOnboardingShownUseCase
     private lateinit var localDataSource: FakeSplashLocalDS
-    private lateinit var remoteDataSource: FakeSplashRemoteDS
-    private lateinit var networkProvider: FakeNetworkProvider
-    private lateinit var countryMapper: CountryMapper // Add CountryMapper
 
     @Before
     fun setUp() {
-        networkProvider = FakeNetworkProvider()
-        remoteDataSource = FakeSplashRemoteDS(networkProvider)
         localDataSource = FakeSplashLocalDS(FakeKeyValueStorageProvider())
-        countryMapper = CountryMapper // Initialize the CountryMapper
-        splashRepository = FakeSplashRepository(remoteDataSource,localDataSource,countryMapper)
+        splashRepository = FakeSplashRepository(localDataSource)
         useCase = IsOnboardingShownUseCase(splashRepository)
     }
     @Test

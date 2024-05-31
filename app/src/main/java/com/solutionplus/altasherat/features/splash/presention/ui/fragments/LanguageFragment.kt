@@ -78,12 +78,12 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         }
 
         binding.radioButton2.setOnClickListener {
-            viewModel.onActionTrigger(LanguageContract.LanguageAction.StartCountriesWorkerEn("en"))
+            viewModel.onActionTrigger(LanguageContract.LanguageAction.StartCountriesWorker("en"))
 
         }
 
         binding.radioButton1.setOnClickListener {
-            viewModel.onActionTrigger(LanguageContract.LanguageAction.StartCountriesWorkerAr("ar"))
+            viewModel.onActionTrigger(LanguageContract.LanguageAction.StartCountriesWorker("ar"))
 
         }
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

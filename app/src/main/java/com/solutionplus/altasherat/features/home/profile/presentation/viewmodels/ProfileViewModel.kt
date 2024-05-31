@@ -110,6 +110,9 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
         when(action) {
             is ProfileContract.ProfileAction.Login->{ sendEvent(ProfileContract.ProfileEvent.Login) }
             is ProfileContract.ProfileAction.SignOut->{ logout() }
+            is ProfileContract.ProfileAction.Language->{
+                sendEvent(ProfileContract.ProfileEvent.LanguageSelectionNavigation)
+            }
             is ProfileContract.ProfileAction.EditProfile->{ sendEvent(ProfileContract.ProfileEvent.EditProfileNavigation) }
             is ProfileContract.ProfileAction.ChangePassword -> {
                 // Handle the change password action
@@ -127,10 +130,7 @@ class ProfileViewModel @Inject constructor(private val getCachedUserUC:GetCached
                 // Handle the terms and conditions action
                 sendEvent(ProfileContract.ProfileEvent.TermsAndConditionsNavigation)
             }
-            is ProfileContract.ProfileAction.Language -> {
-                // Handle the language selection action
-                sendEvent(ProfileContract.ProfileEvent.LanguageSelectionNavigation)
-            }
+
             is ProfileContract.ProfileAction.PrivacyPolicy -> {
                 // Handle the privacy policy action
                 sendEvent(ProfileContract.ProfileEvent.PrivacyPolicyNavigation)
