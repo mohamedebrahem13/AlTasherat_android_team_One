@@ -324,7 +324,7 @@
                 android:layout_height="wrap_content"
                 style="@style/TextView.Bold"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
+                android:text="@string/Contact_Message"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.03"
                 app:layout_constraintStart_toStartOf="parent"

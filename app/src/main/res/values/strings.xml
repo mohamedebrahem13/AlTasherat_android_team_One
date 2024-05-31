@@ -133,6 +133,8 @@
     <string name="Contact_Subject">Subject</string>
     <string name="Contact_Subject_input">Select Contact Subject</string>
     <string name="Contact_Message_input">Write Subject Name</string>
+    <string name="Contact_Message">Message</string>
+
 
 
 
