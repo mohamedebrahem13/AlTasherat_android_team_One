@@ -162,6 +162,9 @@
     <style name="TextInputLayout.Country" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_flag</item>
     </style>
+    <style name="TextInputLayout.Subject" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="startIconDrawable">@drawable/ic_topic</item>
+    </style>
 
     <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_marginStart">0dp</item>
@@ -243,6 +246,13 @@
         <item name="android:inputType">none</item>
         <item name="android:focusable">false</item>
         <item name="android:clickable">true</item>
+    </style>
+    <style name="AutoCompleteTextView.Contact_Subject" parent="AutoCompleteTextView.OutlinedBox">
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:imeOptions">actionNext</item>
     </style>
     <!--endregion-->
 
