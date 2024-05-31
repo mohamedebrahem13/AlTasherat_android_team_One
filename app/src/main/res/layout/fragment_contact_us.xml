@@ -136,8 +136,8 @@
         app:layout_constraintTop_toTopOf="@+id/imageView_location" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="580dp"
+        android:layout_width="594dp"
+        android:layout_height="753dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -167,10 +167,10 @@
 
             <TextView
                 android:id="@+id/textView8"
+                style="@style/TextView.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_us"
-                style="@style/TextView.Bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -179,11 +179,11 @@
 
             <TextView
                 android:id="@+id/textView9"
+                style="@style/TextView.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/name"
-                style="@style/TextView.Bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.03"
                 app:layout_constraintStart_toStartOf="parent"
@@ -221,7 +221,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_email"
-                    style="@style/TextInputEditText.Name"
+                    style="@style/TextInputEditText.Email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -229,10 +229,10 @@
 
             <TextView
                 android:id="@+id/textView11"
+                style="@style/TextView.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                style="@style/TextView.Bold"
                 android:text="@string/email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.03"
@@ -270,6 +270,7 @@
                     android:layout_height="match_parent"
                     android:hint="@string/Contact_phone_input" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_country_code"
                 style="@style/TextInputLayout.CountryCode"
@@ -285,8 +286,7 @@
                     style="@style/AutoCompleteTextView.CountryCode"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/country_code_text"
-                    />
+                    android:text="@string/country_code_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -332,6 +332,24 @@
                 app:layout_constraintHorizontal_bias="0.03"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_country" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_message"
+                style="@style/TextInputLayout.Email"
+                android:layout_width="538dp"
+                android:layout_height="179dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_message"
+                    style="@style/TextInputEditText.Name"
+                    android:hint="@string/Contact_Message"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
