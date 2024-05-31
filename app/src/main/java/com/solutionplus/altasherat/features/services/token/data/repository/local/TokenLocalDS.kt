@@ -25,4 +25,11 @@ internal class TokenLocalDS(
         )
         return decryptedToken
     }
+
+    override suspend fun deleteToken() {
+        keyValueStorage.delete<String>(
+            key = StorageKeyEnum.USER_TOKEN_KEY,
+            type = String::class.java
+        )
+    }
 }

@@ -5,4 +5,5 @@ import com.solutionplus.altasherat.features.services.user.data.models.entity.Use
 internal interface IUserLocalDS {
     suspend fun getUser(): UserEntity
     suspend fun saveUser(user: UserEntity)
+    suspend fun deleteUser()
 }

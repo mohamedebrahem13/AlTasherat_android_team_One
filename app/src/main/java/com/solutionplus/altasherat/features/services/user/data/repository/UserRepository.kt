@@ -24,4 +24,8 @@ internal class UserRepository(
         val userEntity = UserMapper.domainToEntity(user)
         localDS.saveUser(userEntity)
     }
+
+    override suspend fun deleteUser() {
+        localDS.deleteUser()
+    }
 }

@@ -125,10 +125,17 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                 findNavController().popBackStack()
             }
 
-            binding.swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.setOnRefreshListener {
                 viewModel.processIntent(PersonalInfoAction.GetUpdatedUserPersonalInfo)
                 binding.swipeRefreshLayout.isRefreshing = true
             }
+
+            buttonMore.setOnClickListener {
+                val action =
+                    PersonalInfoFragmentDirections.actionPersonalInfoFragmentToAccountSettingFragment()
+                findNavController().navigate(action)
+            }
+
         }
     }
 
@@ -215,7 +222,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         if (date != LocalDate.MIN) {
             selectedDate = date
             binding.inputBirthDate.editText?.setText(date.toString())
-        }else {
+        } else {
             binding.inputBirthDate.editText?.text = null
         }
     }

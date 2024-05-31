@@ -6,4 +6,5 @@ interface IUserRepository {
     suspend fun getUserFromLocal(): User
     suspend fun getUserFromRemote(): User
     suspend fun saveUser(user: User)
+    suspend fun deleteUser()
 }
