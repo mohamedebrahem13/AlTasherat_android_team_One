@@ -6,8 +6,8 @@ import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFrag
 import com.solutionplus.altasherat.databinding.FragmentAccountSettingBinding
 
 class AccountSettingFragment : BaseFragment<FragmentAccountSettingBinding>() {
-    override fun viewInit() {
-    }
+
+    override fun viewInit() {}
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         with(binding) {
@@ -23,9 +23,7 @@ class AccountSettingFragment : BaseFragment<FragmentAccountSettingBinding>() {
         }
     }
 
-    override fun subscribeToObservables() {
-    }
+    override fun subscribeToObservables() {}
 
-    override fun onLoading(isLoading: Boolean) {
-    }
+    override fun onLoading(isLoading: Boolean) {}
 }
