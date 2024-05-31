@@ -120,4 +120,11 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="enter_confirm_password">Enter Confirm Password</string>
     <!--endregion-->
+
+    <!--region Contact us Fragment -->
+    <string name="Contact_details">بيانات التواصل</string>
+    <string name="Contact_us">Contact us</string>
+    <!--endregion-->
+
+
 </resources>

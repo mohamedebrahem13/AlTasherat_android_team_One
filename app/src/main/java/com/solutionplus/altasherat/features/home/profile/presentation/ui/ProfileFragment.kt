@@ -58,12 +58,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 }
             }
 
-            ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.AboutUsNavigation -> {
+
+            }
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
                 findNavController().navigate(action)
             }
-            ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.ContactUsNavigation -> {
+                val action = ProfileFragmentDirections.actionFragmentProfileToContactUsFragment()
+                findNavController().navigate(action)
+            }
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
                 findNavController().navigate(action)

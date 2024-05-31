@@ -122,4 +122,11 @@
     <string name="enter_new_password">ادخل كلمة المرور الجديدة</string>
     <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
     <!--endregion-->
+
+    <!--region Contact us Fragment -->
+    <string name="Contact_us">تواصل معنا</string>
+    <string name="Contact_details">بيانات التواصل</string>
+
+    <!--endregion-->
+
 </resources>
