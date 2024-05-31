@@ -31,9 +31,19 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
     }
   private fun handleSingleEvent(event: LanguageSettingsContract.LanguageSettingsContractEvent){
       when(event){
-          is LanguageSettingsContract.LanguageSettingsContractEvent.ShowWorkerStateToast ->showToast(event.workerState)
-          is LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation,LanguageSettingsContract.LanguageSettingsContractEvent.BackNavigation -> findNavController().popBackStack()
-          is LanguageSettingsContract.LanguageSettingsContractEvent.StartCountriesWorker -> { updateLocale(event.language) }
+          is LanguageSettingsContract.LanguageSettingsContractEvent.ShowWorkerStateToast ->{
+              showToast(event.workerState)
+          }
+
+          is LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation -> {
+                  updateLocale(event.language)
+                  findNavController().popBackStack()
+
+          }
+
+       is  LanguageSettingsContract.LanguageSettingsContractEvent.BackNavigation -> {
+              findNavController().popBackStack()
+          }
       }
 
   }
@@ -41,11 +51,11 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
     override fun viewInit() {
         binding.radioButton2.setOnClickListener {
             updateRadioButtons("en")
-            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker("en")) }
+            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.RadioButtonClick("en")) }
 
         binding.radioButton1.setOnClickListener {
             updateRadioButtons("ar")
-            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker("ar"))
+            viewModel.onActionTrigger(LanguageSettingsContract.LanguageSettingsContractAction.RadioButtonClick("ar"))
 
         }
         binding.save.setOnClickListener {

@@ -1,6 +1,5 @@
 package com.solutionplus.altasherat.features.home.language.presentation.viewmodels
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
 import com.solutionplus.altasherat.common.data.models.Resource
@@ -22,9 +21,12 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
     override fun onActionTrigger(action: ViewAction?) {
         setState(oldViewState.copy(action = action))
         when (action) {
+            is LanguageSettingsContract.LanguageSettingsContractAction.RadioButtonClick->{
+                setState(oldViewState.copy(selectedRadio = action.selectedRadio))
+            }
+
             is LanguageSettingsContract.LanguageSettingsContractAction.BackClick->sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.BackNavigation)
-            is LanguageSettingsContract.LanguageSettingsContractAction.SaveClick->saveUserPreferenceLanguage()
-            is LanguageSettingsContract.LanguageSettingsContractAction.StartCountriesWorker -> startCountriesWorker(action.language)
+            is LanguageSettingsContract.LanguageSettingsContractAction.SaveClick->startCountriesWorker(oldViewState.selectedRadio.toString())
         }
     }
     private fun startCountriesWorker(language: String) {
@@ -35,7 +37,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
                         "Worker ENQUEUED"
                     }                    WorkInfo.State.RUNNING -> "Worker RUNNING"
                     WorkInfo.State.SUCCEEDED -> {
-                        sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.StartCountriesWorker(language))
+                        saveUserPreferenceLanguage(language)
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
 
@@ -55,17 +57,16 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
         }
     }
 
-    private fun saveUserPreferenceLanguage() {
-        val preferredLanguage = createUserPreferenceLanguage()
+    private fun saveUserPreferenceLanguage(language: String) {
 
-        saveUserPreferenceLanguageUseCase.invoke(viewModelScope, preferredLanguage) { resource ->
+        saveUserPreferenceLanguageUseCase.invoke(viewModelScope, language) { resource ->
             when (resource) {
                 is Resource.Progress -> {
                     setState(oldViewState.copy(isLoading = resource.loading))
                 }
 
                 is Resource.Success -> {
-                    sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation)
+                    sendEvent(LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation(language))
                 }
 
                 is Resource.Failure -> {
@@ -77,13 +78,5 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
         }
     }
 
-    private fun createUserPreferenceLanguage(): String {
-        val language = AppCompatDelegate.getApplicationLocales()
-        val preferredLanguage = if (language.isEmpty) {
-            "ar" // Default to "ar" if device locale is empty
-        } else {
-            language[0]?.toLanguageTag().toString()
-        }
-        return  preferredLanguage
-    }
+
 }
