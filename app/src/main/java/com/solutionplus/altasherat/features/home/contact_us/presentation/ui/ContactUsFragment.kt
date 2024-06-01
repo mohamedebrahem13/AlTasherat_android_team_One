@@ -2,14 +2,17 @@ package com.solutionplus.altasherat.features.home.contact_us.presentation.ui
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentContactUsBinding
 import com.solutionplus.altasherat.features.home.contact_us.presentation.viewmodels.ContactUsContract
 import com.solutionplus.altasherat.features.home.contact_us.presentation.viewmodels.ContactUsViewModel
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
+import com.solutionplus.altasherat.features.services.user.domain.models.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,19 +35,34 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
         }
     }
 
-    override fun onLoading(isLoading: Boolean) {
-    }
+    override fun onLoading(isLoading: Boolean) {}
+
 
     override fun subscribeToObservables() {
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             handleSingleEvent(event)
         }
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            handleViewState(state)
+        }
     }
-    private fun setUpCountryCodeAdapter() {
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
+    private fun setUpCountryCodeAdapter(user: User?) {
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
         binding.etCountryCode.setAdapter(arrayAdapter)
+
+        // Set the selected item to the user's country code if available, else use the default value
+        user?.let {
+            val userCountryIndex = countries?.indexOfFirst { country -> country.phoneCode == user.country.phoneCode } ?: -1
+            if (userCountryIndex >= 0) {
+                binding.etCountryCode.setText(customCountiesList[userCountryIndex], false)
+            } else {
+                binding.etCountryCode.setText(customCountiesList.getOrNull(0), false)
+            }
+        } ?: run {
+            binding.etCountryCode.setText(customCountiesList.getOrNull(0), false)
+        }
     }
+
     private fun setCustomCountry() {
         countries?.forEach {
             val formattedCountryCode = requireContext().getString(
@@ -63,13 +81,44 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
                     countryId = countries!![0].id
                     countryCode = countries!![0].phoneCode
                     setCustomCountry()
-                    setUpCountryCodeAdapter()
                 }
             }
 
-            ContactUsContract.ContactUsEvent.BackClick ->findNavController().popBackStack()
+            ContactUsContract.ContactUsEvent.BackClick ->{
+                findNavController().popBackStack()
+            }
 
         }
+    }
+    private fun handleViewState(state: ContactUsContract.ContactUsState) {
+        when {
+            state.exception != null -> {
+                // Handle error state
+                val errorMessage = state.exception.message ?: "Unknown error"
+                showToast("Error: $errorMessage")
+            }
+            state.user != null -> {
+                logger.debug("user_country${state.user}")
+                setupContactView(state.user)
+                setUpCountryCodeAdapter(state.user)
+
+            } else -> {
+            setupContactView(null)
+            setUpCountryCodeAdapter(null) //
+
+        }
+
+        }
+    }
+    private fun setupContactView(user:User?) {
+        if (user != null) {
+            binding.etEmail.setText(user.email)
+            binding.etName.setText(user.firstname)
+            binding.etPhoneNumber.setText(user.phone.number)
+        }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     override fun viewInit() {
@@ -77,6 +126,9 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
             viewModel.onActionTrigger(ContactUsContract.ContactUsAction.BackClick)
 
         }
+    }
+    companion object {
+        private val logger = getClassLogger()
     }
 
 }

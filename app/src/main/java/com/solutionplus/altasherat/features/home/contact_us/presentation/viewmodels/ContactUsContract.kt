@@ -5,6 +5,7 @@ import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewEvent
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewState
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
+import com.solutionplus.altasherat.features.services.user.domain.models.User
 
 interface ContactUsContract {
     sealed class ContactUsAction : ViewAction {
@@ -20,7 +21,7 @@ interface ContactUsContract {
     }
 
     data class ContactUsState(
-        val isLoading: Boolean, val exception: AlTasheratException?, val action: ViewAction?
+        val isLoading: Boolean, val exception: AlTasheratException?, val user: User?=null,val action: ViewAction?
     ) : ViewState {
         companion object {
             fun initial() = ContactUsState(
