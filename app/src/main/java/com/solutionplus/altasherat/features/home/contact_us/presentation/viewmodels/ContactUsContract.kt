@@ -9,10 +9,14 @@ import com.solutionplus.altasherat.features.services.country.domain.models.Count
 interface ContactUsContract {
     sealed class ContactUsAction : ViewAction {
         data object GetCountries : ContactUsAction()
+        data object BackClick : ContactUsAction()
+
     }
 
     sealed class ContactUsEvent : ViewEvent {
         data class GetCountries(val countries: List<Country>?) : ContactUsEvent()
+        data object BackClick : ContactUsEvent()
+
     }
 
     data class ContactUsState(

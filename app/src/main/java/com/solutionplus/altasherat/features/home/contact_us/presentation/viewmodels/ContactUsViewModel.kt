@@ -28,6 +28,9 @@ class ContactUsViewModel @Inject constructor(
             is ContactUsContract.ContactUsAction.GetCountries-> {
                 getCountries()
             }
+            is ContactUsContract.ContactUsAction.BackClick->{
+                ContactUsContract.ContactUsEvent.BackClick
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package com.solutionplus.altasherat.features.home.contact_us.presentation.ui
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentContactUsBinding
@@ -66,10 +67,16 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
                 }
             }
 
+            ContactUsContract.ContactUsEvent.BackClick ->findNavController().popBackStack()
+
         }
     }
 
     override fun viewInit() {
+        binding.buttonBack.setOnClickListener {
+            viewModel.onActionTrigger(ContactUsContract.ContactUsAction.BackClick)
+
+        }
     }
 
 }
