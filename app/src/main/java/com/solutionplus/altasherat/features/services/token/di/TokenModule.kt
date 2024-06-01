@@ -4,6 +4,7 @@ import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStora
 import com.solutionplus.altasherat.common.domain.repository.local.encryption.IEncryptionService
 import com.solutionplus.altasherat.features.services.token.data.repository.TokenRepository
 import com.solutionplus.altasherat.features.services.token.data.repository.local.TokenLocalDS
+import com.solutionplus.altasherat.features.services.token.domain.interactor.DeleteCachedTokenUC
 import com.solutionplus.altasherat.features.services.token.domain.interactor.GetCachedTokenUC
 import com.solutionplus.altasherat.features.services.token.domain.repository.ITokenRepository
 import com.solutionplus.altasherat.features.services.token.domain.repository.local.ITokenLocalDS
@@ -35,5 +36,10 @@ internal object TokenModule {
     @Provides
     fun provideGetCachedTokenUC(tokenRepository: ITokenRepository): GetCachedTokenUC {
         return GetCachedTokenUC(tokenRepository)
+    }
+
+    @Provides
+    fun provideDeleteCachedTokenUC(tokenRepository: ITokenRepository): DeleteCachedTokenUC {
+        return DeleteCachedTokenUC(tokenRepository)
     }
 }

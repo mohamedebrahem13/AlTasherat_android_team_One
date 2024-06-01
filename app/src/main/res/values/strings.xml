@@ -39,7 +39,7 @@
     <string name="phone_text">Phone</string>
     <string name="password_text">Password</string>
     <string name="signup_text">Sign Up</string>
-    <string name="forget_password_text">Forgot your password?</string>
+    <string name="forget_password_text" translatable="false">Forgot your password?</string>
     <string name="selected_country_code">%1$s\t(+%2$s)</string>
     <string name="country_code_text" translatable="false">🇸🇦 (+966)</string>
     <string name="email_validation_error">The email you entered is invalid</string>
@@ -119,6 +119,18 @@
     <string name="enter_new_password">Enter New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="enter_confirm_password">Enter Confirm Password</string>
+    <!--endregion-->
+
+    <!--region Delete Account Fragment -->
+    <string name="account_setting">Account Setting</string>
+    <string name="delete_account_settings">Account Setting, Deactivate Account, Delete Account</string>
+    <string name="deactivate_account">Deactivate the account permanently</string>
+    <string name="deactivate_account_description">All information, transactions and reservations will be lost</string>
+    <string name="image_deactivate_account">Deactivate Account Image</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="password__to_confirm">Password to confirm</string>
     <!--endregion-->
 
     <!--region Contact us Fragment -->

@@ -6,6 +6,7 @@ import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvi
 import com.solutionplus.altasherat.features.services.user.data.repository.UserRepository
 import com.solutionplus.altasherat.features.services.user.data.repository.local.UserLocalDS
 import com.solutionplus.altasherat.features.services.user.data.repository.remote.UserRemoteDS
+import com.solutionplus.altasherat.features.services.user.domain.interactor.DeleteCachedUserUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.GetCachedUserUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.GetUserUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
@@ -60,5 +61,10 @@ internal object UserModule {
     @Provides
     fun provideSaveUserUC(repository: IUserRepository): SaveUserUC {
         return SaveUserUC(repository = repository)
+    }
+
+    @Provides
+    fun provideDeleteCachedUserUC(repository: IUserRepository): DeleteCachedUserUC {
+        return DeleteCachedUserUC(repository = repository)
     }
 }

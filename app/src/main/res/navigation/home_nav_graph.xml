@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_personalInfoFragment_to_selectionDialogFragment"
             app:destination="@id/selectionDialogFragment" />
+        <action
+            android:id="@+id/action_personalInfoFragment_to_accountSettingFragment"
+            app:destination="@id/accountSettingFragment" />
     </fragment>
     <dialog
         android:id="@+id/selectionDialogFragment"
@@ -45,7 +48,7 @@
         android:id="@+id/fragment_visa_platform"
         android:name="com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.VisaPlatformFragment"
         android:label="fragment_visa_platform"
-        tools:layout="@layout/fragment_visa_platform" >
+        tools:layout="@layout/fragment_visa_platform">
         <action
             android:id="@+id/action_fragment_visa_platform_to_unAuthorizedDialogFragment"
             app:destination="@id/unAuthorizedDialogFragment" />
@@ -70,4 +73,31 @@
         android:name="com.solutionplus.altasherat.features.home.contact_us.presentation.ui.ContactUsFragment"
         android:label="fragment_contact_us"
         tools:layout="@layout/fragment_contact_us" />
+    <fragment
+        android:id="@+id/languageTwoFragment"
+        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
+        android:label="LanguageTwoFragment" />
+    <fragment
+        android:id="@+id/accountSettingFragment"
+        android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.AccountSettingFragment"
+        android:label="fragment_account_setting"
+        tools:layout="@layout/fragment_account_setting">
+        <action
+            android:id="@+id/action_accountSettingFragment_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.DeleteAccountFragment"
+        android:label="fragment_delete_account"
+        tools:layout="@layout/fragment_delete_account">
+        <action
+            android:id="@+id/action_deleteAccountFragment_to_deleteAccountDialogFragment"
+            app:destination="@id/deleteAccountDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteAccountDialogFragment"
+        android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.DeleteAccountDialogFragment"
+        android:label="DeleteAccountDialogFragment"
+        tools:layout="@layout/fragment_delete_account_dialog" />
 </navigation>
