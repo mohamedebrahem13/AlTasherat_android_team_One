@@ -41,11 +41,17 @@
             android:id="@+id/action_fragment_profile_to_editPasswordFragment"
             app:destination="@id/editPasswordFragment" />
         <action
-            android:id="@+id/action_fragment_profile_to_contactUsFragment"
-            app:destination="@id/contactUsFragment" />
+            android:id="@+id/action_fragment_profile_to_languageTwoFragment"
+            app:destination="@id/languageTwoFragment" />
         <action
-            android:id="@+id/action_fragment_profile_to_languageSettingsFragment"
-            app:destination="@id/languageSettingsFragment" />
+            android:id="@+id/action_fragment_profile_to_fragmentAbout"
+            app:destination="@id/fragmentAbout" />
+        <action
+            android:id="@+id/action_fragment_profile_to_fragmentPrivacyPolicies"
+            app:destination="@id/fragmentPrivacyPolicies" />
+        <action
+            android:id="@+id/action_fragment_profile_to_fragmentTermsCondition"
+            app:destination="@id/fragmentTermsCondition" />
     </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
@@ -100,8 +106,18 @@
         android:label="DeleteAccountDialogFragment"
         tools:layout="@layout/fragment_delete_account_dialog" />
     <fragment
-        android:id="@+id/languageSettingsFragment"
-        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
-        android:label="fragment_language_settings"
-        tools:layout="@layout/fragment_language_settings" />
+        android:id="@+id/fragmentAbout"
+        tools:layout="@layout/about_layout"
+        android:name="com.solutionplus.altasherat.features.menu.about.presentation.FragmentAbout"
+        android:label="FragmentAbout" />
+    <fragment
+        android:id="@+id/fragmentPrivacyPolicies"
+        tools:layout="@layout/privacy_layout"
+        android:name="com.solutionplus.altasherat.features.menu.privacy_policies.presentation.FragmentPrivacyPolicies"
+        android:label="FragmentPrivacyPolicies" />
+    <fragment
+        android:id="@+id/fragmentTermsCondition"
+        tools:layout="@layout/terms_conditions_layout"
+        android:name="com.solutionplus.altasherat.features.menu.terms_conditions.presentation.FragmentTermsCondition"
+        android:label="FragmentTermsCondition" />
 </navigation>
