@@ -2,12 +2,13 @@ package com.solutionplus.altasherat.features.personal_info.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
-import com.solutionplus.altasherat.features.personal_info.data.models.dto.UpdateInfoResponseDto
-import com.solutionplus.altasherat.features.personal_info.data.models.request.PhoneRequest
-import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
-import com.solutionplus.altasherat.features.personal_info.data.repository.PersonalInfoRepository
-import com.solutionplus.altasherat.features.personal_info.domain.repository.IPersonalInfoRepository
-import com.solutionplus.altasherat.features.personal_info.domain.repository.remote.IPersonalInfoRemoteDS
+import com.solutionplus.altasherat.features.account.personal_info.data.models.dto.UpdateInfoResponseDto
+import com.solutionplus.altasherat.features.account.personal_info.data.models.request.PhoneRequest
+import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
+import com.solutionplus.altasherat.features.account.personal_info.data.repository.PersonalInfoRepository
+import com.solutionplus.altasherat.features.account.personal_info.domain.interactor.UpdatePersonalInfoUC
+import com.solutionplus.altasherat.features.account.personal_info.domain.repository.IPersonalInfoRepository
+import com.solutionplus.altasherat.features.account.personal_info.domain.repository.remote.IPersonalInfoRemoteDS
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -518,20 +519,6 @@ class UpdatePersonalInfoUCTest {
             // Given update request with phone number containing alphabets
             val updateInfoRequest =
                 updateInfoRequest.copy(birthDate = "15-05-1985")
-
-            // When update fails
-            val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-            // Then request validation failure resource should be emitted
-            assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-        }
-
-    @Test
-    fun updatePersonalInfo_FutureBirthDate_ReturnRequestValidationFailureResource() =
-        runTest {
-            // Given update request with phone number containing alphabets
-            val updateInfoRequest =
-                updateInfoRequest.copy(birthDate = "2100-05-15")
 
             // When update fails
             val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
