@@ -138,8 +138,7 @@
                     style="@style/AutoCompleteTextView.CountryCode"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/country_code_text"
-                    />
+                    android:text="@string/country_code_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
