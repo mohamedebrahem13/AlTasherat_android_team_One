@@ -52,6 +52,14 @@
         <action
             android:id="@+id/action_fragment_profile_to_fragmentTermsCondition"
             app:destination="@id/fragmentTermsCondition" />
+            android:id="@+id/action_fragment_profile_to_languageSettingsFragment"
+            app:destination="@id/languageSettingsFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
@@ -120,4 +128,17 @@
         tools:layout="@layout/terms_conditions_layout"
         android:name="com.solutionplus.altasherat.features.menu.terms_conditions.presentation.FragmentTermsCondition"
         android:label="FragmentTermsCondition" />
+        android:id="@+id/languageSettingsFragment"
+        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
+        android:label="fragment_language_settings"
+        tools:layout="@layout/fragment_language_settings" />
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.solutionplus.altasherat.features.menu.verification.presentation.ui.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>

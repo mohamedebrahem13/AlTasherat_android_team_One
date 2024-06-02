@@ -148,7 +148,6 @@
     <string name="Contact_Message">الرسالة</string>
     <!--endregion-->
 
-
     <!--region Delete Account Fragment -->
     <string name="account_setting">إدارة الحساب</string>
     <string name="delete_account_settings">اعدادات الحساب والغاء تنشيط الحساب وحذفه</string>
@@ -159,5 +158,12 @@
     <string name="confirm_delete">تأكيد الحذف</string>
     <string name="delete_account">حذف الحساب</string>
     <string name="password__to_confirm">كلمة المرور للتأكيد</string>
+    <!--endregion-->
+
+    <!--region Verification Fragment -->
+    <string name="image_verification">صورة تأكيد البريد الالكتروني</string>
+    <string name="text_verification">تأكيد البريد الالكتروني 👋</string>
+    <string name="verification_description">أرسلنا رسالة تأكيد بالبريد الإلكتروني إلى:\n
+    %1$s\nتحقق من بريدك الإلكتروني وانقر على رابط التأكيد للمتابعة</string>
     <!--endregion-->
 </resources>
