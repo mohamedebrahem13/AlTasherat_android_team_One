@@ -146,11 +146,11 @@
     <string name="Contact_Subject_input">Select Contact Subject</string>
     <string name="Contact_Message_input">Write Subject Name</string>
     <string name="Contact_Message">Message</string>
-
-
-
-
     <!--endregion-->
 
-
+    <!--region Verification Fragment -->
+    <string name="image_verification">Verification Image</string>
+    <string name="text_verification">Confirm Email 👋</string>
+    <string name="verification_description">We have sent a confirmation message to the email:\n%1$s\nCheck your email and click on the confirmation link to continue</string>
+    <!--endregion-->
 </resources>

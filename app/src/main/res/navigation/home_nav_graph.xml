@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_fragment_profile_to_languageSettingsFragment"
             app:destination="@id/languageSettingsFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
@@ -104,4 +107,13 @@
         android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
         android:label="fragment_language_settings"
         tools:layout="@layout/fragment_language_settings" />
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.solutionplus.altasherat.features.menu.verification.presentation.ui.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>
