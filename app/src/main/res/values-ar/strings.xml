@@ -136,6 +136,28 @@
     <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
     <!--endregion-->
 
+    <!--region Contact us Fragment -->
+    <string name="Contact_us">تواصل معنا</string>
+    <string name="Contact_details">بيانات التواصل</string>
+    <string name="location_text">السعودية - الرياض\nالقاهرة - جاردن سيتي</string>
+    <string name="name">الاسم</string>
+    <string name="Contact_name_input">اكتب الاسم للتواصل</string>
+    <string name="Contact_phone_input">ادخل رقم الجوال للمتابعة</string>
+    <string name="Contact_Subject">الموضوع</string>
+    <string name="Contact_Subject_input">اختر موضوع التواصل</string>
+    <string name="Contact_Message_input">اكتب رسالة التواصل</string>
+    <string name="Contact_Message">الرسالة</string>
+
+
+
+
+
+
+
+
+    <!--endregion-->
+
+
     <!--region Delete Account Fragment -->
     <string name="account_setting">إدارة الحساب</string>
     <string name="delete_account_settings">اعدادات الحساب والغاء تنشيط الحساب وحذفه</string>
