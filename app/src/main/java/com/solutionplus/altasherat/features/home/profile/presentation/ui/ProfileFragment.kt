@@ -162,7 +162,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             signOut.setOnClickListener {
                 viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
             }
-            verificationRootLayout.isVisible = user.isEmailVerified
+            verificationRootLayout.isVisible = !user.isEmailVerified
         }
 
 
