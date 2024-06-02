@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -161,6 +162,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             signOut.setOnClickListener {
                 viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
             }
+            verificationRootLayout.isVisible = user.isEmailVerified
         }
 
 
