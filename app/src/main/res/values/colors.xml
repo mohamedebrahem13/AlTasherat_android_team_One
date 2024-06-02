@@ -5,6 +5,8 @@
     <color name="error">#CE6679</color>
     <color name="gray">#87FFFFFF</color>
     <color name="red">#FB1C1F</color>
+    <color name="bale_gray">#F1F4FB</color>
+    <color name="verification_color">#4D4C4C</color>
 
 
     <!-- light mode colors -->

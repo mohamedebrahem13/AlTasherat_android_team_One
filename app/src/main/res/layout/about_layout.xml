@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="19dp"
+            android:background="@drawable/shape_back_arrow"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextView.Heavy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/about"
+            app:layout_constraintBottom_toBottomOf="@id/back_button"
+            app:layout_constraintStart_toEndOf="@id/back_button"
+            app:layout_constraintTop_toTopOf="@id/back_button" />
+
+        <ImageView
+            android:id="@+id/about_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/about_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_button" />
+
+
+        <Button
+            android:id="@+id/visa_platform_btn"
+            style="@style/Button.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visa_platform_text"
+            android:textAppearance="@style/TextView.Heavy"
+            app:layout_constraintBottom_toBottomOf="@id/about_img"
+            app:layout_constraintEnd_toEndOf="@id/about_img"
+            app:layout_constraintStart_toStartOf="@id/about_img"
+            app:layout_constraintTop_toBottomOf="@id/about_img" />
+
+        <TextView
+            android:id="@+id/about_tv"
+            style="@style/TextView.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="7dp"
+            android:text="@string/about_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/visa_platform_btn" />
+
+
+        <ImageView
+            android:id="@+id/about_content_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18sp"
+            android:src="@drawable/about_content_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_tv" />
+
+
+        <TextView
+            android:id="@+id/visa_application_tv"
+            style="@style/TextView.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="9dp"
+            android:drawablePadding="5dp"
+            android:text="@string/application_tourist_visa"
+            app:drawableStartCompat="@drawable/green_check_mark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/about_content_img"
+            app:layout_constraintTop_toTopOf="@id/about_content_img" />
+
+        <TextView
+            android:id="@+id/work_application_tv"
+            style="@style/TextView.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:drawablePadding="5dp"
+            app:layout_constraintStart_toStartOf="@id/visa_application_tv"
+            android:text="@string/application_work_visa"
+            app:drawableStartCompat="@drawable/blue_check_mark"
+            app:layout_constraintEnd_toEndOf="@id/visa_application_tv"
+            app:layout_constraintTop_toBottomOf="@id/visa_application_tv" />
+
+
+        <TextView
+            android:id="@+id/embassies_tv"
+            style="@style/TextView.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:drawablePadding="5dp"
+            app:layout_constraintStart_toStartOf="@id/work_application_tv"
+            android:text="@string/embassies_services"
+            app:drawableStartCompat="@drawable/green_check_mark"
+            app:layout_constraintEnd_toEndOf="@id/visa_application_tv"
+            app:layout_constraintTop_toBottomOf="@id/work_application_tv" />
+
+        <TextView
+            android:id="@+id/consular_tv"
+            style="@style/TextView.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:drawablePadding="5dp"
+            app:layout_constraintStart_toStartOf="@id/embassies_tv"
+            android:text="@string/consular_services"
+            app:drawableStartCompat="@drawable/blue_check_mark"
+            app:layout_constraintEnd_toEndOf="@id/visa_application_tv"
+            app:layout_constraintTop_toBottomOf="@id/embassies_tv" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:id="@+id/offer_layout"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/consular_tv"
+            android:background="@color/bale_gray">
+
+            <TextView
+                android:id="@+id/offer_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/offer_text"
+                style="@style/TextView.Heavy"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+            <TextView
+                android:id="@+id/offer_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/offer_content_text"
+                style="@style/TextView.Heavy"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/offer_tv"
+                app:layout_constraintTop_toBottomOf="@id/offer_tv"
+                />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/offer_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/flag_img"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
