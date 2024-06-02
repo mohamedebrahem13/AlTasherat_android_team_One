@@ -50,15 +50,16 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.country_menu_item, customCountiesList)
         binding.etCountryCode.setAdapter(arrayAdapter)
 
-        // Set the selected item to the user's country code if available, else use the default value
-        user?.let {
-            val userCountryIndex = countries?.indexOfFirst { country -> country.phoneCode == user.country.phoneCode } ?: -1
-            if (userCountryIndex >= 0) {
-                binding.etCountryCode.setText(customCountiesList[userCountryIndex], false)
-            } else {
-                binding.etCountryCode.setText(customCountiesList.getOrNull(0), false)
-            }
-        } ?: run {
+        // Find the user's country index if the user is not null, else set it to -1
+        val userCountryIndex = user?.let {
+            countries?.indexOfFirst { country -> country.phoneCode == user.country.phoneCode } ?: -1
+        } ?: -1
+
+        // If a valid user country index is found, set the text to that country code
+        if (userCountryIndex >= 0) {
+            binding.etCountryCode.setText(customCountiesList[userCountryIndex], false)
+        } else {
+            // If no valid user country index is found, set the text to the default value (first item in the list)
             binding.etCountryCode.setText(customCountiesList.getOrNull(0), false)
         }
     }
