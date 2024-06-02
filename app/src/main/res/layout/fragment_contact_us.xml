@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
-    tools:context=".features.home.contact_us.presentation.ui.ContactUsFragment"
+    tools:context=".features.menu.contact_us.presentation.ui.ContactUsFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 

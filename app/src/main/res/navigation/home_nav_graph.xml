@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/contactUsFragment"
-        android:name="com.solutionplus.altasherat.features.home.contact_us.presentation.ui.ContactUsFragment"
+        android:name="com.solutionplus.altasherat.features.menu.contact_us.presentation.ui.ContactUsFragment"
         android:label="fragment_contact_us"
         tools:layout="@layout/fragment_contact_us" />
 
@@ -152,7 +152,7 @@
 
     <fragment
         android:id="@+id/languageSettingsFragment"
-        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
+        android:name="com.solutionplus.altasherat.features.menu.language.presentation.ui.LanguageSettingsFragment"
         android:label="fragment_language_settings"
         tools:layout="@layout/fragment_language_settings" />
 </navigation>
