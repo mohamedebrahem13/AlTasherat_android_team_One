@@ -33,7 +33,7 @@
         android:id="@+id/fragment_profile"
         android:name="com.solutionplus.altasherat.features.home.profile.presentation.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile">
+        tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_fragment_profile_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment" />
@@ -41,8 +41,11 @@
             android:id="@+id/action_fragment_profile_to_editPasswordFragment"
             app:destination="@id/editPasswordFragment" />
         <action
-            android:id="@+id/action_fragment_profile_to_languageTwoFragment"
-            app:destination="@id/languageTwoFragment" />
+            android:id="@+id/action_fragment_profile_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_languageSettingsFragment"
+            app:destination="@id/languageSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_visa_platform"
@@ -69,9 +72,10 @@
         android:label="fragment_edit_password"
         tools:layout="@layout/fragment_edit_password" />
     <fragment
-        android:id="@+id/languageTwoFragment"
-        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
-        android:label="LanguageTwoFragment" />
+        android:id="@+id/contactUsFragment"
+        android:name="com.solutionplus.altasherat.features.home.contact_us.presentation.ui.ContactUsFragment"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
     <fragment
         android:id="@+id/accountSettingFragment"
         android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.AccountSettingFragment"
@@ -95,4 +99,9 @@
         android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.DeleteAccountDialogFragment"
         android:label="DeleteAccountDialogFragment"
         tools:layout="@layout/fragment_delete_account_dialog" />
+    <fragment
+        android:id="@+id/languageSettingsFragment"
+        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
+        android:label="fragment_language_settings"
+        tools:layout="@layout/fragment_language_settings" />
 </navigation>
