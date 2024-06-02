@@ -75,7 +75,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 findNavController().navigate(action)
             }
             ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
-                findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageTwoFragment())
+                findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageSettingsFragment())
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> {
                 findNavController().navigate(R.id.action_fragment_profile_to_fragmentPrivacyPolicies)
             }

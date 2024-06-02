@@ -25,18 +25,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.personalInfoFragment, R.id.selectionDialogFragment,
-                R.id.editPasswordFragment, R.id.accountSettingFragment,
-                R.id.deleteAccountFragment, R.id.deleteAccountDialogFragment,
-                R.id.personalInfoFragment, R.id.selectionDialogFragment,R.id.contactUsFragment,
-                R.id.languageSettingsFragment ->
-
-                {
-                    binding.bottomNavHome.visibility = View.GONE
+                R.id.fragment_visa_platform, R.id.fragment_visa_request,
+                R.id.fragment_profile -> {
+                    binding.bottomNavHome.visibility = View.VISIBLE
                 }
 
                 else -> {
-                    binding.bottomNavHome.visibility = View.VISIBLE
+                    binding.bottomNavHome.visibility = View.GONE
                 }
             }
         }
