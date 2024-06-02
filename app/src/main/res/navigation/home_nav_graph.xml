@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/personalInfoFragment"
-        android:name="com.solutionplus.altasherat.features.personal_info.presentation.ui.PersonalInfoFragment"
+        android:name="com.solutionplus.altasherat.features.account.personal_info.presentation.ui.PersonalInfoFragment"
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info">
         <action
@@ -20,7 +20,7 @@
 
     <dialog
         android:id="@+id/selectionDialogFragment"
-        android:name="com.solutionplus.altasherat.features.personal_info.presentation.ui.SelectionDialogFragment"
+        android:name="com.solutionplus.altasherat.features.account.personal_info.presentation.ui.SelectionDialogFragment"
         android:label="fragment_country_selection_dialog"
         tools:layout="@layout/fragment_country_selection_dialog">
         <argument
@@ -86,7 +86,7 @@
 
     <fragment
         android:id="@+id/editPasswordFragment"
-        android:name="com.solutionplus.altasherat.features.edit_password.presentation.ui.EditPasswordFragment"
+        android:name="com.solutionplus.altasherat.features.account.edit_password.presentation.ui.EditPasswordFragment"
         android:label="fragment_edit_password"
         tools:layout="@layout/fragment_edit_password" />
 
