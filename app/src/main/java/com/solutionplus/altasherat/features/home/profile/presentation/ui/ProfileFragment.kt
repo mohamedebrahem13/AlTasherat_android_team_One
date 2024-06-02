@@ -58,7 +58,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 }
             }
 
-            ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.AboutUsNavigation -> {
+                findNavController().navigate(R.id.action_fragment_profile_to_fragmentAbout)
+            }
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
                 findNavController().navigate(action)
@@ -70,8 +72,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
             ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
                 findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageTwoFragment())
-            ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
-            ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
+            ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> {
+                findNavController().navigate(R.id.action_fragment_profile_to_fragmentPrivacyPolicies)
+            }
+            ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> {
+                findNavController().navigate(R.id.action_fragment_profile_to_fragmentTermsCondition)
+
+            }
             ProfileContract.ProfileEvent.Login -> {
                 Intent(requireActivity(), AuthActivity::class.java).also { intent ->
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
