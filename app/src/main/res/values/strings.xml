@@ -64,6 +64,7 @@
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="language">Language</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="user_full_name" translatable="false">%1$s %2$s %3$s</string>
     <string name="sign_out">Sign out</string>
     <string name="Current_version">Current Version</string>
     <string name="confirm_button_text" translatable="false">Confirm</string>
@@ -140,8 +141,8 @@
     <!--region Contact us Fragment -->
     <string name="Contact_details">Contact information</string>
     <string name="Contact_us">Contact us</string>
-    <string name="Contact_phone">(+20) 1011777751 - (+966) 550440787</string>
-    <string name="Contact_us_email_text">Travel@altaherat.com - Info@altasherat.com</string>
+    <string name="Contact_phone" translatable="false">(+20) 1011777751 - (+966) 550440787</string>
+    <string name="Contact_us_email_text" translatable="false">Travel@altaherat.com - Info@altasherat.com</string>
     <string name="location_text">Saudi Arabia - Riyadh\nCairo - Garden City</string>
     <string name="name">Name</string>
     <string name="Contact_name_input">Write Name To Connect</string>
