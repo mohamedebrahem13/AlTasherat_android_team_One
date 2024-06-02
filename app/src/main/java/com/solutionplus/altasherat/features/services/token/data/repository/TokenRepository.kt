@@ -10,4 +10,8 @@ internal class TokenRepository(
     override suspend fun getTokenFromLocal(): ByteArray {
         return localDS.getToken()
     }
+
+    override suspend fun deleteToken() {
+        localDS.deleteToken()
+    }
 }

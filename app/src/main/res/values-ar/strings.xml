@@ -71,6 +71,7 @@
     <string name="confirm_button_text">تاكيد</string>
     <string name="email_confirm_text">البريد الإلكتروني غير مؤكد</string>
 
+
     <!--endregion-->
 
     <!--region Visa Platform-->
@@ -123,5 +124,39 @@
     <string name="enter_old_password">ادخل كلمة المرور القديمة</string>
     <string name="enter_new_password">ادخل كلمة المرور الجديدة</string>
     <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
+    <!--endregion-->
+
+    <!--region Contact us Fragment -->
+    <string name="Contact_us">تواصل معنا</string>
+    <string name="Contact_details">بيانات التواصل</string>
+    <string name="location_text">السعودية - الرياض\nالقاهرة - جاردن سيتي</string>
+    <string name="name">الاسم</string>
+    <string name="Contact_name_input">اكتب الاسم للتواصل</string>
+    <string name="Contact_phone_input">ادخل رقم الجوال للمتابعة</string>
+    <string name="Contact_Subject">الموضوع</string>
+    <string name="Contact_Subject_input">اختر موضوع التواصل</string>
+    <string name="Contact_Message_input">اكتب رسالة التواصل</string>
+    <string name="Contact_Message">الرسالة</string>
+
+
+
+
+
+
+
+
+    <!--endregion-->
+
+
+    <!--region Delete Account Fragment -->
+    <string name="account_setting">إدارة الحساب</string>
+    <string name="delete_account_settings">اعدادات الحساب والغاء تنشيط الحساب وحذفه</string>
+    <string name="deactivate_account">إلغاء تنشيط الحساب نهائياً</string>
+    <string name="deactivate_account_description">سوف يتم فقد كل المعلومات والمعاملات والحجوزات</string>
+    <string name="image_deactivate_account">صورة إلغاء تنشيط الحساب</string>
+    <string name="cancel">إلغاء</string>
+    <string name="confirm_delete">تأكيد الحذف</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="password__to_confirm">كلمة المرور للتأكيد</string>
     <!--endregion-->
 </resources>

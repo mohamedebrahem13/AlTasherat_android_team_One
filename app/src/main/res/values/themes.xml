@@ -110,9 +110,30 @@
         <item name="hintTextAppearance">@style/Font.SemiBold</item>
         <item name="startIconTint">@color/icon_input</item>
     </style>
+    <!-- Message Input Style -->
+    <style name="TextInputLayout.OutlinedBox_Message" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_width">370dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginHorizontal">21dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="boxBackgroundColor">@color/bg_input</item>
+        <item name="boxCornerRadiusBottomEnd">29dp</item>
+        <item name="boxCornerRadiusBottomStart">29dp</item>
+        <item name="boxCornerRadiusTopEnd">29dp</item>
+        <item name="boxCornerRadiusTopStart">29dp</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="hintTextAppearance">@style/Font.SemiBold</item>
+        <item name="startIconTint">@color/icon_input</item>
+    </style>
 
     <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_user</item>
+    </style>
+    <style name="TextInputLayout.Message" parent="TextInputLayout.OutlinedBox_Message">
+        <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
 
     <style name="TextInputLayout.Phone" parent="TextInputLayout.OutlinedBox">
@@ -162,6 +183,9 @@
     <style name="TextInputLayout.Country" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_flag</item>
     </style>
+    <style name="TextInputLayout.Subject" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="startIconDrawable">@drawable/ic_topic</item>
+    </style>
 
     <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_marginStart">0dp</item>
@@ -188,8 +212,18 @@
         <item name="android:textAppearance">@style/Font.SemiBold</item>
     </style>
 
+
     <style name="TextInputEditText.Name" parent="TextInputEditText.OutlinedBox">
         <item name="android:inputType">textPersonName</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="TextInputEditText.Message" parent="TextInputEditText.OutlinedBox">
+        <item name="android:minLines">3</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:padding">21dp</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:inputType">textMultiLine|text</item>
         <item name="android:imeOptions">actionNext</item>
     </style>
 
@@ -244,6 +278,13 @@
         <item name="android:focusable">false</item>
         <item name="android:clickable">true</item>
     </style>
+    <style name="AutoCompleteTextView.Contact_Subject" parent="AutoCompleteTextView.OutlinedBox">
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
     <!--endregion-->
 
     <!--region Button -->
@@ -253,11 +294,10 @@
         <item name="android:layout_marginHorizontal">16dp</item>
         <item name="android:layout_marginTop">24dp</item>
         <item name="android:drawablePadding">0dp</item>
-        <item name="android:paddingVertical">8sp</item>
+        <item name="android:paddingVertical">8dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textAppearance">@style/Font.Bold</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/shape_button</item>
         <item name="backgroundTint">@null</item>
         <item name="cornerSize">50dp</item>
         <item name="iconGravity">textEnd</item>
@@ -266,21 +306,40 @@
         <item name="iconTint">@color/white</item>
     </style>
 
-    <style name="Button.Save" parent="Button">
+    <style name="Button.Primary" parent="Button">
+        <item name="android:background">@drawable/shape_button</item>
+    </style>
+
+    <style name="Button.Save" parent="Button.Primary">
         <item name="icon">@drawable/ic_save</item>
     </style>
 
-    <style name="Button.Next" parent="Button">
+    <style name="Button.Next" parent="Button.Primary">
         <item name="icon">@drawable/ic_next</item>
     </style>
 
-    <style name="Button.Auth" parent="Button">
+    <style name="Button.Auth" parent="Button.Primary">
         <item name="icon">@drawable/ic_signup</item>
         <item name="iconPadding">0dp</item>
     </style>
 
     <style name="Button.Close" parent="Button">
         <item name="icon">@drawable/ic_close</item>
+    </style>
+
+    <style name="Button.Delete" parent="Button.Primary">
+        <item name="icon">@drawable/ic_delete</item>
+        <item name="iconTint">@null</item>
+        <item name="iconSize">32dp</item>
+        <item name="android:paddingVertical">6dp</item>
+    </style>
+
+    <style name="Button.OutLined" parent="Button">
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@color/red</item>
+        <item name="android:paddingVertical">16dp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
     <!--endregion-->
 
@@ -298,6 +357,7 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50dp</item>
     </style>
+
     <style name="CustomRadioButton1" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:textAppearance">@style/Font.Bold</item>
         <item name="android:drawablePadding">8dp</item>
@@ -328,7 +388,6 @@
         <item name="android:text">@string/english</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
-
 
 
     <!--endregion-->

@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
-import com.solutionplus.altasherat.features.splash.domain.interactor.GetAndSaveCountriesUseCase
+import com.solutionplus.altasherat.features.services.country.domain.interactor.GetAndSaveCountriesUC
 import com.solutionplus.altasherat.features.splash.domain.interactor.HasCountryStringKeyUseCase
 import com.solutionplus.altasherat.features.splash.domain.interactor.IsOnboardingShownUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val getAndSaveCountriesUseCase: GetAndSaveCountriesUseCase,
+    private val getAndSaveCountriesUseCase: GetAndSaveCountriesUC,
     private val isOnboardingShownUseCase: IsOnboardingShownUseCase,
     private val hasCountryStringKeyUseCase: HasCountryStringKeyUseCase
 ) : AlTasheratViewModel<SplashContract.SplashAction, SplashContract.SplashEvent, SplashContract.SplashViewState>(

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -48,11 +47,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         }
 
     }
-
     private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
         when (event) {
 
-            is ProfileContract.ProfileEvent.SignOutSuccess -> {
+            is ProfileContract.ProfileEvent.SignOutSuccess->{
                 //sign out
                 Intent(requireActivity(), MainActivity::class.java).also { intent ->
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -60,18 +58,23 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 }
             }
 
-            ProfileContract.ProfileEvent.AboutUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.AboutUsNavigation -> {
+
+            }
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
                 findNavController().navigate(action)
             }
-            ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.ContactUsNavigation -> {
+                val action = ProfileFragmentDirections.actionFragmentProfileToContactUsFragment()
+                findNavController().navigate(action)
+            }
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
                 findNavController().navigate(action)
             }
-
-            ProfileContract.ProfileEvent.LanguageSelectionNavigation -> TODO()
+            ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
+                findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageSettingsFragment())
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> TODO()
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> TODO()
             ProfileContract.ProfileEvent.Login -> {
@@ -82,7 +85,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
         }
     }
-
     private fun handleViewState(state: ProfileContract.ProfileViewState) {
         // Handle different states here
         when {
@@ -95,7 +97,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 val errorMessage = state.exception.message ?: "Unknown error"
                 showToast("Error: $errorMessage")
             }
-
             state.user != null -> {
                 viewsForMenuWithSignedUser(state.user)
                 // Update the list of items with the user information
@@ -107,11 +108,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
         }
     }
-
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
-
     override fun viewInit() {
         // Get the current text of the TextView
         val currentText = binding.currentVersion.text.toString()
@@ -121,17 +120,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
         // Set the updated text back to the TextView
         binding.currentVersion.text = updatedText
-    }
 
-    private fun getItems(): List<Item> {
-        // Replace this with your logic to get the list of items for the ListView
-        return listOf(
-            Item(1, R.drawable.editpass, getString(R.string.Change_Password)),
-            Item(2, R.drawable.about, getString(R.string.about_us)),
-            Item(3, R.drawable.contactus, getString(R.string.contact_us)),
-            Item(4, R.drawable.terms, getString(R.string.terms_and_conditions)),
-            Item(5, R.drawable.policy, getString(R.string.privacy_policy)),
-            Item(6, R.drawable.language, getString(R.string.language))
+    }
+    private fun getItems(user: User?): List<Item> {
+        val items = mutableListOf<Item>()
 
         // Add default items
         items.add(Item(1, R.drawable.login, getString(R.string.login_text)))
@@ -150,36 +142,40 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         return items
     }
 
-    private fun setupListView() {
-        adapter = ItemAdapter(requireContext(), getItems(), this)
+    private fun setupListView(user: User?) {
+        adapter = ItemAdapter(requireContext(), getItems(user), this)
         binding.listView.adapter = adapter
     }
-
-    private fun viewsForMenuWithSignedUser(user: User) {
-        binding.signOut.visibility = View.VISIBLE
-        binding.profileName.visibility = View.VISIBLE
-        binding.profileImage.visibility = View.VISIBLE
-        binding.editProfile.visibility = View.VISIBLE
-        binding.horizontalLine.visibility = View.VISIBLE
-        binding.profileName.text = user.firstname
-        binding.profileImage.load(user.image.path) {
-            placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
+    private fun viewsForMenuWithSignedUser(user: User){
+        with(binding){
+            signOut.visibility= View.VISIBLE
+            profileName.visibility= View.VISIBLE
+            profileImage.visibility=View.VISIBLE
+            editProfile.visibility=View.VISIBLE
+            horizontalLine.visibility=View.VISIBLE
+            val fullName = getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
+            profileName.text = fullName
+            profileImage.load(user.image.path) {
+                placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
+            }
+            signOut.setOnClickListener {
+                viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
+            }
         }
-        binding.signOut.setOnClickListener {
-            viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
-        }
 
-        binding.verificationRootLayout.isVisible = !user.isEmailVerified
+
     }
 
     override fun onItemClick(item: Item) {
         val action = when (item.id) {
-            1 -> ProfileContract.ProfileAction.ChangePassword
-            2 -> ProfileContract.ProfileAction.AboutUs
+            1-> ProfileContract.ProfileAction.Login
+            2-> ProfileContract.ProfileAction.AboutUs
             3 -> ProfileContract.ProfileAction.ContactUs
             4 -> ProfileContract.ProfileAction.TermsAndConditions
             5 -> ProfileContract.ProfileAction.PrivacyPolicy
             6 -> ProfileContract.ProfileAction.Language
+            7 -> ProfileContract.ProfileAction.ChangePassword
+
             else -> null
         }
 

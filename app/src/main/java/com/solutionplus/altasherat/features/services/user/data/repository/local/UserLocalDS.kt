@@ -41,4 +41,11 @@ internal class UserLocalDS(
             String::class.java
         )
     }
+
+    override suspend fun deleteUser() {
+        keyStorageProvider.delete<String>(
+            key = StorageKeyEnum.USER_KEY,
+            type = String::class.java
+        )
+    }
 }

@@ -15,4 +15,8 @@ internal class FakeProfileLocalDataSource : IProfileLocalDataSource {
         // You can simulate the deletion process here
         println("User token deleted")
     }
+
+    override suspend fun hasTokenKey(): Boolean {
+        return true
+    }
 }
