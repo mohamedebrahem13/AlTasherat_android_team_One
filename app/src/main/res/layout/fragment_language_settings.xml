@@ -12,7 +12,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/shape_back_arrow"
         android:clickable="true"
         android:contentDescription="@string/back_arrow"
@@ -25,12 +25,12 @@
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/TextView.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/please_pick_lang"
-        style="@style/TextView.Bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/view_rectangle"
@@ -40,35 +40,37 @@
         android:id="@+id/view_rectangle"
         android:layout_width="4dp"
         android:layout_height="24dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:background="@color/primary"
         android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/radio"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
 
     <RadioGroup
         android:id="@id/radio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="176dp"
         android:orientation="vertical"
         android:paddingStart="8dp"
         android:paddingEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245">
 
 
         <RadioButton
-            style="@style/CustomRadioButton1"
-            android:id="@+id/radioButton1" />
+            android:id="@+id/radioButton1"
+            style="@style/CustomRadioButton1" />
 
         <RadioButton
-            style="@style/CustomRadioButton2"
-            android:id="@+id/radioButton2" />
+            android:id="@+id/radioButton2"
+            style="@style/CustomRadioButton2" />
     </RadioGroup>
 
     <TextView
