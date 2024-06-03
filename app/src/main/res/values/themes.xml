@@ -58,6 +58,10 @@
     <style name="TextView.Error" parent="TextView">
         <item name="android:textColor">@color/error</item>
     </style>
+    <style name="TextView.LoginNavigate" parent="TextView">
+        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textColor">@color/secondary</item>
+    </style>
     <!--endregion-->
 
     <!--region Fonts -->

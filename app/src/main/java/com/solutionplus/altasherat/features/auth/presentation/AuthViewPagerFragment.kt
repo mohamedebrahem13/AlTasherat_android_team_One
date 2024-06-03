@@ -56,10 +56,14 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
                 when (position) {
                     0 -> {
                         binding.btnLoginSignup.text = getString(R.string.login_text)
+                        binding.haveAccTv.text = getString(R.string.navigate_to_signup)
+                        binding.navigateLoginTv.text = getString(R.string.signup_text)
                     }
 
                     1 -> {
                         binding.btnLoginSignup.text = getString(R.string.signup_text)
+                        binding.haveAccTv.text = getString(R.string.navigate_to_login)
+                        binding.navigateLoginTv.text = getString(R.string.login_text)
                     }
                 }
             }
