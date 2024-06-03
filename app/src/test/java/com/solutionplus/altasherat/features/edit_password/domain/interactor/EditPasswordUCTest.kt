@@ -2,11 +2,12 @@ package com.solutionplus.altasherat.features.edit_password.domain.interactor
 
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
-import com.solutionplus.altasherat.features.edit_password.data.models.dto.EditPasswordResponseDto
-import com.solutionplus.altasherat.features.edit_password.data.models.request.EditPasswordRequest
-import com.solutionplus.altasherat.features.edit_password.data.repository.EditPasswordRepository
-import com.solutionplus.altasherat.features.edit_password.domain.repository.IEditPasswordRepository
-import com.solutionplus.altasherat.features.edit_password.domain.repository.remote.IEditPasswordRemoteDS
+import com.solutionplus.altasherat.features.account.edit_password.data.models.dto.EditPasswordResponseDto
+import com.solutionplus.altasherat.features.account.edit_password.data.models.request.EditPasswordRequest
+import com.solutionplus.altasherat.features.account.edit_password.data.repository.EditPasswordRepository
+import com.solutionplus.altasherat.features.account.edit_password.domain.interactor.EditPasswordUC
+import com.solutionplus.altasherat.features.account.edit_password.domain.repository.IEditPasswordRepository
+import com.solutionplus.altasherat.features.account.edit_password.domain.repository.remote.IEditPasswordRemoteDS
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -39,9 +40,10 @@ class EditPasswordUCTest {
             confirmPassword = "12345678922"
         )
 
-        editPasswordResponse = mock<EditPasswordResponseDto> {
-            on { message } doReturn "Updated successfully"
-        }
+        editPasswordResponse =
+            mock<EditPasswordResponseDto> {
+                on { message } doReturn "Updated successfully"
+            }
         editPasswordRemoteDS = mock<IEditPasswordRemoteDS> {
             onBlocking { editPassword(any<EditPasswordRequest>()) } doReturn editPasswordResponse
         }

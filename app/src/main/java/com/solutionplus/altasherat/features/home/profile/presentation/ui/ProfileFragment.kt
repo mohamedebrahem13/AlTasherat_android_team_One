@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -65,13 +66,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
                 findNavController().navigate(action)
             }
-            ProfileContract.ProfileEvent.ContactUsNavigation -> TODO()
+            ProfileContract.ProfileEvent.ContactUsNavigation -> {
+                val action = ProfileFragmentDirections.actionFragmentProfileToContactUsFragment()
+                findNavController().navigate(action)
+            }
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
                 findNavController().navigate(action)
             }
             ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
-                findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageTwoFragment())
+                findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageSettingsFragment())
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> {
                 findNavController().navigate(R.id.action_fragment_profile_to_fragmentPrivacyPolicies)
             }
@@ -163,6 +167,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             signOut.setOnClickListener {
                 viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
             }
+            verificationRootLayout.isVisible = !user.isEmailVerified
         }
 
 

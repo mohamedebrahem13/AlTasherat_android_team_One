@@ -19,19 +19,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <TextView
         android:id="@+id/text_title"
-        style="@style/TextView.Heavy"
-        android:layout_width="wrap_content"
+        style="@style/TextView.SemiBold"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:ellipsize="end"
         android:lineSpacingExtra="4dp"
+        android:maxLines="7"
         android:padding="8dp"
         android:text="@string/header_title"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/image_header"
+        app:layout_constraintEnd_toStartOf="@id/image_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/image_header" />
 
@@ -39,8 +42,8 @@
         android:id="@+id/image_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/image_header"
         android:contentDescription="@string/visa_platform"
+        android:src="@drawable/image_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

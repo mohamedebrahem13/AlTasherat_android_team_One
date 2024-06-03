@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context=".features.personal_info.presentation.ui.PersonalInfoFragment">
+    tools:context=".features.account.personal_info.presentation.ui.PersonalInfoFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"

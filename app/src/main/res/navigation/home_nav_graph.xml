@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/personalInfoFragment"
-        android:name="com.solutionplus.altasherat.features.personal_info.presentation.ui.PersonalInfoFragment"
+        android:name="com.solutionplus.altasherat.features.account.personal_info.presentation.ui.PersonalInfoFragment"
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info">
         <action
@@ -17,9 +17,10 @@
             android:id="@+id/action_personalInfoFragment_to_accountSettingFragment"
             app:destination="@id/accountSettingFragment" />
     </fragment>
+
     <dialog
         android:id="@+id/selectionDialogFragment"
-        android:name="com.solutionplus.altasherat.features.personal_info.presentation.ui.SelectionDialogFragment"
+        android:name="com.solutionplus.altasherat.features.account.personal_info.presentation.ui.SelectionDialogFragment"
         android:label="fragment_country_selection_dialog"
         tools:layout="@layout/fragment_country_selection_dialog">
         <argument
@@ -29,6 +30,7 @@
             android:name="selectedIndex"
             app:argType="integer" />
     </dialog>
+
     <fragment
         android:id="@+id/fragment_profile"
         android:name="com.solutionplus.altasherat.features.home.profile.presentation.ui.ProfileFragment"
@@ -41,9 +43,6 @@
             android:id="@+id/action_fragment_profile_to_editPasswordFragment"
             app:destination="@id/editPasswordFragment" />
         <action
-            android:id="@+id/action_fragment_profile_to_languageTwoFragment"
-            app:destination="@id/languageTwoFragment" />
-        <action
             android:id="@+id/action_fragment_profile_to_fragmentAbout"
             app:destination="@id/fragmentAbout" />
         <action
@@ -52,7 +51,17 @@
         <action
             android:id="@+id/action_fragment_profile_to_fragmentTermsCondition"
             app:destination="@id/fragmentTermsCondition" />
+        <action
+            android:id="@+id/action_fragment_profile_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/action_fragment_profile_to_languageSettingsFragment"
+            app:destination="@id/languageSettingsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/fragment_visa_platform"
         android:name="com.solutionplus.altasherat.features.home.visa_platform.presentation.ui.VisaPlatformFragment"
@@ -62,25 +71,31 @@
             android:id="@+id/action_fragment_visa_platform_to_unAuthorizedDialogFragment"
             app:destination="@id/unAuthorizedDialogFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/fragment_visa_request"
         android:name="com.solutionplus.altasherat.features.home.visa_request.presentation.ui.VisaRequestFragment"
         android:label="fragment_visa_request"
         tools:layout="@layout/fragment_visa_request" />
+
     <dialog
         android:id="@+id/unAuthorizedDialogFragment"
         android:name="com.solutionplus.altasherat.features.home.presentation.UnAuthorizedDialogFragment"
         android:label="fragment_un_authorized_dialog"
         tools:layout="@layout/fragment_un_authorized_dialog" />
+
     <fragment
         android:id="@+id/editPasswordFragment"
-        android:name="com.solutionplus.altasherat.features.edit_password.presentation.ui.EditPasswordFragment"
+        android:name="com.solutionplus.altasherat.features.account.edit_password.presentation.ui.EditPasswordFragment"
         android:label="fragment_edit_password"
         tools:layout="@layout/fragment_edit_password" />
+
     <fragment
-        android:id="@+id/languageTwoFragment"
-        android:name="com.solutionplus.altasherat.features.home.language.presentation.ui.LanguageSettingsFragment"
-        android:label="LanguageTwoFragment" />
+        android:id="@+id/contactUsFragment"
+        android:name="com.solutionplus.altasherat.features.menu.contact_us.presentation.ui.ContactUsFragment"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+
     <fragment
         android:id="@+id/accountSettingFragment"
         android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.AccountSettingFragment"
@@ -90,6 +105,7 @@
             android:id="@+id/action_accountSettingFragment_to_deleteAccountFragment"
             app:destination="@id/deleteAccountFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/deleteAccountFragment"
         android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.DeleteAccountFragment"
@@ -99,24 +115,44 @@
             android:id="@+id/action_deleteAccountFragment_to_deleteAccountDialogFragment"
             app:destination="@id/deleteAccountDialogFragment" />
     </fragment>
+
     <dialog
         android:id="@+id/deleteAccountDialogFragment"
         android:name="com.solutionplus.altasherat.features.account.delete_account.presentation.ui.DeleteAccountDialogFragment"
         android:label="DeleteAccountDialogFragment"
         tools:layout="@layout/fragment_delete_account_dialog" />
+
     <fragment
         android:id="@+id/fragmentAbout"
-        tools:layout="@layout/about_layout"
         android:name="com.solutionplus.altasherat.features.menu.about.presentation.FragmentAbout"
-        android:label="FragmentAbout" />
+        android:label="FragmentAbout"
+        tools:layout="@layout/about_layout" />
+
     <fragment
         android:id="@+id/fragmentPrivacyPolicies"
-        tools:layout="@layout/privacy_layout"
         android:name="com.solutionplus.altasherat.features.menu.privacy_policies.presentation.FragmentPrivacyPolicies"
-        android:label="FragmentPrivacyPolicies" />
+        android:label="FragmentPrivacyPolicies"
+        tools:layout="@layout/privacy_layout" />
+
     <fragment
         android:id="@+id/fragmentTermsCondition"
-        tools:layout="@layout/terms_conditions_layout"
         android:name="com.solutionplus.altasherat.features.menu.terms_conditions.presentation.FragmentTermsCondition"
-        android:label="FragmentTermsCondition" />
+        android:label="FragmentTermsCondition"
+        tools:layout="@layout/terms_conditions_layout" />
+
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.solutionplus.altasherat.features.menu.verification.presentation.ui.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification">
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languageSettingsFragment"
+        android:name="com.solutionplus.altasherat.features.menu.language.presentation.ui.LanguageSettingsFragment"
+        android:label="fragment_language_settings"
+        tools:layout="@layout/fragment_language_settings" />
 </navigation>

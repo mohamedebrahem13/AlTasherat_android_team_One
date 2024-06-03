@@ -66,6 +66,8 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="sign_out">Sign out</string>
     <string name="Current_version">Current Version</string>
+    <string name="confirm_button_text" translatable="false">Confirm</string>
+    <string name="email_confirm_text" translatable="false">Email not confirmed</string>
     <string name="user_full_name" translatable="false">%1$s %2$s %3$s</string>
     <string name="privacy_policy_text" translatable="false">Welcome to the visa platform. Below are the terms and conditions pertaining to the terms of use and access to the pages of the Egypt Key website, giving the words and expressions contained in this agreement. \n\nThe customer\'s use of the site is considered an explicit and clear acknowledgment that he has read and understood the terms and conditions of this agreement and the method of using the site. This is considered an express acceptance and approval of the terms and conditions of this agreement and response thereto. The customer’s use of the site is also considered an explicit acknowledgment of his commitment to and compliance with all terms and conditions of the agreement and all terms and conditions of the Egypt Key .\n\nApplication\n Foundation. General Provisions
 Applicable Law: These Terms of Use and any related non-contractual rights or duties shall be governed by and construed in accordance with the laws of the Kingdom of Saudi Arabia and the Arab Republic of Egypt.\n
@@ -153,5 +155,26 @@ who are we?\nEgypt Key is the number one tourism app. It is also the comprehensi
     <string name="confirm_delete">Confirm Delete</string>
     <string name="delete_account">Delete Account</string>
     <string name="password__to_confirm">Password to confirm</string>
+    <!--endregion-->
+
+    <!--region Contact us Fragment -->
+    <string name="Contact_details">Contact information</string>
+    <string name="Contact_us">Contact us</string>
+    <string name="Contact_phone" translatable="false">(+20) 1011777751 - (+966) 550440787</string>
+    <string name="Contact_us_email_text" translatable="false">Travel@altaherat.com - Info@altasherat.com</string>
+    <string name="location_text">Saudi Arabia - Riyadh\nCairo - Garden City</string>
+    <string name="name">Name</string>
+    <string name="Contact_name_input">Write Name To Connect</string>
+    <string name="Contact_phone_input">Write phone number To Continue</string>
+    <string name="Contact_Subject">Subject</string>
+    <string name="Contact_Subject_input">Select Contact Subject</string>
+    <string name="Contact_Message_input">Write Subject Name</string>
+    <string name="Contact_Message">Message</string>
+    <!--endregion-->
+
+    <!--region Verification Fragment -->
+    <string name="image_verification">Verification Image</string>
+    <string name="text_verification">Confirm Email 👋</string>
+    <string name="verification_description">We have sent a confirmation message to the email:\n%1$s\nCheck your email and click on the confirmation link to continue</string>
     <!--endregion-->
 </resources>
