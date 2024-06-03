@@ -8,6 +8,9 @@ object Constants {
     const val PHONE = "phone"
     const val PHONE_NUMBER = "phone.number"
     const val PHONE_COUNTRY_CODE = "phone.country_code"
+    const val OLD_PASSWORD = "old_password"
+    const val NEW_PASSWORD = "new_password"
+    const val NEW_PASSWORD_CONFIRMATION = "new_password_confirmation"
     const val PASSWORD = "password"
     const val CONFIRM_PASSWORD = "password_confirmation"
     const val COUNTRY = "country"
@@ -22,4 +25,8 @@ object Constants {
     const val PHONE_VALIDATION = "Phone number must be a valid phone number."
     const val PHONE_NUMBER_VALIDATION = "Phone number must be between 9 and 15 digits."
     const val COUNTRY_VALIDATION = "Country must be a valid country."
+    const val PASSWORD_VALIDATION = "Password must be between 8 and 50 characters."
+    const val NEW_PASSWORD_VALIDATION =
+        "New password must not be the same as the old password and must be between 8 and 50 characters."
+    const val CONFIRM_PASSWORD_VALIDATION = "Password confirmation must match the password."
 }

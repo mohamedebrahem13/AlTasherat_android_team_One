@@ -164,6 +164,8 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             onLoading(state.isLoading)
             if (state.exception is AlTasheratException.Local.RequestValidation) {
                 handleValidationErrors(state.exception.errors)
+            } else {
+                handleValidationErrors(emptyMap())
             }
         }
 
