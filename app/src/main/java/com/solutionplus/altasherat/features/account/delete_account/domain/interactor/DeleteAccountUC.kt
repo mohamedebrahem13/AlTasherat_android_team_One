@@ -3,7 +3,7 @@ package com.solutionplus.altasherat.features.account.delete_account.domain.inter
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.delete_account.domain.repository.IDeleteAccountRepository
-import com.solutionplus.altasherat.features.personal_info.data.models.request.UpdateInfoRequest
+import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.services.token.domain.interactor.DeleteCachedTokenUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.DeleteCachedUserUC
 
