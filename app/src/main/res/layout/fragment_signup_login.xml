@@ -104,7 +104,7 @@
             android:text="@string/navigate_to_login" />
 
         <TextView
-            android:id="@+id/navigate_login_tv"
+            android:id="@+id/navigate_login_signup_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextView.LoginNavigate"
