@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/screens_background"
     tools:context=".features.auth.presentation.AuthActivity">
 
@@ -13,20 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextView.Heavy"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/skip_tv"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginEnd="16dp"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_viewpager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -71,28 +62,25 @@
 
 
         </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_logo"
-        app:layout_constraintStart_toStartOf="@id/layout_viewpager"
-        app:layout_constraintEnd_toEndOf="@id/layout_viewpager"
-        app:layout_constraintTop_toTopOf="@id/layout_viewpager"
-        app:layout_constraintBottom_toTopOf="@id/layout_viewpager"/>
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="@id/cardView"
+        app:layout_constraintBottom_toTopOf="@id/cardView"/>
 
     <Button
         android:id="@+id/btn_login_signup"
         android:layout_width="204dp"
-        android:padding="8dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:textAppearance="@style/TextView"
-        app:layout_constraintStart_toStartOf="@id/layout_viewpager"
-        app:layout_constraintEnd_toEndOf="@id/layout_viewpager"
-        app:layout_constraintTop_toBottomOf="@id/layout_viewpager"
-        app:layout_constraintBottom_toBottomOf="@id/layout_viewpager"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
         tools:text="@string/signup_text"
         style="@style/Button.Auth"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

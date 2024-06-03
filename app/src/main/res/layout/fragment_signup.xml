@@ -22,7 +22,7 @@
                 android:layout_margin="16dp"
                 android:text="@string/first_name"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/input_first_name" />
 
             <TextView
                 android:id="@+id/text_last_name"
@@ -32,7 +32,7 @@
                 android:layout_margin="16dp"
                 android:text="@string/last_name"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/input_last_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_first_name"
