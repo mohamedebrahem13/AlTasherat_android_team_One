@@ -25,18 +25,24 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintBottom_toTopOf="@+id/guideline90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline75"
+        android:id="@+id/guideline78"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.78"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
@@ -48,7 +54,7 @@
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="@id/button_next"
         app:layout_constraintStart_toStartOf="@id/button_next"
-        app:layout_constraintTop_toBottomOf="@id/guideline75"
+        app:layout_constraintTop_toBottomOf="@id/guideline78"
         app:tabIndicatorHeight="0dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
