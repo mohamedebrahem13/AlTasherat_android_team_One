@@ -58,6 +58,20 @@
     <style name="TextView.Error" parent="TextView">
         <item name="android:textColor">@color/error</item>
     </style>
+
+    <style name="TextView.Content" parent="TextView">
+        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="TextView.About" parent="TextView">
+        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
     <style name="TextView.LoginNavigate" parent="TextView">
         <item name="android:textAppearance">@style/Font.Bold</item>
         <item name="android:textColor">@color/secondary</item>
