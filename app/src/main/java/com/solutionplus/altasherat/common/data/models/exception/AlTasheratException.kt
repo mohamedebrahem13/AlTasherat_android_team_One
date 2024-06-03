@@ -30,10 +30,13 @@ sealed class AlTasheratException(message: String?) : Exception(message) {
     }
 
     sealed class Local(message: String? = null) : AlTasheratException(message) {
-        data class RequestValidation(val clazz: KClass<*>, override val message: String? = null) :
-            Local(StringBuilder("There is missing input for this class: ${clazz.simpleName}").apply {
-                message?.let { append(", message: $message") }
-            }.toString())
+        data class RequestValidation(
+            val clazz: KClass<*>,
+            override val message: String? = null,
+            val errors: Map<String, String> = hashMapOf(),
+        ) : Local(StringBuilder("There is missing input for this class: ${clazz.simpleName}").apply {
+            message?.let { append(", message: $message") }
+        }.toString())
 
         data class IOOperation(@StringRes val messageRes: Int, override val message: String? = "") :
             Local(message)
