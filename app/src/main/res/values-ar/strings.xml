@@ -51,6 +51,8 @@
     <string name="reset_password_hint">ادخل رقم جوالك لاستعادة كلمة المرو</string>
     <string name="new_password_text">كلمة المرور</string>
     <string name="repeat_new_password_text">اعادة ادخال كلمة المرور</string>
+    <string name="navigate_to_login">لديك حساب بالفعل؟</string>
+    <string name="navigate_to_signup" translatable="false">ليس لديك حساب؟</string>
 
 
     <!--endregion-->

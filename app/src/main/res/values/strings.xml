@@ -51,6 +51,8 @@
     <string name="reset_password_hint" translatable="false">Enter your mobile number to recover the password</string>
     <string name="new_password_text" translatable="false">Password</string>
     <string name="repeat_new_password_text" translatable="false">Re-enter Password</string>
+    <string name="navigate_to_login" translatable="false">already have an account?</string>
+    <string name="navigate_to_signup" translatable="false">don\'t have an account?</string>
     <!--endregion-->
 
     <!--region Home-->
