@@ -17,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
-    private var countryId: Int? = null
     private var countryCode: String? = null
     private var countries: List<Country>? = null
     private val viewModel: ContactUsViewModel by viewModels()
@@ -28,7 +27,6 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
         binding.etCountryCode.setOnItemClickListener { _, _, position, _ ->
             val selectedCountryItem = countries?.get(position)
             selectedCountryItem.let { country ->
-                countryId = country?.id
                 countryCode = country?.phoneCode
             }
 
@@ -55,6 +53,7 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
 
         // Check if customCountiesList is not empty and get the default value
         val defaultCountryCode = customCountiesList.getOrNull(0)
+        countryCode=defaultCountryCode
         logger.debug("defaultCountryCode: $defaultCountryCode")
 
         // Find the user's country index if the user is not null
@@ -97,9 +96,9 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
             is ContactUsContract.ContactUsEvent.GetCountries -> {
                 if (event.countries?.isNotEmpty() == true) {
                     countries = event.countries
-                    countryId = countries!![0].id
-                    countryCode = countries!![0].phoneCode
                     setCustomCountry()
+                    setUpCountryCodeAdapter(null)
+
                 }
             }
 
@@ -123,7 +122,6 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
 
             } else -> {
             setupContactView(null)
-            setUpCountryCodeAdapter(null) //
 
         }
 
