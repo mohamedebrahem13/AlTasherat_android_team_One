@@ -420,4 +420,9 @@
         <item name="android:imeOptions">actionDone</item>
     </style>
     <!--endregion-->
+
+    <!--region Bottom Navigation-->
+    <style name="BottomNavigation.Appearance" parent="Font.Bold">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
