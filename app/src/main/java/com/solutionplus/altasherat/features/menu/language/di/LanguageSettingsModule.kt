@@ -4,7 +4,9 @@ import com.solutionplus.altasherat.common.domain.repository.local.IKeyValueStora
 import com.solutionplus.altasherat.features.menu.language.data.repository.LanguageRepository
 import com.solutionplus.altasherat.features.menu.language.data.repository.local.LanguageLocalDS
 import com.solutionplus.altasherat.features.menu.language.domain.repository.ILanguageRepository
+import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.GetUserPreferredCountryUC
 import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.SaveUserPreferenceLanguageUseCase
+import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.SaveUserPreferredCountryUseCase
 import com.solutionplus.altasherat.features.menu.language.domain.repository.local.ILanguageLocalDS
 import dagger.Module
 import dagger.Provides
@@ -30,5 +32,18 @@ internal object LanguageSettingsModule {
         languageRepository: ILanguageRepository
     ): SaveUserPreferenceLanguageUseCase {
         return SaveUserPreferenceLanguageUseCase(languageRepository)
+    }
+    @Provides
+    fun provideGetUserPreferredCountryUC(
+        languageRepository: ILanguageRepository
+    ): GetUserPreferredCountryUC {
+        return GetUserPreferredCountryUC(languageRepository)
+    }
+
+    @Provides
+    fun provideSaveUserPreferredCountryUseCase(
+        languageRepository: ILanguageRepository
+    ): SaveUserPreferredCountryUseCase {
+        return SaveUserPreferredCountryUseCase(languageRepository)
     }
 }
