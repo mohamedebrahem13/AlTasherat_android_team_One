@@ -36,6 +36,17 @@ class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswo
         viewPager = binding.viewPager
         viewPager.adapter = ViewPagerAdapter(fragments = fragments, container = this)
         viewPager.isUserInputEnabled = false
+
+        binding.viewPager.setPageTransformer { page, _ ->
+            page.apply {
+                alpha = 0f
+
+                animate()
+                    .alpha(1f)
+                    .setDuration(200)
+                    .setListener(null)
+            }
+        }
     }
 }
 

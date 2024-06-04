@@ -2,6 +2,7 @@ package com.solutionplus.altasherat.features.auth.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -51,8 +52,6 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
         viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
 
-                binding.cardView.requestLayout()
-
                 when (position) {
                     0 -> {
                         binding.btnLoginSignup.text = getString(R.string.login_text)
@@ -61,6 +60,8 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
                         binding.navigateLoginSignupTv.setOnClickListener {
                             viewPager.currentItem = 1
                         }
+                        binding.imagePlaneLogin.visibility = View.VISIBLE
+                        binding.imagePlaneSignup.visibility = View.INVISIBLE
                     }
 
                     1 -> {
@@ -70,6 +71,8 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
                         binding.navigateLoginSignupTv.setOnClickListener {
                             viewPager.currentItem = 0
                         }
+                        binding.imagePlaneLogin.visibility = View.INVISIBLE
+                        binding.imagePlaneSignup.visibility = View.VISIBLE
                     }
                 }
             }
@@ -87,5 +90,17 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
                 }
             }
         }.attach()
+
+        binding.viewPager.setPageTransformer { page, _ ->
+            page.apply {
+                alpha = 0f
+
+                animate()
+                    .alpha(1f)
+                    .setDuration(200)
+                    .setListener(null)
+            }
+        }
+        binding.viewPager.isUserInputEnabled = false
     }
 }
