@@ -61,12 +61,12 @@
 
 
         <RadioButton
-            style="@style/CustomRadioButton1"
-            android:id="@+id/radioButton1" />
+            android:id="@+id/radioButton1"
+            style="@style/CustomRadioButton1" />
 
         <RadioButton
-            style="@style/CustomRadioButton2"
-            android:id="@+id/radioButton2" />
+            android:id="@+id/radioButton2"
+            style="@style/CustomRadioButton2" />
     </RadioGroup>
 
     <TextView

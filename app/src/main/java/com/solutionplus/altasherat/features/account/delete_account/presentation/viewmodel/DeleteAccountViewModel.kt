@@ -18,6 +18,7 @@ class DeleteAccountViewModel @Inject constructor(
     DeleteAccountState.initial()
 ) {
     override fun onActionTrigger(action: ViewAction?) {
+        clearState()
         when (action) {
             is DeleteAccountAction.DeleteAccount -> deleteAccount(action.password)
         }

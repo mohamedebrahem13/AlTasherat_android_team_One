@@ -47,7 +47,6 @@
             style="@style/TextInputLayout.CountryCode"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/input_phone_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/input_phone_number"
             app:layout_constraintTop_toTopOf="@id/input_phone_number">
@@ -66,9 +65,9 @@
             style="@style/TextView.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="4dp"
             android:text="@string/password_text"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/input_password_name"
             app:layout_constraintTop_toBottomOf="@id/input_phone_number" />
 
         <com.google.android.material.textfield.TextInputLayout

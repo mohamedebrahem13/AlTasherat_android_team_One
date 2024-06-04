@@ -58,7 +58,7 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
 
         // Find the user's country index if the user is not null
         val userCountryIndex = user?.let {
-            countries?.indexOfFirst { country -> country.phoneCode == it.country.phoneCode } ?: -1
+            countries?.indexOfFirst { country -> country.phoneCode == it.phone.countryCode } ?: -1
         } ?: -1
 
         // Log the user country index

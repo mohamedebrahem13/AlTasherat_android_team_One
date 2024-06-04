@@ -18,6 +18,7 @@ class EditPasswordViewModel @Inject constructor(
 ) : AlTasheratViewModel<EditPasswordAction, EditPasswordEvent, EditPasswordState>(EditPasswordState.initial()) {
 
     override fun onActionTrigger(action: ViewAction?) {
+        clearState()
         when (action) {
             is EditPasswordAction.EditPassword -> editPassword(action.request)
         }
