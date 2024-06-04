@@ -32,9 +32,11 @@ class AlTasheratAuthInterceptor(
             }
         }
 
-        val result = runBlocking { getCachedLanguageUC.invoke().drop(1).first() }
-        if (result is Resource.Success) {
-            requestBuilder.addHeader(LOCALE, result.model)
+        if (original.headers[LOCALE] == null) {
+            val result = runBlocking { getCachedLanguageUC.invoke().drop(1).first() }
+            if (result is Resource.Success) {
+                requestBuilder.addHeader(LOCALE, result.model)
+            }
         }
 
         return chain.proceed(requestBuilder.build())
