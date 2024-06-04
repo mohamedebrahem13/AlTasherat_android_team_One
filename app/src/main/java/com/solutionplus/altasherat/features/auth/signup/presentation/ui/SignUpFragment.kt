@@ -8,6 +8,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
+import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentSignupBinding
 import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
@@ -108,13 +114,20 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
         }
 
         collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
-            result.exception?.let {
+            /*result.exception?.let {
                 if (it.message?.isNotEmpty()!!) {
                     Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
                         .show()
                 }
-            }
+            }*/
             onLoading(result.isLoading)
+            if (result.exception is AlTasheratException.Local.RequestValidation) {
+                handleValidationErrors(result.exception.errors)
+            } else if (result.exception is AlTasheratException.Client.ResponseValidation) {
+                handleValidationErrors(result.exception.errors)
+            } else {
+                handleValidationErrors(emptyMap())
+            }
         }
     }
 
@@ -142,6 +155,23 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
         binding.root.requestLayout()
     }
 
+    private fun handleValidationErrors(errors: Map<String, String>) {
+        val errorFields = mapOf(
+            FIRST_NAME to binding.inputFirstName,
+            LAST_NAME to binding.inputLastName,
+            EMAIL to binding.inputEmailName,
+            PHONE to binding.inputPhoneNumber,
+            PASSWORD to binding.inputPasswordName
+        )
+
+        if (errors.isNotEmpty()) {
+            errors.forEach { (key, value) ->
+                errorFields[key]?.error = value
+            }
+        } else {
+            errorFields.values.forEach { it.error = null }
+        }
+    }
 }
 
 

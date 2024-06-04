@@ -43,6 +43,8 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
             onLoading(state.isLoading)
             if (state.exception is AlTasheratException.Local.RequestValidation) {
                 handleValidationErrors(state.exception.errors)
+            } else if (state.exception is AlTasheratException.Client.ResponseValidation) {
+                handleValidationErrors(state.exception.errors)
             } else {
                 handleValidationErrors(emptyMap())
             }

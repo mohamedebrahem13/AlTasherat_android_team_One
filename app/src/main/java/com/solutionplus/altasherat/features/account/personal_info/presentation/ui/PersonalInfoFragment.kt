@@ -18,6 +18,7 @@ import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
@@ -164,7 +165,10 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             onLoading(state.isLoading)
             if (state.exception is AlTasheratException.Local.RequestValidation) {
                 handleValidationErrors(state.exception.errors)
-            } else {
+            } else if(state.exception is AlTasheratException.Client.ResponseValidation){
+                handleValidationErrors(state.exception.errors)
+            }
+            else {
                 handleValidationErrors(emptyMap())
             }
         }
@@ -249,6 +253,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             LAST_NAME to binding.inputLastName,
             EMAIL to binding.inputEmail,
             PHONE_NUMBER to binding.inputPhoneNumber,
+            PHONE to binding.inputPhoneNumber,
             BIRTH_DATE to binding.inputBirthDate,
             COUNTRY to binding.inputCountry
         )
