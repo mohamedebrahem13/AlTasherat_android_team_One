@@ -2,7 +2,6 @@ package com.solutionplus.altasherat.features.menu.language.presentation.viewmode
 
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
-import com.google.gson.Gson
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
