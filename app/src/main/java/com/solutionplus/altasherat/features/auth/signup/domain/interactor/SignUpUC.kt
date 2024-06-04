@@ -8,7 +8,6 @@ import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
-import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.domain.interactor.validation.UserInputsValidationUC
 import com.solutionplus.altasherat.features.auth.signup.domain.models.UserResponse
@@ -24,14 +23,14 @@ class SignUpUC @Inject constructor(
     override suspend fun execute(params: UserSignUpRequest?): UserResponse {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
-                clazz = UpdateInfoRequest::class,
+                clazz = UserSignUpRequest::class,
                 message = "Request is null"
             )
         }
 
         validateRequest(params).takeIf { it.isNotEmpty() }?.let {
             throw AlTasheratException.Local.RequestValidation(
-                clazz = UpdateInfoRequest::class,
+                clazz = UserSignUpRequest::class,
                 errors = it
             )
         }

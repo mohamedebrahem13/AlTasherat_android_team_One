@@ -5,7 +5,6 @@ import com.solutionplus.altasherat.common.data.models.exception.AlTasheratExcept
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
-import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import com.solutionplus.altasherat.features.auth.login.domain.interactor.validation.LoginInputValidation
 import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserResponse
@@ -21,14 +20,14 @@ class LoginWithPhoneUC(
     override suspend fun execute(params: UserLoginRequest?): LoginUserResponse {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
-                clazz = UpdateInfoRequest::class,
+                clazz = UserLoginRequest::class,
                 message = "Request is null"
             )
         }
 
         validateRequest(params).takeIf { it.isNotEmpty() }?.let {
             throw AlTasheratException.Local.RequestValidation(
-                clazz = UpdateInfoRequest::class,
+                clazz = UserLoginRequest::class,
                 errors = it
             )
         }
