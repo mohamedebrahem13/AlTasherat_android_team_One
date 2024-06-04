@@ -21,12 +21,6 @@
         <item name="fontStyle">normal</item>
     </style>
 
-    <style name="TextView.InputText" parent="TextView">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/text_input</item>
-        <item name="android:textAppearance">@style/Font.SemiBold</item>
-    </style>
-
     <style name="TextView.Black" parent="TextView">
         <item name="android:textAppearance">@style/Font.Black</item>
     </style>
@@ -57,6 +51,12 @@
 
     <style name="TextView.Error" parent="TextView">
         <item name="android:textColor">@color/error</item>
+    </style>
+
+    <style name="TextView.About" parent="TextView">
+        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">textStart</item>
     </style>
     <!--endregion-->
 
@@ -334,7 +334,6 @@
 
     <style name="Button.Auth" parent="Button.Primary">
         <item name="icon">@drawable/ic_signup</item>
-        <item name="iconPadding">0dp</item>
     </style>
 
     <style name="Button.Close" parent="Button">
