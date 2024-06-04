@@ -42,7 +42,7 @@
                 android:clickable="true"
                 android:padding="0dp"
                 android:text="@string/more"
-                android:textAppearance="@style/Font.Bold"
+                android:textAppearance="@style/Font.Heavy"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"

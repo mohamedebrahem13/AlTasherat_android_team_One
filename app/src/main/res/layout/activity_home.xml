@@ -33,8 +33,8 @@
         app:compatShadowEnabled="true"
         app:itemActiveIndicatorStyle="@null"
         app:itemBackground="@android:color/transparent"
-        app:itemTextAppearanceActive="@style/Font.Bold"
-        app:itemTextAppearanceInactive="@style/Font.Bold"
+        app:itemTextAppearanceActive="@style/BottomNavigation.Appearance"
+        app:itemTextAppearanceInactive="@style/BottomNavigation.Appearance"
         app:itemTextColor="@drawable/selector_bottom_nav_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />

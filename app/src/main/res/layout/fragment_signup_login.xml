@@ -116,14 +116,14 @@
 
         <TextView
             android:id="@+id/have_acc_tv"
-            style="@style/TextView.Bold"
+            style="@style/TextView.Heavy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/navigate_to_login" />
 
         <TextView
             android:id="@+id/navigate_login_signup_tv"
-            style="@style/TextView.Bold"
+            style="@style/TextView.Heavy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

@@ -371,7 +371,7 @@
     </style>
 
     <style name="CustomRadioButton1" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">16dp</item>
@@ -383,11 +383,12 @@
         <item name="android:button">@null</item>
         <item name="android:drawableStart">@drawable/image_flag_ar</item>
         <item name="android:text">@string/arabic</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
 
     <style name="CustomRadioButton2" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">16dp</item>
@@ -398,12 +399,10 @@
         <item name="android:button">@null</item>
         <item name="android:drawableStart">@drawable/image_flag_en</item>
         <item name="android:text">@string/english</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
-
-
     <!--endregion-->
-
 
     <!--region EditText -->
     <style name="EditText" parent="Widget.AppCompat.EditText">
@@ -422,5 +421,8 @@
     </style>
     <!--endregion-->
 
-
+    <!--region Bottom Navigation-->
+    <style name="BottomNavigation.Appearance" parent="Font.Bold">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

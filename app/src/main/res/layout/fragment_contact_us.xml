@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/TextView.Bold"
+        style="@style/TextView.Heavy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Contact_details"
-        style="@style/TextView.Bold"
+        style="@style/TextView.Heavy"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view2"
@@ -106,8 +106,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/Contact_phone"
-        style="@style/TextView.Bold"
+        style="@style/TextView.SemiBold"
         android:textDirection="ltr"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_phone"
         app:layout_constraintStart_toEndOf="@+id/imageView_phone"
         app:layout_constraintTop_toTopOf="@+id/imageView_phone" />
@@ -118,8 +119,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/Contact_us_email_text"
-        style="@style/TextView.Bold"
+        style="@style/TextView.SemiBold"
         android:textDirection="ltr"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_email"
         app:layout_constraintStart_toEndOf="@+id/imageView_email"
         app:layout_constraintTop_toTopOf="@+id/imageView_email" />
@@ -130,7 +132,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/location_text"
-        style="@style/TextView.Bold"
+        style="@style/TextView.SemiBold"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_location"
         app:layout_constraintStart_toEndOf="@+id/imageView_location"
         app:layout_constraintTop_toTopOf="@+id/imageView_location" />
@@ -168,7 +171,7 @@
 
             <TextView
                 android:id="@+id/textView8"
-                style="@style/TextView.Bold"
+                style="@style/TextView.Heavy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_us"
@@ -244,7 +247,7 @@
 
             <TextView
                 android:id="@+id/text_phone"
-                style="@style/TextView.Heavy"
+                style="@style/TextView.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
