@@ -5,7 +5,6 @@ import com.solutionplus.altasherat.common.data.models.exception.AlTasheratExcept
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.delete_account.domain.repository.IDeleteAccountRepository
-import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.services.token.domain.interactor.DeleteCachedTokenUC
 import com.solutionplus.altasherat.features.services.user.domain.interactor.DeleteCachedUserUC
 
@@ -18,14 +17,14 @@ class DeleteAccountUC(
     override suspend fun execute(params: String?) {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
-                clazz = UpdateInfoRequest::class,
+                clazz = String::class,
                 message = "Request is null"
             )
         }
 
         if (!isPasswordValid(params)) {
             throw AlTasheratException.Local.RequestValidation(
-                clazz = UpdateInfoRequest::class,
+                clazz = String::class,
                 errors = mapOf(PASSWORD to R.string.password_validation)
             )
         }
