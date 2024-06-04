@@ -94,8 +94,10 @@
     <Button
         android:id="@+id/btn_login_signup"
         style="@style/Button.Auth"
-        android:layout_width="204dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="32dp"
+        android:text="@string/login_text"
         app:layout_constraintBottom_toBottomOf="@id/cardView"
         app:layout_constraintEnd_toEndOf="@id/cardView"
         app:layout_constraintStart_toStartOf="@id/cardView"
