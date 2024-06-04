@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.constants.Constants.NEW_PASSWORD
+import com.solutionplus.altasherat.common.domain.constants.Constants.NEW_PASSWORD_CONFIRMATION
+import com.solutionplus.altasherat.common.domain.constants.Constants.OLD_PASSWORD
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentEditPasswordBinding
 import com.solutionplus.altasherat.features.account.edit_password.data.models.request.EditPasswordRequest
@@ -35,7 +39,23 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
     }
 
     override fun subscribeToObservables() {
-        collectFlowWithLifecycle(viewModel.viewState) {}
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            onLoading(state.isLoading)
+            when (state.exception) {
+                is AlTasheratException.Local.RequestValidation -> {
+                    val errors = state.exception.errors.mapValues { getString(it.value) }
+                    handleValidationErrors(errors)
+                }
+
+                is AlTasheratException.Client.ResponseValidation -> {
+                    handleValidationErrors(state.exception.errors)
+                }
+
+                else -> {
+                    handleValidationErrors(emptyMap())
+                }
+            }
+        }
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
@@ -52,4 +72,20 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
     }
 
     override fun onLoading(isLoading: Boolean) {}
+
+    private fun handleValidationErrors(errors: Map<String, String>) {
+        val errorFields = mapOf(
+            OLD_PASSWORD to binding.inputOldPassword,
+            NEW_PASSWORD to binding.inputNewPassword,
+            NEW_PASSWORD_CONFIRMATION to binding.inputNewPasswordConfirm,
+        )
+
+        if (errors.isNotEmpty()) {
+            errors.forEach { (key, value) ->
+                errorFields[key]?.error = value
+            }
+        } else {
+            errorFields.values.forEach { it.error = null }
+        }
+    }
 }

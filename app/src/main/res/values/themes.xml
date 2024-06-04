@@ -93,6 +93,11 @@
     <!--endregion-->
 
     <!--region TextInputLayout-->
+    <style name="TextInputLayoutError" parent="Font.Regular">
+        <item name="android:textColor">@color/error</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <style name="TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -104,11 +109,16 @@
         <item name="boxCornerRadiusTopEnd">22dp</item>
         <item name="boxCornerRadiusTopStart">22dp</item>
         <item name="boxStrokeErrorColor">@color/error</item>
-        <item name="boxStrokeWidth">0dp</item>
-        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/selector_text_input_stroke</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
         <item name="hintEnabled">false</item>
         <item name="hintTextAppearance">@style/Font.SemiBold</item>
         <item name="startIconTint">@color/icon_input</item>
+        <item name="errorTextColor">@color/error</item>
+        <item name="errorTextAppearance">@style/TextInputLayoutError</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorEnabled">true</item>
     </style>
     <!-- Message Input Style -->
     <style name="TextInputLayout.OutlinedBox_Message" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
@@ -132,6 +142,7 @@
     <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_user</item>
     </style>
+
     <style name="TextInputLayout.Message" parent="TextInputLayout.OutlinedBox_Message">
         <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
@@ -183,6 +194,7 @@
     <style name="TextInputLayout.Country" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_flag</item>
     </style>
+
     <style name="TextInputLayout.Subject" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_topic</item>
     </style>
@@ -278,6 +290,7 @@
         <item name="android:focusable">false</item>
         <item name="android:clickable">true</item>
     </style>
+
     <style name="AutoCompleteTextView.Contact_Subject" parent="AutoCompleteTextView.OutlinedBox">
         <item name="android:clickable">false</item>
         <item name="android:cursorVisible">false</item>

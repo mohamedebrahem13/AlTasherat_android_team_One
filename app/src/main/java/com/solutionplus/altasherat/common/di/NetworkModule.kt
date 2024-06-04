@@ -10,6 +10,7 @@ import com.solutionplus.altasherat.common.data.repository.remote.converter.Excep
 import com.solutionplus.altasherat.common.data.repository.remote.converter.IExceptionConverter
 import com.solutionplus.altasherat.common.domain.repository.remote.INetworkProvider
 import com.solutionplus.altasherat.features.services.token.domain.interactor.GetCachedTokenUC
+import com.solutionplus.altasherat.features.services.language.domain.interactor.GetCachedLanguageUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -91,9 +92,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAlTasheratInterceptor(
-        getCachedTokenUC: GetCachedTokenUC
+        getCachedTokenUC: GetCachedTokenUC,
+        getCachedLanguageUC: GetCachedLanguageUC
     ): AlTasheratAuthInterceptor {
-        return AlTasheratAuthInterceptor(getCachedTokenUC)
+        return AlTasheratAuthInterceptor(
+            getCachedTokenUC = getCachedTokenUC,
+            getCachedLanguageUC = getCachedLanguageUC
+        )
     }
 
     @Provides

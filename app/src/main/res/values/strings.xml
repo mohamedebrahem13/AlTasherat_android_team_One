@@ -181,4 +181,16 @@ who are we?\nEgypt Key is the number one tourism app. It is also the comprehensi
     <string name="text_verification">Confirm Email 👋</string>
     <string name="verification_description">We have sent a confirmation message to the email:\n%1$s\nCheck your email and click on the confirmation link to continue</string>
     <!--endregion-->
+
+    <!--region Validation-->
+    <string name="first_name_validation">First name must be between 3 and 15 alphabetic characters.</string>
+    <string name="middle_name_validation">Middle name must be between 0 and 15 alphabetic characters.</string>
+    <string name="last_name_validation">Last name must be between 3 and 15 alphabetic characters.</string>
+    <string name="email_validation">Email must be a valid email address and less than 50 characters.</string>
+    <string name="phone_validation">Phone number must be a valid phone number.</string>
+    <string name="phone_number_validation">Phone number must be between 9 and 15 digits.</string>
+    <string name="password_validation">Password must be between 8 and 50 characters.</string>
+    <string name="new_password_validation">New password must not be the same as the old password and must be between 8 and 50 characters.</string>
+    <string name="confirm_password_validation">Password confirmation must match the password.</string>
+    <!--endregion-->
 </resources>

@@ -40,7 +40,7 @@
     <string name="phone_text">الجوال</string>
     <string name="password_text">الرقم السري</string>
     <string name="signup_text">حساب جديد</string>
-    <string name="forget_password_text" translatable="false">نسيت كلمة المرور؟</string>
+    <string name="forget_password_text" translatable="false">نسيت كلمة المرور ؟</string>
     <string name="selected_country_code">%1$s\t(+%2$s)</string>
     <string name="email_validation_error">البريد الإلكتروني الذي أدخلته غير صالح</string>
     <string name="firstname_validation_error">الاسم الاول الذي أدخلته غير صالح</string>
@@ -170,5 +170,17 @@
     <string name="text_verification">تأكيد البريد الالكتروني 👋</string>
     <string name="verification_description">أرسلنا رسالة تأكيد بالبريد الإلكتروني إلى:\n
     %1$s\nتحقق من بريدك الإلكتروني وانقر على رابط التأكيد للمتابعة</string>
+    <!--endregion-->
+
+    <!--region Validation-->
+    <string name="first_name_validation">الاسم الاول يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="middle_name_validation">الاسم الاوسط يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="last_name_validation">الاسم الاخير يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="email_validation">البريد الالكتروني يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="phone_validation">الجوال يجب أن يكون رقم هاتف صحيح</string>
+    <string name="phone_number_validation">رقم الجوال يجب ان يكون بين ٨ و ١٥ رقم</string>
+    <string name="password_validation">كلمة المرور يجب ان تكون بين ٨ و ٥٠ حرف</string>
+    <string name="new_password_validation">كلمة المرور الجديدة يجب ان تكون بين ٨ و ٥٠ حرف وغير مطابقة لكلمة المرور السابقة</string>
+    <string name="confirm_password_validation">كلمة المرور يجب ان تكون متطابقة</string>
     <!--endregion-->
 </resources>

@@ -8,12 +8,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLoginBinding
-import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
-import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
+import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginContracts
+import com.solutionplus.altasherat.features.auth.login.presentation.viewmodel.LoginViewModel
 import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
@@ -68,13 +71,27 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
         }
 
         collectFlowWithLifecycle(loginViewMode.viewState) { result ->
-            result.exception?.let {
+            /*result.exception?.let {
                 if (it.message?.isNotEmpty()!!) {
                     Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
                         .show()
                 }
-            }
+            }*/
             onLoading(result.isLoading)
+            when (result.exception) {
+                is AlTasheratException.Local.RequestValidation -> {
+                    val errors = result.exception.errors.mapValues { getString(it.value) }
+                    handleValidationErrors(errors)
+                }
+
+                is AlTasheratException.Client.ResponseValidation -> {
+                    handleValidationErrors(result.exception.errors)
+                }
+
+                else -> {
+                    handleValidationErrors(emptyMap())
+                }
+            }
         }
     }
 
@@ -120,5 +137,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
     override fun onResume() {
         super.onResume()
         binding.root.requestLayout()
+    }
+
+    private fun handleValidationErrors(errors: Map<String, String>) {
+        val errorFields = mapOf(
+            PHONE to binding.inputPhoneNumber,
+            PASSWORD to binding.inputPasswordName
+        )
+
+        if (errors.isNotEmpty()) {
+            errors.forEach { (key, value) ->
+                errorFields[key]?.error = value
+            }
+        } else {
+            errorFields.values.forEach { it.error = null }
+        }
     }
 }
