@@ -16,10 +16,10 @@
     <string name="onboarding_2_welcome_2">You can reach your favorite destination anywhere in the world just prepare for your trip and leave the rest to us and enjoy a smooth and safe experience of obtaining your tourist visa</string>
     <string name="onboarding_1_welcome">Welcome to the Visa Application</string>
     <string name="onboarding_1_welcome_2">With the Visa Application, obtaining your electronic visa has become incredibly easy, whether it\'s a tourist visa, employment visa, or company visa. Don\'t worry about the exhausting procedures; we have a complete team working for your convenience.</string>
-    <string name="arabic">arabic</string>
-    <string name="english">english</string>
-    <string name="please_pick_lang">please choose the language</string>
-    <string name="please_pick_country">please choose the country</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="please_pick_lang">Please choose the language</string>
+    <string name="please_pick_country">Please choose the country</string>
     <string name="splash_text">AlTasherat Platform</string>
     <string name="you_can_change_langauge">You can change your country and language at any time from the menu</string>
     <!--endregion-->
@@ -47,12 +47,12 @@
     <string name="lastname_validation_error">The last name you entered is invalid</string>
     <string name="password_validation_error">The password you entered is invalid</string>
     <string name="send" translatable="false">Send</string>
-    <string name="reset_password_text" translatable="false">Reset password</string>
-    <string name="reset_password_hint" translatable="false">Enter your mobile number to recover the password</string>
-    <string name="new_password_text" translatable="false">Password</string>
+    <string name="reset_password_text">Reset password</string>
+    <string name="reset_password_hint">Enter your mobile number to recover the password</string>
+    <string name="new_password_text">Password</string>
     <string name="repeat_new_password_text" translatable="false">Re-enter Password</string>
-    <string name="navigate_to_login" translatable="false">already have an account?</string>
-    <string name="navigate_to_signup" translatable="false">don\'t have an account?</string>
+    <string name="navigate_to_login">Already have an account ?</string>
+    <string name="navigate_to_signup">Don\'t have an account ?</string>
     <!--endregion-->
 
     <!--region Home-->

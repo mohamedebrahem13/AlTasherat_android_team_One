@@ -22,14 +22,14 @@
             android:id="@+id/verification_root_layout"
             android:background="@drawable/verification_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/profile_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageButton
                 android:id="@+id/button_close"
-                android:layout_width="49dp"
-                android:layout_height="46dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="9dp"
                 android:layout_marginTop="10dp"/>
-
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_verification"
@@ -50,11 +49,8 @@
                 android:background="@drawable/verification_button_background"
                 android:layout_marginEnd="10dp"
                 android:text="@string/confirm_button_text"
-                android:layout_marginBottom="9dp"
-                android:layout_marginTop="10dp"
                 android:textColor="@color/white"
-                android:textAppearance="@style/TextView.Medium"/>
-
+                android:textAppearance="@style/Font.Medium"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,7 +60,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="@string/email_confirm_text"
                 android:textColor="@color/white"
-                style="@style/TextView.Medium"
+                style="@style/Font.Medium"
                 app:layout_constraintEnd_toStartOf="@id/button_verification"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -87,7 +83,7 @@
         <TextView
             android:visibility="gone"
             android:id="@+id/profile_name"
-            style="@style/TextView.Bold"
+            style="@style/TextView.Heavy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile"
@@ -145,12 +141,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="70dp"
             android:layout_marginBottom="32dp"
+            android:textSize="12sp"
             android:text="@string/Current_version"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/list_view">
-
-        </TextView>
+            app:layout_constraintTop_toBottomOf="@+id/list_view"/>
 
         <Button
             android:id="@+id/sign_out"
@@ -166,6 +161,7 @@
             android:drawableEnd="@drawable/signout"
             android:textColor="@color/red"
             android:textAlignment="textStart"
+            android:textSize="14sp"
             android:textAppearance="@style/Font.Heavy"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -132,6 +132,7 @@
     <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
         <item name="startIconDrawable">@drawable/ic_user</item>
     </style>
+
     <style name="TextInputLayout.Message" parent="TextInputLayout.OutlinedBox_Message">
         <item name="startIconDrawable">@drawable/ic_email</item>
     </style>
@@ -183,6 +184,7 @@
     <style name="TextInputLayout.Country" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_flag</item>
     </style>
+
     <style name="TextInputLayout.Subject" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_topic</item>
     </style>
@@ -278,6 +280,7 @@
         <item name="android:focusable">false</item>
         <item name="android:clickable">true</item>
     </style>
+
     <style name="AutoCompleteTextView.Contact_Subject" parent="AutoCompleteTextView.OutlinedBox">
         <item name="android:clickable">false</item>
         <item name="android:cursorVisible">false</item>
@@ -358,7 +361,7 @@
     </style>
 
     <style name="CustomRadioButton1" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">16dp</item>
@@ -370,11 +373,12 @@
         <item name="android:button">@null</item>
         <item name="android:drawableStart">@drawable/image_flag_ar</item>
         <item name="android:text">@string/arabic</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
 
     <style name="CustomRadioButton2" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:textAppearance">@style/Font.Bold</item>
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">16dp</item>
@@ -385,12 +389,10 @@
         <item name="android:button">@null</item>
         <item name="android:drawableStart">@drawable/image_flag_en</item>
         <item name="android:text">@string/english</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
-
-
     <!--endregion-->
-
 
     <!--region EditText -->
     <style name="EditText" parent="Widget.AppCompat.EditText">
@@ -408,6 +410,4 @@
         <item name="android:imeOptions">actionDone</item>
     </style>
     <!--endregion-->
-
-
 </resources>

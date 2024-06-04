@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:lineSpacingExtra="5dp"
+                android:textSize="12sp"
                 android:text="@string/terms_condition_text" />
         </LinearLayout>
     </ScrollView>
