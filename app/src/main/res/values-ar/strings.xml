@@ -173,14 +173,14 @@
     <!--endregion-->
 
     <!--region Validation-->
-    <string name="first_name_validation">الاسم الاول يجب ان يكون بين 3 و 15 حرف</string>
-    <string name="middle_name_validation">الاسم الاوسط يجب ان يكون بين 3 و 15 حرف</string>
-    <string name="last_name_validation">الاسم الاخير يجب ان يكون بين 3 و 15 حرف</string>
-    <string name="email_validation">البريد الالكتروني يجب ان يكون بين 3 و 50 حرف</string>
+    <string name="first_name_validation">الاسم الاول يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="middle_name_validation">الاسم الاوسط يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="last_name_validation">الاسم الاخير يجب ان يكون بين ٣ و ١٥ حرف</string>
+    <string name="email_validation">البريد الالكتروني يجب ان يكون بين ٣ و ١٥ حرف</string>
     <string name="phone_validation">الجوال يجب أن يكون رقم هاتف صحيح</string>
-    <string name="phone_number_validation">رقم الجوال يجب ان يكون بين 8 و 15 رقم</string>
-    <string name="password_validation">كلمة المرور يجب ان تكون بين 8 و 50 حرف</string>
-    <string name="new_password_validation">كلمة المرور الجديدة يجب ان تكون بين 8 و 50 حرف وغير مطابقة لكلمة المرور السابقة</string>
+    <string name="phone_number_validation">رقم الجوال يجب ان يكون بين ٨ و ١٥ رقم</string>
+    <string name="password_validation">كلمة المرور يجب ان تكون بين ٨ و ٥٠ حرف</string>
+    <string name="new_password_validation">كلمة المرور الجديدة يجب ان تكون بين ٨ و ٥٠ حرف وغير مطابقة لكلمة المرور السابقة</string>
     <string name="confirm_password_validation">كلمة المرور يجب ان تكون متطابقة</string>
     <!--endregion-->
 </resources>

@@ -93,8 +93,7 @@
     <!--endregion-->
 
     <!--region TextInputLayout-->
-    <style name="TextInputLayoutError" parent="@android:style/TextAppearance">
-        <item name="android:font">@style/Font.Regular</item>
+    <style name="TextInputLayoutError" parent="Font.Regular">
         <item name="android:textColor">@color/error</item>
         <item name="android:textSize">11sp</item>
     </style>
