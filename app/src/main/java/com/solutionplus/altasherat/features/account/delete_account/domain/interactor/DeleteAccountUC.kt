@@ -1,8 +1,8 @@
 package com.solutionplus.altasherat.features.account.delete_account.domain.interactor
 
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
-import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD_VALIDATION
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.delete_account.domain.repository.IDeleteAccountRepository
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
@@ -26,7 +26,7 @@ class DeleteAccountUC(
         if (!isPasswordValid(params)) {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = UpdateInfoRequest::class,
-                errors = mapOf(PASSWORD to PASSWORD_VALIDATION)
+                errors = mapOf(PASSWORD to R.string.password_validation)
             )
         }
 

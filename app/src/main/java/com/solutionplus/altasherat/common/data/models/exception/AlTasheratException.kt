@@ -33,7 +33,7 @@ sealed class AlTasheratException(message: String?) : Exception(message) {
         data class RequestValidation(
             val clazz: KClass<*>,
             override val message: String? = null,
-            val errors: Map<String, String> = hashMapOf(),
+            val errors: Map<String, Int> = hashMapOf(),
         ) : Local(StringBuilder("There is missing input for this class: ${clazz.simpleName}").apply {
             message?.let { append(", message: $message") }
         }.toString())

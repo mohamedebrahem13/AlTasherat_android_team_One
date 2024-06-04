@@ -1,16 +1,12 @@
 package com.solutionplus.altasherat.features.auth.signup.domain.interactor
 
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
-import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
-import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
-import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
-import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
-import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER_VALIDATION
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
@@ -49,15 +45,15 @@ class SignUpUC @Inject constructor(
         return user
     }
 
-    private fun validateRequest(request: UserSignUpRequest): Map<String, String> {
-        return mutableMapOf<String, String>().apply {
-            if (!request.validateFirstName()) put(FIRST_NAME, FIRST_NAME_VALIDATION)
-            if (!request.validateLastName()) put(LAST_NAME, LAST_NAME_VALIDATION)
-            if (!request.validateEmail()) put(EMAIL, EMAIL_VALIDATION)
-            if (!request.validatePassword()) put(PASSWORD, PASSWORD_VALIDATION)
+    private fun validateRequest(request: UserSignUpRequest): Map<String, Int> {
+        return mutableMapOf<String, Int>().apply {
+            if (!request.validateFirstName()) put(FIRST_NAME, R.string.first_name_validation)
+            if (!request.validateLastName()) put(LAST_NAME, R.string.last_name_validation)
+            if (!request.validateEmail()) put(EMAIL, R.string.email_validation)
+            if (!request.validatePassword()) put(PASSWORD, R.string.password_validation)
             if (!request.phoneSignUpRequest.validatePhoneNumber()) put(
                 PHONE,
-                PHONE_NUMBER_VALIDATION
+                R.string.phone_number_validation
             )
         }
     }

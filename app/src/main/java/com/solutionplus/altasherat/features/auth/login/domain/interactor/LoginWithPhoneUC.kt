@@ -1,10 +1,9 @@
 package com.solutionplus.altasherat.features.auth.login.domain.interactor
 
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
-import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
-import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER_VALIDATION
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
@@ -43,13 +42,13 @@ class LoginWithPhoneUC(
         return loginUserResponse
     }
 
-    private fun validateRequest(request: UserLoginRequest): Map<String, String> {
-        return mutableMapOf<String, String>().apply {
+    private fun validateRequest(request: UserLoginRequest): Map<String, Int> {
+        return mutableMapOf<String, Int>().apply {
             if (!request.phoneLoginRequest.validatePhoneNumber()) put(
                 PHONE,
-                PHONE_NUMBER_VALIDATION
+                R.string.phone_number_validation
             )
-            if (!request.validatePassword()) put(PASSWORD, PASSWORD_VALIDATION)
+            if (!request.validatePassword()) put(PASSWORD, R.string.password_validation)
         }
     }
 }

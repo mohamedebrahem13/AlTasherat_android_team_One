@@ -121,12 +121,19 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                 }
             }*/
             onLoading(result.isLoading)
-            if (result.exception is AlTasheratException.Local.RequestValidation) {
-                handleValidationErrors(result.exception.errors)
-            } else if (result.exception is AlTasheratException.Client.ResponseValidation) {
-                handleValidationErrors(result.exception.errors)
-            } else {
-                handleValidationErrors(emptyMap())
+            when (result.exception) {
+                is AlTasheratException.Local.RequestValidation -> {
+                    val errors = result.exception.errors.mapValues { getString(it.value) }
+                    handleValidationErrors(errors)
+                }
+
+                is AlTasheratException.Client.ResponseValidation -> {
+                    handleValidationErrors(result.exception.errors)
+                }
+
+                else -> {
+                    handleValidationErrors(emptyMap())
+                }
             }
         }
     }

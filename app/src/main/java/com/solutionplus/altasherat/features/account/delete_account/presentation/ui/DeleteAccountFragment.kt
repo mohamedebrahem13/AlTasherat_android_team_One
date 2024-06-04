@@ -48,9 +48,10 @@ class DeleteAccountFragment : BaseFragment<FragmentDeleteAccountBinding>() {
         collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
             if (state.exception is AlTasheratException.Local.RequestValidation) {
+                val error = getString(state.exception.errors.values.first())
                 Toast.makeText(
                     requireContext(),
-                    state.exception.errors.values.first(),
+                    error,
                     Toast.LENGTH_SHORT
                 ).show()
             }

@@ -163,13 +163,19 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         viewModel.processIntent(PersonalInfoAction.GetCountries)
         collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
-            if (state.exception is AlTasheratException.Local.RequestValidation) {
-                handleValidationErrors(state.exception.errors)
-            } else if(state.exception is AlTasheratException.Client.ResponseValidation){
-                handleValidationErrors(state.exception.errors)
-            }
-            else {
-                handleValidationErrors(emptyMap())
+            when (state.exception) {
+                is AlTasheratException.Local.RequestValidation -> {
+                    val errors = state.exception.errors.mapValues { getString(it.value) }
+                    handleValidationErrors(errors)
+                }
+
+                is AlTasheratException.Client.ResponseValidation -> {
+                    handleValidationErrors(state.exception.errors)
+                }
+
+                else -> {
+                    handleValidationErrors(emptyMap())
+                }
             }
         }
 

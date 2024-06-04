@@ -1,18 +1,13 @@
 package com.solutionplus.altasherat.features.account.personal_info.domain.interactor
 
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
-import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
-import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
-import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME
-import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME_VALIDATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
-import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER_VALIDATION
-import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_VALIDATION
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.account.personal_info.domain.repository.IPersonalInfoRepository
@@ -42,14 +37,14 @@ class UpdatePersonalInfoUC(
         saveUserUC.execute(result.user)
     }
 
-    private fun validateRequest(request: UpdateInfoRequest): Map<String, String> {
-        return mutableMapOf<String, String>().apply {
-            if (!request.isFirstNameValid()) put(FIRST_NAME, FIRST_NAME_VALIDATION)
-            if (!request.isMiddleNameValid()) put(MIDDLE_NAME, MIDDLE_NAME_VALIDATION)
-            if (!request.isLastNameValid()) put(LAST_NAME, LAST_NAME_VALIDATION)
-            if (!request.isEmailValid()) put(EMAIL, EMAIL_VALIDATION)
-            if (!request.isPhoneValid()) put(PHONE, PHONE_VALIDATION)
-            if (!request.phone.isNumberValid()) put(PHONE_NUMBER, PHONE_NUMBER_VALIDATION)
+    private fun validateRequest(request: UpdateInfoRequest): Map<String, Int> {
+        return mutableMapOf<String, Int>().apply {
+            if (!request.isFirstNameValid()) put(FIRST_NAME, R.string.first_name_validation)
+            if (!request.isMiddleNameValid()) put(MIDDLE_NAME, R.string.middle_name_validation)
+            if (!request.isLastNameValid()) put(LAST_NAME, R.string.last_name_validation)
+            if (!request.isEmailValid()) put(EMAIL, R.string.email_validation)
+            if (!request.isPhoneValid()) put(PHONE, R.string.phone_validation)
+            if (!request.phone.isNumberValid()) put(PHONE_NUMBER, R.string.phone_number_validation)
         }
     }
 }
