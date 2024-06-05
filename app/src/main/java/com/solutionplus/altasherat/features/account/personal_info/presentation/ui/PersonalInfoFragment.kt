@@ -144,6 +144,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
             buttonSave.setOnClickListener {
                 val file = uriToFile(selectedImageUri, requireContext())
+
                 val updateInfoRequest = UpdateInfoRequest(
                     firstname = inputFirstName.editText?.text.toString(),
                     middlename = inputMiddleName.editText?.text.toString(),
