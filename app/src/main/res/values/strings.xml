@@ -38,6 +38,7 @@
     <string name="email_text">Email</string>
     <string name="phone_text">Phone</string>
     <string name="password_text">Password</string>
+    <string name="enter_password">Enter your password</string>
     <string name="signup_text">Sign Up</string>
     <string name="forget_password_text" translatable="false">Forgot your password?</string>
     <string name="selected_country_code">%1$s\t(+%2$s)</string>
@@ -51,6 +52,7 @@
     <string name="reset_password_hint">Enter your mobile number to recover the password</string>
     <string name="new_password_text">Password</string>
     <string name="repeat_new_password_text" translatable="false">Re-enter Password</string>
+    <string name="re_enter_password">Re-enter Password</string>
     <string name="navigate_to_login">Already have an account ?</string>
     <string name="navigate_to_signup">Don\'t have an account ?</string>
     <!--endregion-->

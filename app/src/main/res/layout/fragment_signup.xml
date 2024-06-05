@@ -48,7 +48,7 @@
                 style="@style/TextInputEditText.Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/first_name_input_hint" />
+                android:hint="@string/enter_first_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +67,7 @@
                 style="@style/TextInputEditText.Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/first_name_input_hint" />
+                android:hint="@string/enter_last_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -93,7 +93,7 @@
                 style="@style/TextInputEditText.Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/email_input_hint" />
+                android:hint="@string/enter_email_address" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -121,7 +121,7 @@
                 style="@style/TextInputEditText.Phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/phone_input_hint" />
+                android:hint="@string/enter_phone_number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -166,7 +166,7 @@
                 style="@style/TextInputEditText.Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/password_text" />
+                android:hint="@string/enter_password" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
