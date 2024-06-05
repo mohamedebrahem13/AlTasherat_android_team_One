@@ -68,7 +68,7 @@ class UpdatePersonalInfoUC(
 
         //Files
         val filesMap: MutableMap<String, List<File>> = mutableMapOf()
-        filesMap["image"] = listOf(request.image)
+        filesMap["image"] = listOfNotNull(request.image)
 
         return Pair(requestMap, filesMap)
     }

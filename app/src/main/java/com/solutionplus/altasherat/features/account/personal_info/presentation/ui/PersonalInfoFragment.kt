@@ -52,7 +52,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private var selectedCountryIndex: Int = -1
     private var selectedCountryCodeIndex: Int = -1
     private lateinit var selectedDate: LocalDate
-    private lateinit var selectedImageUri: Uri
+    private var selectedImageUri: Uri? = null
 
     private val galleryLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) {
@@ -143,7 +143,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
 
             buttonSave.setOnClickListener {
-                val file = uriToFile(selectedImageUri, requireContext())
+                val file = selectedImageUri?.let { uri -> uriToFile(uri, requireContext()) }
 
                 val updateInfoRequest = UpdateInfoRequest(
                     firstname = inputFirstName.editText?.text.toString(),
