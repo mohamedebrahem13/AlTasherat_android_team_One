@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context=".features.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -17,7 +18,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:navGraph="@navigation/splash_nav_graph" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

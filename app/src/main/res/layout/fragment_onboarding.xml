@@ -5,7 +5,7 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/image_on_boarding_background"
+    android:background="@drawable/screens_background"
     tools:context=".features.splash.presention.ui.fragments.OnBoardingFragment">
 
     <ImageView
@@ -37,6 +37,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.74"
         app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline90"
         android:layout_width="wrap_content"
@@ -49,12 +50,12 @@
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:tabGravity="center"
-        app:tabBackground="@drawable/selector_tab_indicator"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="@id/button_next"
         app:layout_constraintStart_toStartOf="@id/button_next"
         app:layout_constraintTop_toBottomOf="@id/guideline78"
+        app:tabBackground="@drawable/selector_tab_indicator"
+        app:tabGravity="center"
         app:tabIndicatorHeight="0dp"
         tools:ignore="SpeakableTextPresentCheck" />
 

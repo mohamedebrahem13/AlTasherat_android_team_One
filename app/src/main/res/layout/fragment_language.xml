@@ -4,20 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/screens_background"
     tools:context=".features.splash.presention.ui.fragments.LanguageFragment">
-
-    <ImageView
-        android:id="@+id/imageView_rectangle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/image_on_boarding_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/image_background"
@@ -76,8 +64,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/please_pick_lang"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                </TextView>
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
 
                 <View
                     android:id="@+id/horizontalLine"
@@ -117,12 +104,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <RadioButton
-                        style="@style/CustomRadioButton1"
-                        android:id="@+id/radioButton1" />
+                        android:id="@+id/radioButton1"
+                        style="@style/CustomRadioButton1" />
 
                     <RadioButton
-                        style="@style/CustomRadioButton2"
-                        android:id="@+id/radioButton2" />
+                        android:id="@+id/radioButton2"
+                        style="@style/CustomRadioButton2" />
                 </RadioGroup>
 
                 <Spinner
@@ -147,13 +134,13 @@
                 <TextView
                     android:id="@+id/textView"
                     style="@style/TextView.SemiBold"
-                    android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginBottom="40dp"
-                    android:textSize="12sp"
                     android:text="@string/you_can_change_langauge"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

@@ -13,7 +13,8 @@
         android:background="@drawable/shape_back_arrow"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text" />
 
     <TextView
         style="@style/TextView.Heavy"

@@ -2,8 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AlTasherat" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Light theme colors -->
-        <item name="background">@color/bg</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
@@ -131,12 +132,13 @@
         <item name="boxCornerRadiusBottomStart">29dp</item>
         <item name="boxCornerRadiusTopEnd">29dp</item>
         <item name="boxCornerRadiusTopStart">29dp</item>
-        <item name="boxStrokeErrorColor">@color/error</item>
-        <item name="boxStrokeWidth">0dp</item>
-        <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintEnabled">false</item>
         <item name="hintTextAppearance">@style/Font.SemiBold</item>
         <item name="startIconTint">@color/icon_input</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/selector_text_input_stroke</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
     </style>
 
     <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
@@ -197,6 +199,9 @@
 
     <style name="TextInputLayout.Subject" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_topic</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/selector_text_input_stroke</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
     </style>
 
     <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -384,6 +389,7 @@
         <item name="android:drawableStart">@drawable/image_flag_ar</item>
         <item name="android:text">@string/arabic</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
 
@@ -400,6 +406,7 @@
         <item name="android:drawableStart">@drawable/image_flag_en</item>
         <item name="android:text">@string/english</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
     <!--endregion-->
