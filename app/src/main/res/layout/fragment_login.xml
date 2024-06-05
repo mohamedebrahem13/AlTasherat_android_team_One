@@ -39,7 +39,7 @@
                 style="@style/TextInputEditText.Phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/phone_input_hint" />
+                android:hint="@string/enter_phone_number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -84,7 +84,7 @@
                 style="@style/TextInputEditText.Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/password_text" />
+                android:hint="@string/enter_password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -94,9 +94,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:enabled="true"
-            android:textSize="14sp"
             android:padding="8dp"
             android:text="@string/forget_password_text"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_password_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
