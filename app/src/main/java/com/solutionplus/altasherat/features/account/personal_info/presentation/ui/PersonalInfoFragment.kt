@@ -1,5 +1,9 @@
 package com.solutionplus.altasherat.features.account.personal_info.presentation.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -139,6 +143,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
 
             buttonSave.setOnClickListener {
+                val file = uriToFile(selectedImageUri, requireContext())
                 val updateInfoRequest = UpdateInfoRequest(
                     firstname = inputFirstName.editText?.text.toString(),
                     middlename = inputMiddleName.editText?.text.toString(),

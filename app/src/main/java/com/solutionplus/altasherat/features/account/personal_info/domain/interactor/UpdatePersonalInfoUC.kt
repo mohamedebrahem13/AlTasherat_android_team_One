@@ -1,6 +1,5 @@
 package com.solutionplus.altasherat.features.account.personal_info.domain.interactor
 
-import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
@@ -30,7 +29,7 @@ class UpdatePersonalInfoUC(
 
         val requestBody = createMapRequest(params)
         val result = repository.updatePersonalInfo(requestBody.first, requestBody.second)
-        getClassLogger().debug(result.toString())
+
         validateRequest(params).takeIf { it.isNotEmpty() }?.let {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = UpdateInfoRequest::class,
@@ -38,7 +37,6 @@ class UpdatePersonalInfoUC(
             )
         }
 
-        val result = repository.updatePersonalInfo(params)
         saveUserUC.execute(result.user)
 
     }
@@ -54,7 +52,8 @@ class UpdatePersonalInfoUC(
         }
     }
 
-    private fun createMapRequest(request: UpdateInfoRequest): Pair<Map<String, String>, Map<String, List<File>>> {
+    private fun createMapRequest(request: UpdateInfoRequest):
+            Pair<Map<String, String>, Map<String, List<File>>> {
 
         // requestBody
         val requestMap: MutableMap<String, String> = mutableMapOf()
