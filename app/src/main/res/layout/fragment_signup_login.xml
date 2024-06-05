@@ -4,95 +4,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/screens_background"
     tools:context=".features.auth.presentation.AuthActivity">
 
     <TextView
         android:id="@+id/skipTv"
+        style="@style/TextView.Heavy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextView.Heavy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="24dp"
         android:text="@string/skip_tv"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="16dp"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_viewpager"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            android:layout_margin="12dp"
-            app:cardBackgroundColor="@color/bg_card"
-            android:foregroundGravity="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/bg_card"
-                    app:tabIndicatorAnimationMode="linear"
-                    app:tabIndicatorFullWidth="true"
-                    app:tabIndicatorColor="@color/accent"
-                    app:tabIndicatorGravity="top"
-                    app:tabIndicatorHeight="4dp"
-                    app:tabSelectedTextAppearance="@style/TextView.Heavy"
-                    app:tabTextAppearance="@style/TextView.InputText"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
-                    android:layout_marginBottom="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-            </LinearLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_plane_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/image_plane"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintEnd_toStartOf="@id/image_logo"
+        app:layout_constraintStart_toStartOf="@id/cardView" />
+
+    <ImageView
+        android:id="@+id/image_plane_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:scaleX="-1"
+        android:src="@drawable/image_plane"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toEndOf="@id/image_logo" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:foregroundGravity="center"
+        app:cardBackgroundColor="@color/bg_card"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_card"
+                app:tabIndicatorAnimationMode="fade"
+                app:tabIndicatorColor="@color/accent"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorGravity="top"
+                app:tabIndicatorHeight="4dp"
+                app:tabSelectedTextAppearance="@style/Font.Heavy"
+                app:tabSelectedTextColor="@color/text"
+                app:tabTextAppearance="@style/Font.Heavy"
+                app:tabTextColor="@color/text_input"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/image_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_logo"
-        app:layout_constraintStart_toStartOf="@id/layout_viewpager"
-        app:layout_constraintEnd_toEndOf="@id/layout_viewpager"
-        app:layout_constraintTop_toTopOf="@id/layout_viewpager"
-        app:layout_constraintBottom_toTopOf="@id/layout_viewpager"/>
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="@id/cardView" />
 
     <Button
         android:id="@+id/btn_login_signup"
-        android:layout_width="204dp"
-        android:padding="8dp"
+        style="@style/Button.Auth"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textAppearance="@style/TextView"
-        app:layout_constraintStart_toStartOf="@id/layout_viewpager"
-        app:layout_constraintEnd_toEndOf="@id/layout_viewpager"
-        app:layout_constraintTop_toBottomOf="@id/layout_viewpager"
-        app:layout_constraintBottom_toBottomOf="@id/layout_viewpager"
-        tools:text="@string/signup_text"
-        style="@style/Button.Auth"/>
+        android:paddingHorizontal="32dp"
+        android:text="@string/login_text"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        tools:text="@string/signup_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_signup">
+
+        <TextView
+            android:id="@+id/have_acc_tv"
+            style="@style/TextView.Heavy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navigate_to_login" />
+
+        <TextView
+            android:id="@+id/navigate_login_signup_tv"
+            style="@style/TextView.Heavy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/login_text"
+            android:textAlignment="viewStart"
+            android:textColor="@color/secondary" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

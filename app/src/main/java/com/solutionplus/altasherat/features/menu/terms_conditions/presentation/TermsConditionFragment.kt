@@ -3,9 +3,9 @@ package com.solutionplus.altasherat.features.menu.terms_conditions.presentation
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.TermsConditionsLayoutBinding
+import com.solutionplus.altasherat.databinding.FragmentTermsConditionsBinding
 
-class FragmentTermsCondition: BaseFragment<TermsConditionsLayoutBinding>() {
+class TermsConditionFragment : BaseFragment<FragmentTermsConditionsBinding>() {
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.backButton.setOnClickListener {

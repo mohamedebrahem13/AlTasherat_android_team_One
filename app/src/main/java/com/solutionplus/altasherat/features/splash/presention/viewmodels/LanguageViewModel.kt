@@ -47,7 +47,11 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
     }
 
     private fun savePreferenceAndNavigateToOnboarding(selectedCountry: String){
-       val userPreference= createUserPreference(selectedCountry)
+        // Update the isSelected property in the string
+        val updatedCountryString = updateIsSelectedInCountryString(selectedCountry)
+
+        // Create the user preference with the updated string
+        val userPreference = createUserPreference(updatedCountryString)
         saveUserPreferenceUseCase.invoke(viewModelScope,userPreference){resource->
             when (resource) {
                 is Resource.Progress -> {
@@ -62,6 +66,10 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                 }
             }
         }
+    }
+    private fun updateIsSelectedInCountryString(countryString: String): String {
+        val regex = """(isSelected=)(false)""".toRegex()
+        return countryString.replace(regex, "$1true")
     }
 
     private fun fetchCountriesFromLocal() {

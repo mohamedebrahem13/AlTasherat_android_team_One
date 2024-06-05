@@ -2,17 +2,26 @@ package com.solutionplus.altasherat.features.menu.language.presentation.viewmode
 
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
+import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.GetUserPreferredCountryUC
 import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.SaveUserPreferenceLanguageUseCase
+import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.SaveUserPreferredCountryUseCase
 import com.solutionplus.altasherat.features.services.country.data.worker.CountriesWorkerImpl
+import com.solutionplus.altasherat.features.services.country.domain.interactor.GetCachedCountriesUC
+import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import com.solutionplus.altasherat.features.services.country.domain.worker.CountriesWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
-class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerImpl: CountriesWorkerImpl, private val saveUserPreferenceLanguageUseCase: SaveUserPreferenceLanguageUseCase) : AlTasheratViewModel <LanguageSettingsContract.LanguageSettingsContractAction, LanguageSettingsContract.LanguageSettingsContractEvent, LanguageSettingsContract.LanguageSettingsContractViewState>(
+class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerImpl: CountriesWorkerImpl,
+                                                   private val saveUserPreferenceLanguageUseCase: SaveUserPreferenceLanguageUseCase,
+                                                   private val getCachedCountriesUC:GetCachedCountriesUC,
+                                                   private val getUserPreferredCountryUC: GetUserPreferredCountryUC,
+                                                   private val saveUserPreferenceCountry: SaveUserPreferredCountryUseCase) : AlTasheratViewModel <LanguageSettingsContract.LanguageSettingsContractAction, LanguageSettingsContract.LanguageSettingsContractEvent, LanguageSettingsContract.LanguageSettingsContractViewState>(
     LanguageSettingsContract.LanguageSettingsContractViewState.initial()
 ) {
     override fun clearState() {
@@ -40,7 +49,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
                         "Worker ENQUEUED"
                     }                    WorkInfo.State.RUNNING -> "Worker RUNNING"
                     WorkInfo.State.SUCCEEDED -> {
-                        saveUserPreferenceLanguage(language)
+                        getCountriesAndSaveUserPreference(language)
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
 
@@ -63,6 +72,69 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
             }
         }
     }
+
+    private fun getCountriesAndSaveUserPreference(language: String) {
+        getCachedCountriesUC(viewModelScope) { result ->
+            when (result) {
+                is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
+                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading, exception = null))
+                is Resource.Success -> {
+                    val countries = result.model
+                    fetchUserPreferredCountry(countries)
+                    saveUserPreferenceLanguage(language)
+                }
+            }
+        }
+    }
+    private fun fetchUserPreferredCountry(countries: List<Country>) {
+        getUserPreferredCountryUC.invoke(viewModelScope) { resource ->
+            when (resource) {
+                is Resource.Progress -> {
+                    setState(oldViewState.copy(isLoading = resource.loading))
+                }
+                is Resource.Success -> {
+                    val preferredCountryString = resource.model
+                    val countryId = extractCountryId(preferredCountryString)
+                    val matchedCountry = countries.find { it.id == countryId }
+
+                    if (matchedCountry != null) {
+                        saveUserPreferenceCountry(matchedCountry)
+                    }
+                }
+                is Resource.Failure -> {
+                    setState(oldViewState.copy(exception = resource.exception))
+                }
+            }
+        }
+    }
+    private fun extractCountryId(countryString: String): Int? {
+        return countryString.substringAfter("id=").substringBefore(",").toIntOrNull()
+    }
+    private fun updateIsSelectedInCountry(country: Country): Country {
+        return country.copy(isSelected = true)
+    }
+
+    private fun saveUserPreferenceCountry(country: Country) {
+        logger.debug("countrtosave$country")
+        val updatedCountry =updateIsSelectedInCountry(country)
+        logger.debug("updatedCountry$updatedCountry")
+
+        saveUserPreferenceCountry.invoke(viewModelScope, updatedCountry.toString()) { resource ->
+            when (resource) {
+                is Resource.Progress -> {
+                    setState(oldViewState.copy(isLoading = resource.loading))
+                }
+                is Resource.Success -> {
+                    logger.debug("success statess${resource.model}")
+
+                }
+                is Resource.Failure -> {
+                    setState(oldViewState.copy(exception = resource.exception))
+                }
+            }
+        }
+    }
+
 
     private fun saveUserPreferenceLanguage(language: String) {
 
@@ -88,6 +160,10 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
 
         }
     }
-
+    companion object {
+        private val logger = getClassLogger()
+    }
 
 }
+
+

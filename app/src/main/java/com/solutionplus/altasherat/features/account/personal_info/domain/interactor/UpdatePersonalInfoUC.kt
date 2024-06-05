@@ -2,6 +2,12 @@ package com.solutionplus.altasherat.features.account.personal_info.domain.intera
 
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
+import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.account.personal_info.domain.repository.IPersonalInfoRepository
@@ -28,18 +34,14 @@ class UpdatePersonalInfoUC(
 
     }
 
-    private fun validateRequest(request: UpdateInfoRequest): String? {
-        return request.run {
-            when {
-                !isFirstNameValid() -> "First name is not valid"
-                !isMiddleNameValid() -> "Middle name is not valid"
-                !isLastNameValid() -> "Last name is not valid"
-                !isEmailValid() -> "Email is not valid"
-                !isBirthDateValid() -> "Birth date is not valid"
-                !isPhoneValid() -> "Phone is not valid"
-                !isCountryIdValid() -> "Country is not valid"
-                else -> null
-            }
+    private fun validateRequest(request: UpdateInfoRequest): Map<String, Int> {
+        return mutableMapOf<String, Int>().apply {
+            if (!request.isFirstNameValid()) put(FIRST_NAME, R.string.first_name_validation)
+            if (!request.isMiddleNameValid()) put(MIDDLE_NAME, R.string.middle_name_validation)
+            if (!request.isLastNameValid()) put(LAST_NAME, R.string.last_name_validation)
+            if (!request.isEmailValid()) put(EMAIL, R.string.email_validation)
+            if (!request.isPhoneValid()) put(PHONE, R.string.phone_validation)
+            if (!request.phone.isNumberValid()) put(PHONE_NUMBER, R.string.phone_number_validation)
         }
     }
 

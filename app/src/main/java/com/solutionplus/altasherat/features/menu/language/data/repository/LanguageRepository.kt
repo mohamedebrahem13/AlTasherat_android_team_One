@@ -8,4 +8,12 @@ internal class LanguageRepository (private val localDataSource: ILanguageLocalDS
     override suspend fun saveUserPreferredLanguage(language: String) {
         localDataSource.saveUserPreferredLanguage(language)
     }
+
+    override suspend fun getUserPreferredCountry(): String {
+      return  localDataSource.getUserPreferredCountry()
+    }
+
+    override suspend fun saveUserPreferredCountry(country: String) {
+        localDataSource.saveUserPreferredCountry(country)
+    }
 }

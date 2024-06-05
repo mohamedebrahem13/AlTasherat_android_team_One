@@ -1,11 +1,11 @@
-package com.solutionplus.altasherat.features.menu.privacy_policies.presentation
+package com.solutionplus.altasherat.features.menu.about.presentation
 
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
-import com.solutionplus.altasherat.databinding.PrivacyLayoutBinding
+import com.solutionplus.altasherat.databinding.FragmentAboutBinding
 
-class FragmentPrivacyPolicies: BaseFragment<PrivacyLayoutBinding>() {
+class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.backButton.setOnClickListener {

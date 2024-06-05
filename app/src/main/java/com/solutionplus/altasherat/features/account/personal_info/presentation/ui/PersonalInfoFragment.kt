@@ -16,6 +16,15 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.constants.Constants.BIRTH_DATE
+import com.solutionplus.altasherat.common.domain.constants.Constants.COUNTRY
+import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
+import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.PhoneRequest
@@ -184,7 +193,23 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     override fun subscribeToObservables() {
         viewModel.processIntent(PersonalInfoAction.GetCountries)
-        collectFlowWithLifecycle(viewModel.viewState) {}
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            onLoading(state.isLoading)
+            when (state.exception) {
+                is AlTasheratException.Local.RequestValidation -> {
+                    val errors = state.exception.errors.mapValues { getString(it.value) }
+                    handleValidationErrors(errors)
+                }
+
+                is AlTasheratException.Client.ResponseValidation -> {
+                    handleValidationErrors(state.exception.errors)
+                }
+
+                else -> {
+                    handleValidationErrors(emptyMap())
+                }
+            }
+        }
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {

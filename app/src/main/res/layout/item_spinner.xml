@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="@string/arabic"
-        style="@style/TextView.Bold"
+        style="@style/TextView.SemiBold"
         android:layout_marginEnd="8dp"
         android:gravity="center" />
 
@@ -19,9 +19,9 @@
         android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextView.Bold"
+        style="@style/TextView.SemiBold"
         android:text="@string/arabic"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:layout_gravity="center_vertical" />
 
 </LinearLayout>

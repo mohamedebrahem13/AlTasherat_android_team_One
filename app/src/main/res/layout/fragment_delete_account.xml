@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".features.account.delete_account.presentation.ui.DeleteAccountFragment">
 
     <ImageButton
         android:id="@+id/button_back"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/shape_back_arrow"
         android:clickable="true"
         android:contentDescription="@string/back_arrow"
@@ -21,7 +22,7 @@
 
     <TextView
         android:id="@+id/text_account_setting"
-        style="@style/TextView.Bold"
+        style="@style/TextView.Heavy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,6 +36,7 @@
         style="@style/TextView.Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_marginTop="16dp"
         android:paddingVertical="16dp"
         android:text="@string/deactivate_account"
@@ -58,7 +60,7 @@
         style="@style/TextView.Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:text="@string/deactivate_account_description"
         android:textAlignment="center"
         android:textSize="14sp"
@@ -71,7 +73,6 @@
         style="@style/Button.Delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="0dp"
         android:layout_marginBottom="8dp"
         android:text="@string/confirm_delete"
         app:layout_constraintBottom_toTopOf="@id/button_cancel" />
@@ -81,7 +82,7 @@
         style="@style/Button.OutLined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent" />
 
