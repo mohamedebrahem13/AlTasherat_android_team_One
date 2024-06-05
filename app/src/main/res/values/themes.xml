@@ -132,12 +132,13 @@
         <item name="boxCornerRadiusBottomStart">29dp</item>
         <item name="boxCornerRadiusTopEnd">29dp</item>
         <item name="boxCornerRadiusTopStart">29dp</item>
-        <item name="boxStrokeErrorColor">@color/error</item>
-        <item name="boxStrokeWidth">0dp</item>
-        <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintEnabled">false</item>
         <item name="hintTextAppearance">@style/Font.SemiBold</item>
         <item name="startIconTint">@color/icon_input</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/selector_text_input_stroke</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
     </style>
 
     <style name="TextInputLayout.Name" parent="TextInputLayout.OutlinedBox">
@@ -198,6 +199,9 @@
 
     <style name="TextInputLayout.Subject" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="startIconDrawable">@drawable/ic_topic</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/selector_text_input_stroke</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
     </style>
 
     <style name="TextInputLayout.CountryCode" parent="TextInputLayout.OutlinedBox.ExposedDropdownMenu">
