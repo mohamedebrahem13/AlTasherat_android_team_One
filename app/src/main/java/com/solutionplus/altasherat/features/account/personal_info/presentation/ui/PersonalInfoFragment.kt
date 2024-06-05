@@ -1,9 +1,5 @@
 package com.solutionplus.altasherat.features.account.personal_info.presentation.ui
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +12,15 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.domain.constants.Constants.BIRTH_DATE
+import com.solutionplus.altasherat.common.domain.constants.Constants.COUNTRY
+import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
+import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.PhoneRequest
@@ -134,8 +139,6 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
 
             buttonSave.setOnClickListener {
-                val file = uriToFile(selectedImageUri, requireContext())
-
                 val updateInfoRequest = UpdateInfoRequest(
                     firstname = inputFirstName.editText?.text.toString(),
                     middlename = inputMiddleName.editText?.text.toString(),
@@ -184,7 +187,23 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     override fun subscribeToObservables() {
         viewModel.processIntent(PersonalInfoAction.GetCountries)
-        collectFlowWithLifecycle(viewModel.viewState) {}
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            onLoading(state.isLoading)
+            when (state.exception) {
+                is AlTasheratException.Local.RequestValidation -> {
+                    val errors = state.exception.errors.mapValues { getString(it.value) }
+                    handleValidationErrors(errors)
+                }
+
+                is AlTasheratException.Client.ResponseValidation -> {
+                    handleValidationErrors(state.exception.errors)
+                }
+
+                else -> {
+                    handleValidationErrors(emptyMap())
+                }
+            }
+        }
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
@@ -256,6 +275,27 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             binding.inputBirthDate.editText?.setText(date.toString())
         } else {
             binding.inputBirthDate.editText?.text = null
+        }
+    }
+
+    private fun handleValidationErrors(errors: Map<String, String>) {
+        val errorFields = mapOf(
+            FIRST_NAME to binding.inputFirstName,
+            MIDDLE_NAME to binding.inputMiddleName,
+            LAST_NAME to binding.inputLastName,
+            EMAIL to binding.inputEmail,
+            PHONE_NUMBER to binding.inputPhoneNumber,
+            PHONE to binding.inputPhoneNumber,
+            BIRTH_DATE to binding.inputBirthDate,
+            COUNTRY to binding.inputCountry
+        )
+
+        if (errors.isNotEmpty()) {
+            errors.forEach { (key, value) ->
+                errorFields[key]?.error = value
+            }
+        } else {
+            errorFields.values.forEach { it.error = null }
         }
     }
 

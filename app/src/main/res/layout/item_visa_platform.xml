@@ -15,7 +15,8 @@
 
         <TextView
             android:id="@+id/text_title_first_part"
-            style="@style/TextView.Bold"
+            style="@style/TextView.Heavy"
+            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_text_title_background"
@@ -26,7 +27,8 @@
 
         <TextView
             android:id="@+id/text_title_second_part"
-            style="@style/TextView.Bold"
+            style="@style/TextView.Heavy"
+            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:ellipsize="end"
@@ -79,7 +81,7 @@
                 android:padding="8dp"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 tools:text="اطلب\nالان التأشيرة" />
 
         </LinearLayout>

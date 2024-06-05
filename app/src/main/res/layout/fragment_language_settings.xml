@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.menu.language.presentation.ui.LanguageSettingsFragment">
 
-
     <ImageButton
         android:id="@+id/button_back"
         android:layout_width="32dp"
@@ -21,14 +20,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.315"
+        app:tint="@color/text"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:textSize="14sp"
         android:text="@string/please_pick_lang"
         style="@style/TextView.Bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,13 +41,11 @@
         android:id="@+id/view_rectangle"
         android:layout_width="4dp"
         android:layout_height="24dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:background="@color/primary"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/radio"
+        app:layout_constraintBottom_toBottomOf="@id/textView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintTop_toTopOf="@id/textView2" />
 
     <RadioGroup
         android:id="@id/radio"
@@ -63,12 +62,12 @@
 
 
         <RadioButton
-            style="@style/CustomRadioButton1"
-            android:id="@+id/radioButton1" />
+            android:id="@+id/radioButton1"
+            style="@style/CustomRadioButton1" />
 
         <RadioButton
-            style="@style/CustomRadioButton2"
-            android:id="@+id/radioButton2" />
+            android:id="@+id/radioButton2"
+            style="@style/CustomRadioButton2" />
     </RadioGroup>
 
     <TextView
@@ -77,14 +76,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
         android:text="@string/language"
         android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
         app:layout_constraintStart_toEndOf="@+id/button_back"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/button_back" />
 
     <Button
         android:id="@+id/save"

@@ -124,21 +124,21 @@
 
     <fragment
         android:id="@+id/fragmentAbout"
-        android:name="com.solutionplus.altasherat.features.menu.about.presentation.FragmentAbout"
+        android:name="com.solutionplus.altasherat.features.menu.about.presentation.AboutFragment"
         android:label="FragmentAbout"
-        tools:layout="@layout/about_layout" />
+        tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/fragmentPrivacyPolicies"
-        android:name="com.solutionplus.altasherat.features.menu.privacy_policies.presentation.FragmentPrivacyPolicies"
+        android:name="com.solutionplus.altasherat.features.menu.privacy_policies.presentation.PrivacyPoliciesFragment"
         android:label="FragmentPrivacyPolicies"
-        tools:layout="@layout/privacy_layout" />
+        tools:layout="@layout/fragment_privacy" />
 
     <fragment
         android:id="@+id/fragmentTermsCondition"
-        android:name="com.solutionplus.altasherat.features.menu.terms_conditions.presentation.FragmentTermsCondition"
+        android:name="com.solutionplus.altasherat.features.menu.terms_conditions.presentation.TermsConditionFragment"
         android:label="FragmentTermsCondition"
-        tools:layout="@layout/terms_conditions_layout" />
+        tools:layout="@layout/fragment_terms_conditions" />
 
     <fragment
         android:id="@+id/verificationFragment"

@@ -9,4 +9,12 @@ internal class LanguageLocalDS(private val preferenceStorage: IKeyValueStoragePr
     override suspend fun saveUserPreferredLanguage(language: String) {
         preferenceStorage.save(key = StorageKeyEnum.LANGUAGE, value = language, type = String::class.java)
     }
+
+    override suspend fun saveUserPreferredCountry(country: String) {
+        preferenceStorage.save(key = StorageKeyEnum.USER_PREFERRED_COUNTRY, value = country, type = String::class.java)
+    }
+
+    override suspend fun getUserPreferredCountry(): String {
+        return preferenceStorage.get(StorageKeyEnum.USER_PREFERRED_COUNTRY, "", String::class.java)
+    }
 }

@@ -27,7 +27,7 @@ class SignUpViewModel @Inject constructor(
         signUpUC.invoke(viewModelScope, userSignUpRequest) { result ->
             when (result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading, exception = null))
+                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
                 is Resource.Success -> {
                     sendEvent(SignUpContract.SignUpEvent.SignUpIsSuccessfully(result.model.message))
                 }

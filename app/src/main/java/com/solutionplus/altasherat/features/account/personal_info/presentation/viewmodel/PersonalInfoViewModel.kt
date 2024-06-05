@@ -24,6 +24,7 @@ class PersonalInfoViewModel @Inject constructor(
 ) : AlTasheratViewModel<PersonalInfoAction, PersonalInfoEvent, PersonalInfoState>(PersonalInfoState.initial()) {
 
     override fun onActionTrigger(action: ViewAction?) {
+        clearState()
         when (action) {
             is PersonalInfoAction.GetCountries -> getCountries()
             is PersonalInfoAction.GetCachedUserPersonalInfo -> getCachedUserPersonalInfo()

@@ -24,4 +24,5 @@
     <!-- light mode colors -->
 
     <color name="header_bg">#F1F4FB</color>
+    <color name="icon_color">#4426F5</color>
 </resources>
