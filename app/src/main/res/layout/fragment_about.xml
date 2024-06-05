@@ -13,7 +13,8 @@
         android:background="@drawable/shape_back_arrow"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text" />
 
     <TextView
         style="@style/TextView.Heavy"
@@ -30,8 +31,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:clipToPadding="false"
-        android:scrollbars="none"
         android:paddingBottom="24dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_button">
 
@@ -147,8 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textSize="14sp"
-                    android:text="@string/offer_text" />
+                    android:text="@string/offer_text"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/offer_content_tv"

@@ -384,6 +384,7 @@
         <item name="android:drawableStart">@drawable/image_flag_ar</item>
         <item name="android:text">@string/arabic</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
 
@@ -400,6 +401,7 @@
         <item name="android:drawableStart">@drawable/image_flag_en</item>
         <item name="android:text">@string/english</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
     <!--endregion-->

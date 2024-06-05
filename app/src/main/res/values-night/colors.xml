@@ -7,7 +7,7 @@
     <color name="accent">#8EE7AD</color>
     <color name="text">#FFFFFF</color>
 
-    <color name="bg_input">#F1F4FB</color>
+    <color name="bg_input">#1C204C</color>
     <color name="text_input">#B2AECC</color>
     <color name="icon_input">#B2AECC</color>
     <color name="bg_card">#1C204C</color>
@@ -17,4 +17,5 @@
     <color name="gray">#871C204C</color>
 
     <color name="header_bg">#1C204C</color>
+    <color name="icon_color">#FFFFFF</color>
 </resources>

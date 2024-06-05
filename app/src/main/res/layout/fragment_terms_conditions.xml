@@ -13,7 +13,8 @@
         android:background="@drawable/shape_back_arrow"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text" />
 
     <TextView
         style="@style/TextView.Heavy"
@@ -53,8 +54,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:lineSpacingExtra="5dp"
-                android:textSize="12sp"
-                android:text="@string/terms_condition_text" />
+                android:text="@string/terms_condition_text"
+                android:textSize="12sp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
