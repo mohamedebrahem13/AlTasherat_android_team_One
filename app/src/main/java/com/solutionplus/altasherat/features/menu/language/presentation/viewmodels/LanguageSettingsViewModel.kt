@@ -2,6 +2,7 @@ package com.solutionplus.altasherat.features.menu.language.presentation.viewmode
 
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
+import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
@@ -48,8 +49,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
                         "Worker ENQUEUED"
                     }                    WorkInfo.State.RUNNING -> "Worker RUNNING"
                     WorkInfo.State.SUCCEEDED -> {
-                        saveUserPreferenceLanguage(language)
-                        getCountries()
+                        getCountriesAndSaveUserPreference(language)
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
 
@@ -73,7 +73,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
         }
     }
 
-    private fun getCountries() {
+    private fun getCountriesAndSaveUserPreference(language: String) {
         getCachedCountriesUC(viewModelScope) { result ->
             when (result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
@@ -81,6 +81,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
                 is Resource.Success -> {
                     val countries = result.model
                     fetchUserPreferredCountry(countries)
+                    saveUserPreferenceLanguage(language)
                 }
             }
         }
@@ -109,14 +110,22 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
     private fun extractCountryId(countryString: String): Int? {
         return countryString.substringAfter("id=").substringBefore(",").toIntOrNull()
     }
+    private fun updateIsSelectedInCountry(country: Country): Country {
+        return country.copy(isSelected = true)
+    }
 
     private fun saveUserPreferenceCountry(country: Country) {
-        saveUserPreferenceCountry.invoke(viewModelScope, country.toString()) { resource ->
+        logger.debug("countrtosave$country")
+        val updatedCountry =updateIsSelectedInCountry(country)
+        logger.debug("updatedCountry$updatedCountry")
+
+        saveUserPreferenceCountry.invoke(viewModelScope, updatedCountry.toString()) { resource ->
             when (resource) {
                 is Resource.Progress -> {
                     setState(oldViewState.copy(isLoading = resource.loading))
                 }
                 is Resource.Success -> {
+                    logger.debug("success statess${resource.model}")
 
                 }
                 is Resource.Failure -> {
@@ -151,6 +160,10 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
 
         }
     }
-
+    companion object {
+        private val logger = getClassLogger()
+    }
 
 }
+
+
