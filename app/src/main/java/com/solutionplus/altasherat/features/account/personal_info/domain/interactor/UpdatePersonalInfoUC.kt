@@ -12,6 +12,7 @@ import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
 import com.solutionplus.altasherat.features.account.personal_info.domain.repository.IPersonalInfoRepository
 import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
+import java.io.File
 
 class UpdatePersonalInfoUC(
     private val repository: IPersonalInfoRepository,
@@ -26,6 +27,9 @@ class UpdatePersonalInfoUC(
             )
         }
 
+        val requestBody = createMapRequest(params)
+        val result = repository.updatePersonalInfo(requestBody.first, requestBody.second)
+
         validateRequest(params).takeIf { it.isNotEmpty() }?.let {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = UpdateInfoRequest::class,
@@ -33,8 +37,8 @@ class UpdatePersonalInfoUC(
             )
         }
 
-        val result = repository.updatePersonalInfo(params)
         saveUserUC.execute(result.user)
+
     }
 
     private fun validateRequest(request: UpdateInfoRequest): Map<String, Int> {
@@ -47,4 +51,27 @@ class UpdatePersonalInfoUC(
             if (!request.phone.isNumberValid()) put(PHONE_NUMBER, R.string.phone_number_validation)
         }
     }
+
+    private fun createMapRequest(request: UpdateInfoRequest):
+            Pair<Map<String, String>, Map<String, List<File>>> {
+
+        // requestBody
+        val requestMap: MutableMap<String, String> = mutableMapOf()
+        requestMap["firstname"] = request.firstname
+        requestMap["lastname"] = request.lastname
+        requestMap["middlename"] = request.middlename
+        requestMap["email"] = request.email
+        requestMap["birthdate"] = request.birthDate
+        requestMap["number"] = request.phone.number
+        requestMap["country_code"] = request.phone.countryCode
+        requestMap["country"] = request.countryId.toString()
+
+        //Files
+        val filesMap: MutableMap<String, List<File>> = mutableMapOf()
+        filesMap["image"] = listOfNotNull(request.image)
+
+        return Pair(requestMap, filesMap)
+    }
 }
+
+

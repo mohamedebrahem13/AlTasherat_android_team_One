@@ -2,6 +2,7 @@ package com.solutionplus.altasherat.features.account.personal_info.data.models.r
 
 import androidx.core.util.PatternsCompat
 import com.google.gson.annotations.SerializedName
+import java.io.File
 
 data class UpdateInfoRequest(
     @SerializedName("firstname")
@@ -17,7 +18,7 @@ data class UpdateInfoRequest(
     @SerializedName("phone")
     val phone: PhoneRequest,
     @SerializedName("image")
-    val image: String? = null,
+    val image: File? = null,
     @SerializedName("country")
     val countryId: Int,
 ) {

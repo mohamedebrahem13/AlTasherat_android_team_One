@@ -1,7 +1,12 @@
 package com.solutionplus.altasherat.features.account.personal_info.presentation.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +35,9 @@ import com.solutionplus.altasherat.features.account.personal_info.presentation.v
 import com.solutionplus.altasherat.features.services.country.domain.models.Country
 import com.solutionplus.altasherat.features.services.user.domain.models.User
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -44,6 +52,19 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private var selectedCountryIndex: Int = -1
     private var selectedCountryCodeIndex: Int = -1
     private lateinit var selectedDate: LocalDate
+    private var selectedImageUri: Uri? = null
+
+    private val galleryLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = it.data
+            data?.data?.let { uri ->
+                selectedImageUri = uri
+                binding.imageProfile.setImageURI(uri)
+            }
+        }
+    }
+
 
     private val datePicker: MaterialDatePicker<Long> by lazy {
         val calendar = Calendar.getInstance()
@@ -113,7 +134,17 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                 setBirthDateText(localDate)
             }
 
+
+            buttonEditImage.setOnClickListener {
+                val intent = Intent(Intent.ACTION_PICK).apply {
+                    type = "image/*"
+                }
+                galleryLauncher.launch(intent)
+            }
+
             buttonSave.setOnClickListener {
+                val file = selectedImageUri?.let { uri -> uriToFile(uri, requireContext()) }
+
                 val updateInfoRequest = UpdateInfoRequest(
                     firstname = inputFirstName.editText?.text.toString(),
                     middlename = inputMiddleName.editText?.text.toString(),
@@ -124,7 +155,8 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                     ),
                     email = inputEmail.editText?.text.toString(),
                     birthDate = if (::selectedDate.isInitialized) selectedDate.toString() else "",
-                    countryId = countries[selectedCountryIndex].id
+                    countryId = countries[selectedCountryIndex].id,
+                    image = file
                 )
 
                 viewModel.processIntent(PersonalInfoAction.UpdatePersonalInfo(updateInfoRequest))
@@ -272,4 +304,15 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             errorFields.values.forEach { it.error = null }
         }
     }
+
+    private fun uriToFile(uri: Uri, context: Context): File {
+        val inputStream: InputStream? = context.contentResolver.openInputStream(uri)
+        val tempFile = File(context.cacheDir, "temp_image")
+        val outputStream = FileOutputStream(tempFile)
+        inputStream?.copyTo(outputStream)
+        inputStream?.close()
+        outputStream.close()
+        return tempFile
+    }
+
 }
