@@ -9,7 +9,6 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -76,6 +75,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
+                loginViewMode.clearState()
             }
         }
     }

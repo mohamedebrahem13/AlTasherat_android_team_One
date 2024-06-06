@@ -17,7 +17,6 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.BIRTH_DATE
 import com.solutionplus.altasherat.common.domain.constants.Constants.COUNTRY
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
@@ -200,6 +199,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
+                viewModel.clearState()
             }
         }
 

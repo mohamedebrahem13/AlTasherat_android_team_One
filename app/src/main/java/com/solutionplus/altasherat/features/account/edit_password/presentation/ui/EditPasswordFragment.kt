@@ -44,6 +44,7 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
+                viewModel.clearState()
             }
         }
 

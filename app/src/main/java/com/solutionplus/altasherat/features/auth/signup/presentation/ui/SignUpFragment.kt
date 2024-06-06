@@ -118,6 +118,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
+                signUpViewModel.clearState()
             }
         }
     }

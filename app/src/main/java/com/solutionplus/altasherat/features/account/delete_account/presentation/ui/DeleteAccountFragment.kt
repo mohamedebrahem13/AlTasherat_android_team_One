@@ -50,6 +50,7 @@ class DeleteAccountFragment : BaseFragment<FragmentDeleteAccountBinding>() {
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
+                viewModel.clearState()
             }
         }
 
@@ -70,7 +71,6 @@ class DeleteAccountFragment : BaseFragment<FragmentDeleteAccountBinding>() {
                 error
             )
         )
-        viewModel.clearState()
     }
 
     override fun onLoading(isLoading: Boolean) {}
