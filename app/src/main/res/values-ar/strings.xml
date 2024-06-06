@@ -165,7 +165,8 @@
     <string name="cancel">إلغاء</string>
     <string name="confirm_delete">تأكيد الحذف</string>
     <string name="delete_account">حذف الحساب</string>
-    <string name="password__to_confirm">كلمة المرور للتأكيد</string>
+    <string name="password_to_confirm">كلمة المرور للتأكيد</string>
+    <string name="enter_password_to_confirm">ادخل كلمة المرور للتأكيد</string>
     <!--endregion-->
 
     <!--region Verification Fragment -->

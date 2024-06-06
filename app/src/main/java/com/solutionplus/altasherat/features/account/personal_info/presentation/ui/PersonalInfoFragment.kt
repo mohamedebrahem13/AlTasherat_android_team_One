@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -55,7 +56,8 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private var selectedImageUri: Uri? = null
 
     private val galleryLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) {
+        ActivityResultContracts.StartActivityForResult()
+    ) {
         if (it.resultCode == Activity.RESULT_OK) {
             val data: Intent? = it.data
             data?.data?.let { uri ->
@@ -195,19 +197,9 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         viewModel.processIntent(PersonalInfoAction.GetCountries)
         collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
-            when (state.exception) {
-                is AlTasheratException.Local.RequestValidation -> {
-                    val errors = state.exception.errors.mapValues { getString(it.value) }
-                    handleValidationErrors(errors)
-                }
 
-                is AlTasheratException.Client.ResponseValidation -> {
-                    handleValidationErrors(state.exception.errors)
-                }
-
-                else -> {
-                    handleValidationErrors(emptyMap())
-                }
+            state.exception?.let { exception ->
+                handleException(exception, ::handleValidationErrors)
             }
         }
 
@@ -296,12 +288,9 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             COUNTRY to binding.inputCountry
         )
 
-        if (errors.isNotEmpty()) {
-            errors.forEach { (key, value) ->
-                errorFields[key]?.error = value
-            }
-        } else {
-            errorFields.values.forEach { it.error = null }
+        errorFields.forEach { (key, field) ->
+            field.error = errors[key]
+            field.editText?.doAfterTextChanged { field.error = null }
         }
     }
 

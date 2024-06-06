@@ -161,7 +161,8 @@ who are we?\nEgypt Key is the number one tourism app. It is also the comprehensi
     <string name="cancel">Cancel</string>
     <string name="confirm_delete">Confirm Delete</string>
     <string name="delete_account">Delete Account</string>
-    <string name="password__to_confirm">Password to confirm</string>
+    <string name="password_to_confirm">Password to confirm</string>
+    <string name="enter_password_to_confirm">Enter your password to confirm</string>
     <!--endregion-->
 
     <!--region Contact us Fragment -->

@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
@@ -113,27 +113,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
         }
 
-        collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
-            /*result.exception?.let {
-                if (it.message?.isNotEmpty()!!) {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
-                        .show()
-                }
-            }*/
-            onLoading(result.isLoading)
-            when (result.exception) {
-                is AlTasheratException.Local.RequestValidation -> {
-                    val errors = result.exception.errors.mapValues { getString(it.value) }
-                    handleValidationErrors(errors)
-                }
+        collectFlowWithLifecycle(signUpViewModel.viewState) { state ->
+            onLoading(state.isLoading)
 
-                is AlTasheratException.Client.ResponseValidation -> {
-                    handleValidationErrors(result.exception.errors)
-                }
-
-                else -> {
-                    handleValidationErrors(emptyMap())
-                }
+            state.exception?.let { exception ->
+                handleException(exception, ::handleValidationErrors)
             }
         }
     }
@@ -171,12 +155,9 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             PASSWORD to binding.inputPasswordName
         )
 
-        if (errors.isNotEmpty()) {
-            errors.forEach { (key, value) ->
-                errorFields[key]?.error = value
-            }
-        } else {
-            errorFields.values.forEach { it.error = null }
+        errorFields.forEach { (key, field) ->
+            field.error = errors[key]
+            field.editText?.doAfterTextChanged { field.error = null }
         }
     }
 }

@@ -1,13 +1,24 @@
 package com.solutionplus.altasherat.features.account.delete_account.presentation.ui
 
 import android.os.Bundle
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.navArgs
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseSheetFragment
 import com.solutionplus.altasherat.databinding.FragmentDeleteAccountDialogBinding
 
 class DeleteAccountDialogFragment : BaseSheetFragment<FragmentDeleteAccountDialogBinding>() {
 
-    override fun viewInit() {}
+    private val args: DeleteAccountDialogFragmentArgs by navArgs()
+
+    override fun viewInit() {
+        binding.inputPassword.apply {
+            error = args.errorMessage
+            editText?.doAfterTextChanged {
+                error = null
+            }
+        }
+    }
 
     override fun onFragmentReady(savedInstanceState: Bundle?) {
         binding.buttonConfirm.setOnClickListener {

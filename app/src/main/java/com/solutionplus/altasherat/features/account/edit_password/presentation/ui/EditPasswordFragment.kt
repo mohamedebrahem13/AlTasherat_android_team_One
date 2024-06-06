@@ -2,9 +2,9 @@ package com.solutionplus.altasherat.features.account.edit_password.presentation.
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.NEW_PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.NEW_PASSWORD_CONFIRMATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.OLD_PASSWORD
@@ -41,19 +41,9 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
     override fun subscribeToObservables() {
         collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
-            when (state.exception) {
-                is AlTasheratException.Local.RequestValidation -> {
-                    val errors = state.exception.errors.mapValues { getString(it.value) }
-                    handleValidationErrors(errors)
-                }
 
-                is AlTasheratException.Client.ResponseValidation -> {
-                    handleValidationErrors(state.exception.errors)
-                }
-
-                else -> {
-                    handleValidationErrors(emptyMap())
-                }
+            state.exception?.let { exception ->
+                handleException(exception, ::handleValidationErrors)
             }
         }
 
@@ -80,12 +70,9 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
             NEW_PASSWORD_CONFIRMATION to binding.inputNewPasswordConfirm,
         )
 
-        if (errors.isNotEmpty()) {
-            errors.forEach { (key, value) ->
-                errorFields[key]?.error = value
-            }
-        } else {
-            errorFields.values.forEach { it.error = null }
+        errorFields.forEach { (key, field) ->
+            field.error = errors[key]
+            field.editText?.doAfterTextChanged { field.error = null }
         }
     }
 }

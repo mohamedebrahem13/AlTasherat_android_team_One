@@ -1,5 +1,6 @@
 package com.solutionplus.altasherat.common.presentation.ui.base.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,17 +13,30 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.solutionplus.altasherat.android.extentions.bindView
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.common.presentation.ui.base.IExceptionHandling
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.InternetConnectionDelegate
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.InternetConnectionDelegateImpl
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<Binding : ViewBinding> : Fragment(),
+abstract class BaseFragment<Binding : ViewBinding> : Fragment(), IExceptionHandling,
     InternetConnectionDelegate by InternetConnectionDelegateImpl() {
+
     private var _binding: Binding? = null
     protected val binding: Binding
         get() = _binding!!
+
+    private lateinit var exceptionHandling: IExceptionHandling
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is IExceptionHandling) {
+            exceptionHandling = context
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,6 +80,15 @@ abstract class BaseFragment<Binding : ViewBinding> : Fragment(),
                     action(it)
                 }
             }
+        }
+    }
+
+    override fun handleException(
+        exception: AlTasheratException,
+        handleValidationErrors: (Map<String, String>) -> Unit
+    ) {
+        if (::exceptionHandling.isInitialized) {
+            exceptionHandling.handleException(exception, handleValidationErrors)
         }
     }
 

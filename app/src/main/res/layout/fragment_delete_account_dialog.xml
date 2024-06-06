@@ -33,7 +33,7 @@
         android:layout_gravity="start"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/password__to_confirm" />
+        android:text="@string/password_to_confirm" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_password"
@@ -45,7 +45,7 @@
             style="@style/TextInputEditText.Password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/enter_old_password" />
+            android:hint="@string/enter_password_to_confirm" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
