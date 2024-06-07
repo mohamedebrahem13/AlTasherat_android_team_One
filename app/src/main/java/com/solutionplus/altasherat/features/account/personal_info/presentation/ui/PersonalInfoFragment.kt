@@ -225,7 +225,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                         "Personal info updated successfully",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().popBackStack()
+                    findNavController().navigate(R.id.action_personalInfoFragment_to_fragment_profile)
                 }
             }
         }
