@@ -3,14 +3,14 @@ package com.solutionplus.altasherat.features.auth.login.presentation.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
-import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLoginBinding
 import com.solutionplus.altasherat.features.auth.login.data.models.request.PhoneLoginRequest
@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonListener {
 
-    private val loginViewMode by viewModels<LoginViewModel>()
+    private val viewModel by viewModels<LoginViewModel>()
     private var countries: List<Country>? = null
     private val customCountiesList: ArrayList<String> = ArrayList()
     private var countryCode: String? = null
@@ -48,7 +48,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
     }
 
     override fun subscribeToObservables() {
-        collectFlowWithLifecycle(loginViewMode.singleEvent) { event ->
+        collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is LoginContracts.LoginEvent.GetCountries -> {
                     if (event.countries?.isNotEmpty() == true) {
@@ -61,7 +61,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
                 }
 
                 is LoginContracts.LoginEvent.LoginIsSuccessfully -> {
-                    Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                    requireContext().showShortToast(event.message)
                     Intent(requireActivity(), HomeActivity::class.java).also { intent ->
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
@@ -70,12 +70,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
             }
         }
 
-        collectFlowWithLifecycle(loginViewMode.viewState) { state ->
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
-                loginViewMode.clearState()
             }
         }
     }
@@ -91,7 +90,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
                 password = password,
                 phoneLoginRequest = phoneRequest
             )
-            loginViewMode.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
+            viewModel.processIntent(LoginContracts.LoginAction.Login(userLoginRequest))
 
         }
 
@@ -126,7 +125,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
 
     private fun handleValidationErrors(errors: Map<String, String>) {
         val errorFields = mapOf(
-            PHONE to binding.inputPhoneNumber,
+            PHONE_NUMBER to binding.inputPhoneNumber,
             PASSWORD to binding.inputPasswordName
         )
 

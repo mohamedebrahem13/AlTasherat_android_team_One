@@ -27,7 +27,10 @@ class LoginViewModel @Inject constructor(
         loginWithPhoneUC.invoke(viewModelScope, userLoginRequest) { result ->
             when (result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading))
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = result.loading, exception = null)
+                )
+
                 is Resource.Success -> {
                     sendEvent(LoginContracts.LoginEvent.LoginIsSuccessfully(result.model.message))
                 }
@@ -37,9 +40,15 @@ class LoginViewModel @Inject constructor(
 
     private fun getCountries() {
         getCachedCountriesUC(viewModelScope) { result ->
-            when(result) {
+            when (result) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = result.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = result.loading, exception = null))
+                is Resource.Progress -> setState(
+                    oldViewState.copy(
+                        isLoading = result.loading,
+                        exception = null
+                    )
+                )
+
                 is Resource.Success -> sendEvent(
                     LoginContracts.LoginEvent.GetCountries(result.model)
                 )
@@ -48,7 +57,7 @@ class LoginViewModel @Inject constructor(
     }
 
     override fun onActionTrigger(action: ViewAction?) {
-        setState(oldViewState.copy(action = action, exception = null))
+        setState(oldViewState.copy(action = action))
         when (action) {
             is LoginContracts.LoginAction.Login -> login(action.loginUserRequest)
             is LoginContracts.LoginAction.GetCountries -> getCountries()

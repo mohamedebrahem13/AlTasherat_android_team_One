@@ -3,7 +3,7 @@ package com.solutionplus.altasherat.features.auth.login.domain.interactor
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
-import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
+import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
 import com.solutionplus.altasherat.features.auth.login.domain.interactor.validation.LoginInputValidation
@@ -44,7 +44,7 @@ class LoginWithPhoneUC(
     private fun validateRequest(request: UserLoginRequest): Map<String, Int> {
         return mutableMapOf<String, Int>().apply {
             if (!request.phoneLoginRequest.validatePhoneNumber()) put(
-                PHONE,
+                PHONE_NUMBER,
                 R.string.phone_number_validation
             )
             if (!request.validatePassword()) put(PASSWORD, R.string.password_validation)
