@@ -1,42 +1,26 @@
 package com.solutionplus.altasherat.features.account.personal_info.presentation.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelection
 import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelectionAdapter
 import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelectionCallback
 import com.solutionplus.altasherat.common.presentation.ui.adapter.SingleSelectionViewType
+import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseSheetFragment
 import com.solutionplus.altasherat.databinding.FragmentCountrySelectionDialogBinding
 
-class SelectionDialogFragment : BottomSheetDialogFragment(), SingleSelectionCallback {
+class SelectionDialogFragment : BaseSheetFragment<FragmentCountrySelectionDialogBinding>(),
+    SingleSelectionCallback {
 
     private val args: SelectionDialogFragmentArgs by navArgs()
-
-    private var _binding: FragmentCountrySelectionDialogBinding? = null
-    private val binding get() = _binding!!
-
     private val singleSelectionAdapter by lazy {
         SingleSelectionAdapter(SingleSelectionViewType.SELECTION_CHECK, this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCountrySelectionDialogBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun viewInit() {
         val countries = args.countries.toList()
         val selectedIndex = args.selectedIndex
 
@@ -48,8 +32,9 @@ class SelectionDialogFragment : BottomSheetDialogFragment(), SingleSelectionCall
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         )
-
     }
+
+    override fun onFragmentReady(savedInstanceState: Bundle?) {}
 
     override fun onSingleItemSelected(selectedItem: SingleSelection) {
         setFragmentResult(
@@ -61,11 +46,6 @@ class SelectionDialogFragment : BottomSheetDialogFragment(), SingleSelectionCall
                 )
             })
         dismissNow()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {
