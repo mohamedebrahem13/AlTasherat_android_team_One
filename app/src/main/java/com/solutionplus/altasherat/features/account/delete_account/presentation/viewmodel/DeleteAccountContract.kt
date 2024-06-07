@@ -11,7 +11,7 @@ interface DeleteAccountContract {
     }
 
     sealed class DeleteAccountEvent : ViewEvent {
-        data object AccountDeleted : DeleteAccountEvent()
+        data class AccountDeleted(val message: String) : DeleteAccountEvent()
     }
 
     data class DeleteAccountState(

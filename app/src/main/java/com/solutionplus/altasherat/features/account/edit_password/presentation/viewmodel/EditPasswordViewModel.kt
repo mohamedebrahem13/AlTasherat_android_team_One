@@ -18,7 +18,7 @@ class EditPasswordViewModel @Inject constructor(
 ) : AlTasheratViewModel<EditPasswordAction, EditPasswordEvent, EditPasswordState>(EditPasswordState.initial()) {
 
     override fun onActionTrigger(action: ViewAction?) {
-        clearState()
+        setState(oldViewState.copy(action = action))
         when (action) {
             is EditPasswordAction.EditPassword -> editPassword(action.request)
         }
@@ -28,8 +28,11 @@ class EditPasswordViewModel @Inject constructor(
         editPasswordUC.invoke(viewModelScope, request) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
-                is Resource.Success -> sendEvent(EditPasswordEvent.PasswordUpdated)
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = it.loading, exception = null)
+                )
+
+                is Resource.Success -> sendEvent(EditPasswordEvent.PasswordUpdated(it.model))
             }
         }
     }

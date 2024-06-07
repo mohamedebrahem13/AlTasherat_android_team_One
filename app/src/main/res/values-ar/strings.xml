@@ -131,6 +131,7 @@
     <string name="save">حفظ</string>
     <string name="country_code">كود الدولة</string>
     <string name="choose_country">اختر الدولة</string>
+    <string name="select_birth_date">اختر تاريخ الميلاد</string>
     <!--endregion-->
 
     <!--region Change Password Fragment -->

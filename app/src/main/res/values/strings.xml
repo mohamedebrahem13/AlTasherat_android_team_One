@@ -140,6 +140,7 @@ who are we?\nEgypt Key is the number one tourism app. It is also the comprehensi
     <string name="save">Save</string>
     <string name="country_code">Country Code</string>
     <string name="choose_country">Select Country</string>
+    <string name="select_birth_date">Select Birth Date</string>
     <!--endregion-->
 
     <!--region Edit Password Fragment -->

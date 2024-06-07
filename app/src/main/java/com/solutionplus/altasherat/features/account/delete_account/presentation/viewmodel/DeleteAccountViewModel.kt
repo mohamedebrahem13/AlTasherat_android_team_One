@@ -18,7 +18,7 @@ class DeleteAccountViewModel @Inject constructor(
     DeleteAccountState.initial()
 ) {
     override fun onActionTrigger(action: ViewAction?) {
-        clearState()
+        setState(oldViewState.copy(action = action))
         when (action) {
             is DeleteAccountAction.DeleteAccount -> deleteAccount(action.password)
         }
@@ -28,8 +28,11 @@ class DeleteAccountViewModel @Inject constructor(
         deleteAccountUC.invoke(viewModelScope, password) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
-                is Resource.Success -> sendEvent(DeleteAccountEvent.AccountDeleted)
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = it.loading, exception = null)
+                )
+
+                is Resource.Success -> sendEvent(DeleteAccountEvent.AccountDeleted(it.model))
             }
         }
     }

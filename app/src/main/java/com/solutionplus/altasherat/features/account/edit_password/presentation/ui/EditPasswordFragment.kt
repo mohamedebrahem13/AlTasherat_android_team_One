@@ -1,10 +1,10 @@
 package com.solutionplus.altasherat.features.account.edit_password.presentation.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.common.domain.constants.Constants.NEW_PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.NEW_PASSWORD_CONFIRMATION
 import com.solutionplus.altasherat.common.domain.constants.Constants.OLD_PASSWORD
@@ -44,18 +44,13 @@ class EditPasswordFragment : BaseFragment<FragmentEditPasswordBinding>() {
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
-                viewModel.clearState()
             }
         }
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is EditPasswordEvent.PasswordUpdated -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Password updated successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showShortToast(event.message)
                     findNavController().popBackStack()
                 }
             }

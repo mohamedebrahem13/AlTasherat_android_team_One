@@ -3,11 +3,11 @@ package com.solutionplus.altasherat.features.auth.signup.presentation.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonListener {
 
-    private val signUpViewModel by viewModels<SignUpViewModel>()
+    private val viewModel by viewModels<SignUpViewModel>()
     private var countries: List<Country>? = null
     private val customCountiesList: ArrayList<String> = ArrayList()
     private var countryId: Int? = null
@@ -72,7 +72,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                 phoneRequest
             )
 
-            signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+            viewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
         }
 
     }
@@ -90,7 +90,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
     override fun subscribeToObservables() {
 
-        collectFlowWithLifecycle(signUpViewModel.singleEvent) { event ->
+        collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is SignUpContract.SignUpEvent.GetCountries -> {
                     if (event.countries?.isNotEmpty() == true) {
@@ -103,7 +103,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                 }
 
                 is SignUpContract.SignUpEvent.SignUpIsSuccessfully -> {
-                    Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                    requireContext().showShortToast(event.message)
                     Intent(requireActivity(), HomeActivity::class.java).also { intent ->
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
@@ -113,12 +113,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
         }
 
-        collectFlowWithLifecycle(signUpViewModel.viewState) { state ->
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
 
             state.exception?.let { exception ->
                 handleException(exception, ::handleValidationErrors)
-                signUpViewModel.clearState()
             }
         }
     }

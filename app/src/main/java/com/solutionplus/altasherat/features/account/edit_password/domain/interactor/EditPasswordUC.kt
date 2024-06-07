@@ -11,9 +11,9 @@ import com.solutionplus.altasherat.features.account.edit_password.domain.reposit
 
 class EditPasswordUC(
     private val repository: IEditPasswordRepository
-) : BaseUseCase<Unit, EditPasswordRequest>() {
+) : BaseUseCase<String, EditPasswordRequest>() {
 
-    override suspend fun execute(params: EditPasswordRequest?) {
+    override suspend fun execute(params: EditPasswordRequest?): String {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = EditPasswordRequest::class,
@@ -28,7 +28,7 @@ class EditPasswordUC(
             )
         }
 
-        repository.editPassword(params)
+        return repository.editPassword(params)
     }
 
     private fun validateRequest(request: EditPasswordRequest): Map<String, Int> {
