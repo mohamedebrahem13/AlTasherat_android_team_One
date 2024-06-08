@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -98,8 +97,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
             state.exception != null -> {
                 // Handle error state
-                val errorMessage = state.exception.message ?: "Unknown error"
-                showToast("Error: $errorMessage")
+                handleException(state.exception)
             }
             state.user != null -> {
                 viewsForMenuWithSignedUser(state.user)
@@ -112,9 +110,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
         }
     }
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-    }
+
     override fun viewInit() {
         // Get the current text of the TextView
         val currentText = binding.currentVersion.text.toString()
