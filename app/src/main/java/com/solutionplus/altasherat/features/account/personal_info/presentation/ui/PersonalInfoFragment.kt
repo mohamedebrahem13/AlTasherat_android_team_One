@@ -60,7 +60,12 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             val data: Intent? = it.data
             data?.data?.let { uri ->
                 selectedImageUri = uri
-                binding.imageProfile.setImageURI(uri)
+                binding.imageProfile.load(selectedImageUri) {
+                    crossfade(true)
+                    placeholder(R.drawable.ic_no_profile_image)
+                    error(R.drawable.ic_no_profile_image)
+                    transformations(CircleCropTransformation())
+                }
             }
         }
     }
