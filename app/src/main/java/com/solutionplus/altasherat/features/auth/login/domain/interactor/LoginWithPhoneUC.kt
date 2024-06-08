@@ -6,7 +6,6 @@ import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.domain.interactor.BaseUseCase
 import com.solutionplus.altasherat.features.auth.login.data.models.request.UserLoginRequest
-import com.solutionplus.altasherat.features.auth.login.domain.interactor.validation.LoginInputValidation
 import com.solutionplus.altasherat.features.auth.login.domain.models.LoginUserResponse
 import com.solutionplus.altasherat.features.auth.login.domain.repository.ILoginRepository
 import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
@@ -14,7 +13,6 @@ import com.solutionplus.altasherat.features.services.user.domain.interactor.Save
 class LoginWithPhoneUC(
     private val repository: ILoginRepository,
     private val saveUserUC: SaveUserUC,
-    private val loginInputValidation: LoginInputValidation
 ) : BaseUseCase<LoginUserResponse, UserLoginRequest>() {
 
     override suspend fun execute(params: UserLoginRequest?): LoginUserResponse {
@@ -33,7 +31,6 @@ class LoginWithPhoneUC(
         }
 
         val loginUserResponse = params.let {
-            //loginInputValidation.validateLoginInputs(it)
             repository.loginWithPhone(it)
         }
         saveUserUC.execute(loginUserResponse.user)
