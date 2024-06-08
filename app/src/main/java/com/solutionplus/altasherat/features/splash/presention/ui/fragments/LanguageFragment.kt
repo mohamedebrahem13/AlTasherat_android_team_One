@@ -3,12 +3,12 @@ package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
@@ -42,6 +42,9 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
       when {
           state.selectedCountry != null -> {
               setSpinner( state.selectedCountry)
+          }
+          state.exception !=null->{
+              handleException(state.exception)
           }
 
       }
@@ -116,7 +119,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
                     updateLocale(event.language)
             }
 
-            is LanguageContract.LanguageEvent.ShowWorkerStateToast ->showToast(event.workerState)
+            is LanguageContract.LanguageEvent.ShowWorkerStateToast ->requireContext().showShortToast (event.workerState)
         }
     }
     private fun updateLocale(languageCode: String) {
@@ -125,7 +128,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
     private fun getLocal() {
         val language = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
-        logger.debug("langauges $language")
+        logger.debug("languages $language")
         if (language == "ar") {
             binding.radioButton1.isEnabled = false
             binding.radioButton2.isEnabled = true
@@ -137,10 +140,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         }
     }
 
-    private fun showToast(message: String){
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
-    }
     companion object {
         private val logger = getClassLogger()
     }

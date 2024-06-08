@@ -2,7 +2,6 @@ package com.solutionplus.altasherat.features.menu.contact_us.presentation.ui
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
@@ -112,8 +111,8 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
         when {
             state.exception != null -> {
                 // Handle error state
-                val errorMessage = state.exception.message ?: "Unknown error"
-                showToast("Error: $errorMessage")
+                handleException(state.exception)
+
             }
             state.user != null -> {
                 logger.debug("user_country${state.user}")
@@ -134,9 +133,7 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
             binding.etPhoneNumber.setText(user.phone.number)
         }
     }
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-    }
+
 
     override fun viewInit() {
         binding.buttonBack.setOnClickListener {

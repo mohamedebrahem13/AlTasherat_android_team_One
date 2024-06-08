@@ -1,11 +1,11 @@
 package com.solutionplus.altasherat.features.menu.language.presentation.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentLanguageSettingsBinding
@@ -32,7 +32,7 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
   private fun handleSingleEvent(event: LanguageSettingsContract.LanguageSettingsContractEvent){
       when(event){
           is LanguageSettingsContract.LanguageSettingsContractEvent.ShowWorkerStateToast ->{
-              showToast(event.workerState)
+              requireContext().showShortToast (event.workerState)
           }
 
           is LanguageSettingsContract.LanguageSettingsContractEvent.SaveNavigation -> {
@@ -95,8 +95,5 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
     companion object {
         private val logger = getClassLogger()
     }
-    private fun showToast(message: String){
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
-    }
 }

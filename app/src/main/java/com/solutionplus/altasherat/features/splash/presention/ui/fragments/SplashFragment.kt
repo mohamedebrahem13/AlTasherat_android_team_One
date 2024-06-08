@@ -2,7 +2,6 @@ package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
@@ -44,19 +43,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             state.isLoading -> {
             }
 
-            state.exception != null -> {
-                val errorMessage = state.exception.message ?: "Unknown error"
-                showToast("Error: $errorMessage")
+            state.exception !=null->{
+                handleException(state.exception)
             }
 
-            /*else -> {
-                showToast("Data loaded successfully")
-            }*/
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     private fun handleSingleEvent(event: SplashContract.SplashEvent) {
