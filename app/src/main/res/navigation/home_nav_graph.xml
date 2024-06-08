@@ -16,6 +16,11 @@
         <action
             android:id="@+id/action_personalInfoFragment_to_accountSettingFragment"
             app:destination="@id/accountSettingFragment" />
+        <action
+            android:id="@+id/action_personalInfoFragment_to_fragment_profile"
+            app:destination="@id/fragment_profile"
+            app:popUpTo="@id/personalInfoFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <dialog
@@ -38,7 +43,9 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_fragment_profile_to_personalInfoFragment"
-            app:destination="@id/personalInfoFragment" />
+            app:destination="@id/personalInfoFragment"
+            app:popUpTo="@id/fragment_profile"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_fragment_profile_to_editPasswordFragment"
             app:destination="@id/editPasswordFragment" />
