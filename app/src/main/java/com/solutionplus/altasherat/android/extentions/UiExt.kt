@@ -1,15 +1,14 @@
 package com.solutionplus.altasherat.android.extentions
 
 import android.app.Activity
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.solutionplus.altasherat.R
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
@@ -41,4 +40,8 @@ fun <B : ViewBinding> LifecycleOwner.bindView(container: ViewGroup? = null): B {
 private fun <T : Any> Any.getClass(): Class<T> {
     val type: Type = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0]
     return type as Class<T>
+}
+
+fun Context.showShortToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

@@ -3,12 +3,12 @@ package com.solutionplus.altasherat.features.auth.signup.presentation.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonListener {
 
-    private val signUpViewModel by viewModels<SignUpViewModel>()
+    private val viewModel by viewModels<SignUpViewModel>()
     private var countries: List<Country>? = null
     private val customCountiesList: ArrayList<String> = ArrayList()
     private var countryId: Int? = null
@@ -72,7 +72,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                 phoneRequest
             )
 
-            signUpViewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
+            viewModel.processIntent(SignUpContract.SignUpAction.SignUp(signUpUserRequest))
         }
 
     }
@@ -90,7 +90,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
     override fun subscribeToObservables() {
 
-        collectFlowWithLifecycle(signUpViewModel.singleEvent) { event ->
+        collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is SignUpContract.SignUpEvent.GetCountries -> {
                     if (event.countries?.isNotEmpty() == true) {
@@ -103,7 +103,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                 }
 
                 is SignUpContract.SignUpEvent.SignUpIsSuccessfully -> {
-                    Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                    requireContext().showShortToast(event.message)
                     Intent(requireActivity(), HomeActivity::class.java).also { intent ->
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
@@ -113,27 +113,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
 
         }
 
-        collectFlowWithLifecycle(signUpViewModel.viewState) { result ->
-            /*result.exception?.let {
-                if (it.message?.isNotEmpty()!!) {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
-                        .show()
-                }
-            }*/
-            onLoading(result.isLoading)
-            when (result.exception) {
-                is AlTasheratException.Local.RequestValidation -> {
-                    val errors = result.exception.errors.mapValues { getString(it.value) }
-                    handleValidationErrors(errors)
-                }
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            onLoading(state.isLoading)
 
-                is AlTasheratException.Client.ResponseValidation -> {
-                    handleValidationErrors(result.exception.errors)
-                }
-
-                else -> {
-                    handleValidationErrors(emptyMap())
-                }
+            state.exception?.let { exception ->
+                handleException(exception, ::handleValidationErrors)
             }
         }
     }
@@ -171,12 +155,9 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             PASSWORD to binding.inputPasswordName
         )
 
-        if (errors.isNotEmpty()) {
-            errors.forEach { (key, value) ->
-                errorFields[key]?.error = value
-            }
-        } else {
-            errorFields.values.forEach { it.error = null }
+        errorFields.forEach { (key, field) ->
+            field.error = errors[key]
+            field.editText?.doAfterTextChanged { field.error = null }
         }
     }
 }

@@ -12,9 +12,9 @@ class DeleteAccountUC(
     private val repository: IDeleteAccountRepository,
     private val deleteCachedUserUC: DeleteCachedUserUC,
     private val deleteCachedTokenUC: DeleteCachedTokenUC
-) : BaseUseCase<Unit, String>() {
+) : BaseUseCase<String, String>() {
 
-    override suspend fun execute(params: String?) {
+    override suspend fun execute(params: String?): String {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = String::class,
@@ -29,9 +29,10 @@ class DeleteAccountUC(
             )
         }
 
-        repository.deleteAccount(params)
+        val result = repository.deleteAccount(params)
         deleteCachedUserUC.execute()
         deleteCachedTokenUC.execute()
+        return result
     }
 
     private fun isPasswordValid(password: String): Boolean {

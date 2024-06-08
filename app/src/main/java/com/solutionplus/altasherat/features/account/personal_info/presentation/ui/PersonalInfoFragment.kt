@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,7 +16,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.common.domain.constants.Constants.BIRTH_DATE
 import com.solutionplus.altasherat.common.domain.constants.Constants.COUNTRY
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
@@ -51,11 +51,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
     private lateinit var countries: List<Country>
     private var selectedCountryIndex: Int = -1
     private var selectedCountryCodeIndex: Int = -1
-    private lateinit var selectedDate: LocalDate
     private var selectedImageUri: Uri? = null
 
     private val galleryLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) {
+        ActivityResultContracts.StartActivityForResult()
+    ) {
         if (it.resultCode == Activity.RESULT_OK) {
             val data: Intent? = it.data
             data?.data?.let { uri ->
@@ -64,7 +64,6 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             }
         }
     }
-
 
     private val datePicker: MaterialDatePicker<Long> by lazy {
         val calendar = Calendar.getInstance()
@@ -75,7 +74,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             .setValidator(DateValidatorPointBackward.before(thirteenYearsAgoInMillis))
 
         MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select date")
+            .setTitleText(getString(R.string.select_birth_date))
             .setSelection(thirteenYearsAgoInMillis)
             .setCalendarConstraints(constraintsBuilder.build())
             .build()
@@ -154,7 +153,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                         countryCode = countries[selectedCountryIndex].phoneCode
                     ),
                     email = inputEmail.editText?.text.toString(),
-                    birthDate = if (::selectedDate.isInitialized) selectedDate.toString() else "",
+                    birthDate = inputBirthDate.editText?.text.toString(),
                     countryId = countries[selectedCountryIndex].id,
                     image = file
                 )
@@ -195,19 +194,9 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         viewModel.processIntent(PersonalInfoAction.GetCountries)
         collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
-            when (state.exception) {
-                is AlTasheratException.Local.RequestValidation -> {
-                    val errors = state.exception.errors.mapValues { getString(it.value) }
-                    handleValidationErrors(errors)
-                }
 
-                is AlTasheratException.Client.ResponseValidation -> {
-                    handleValidationErrors(state.exception.errors)
-                }
-
-                else -> {
-                    handleValidationErrors(emptyMap())
-                }
+            state.exception?.let { exception ->
+                handleException(exception, ::handleValidationErrors)
             }
         }
 
@@ -277,7 +266,6 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
 
     private fun setBirthDateText(date: LocalDate) {
         if (date != LocalDate.MIN) {
-            selectedDate = date
             binding.inputBirthDate.editText?.setText(date.toString())
         } else {
             binding.inputBirthDate.editText?.text = null
@@ -296,12 +284,9 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             COUNTRY to binding.inputCountry
         )
 
-        if (errors.isNotEmpty()) {
-            errors.forEach { (key, value) ->
-                errorFields[key]?.error = value
-            }
-        } else {
-            errorFields.values.forEach { it.error = null }
+        errorFields.forEach { (key, field) ->
+            field.error = errors[key]
+            field.editText?.doAfterTextChanged { field.error = null }
         }
     }
 
@@ -314,5 +299,4 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         outputStream.close()
         return tempFile
     }
-
 }

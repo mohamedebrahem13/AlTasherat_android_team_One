@@ -12,7 +12,7 @@ interface EditPasswordContract {
     }
 
     sealed class EditPasswordEvent : ViewEvent {
-        data object PasswordUpdated : EditPasswordEvent()
+        data class PasswordUpdated(val message: String) : EditPasswordEvent()
     }
 
     data class EditPasswordState(

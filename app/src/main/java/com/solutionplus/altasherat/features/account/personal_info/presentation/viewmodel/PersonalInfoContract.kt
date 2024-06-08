@@ -20,7 +20,7 @@ interface PersonalInfoContract {
     sealed class PersonalInfoEvent : ViewEvent {
         data class CountriesIndex(val countries: List<Country>) : PersonalInfoEvent()
         data class UserPersonalInfo(val user: User) : PersonalInfoEvent()
-        data object PersonalInfoUpdated : PersonalInfoEvent()
+        data class PersonalInfoUpdated(val message: String) : PersonalInfoEvent()
     }
 
     data class PersonalInfoState(

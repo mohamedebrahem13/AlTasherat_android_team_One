@@ -24,7 +24,7 @@ class PersonalInfoViewModel @Inject constructor(
 ) : AlTasheratViewModel<PersonalInfoAction, PersonalInfoEvent, PersonalInfoState>(PersonalInfoState.initial()) {
 
     override fun onActionTrigger(action: ViewAction?) {
-        clearState()
+        setState(oldViewState.copy(action = action))
         when (action) {
             is PersonalInfoAction.GetCountries -> getCountries()
             is PersonalInfoAction.GetCachedUserPersonalInfo -> getCachedUserPersonalInfo()
@@ -37,7 +37,10 @@ class PersonalInfoViewModel @Inject constructor(
         getCountriesUC.invoke(viewModelScope) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = it.loading, exception = null)
+                )
+
                 is Resource.Success -> sendEvent(PersonalInfoEvent.CountriesIndex(it.model))
             }
         }
@@ -47,7 +50,10 @@ class PersonalInfoViewModel @Inject constructor(
         getCachedUserUC.invoke(viewModelScope) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = it.loading, exception = null)
+                )
+
                 is Resource.Success -> sendEvent(PersonalInfoEvent.UserPersonalInfo(it.model))
             }
         }
@@ -57,7 +63,10 @@ class PersonalInfoViewModel @Inject constructor(
         getUserUC.invoke(viewModelScope) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = it.loading, exception = null)
+                )
+
                 is Resource.Success -> sendEvent(PersonalInfoEvent.UserPersonalInfo(it.model))
             }
         }
@@ -67,8 +76,11 @@ class PersonalInfoViewModel @Inject constructor(
         updatePersonalInfoUC.invoke(viewModelScope, updateInfoRequest) {
             when (it) {
                 is Resource.Failure -> setState(oldViewState.copy(exception = it.exception))
-                is Resource.Progress -> setState(oldViewState.copy(isLoading = it.loading))
-                is Resource.Success -> sendEvent(PersonalInfoEvent.PersonalInfoUpdated)
+                is Resource.Progress -> setState(
+                    oldViewState.copy(isLoading = it.loading, exception = null)
+                )
+
+                is Resource.Success -> sendEvent(PersonalInfoEvent.PersonalInfoUpdated(it.model))
             }
         }
     }

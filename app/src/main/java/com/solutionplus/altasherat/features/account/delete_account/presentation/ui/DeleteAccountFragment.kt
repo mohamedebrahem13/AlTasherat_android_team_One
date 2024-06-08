@@ -1,11 +1,11 @@
 package com.solutionplus.altasherat.features.account.delete_account.presentation.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
+import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.databinding.FragmentDeleteAccountBinding
 import com.solutionplus.altasherat.features.account.delete_account.presentation.viewmodel.DeleteAccountContract.DeleteAccountAction
@@ -34,7 +34,9 @@ class DeleteAccountFragment : BaseFragment<FragmentDeleteAccountBinding>() {
 
             buttonConfirm.setOnClickListener {
                 val action =
-                    DeleteAccountFragmentDirections.actionDeleteAccountFragmentToDeleteAccountDialogFragment()
+                    DeleteAccountFragmentDirections.actionDeleteAccountFragmentToDeleteAccountDialogFragment(
+                        null
+                    )
                 findNavController().navigate(action)
             }
 
@@ -47,24 +49,29 @@ class DeleteAccountFragment : BaseFragment<FragmentDeleteAccountBinding>() {
     override fun subscribeToObservables() {
         collectFlowWithLifecycle(viewModel.viewState) { state ->
             onLoading(state.isLoading)
-            if (state.exception is AlTasheratException.Local.RequestValidation) {
-                val error = getString(state.exception.errors.values.first())
-                Toast.makeText(
-                    requireContext(),
-                    error,
-                    Toast.LENGTH_SHORT
-                ).show()
+
+            state.exception?.let { exception ->
+                handleException(exception, ::handleValidationErrors)
             }
         }
 
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             when (event) {
                 is DeleteAccountEvent.AccountDeleted -> {
-                    requireActivity().finish()
-                    startActivity(requireActivity().intent)
+                    requireContext().showShortToast(event.message)
+                    findNavController().popBackStack(R.id.fragment_visa_platform, false)
                 }
             }
         }
+    }
+
+    private fun handleValidationErrors(exceptions: Map<String, String>) {
+        val error = exceptions.values.first()
+        findNavController().navigate(
+            DeleteAccountFragmentDirections.actionDeleteAccountFragmentToDeleteAccountDialogFragment(
+                error
+            )
+        )
     }
 
     override fun onLoading(isLoading: Boolean) {}

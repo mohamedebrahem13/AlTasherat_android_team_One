@@ -17,18 +17,15 @@ import java.io.File
 class UpdatePersonalInfoUC(
     private val repository: IPersonalInfoRepository,
     private val saveUserUC: SaveUserUC
-) : BaseUseCase<Unit, UpdateInfoRequest>() {
+) : BaseUseCase<String, UpdateInfoRequest>() {
 
-    override suspend fun execute(params: UpdateInfoRequest?) {
+    override suspend fun execute(params: UpdateInfoRequest?): String {
         requireNotNull(params) {
             throw AlTasheratException.Local.RequestValidation(
                 clazz = UpdateInfoRequest::class,
                 message = "Request is null"
             )
         }
-
-        val requestBody = createMapRequest(params)
-        val result = repository.updatePersonalInfo(requestBody.first, requestBody.second)
 
         validateRequest(params).takeIf { it.isNotEmpty() }?.let {
             throw AlTasheratException.Local.RequestValidation(
@@ -37,8 +34,11 @@ class UpdatePersonalInfoUC(
             )
         }
 
-        saveUserUC.execute(result.user)
+        val requestBody = createMapRequest(params)
+        val result = repository.updatePersonalInfo(requestBody.first, requestBody.second)
 
+        saveUserUC.execute(result.user)
+        return result.message
     }
 
     private fun validateRequest(request: UpdateInfoRequest): Map<String, Int> {
