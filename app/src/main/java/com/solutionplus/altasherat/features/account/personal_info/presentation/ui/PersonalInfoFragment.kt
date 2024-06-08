@@ -209,11 +209,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                 }
 
                 is PersonalInfoEvent.PersonalInfoUpdated -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Personal info updated successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showShortToast(event.message)
                     findNavController().navigate(R.id.action_personalInfoFragment_to_fragment_profile)
                 }
             }
