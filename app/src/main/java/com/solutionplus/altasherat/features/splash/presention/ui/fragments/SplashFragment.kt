@@ -2,7 +2,6 @@ package com.solutionplus.altasherat.features.splash.presention.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
