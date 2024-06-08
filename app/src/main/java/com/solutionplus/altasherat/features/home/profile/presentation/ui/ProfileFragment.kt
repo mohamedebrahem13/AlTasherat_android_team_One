@@ -34,9 +34,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         }
     }
 
-    override fun onLoading(isLoading: Boolean) {
-
-    }
+    override fun onLoading(isLoading: Boolean) {}
 
     override fun subscribeToObservables() {
 
