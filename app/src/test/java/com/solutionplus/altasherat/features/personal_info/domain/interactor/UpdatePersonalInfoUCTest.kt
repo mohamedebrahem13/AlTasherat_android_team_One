@@ -23,6 +23,7 @@ import org.mockito.kotlin.doAnswer
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
+import java.io.File
 
 @RunWith(MockitoJUnitRunner::class)
 class UpdatePersonalInfoUCTest {
@@ -44,7 +45,6 @@ class UpdatePersonalInfoUCTest {
             email = "ahmed.hassan@example.com",
             birthDate = "1985-05-15",
             phone = phoneRequest,
-            image = "ahmed_el_sayed_profile.png",
             countryId = 1
         )
 
@@ -52,7 +52,12 @@ class UpdatePersonalInfoUCTest {
             on { message } doReturn "Updated successfully"
         }
         personalInfoRemoteDS = mock<IPersonalInfoRemoteDS> {
-            onBlocking { updatePersonalInfo(any<UpdateInfoRequest>()) } doReturn updatePersonalInfoResponse
+            onBlocking {
+                updatePersonalInfo(
+                    any<Map<String, String>>(),
+                    any<Map<String, List<File>>>()
+                )
+            } doReturn updatePersonalInfoResponse
         }
         personalInfoRepository = PersonalInfoRepository(personalInfoRemoteDS)
         updatePersonalInfoUC = UpdatePersonalInfoUC(personalInfoRepository, mock())
@@ -89,7 +94,12 @@ class UpdatePersonalInfoUCTest {
         val updateInfoRequest = updateInfoRequest
 
         // When update fails
-        whenever(personalInfoRemoteDS.updatePersonalInfo(updateInfoRequest)) doAnswer { throw Exception() }
+        whenever(
+            personalInfoRemoteDS.updatePersonalInfo(
+                any<Map<String, String>>(),
+                any<Map<String, List<File>>>()
+            )
+        ) doAnswer { throw Exception() }
         val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
 
         // Then failure resource should be emitted
@@ -114,7 +124,12 @@ class UpdatePersonalInfoUCTest {
         val updateInfoRequest = updateInfoRequest
 
         // When update fails
-        whenever(personalInfoRemoteDS.updatePersonalInfo(updateInfoRequest)) doAnswer { throw Exception() }
+        whenever(
+            personalInfoRemoteDS.updatePersonalInfo(
+                any<Map<String, String>>(),
+                any<Map<String, List<File>>>()
+            )
+        ) doAnswer { throw Exception() }
         val state = updatePersonalInfoUC(updateInfoRequest).drop(2).first()
 
         // Then loading resource should be emitted
@@ -471,63 +486,6 @@ class UpdatePersonalInfoUCTest {
         }
     // endregion
 
-    // region BirthDate Validation Tests
-    @Test
-    fun updatePersonalInfo_BirthDateWithWhiteSpaces_ReturnRequestValidationFailureResource() =
-        runTest {
-            // Given update request with phone number containing white spaces
-            val updateInfoRequest = updateInfoRequest.copy(birthDate = "1985 - 05 - 15")
-
-            // When update fails
-            val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-            // Then request validation failure resource should be emitted
-            assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-        }
-
-    @Test
-    fun updatePersonalInfo_AlphaNumericBirthDate_ReturnRequestValidationFailureResource() =
-        runTest {
-            // Given update request with alpha-numeric phone number
-            val updateInfoRequest =
-                updateInfoRequest.copy(birthDate = "1985-05-15aA")
-
-            // When update fails
-            val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-            // Then request validation failure resource should be emitted
-            assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-        }
-
-    @Test
-    fun updatePersonalInfo_BirthDateWithSpecialCharacters_ReturnRequestValidationFailureResource() =
-        runTest {
-            // Given update request with phone number containing special characters
-            val updateInfoRequest =
-                updateInfoRequest.copy(birthDate = "1985-05-15!@")
-
-            // When update fails
-            val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-            // Then request validation failure resource should be emitted
-            assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-        }
-
-    @Test
-    fun updatePersonalInfo_BirthDateRequiredFormat_ReturnRequestValidationFailureResource() =
-        runTest {
-            // Given update request with phone number containing alphabets
-            val updateInfoRequest =
-                updateInfoRequest.copy(birthDate = "15-05-1985")
-
-            // When update fails
-            val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-            // Then request validation failure resource should be emitted
-            assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-        }
-    // endregion
-
     // region Country Code Validation Tests
     @Test
     fun updatePersonalInfo_EmptyCountryCode_ReturnRequestValidationFailureResource() = runTest {
@@ -750,34 +708,5 @@ class UpdatePersonalInfoUCTest {
             // Then request validation failure resource should be emitted
             assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
         }
-    // endregion
-
-    // region Image Validation Tests
-    // endregion
-
-    // region CountryId Validation Tests
-    @Test
-    fun updatePersonalInfo_NegativeCountryId_ReturnRequestValidationFailureResource() = runTest {
-        // Given update request with empty phone number
-        val updateInfoRequest = updateInfoRequest.copy(countryId = -1)
-
-        // When update fails
-        val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-        // Then request validation failure resource should be emitted
-        assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-    }
-
-    @Test
-    fun updatePersonalInfo_ZeroCountryId_ReturnRequestValidationFailureResource() = runTest {
-        // Given update request with empty phone number
-        val updateInfoRequest = updateInfoRequest.copy(countryId = 0)
-
-        // When update fails
-        val state = updatePersonalInfoUC(updateInfoRequest).drop(1).first()
-
-        // Then request validation failure resource should be emitted
-        assertTrue((state as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-    }
     // endregion
 }

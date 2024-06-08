@@ -38,19 +38,7 @@ data class UpdateInfoRequest(
         return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches() && email.length <= 50
     }
 
-    fun isBirthDateValid(): Boolean {
-        return Regex("(^$)|(^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$)").matches(birthDate)
-    }
-
     fun isPhoneValid(): Boolean {
         return phone.isNumberValid() && phone.isCountryCodeValid()
-    }
-
-    fun isImageValid(): Boolean {
-        return true
-    }
-
-    fun isCountryIdValid(): Boolean {
-        return countryId > 0
     }
 }

@@ -4,14 +4,13 @@ import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.UserSignUpRequest
-import com.solutionplus.altasherat.features.auth.signup.domain.interactor.validation.UserInputsValidationUC
 import com.solutionplus.altasherat.features.auth.signup.domain.repository.ISignUpRepository
 import com.solutionplus.altasherat.features.services.user.domain.interactor.SaveUserUC
 import io.mockk.mockk
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.*
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -20,7 +19,6 @@ class SignUpUCTest {
 
     private lateinit var signUpRepository: ISignUpRepository
     private lateinit var saveUserUC: SaveUserUC
-    private lateinit var userInputsValidation: UserInputsValidationUC
     private lateinit var signupUC: SignUpUC
 
 
@@ -29,8 +27,7 @@ class SignUpUCTest {
         signUpRepository = mockk(relaxed = true)
         saveUserUC = mockk(relaxed = true)
 
-        userInputsValidation = UserInputsValidationUC()
-        signupUC = SignUpUC(signUpRepository, userInputsValidation, saveUserUC)
+        signupUC = SignUpUC(signUpRepository, saveUserUC)
 
     }
 
