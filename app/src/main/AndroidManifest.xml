@@ -23,6 +23,7 @@
         <activity
             android:name=".features.auth.presentation.AuthActivity"
             android:windowSoftInputMode="adjustPan"
+            android:configChanges="uiMode"
             android:exported="false" />
 
         <activity
