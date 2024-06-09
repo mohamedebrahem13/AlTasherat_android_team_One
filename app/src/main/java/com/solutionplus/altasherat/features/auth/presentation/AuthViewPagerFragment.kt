@@ -112,4 +112,8 @@ class AuthViewPagerFragment : BaseFragment<FragmentSignupLoginBinding>() {
         binding.viewPager.isUserInputEnabled = false
     }
 
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        (fragments[viewPager.currentItem] as BaseFragment<*>).onRetryAction(action, message)
+    }
+
 }
