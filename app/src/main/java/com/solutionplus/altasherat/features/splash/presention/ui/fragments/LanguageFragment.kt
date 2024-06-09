@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.extentions.showShortToast
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentLanguageBinding
 import com.solutionplus.altasherat.features.splash.domain.models.Country
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.CustomSpinnerAdapter
@@ -44,7 +46,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
               setSpinner( state.selectedCountry)
           }
           state.exception !=null->{
-              handleException(state.exception)
+              handleException(exception = state.exception, action = state.action)
           }
 
       }
@@ -140,6 +142,11 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         }
     }
 
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as LanguageContract.LanguageAction) }
+        }
+    }
 
     companion object {
         private val logger = getClassLogger()

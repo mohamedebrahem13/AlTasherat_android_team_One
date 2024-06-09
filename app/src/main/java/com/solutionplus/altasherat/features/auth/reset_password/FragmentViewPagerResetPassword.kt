@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.common.presentation.ui.view_pager.ViewPagerAdapter
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentViewPagerResetPasswordBinding
 
 class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswordBinding>() {
@@ -48,5 +49,7 @@ class FragmentViewPagerResetPassword : BaseFragment<FragmentViewPagerResetPasswo
             }
         }
     }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {}
 }
 

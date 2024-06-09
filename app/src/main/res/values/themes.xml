@@ -5,6 +5,10 @@
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="snackbarStyle">@style/SnackBarStyle</item>
+        <item name="snackbarButtonStyle">@style/SnackBarButton</item>
+        <item name="snackbarTextViewStyle">@style/SnackBarText</item>
+        ....
     </style>
 
     <style name="Theme.AlTasherat" parent="Base.Theme.AlTasherat" />
@@ -432,4 +436,26 @@
     <style name="BottomNavigation.Appearance" parent="Font.Bold">
         <item name="android:textSize">12sp</item>
     </style>
+    <!--endregion-->
+
+
+    <!--region Snackbar-->
+    <style name="SnackBarStyle" parent="@style/Widget.Material3.Snackbar">
+        <item name="android:layout_margin">16dp</item>
+        <item name="backgroundTint">@color/bg_card</item>
+        <item name="cornerRadius">16dp</item>
+    </style>
+
+    <style name="SnackBarButton" parent="@style/Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="SnackBarText" parent="@style/Widget.Material3.Snackbar.TextView">
+        <item name="android:textAppearance">@style/Font.SemiBold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+    <!--endregion-->
 </resources>

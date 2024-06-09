@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.common.presentation.ui.view_pager.ViewPagerAdapter
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentSignupLoginBinding
 import com.solutionplus.altasherat.features.auth.login.presentation.ui.LoginFragment
 import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener

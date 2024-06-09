@@ -17,8 +17,8 @@ import com.solutionplus.altasherat.common.data.models.exception.AlTasheratExcept
 import com.solutionplus.altasherat.common.presentation.ui.base.IExceptionHandling
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.InternetConnectionDelegate
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.delegate.InternetConnectionDelegateImpl
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -85,12 +85,19 @@ abstract class BaseFragment<Binding : ViewBinding> : Fragment(), IExceptionHandl
 
     override fun handleException(
         exception: AlTasheratException,
+        action: ViewAction?,
         handleValidationErrors: (Map<String, String>) -> Unit
     ) {
         if (::exceptionHandling.isInitialized) {
-            exceptionHandling.handleException(exception, handleValidationErrors)
+            exceptionHandling.handleException(
+                exception = exception,
+                action = action,
+                handleValidationErrors = handleValidationErrors
+            )
         }
     }
+
+    abstract fun onRetryAction(action: ViewAction?, message: String)
 
     override fun onDestroyView() {
         super.onDestroyView()

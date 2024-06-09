@@ -5,5 +5,8 @@
         <item name="android:windowTranslucentNavigation">true</item>
         <!-- Dark theme colors -->
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
+        <item name="snackbarStyle">@style/SnackBarStyle</item>
+        <item name="snackbarButtonStyle">@style/SnackBarButton</item>
+        <item name="snackbarTextViewStyle">@style/SnackBarText</item>o
     </style>
 </resources>

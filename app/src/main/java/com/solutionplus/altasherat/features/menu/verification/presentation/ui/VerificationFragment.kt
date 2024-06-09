@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentVerificationBinding
 
 class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
@@ -27,4 +28,6 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
     override fun onLoading(isLoading: Boolean) {}
 
     override fun subscribeToObservables() {}
+
+    override fun onRetryAction(action: ViewAction?, message: String) {}
 }

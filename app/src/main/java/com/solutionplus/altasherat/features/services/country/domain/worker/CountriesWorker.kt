@@ -5,7 +5,6 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
 import com.solutionplus.altasherat.features.services.country.domain.interactor.GetAndSaveCountriesUC
 import dagger.assisted.Assisted
@@ -67,6 +66,5 @@ class CountriesWorker  @AssistedInject constructor(
         const val WORK_NAME = "CountriesWorker"
         const val KEY_SUCCESS_MESSAGE = "success_message"
         const val KEY_ERROR_MESSAGE = "error_message" // New key for error message
-        private val logger = getClassLogger()
     }
 }

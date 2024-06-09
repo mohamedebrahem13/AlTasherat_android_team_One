@@ -2,6 +2,7 @@ package com.solutionplus.altasherat.features.auth.reset_password
 
 import android.os.Bundle
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentThirdResetPasswordBinding
 
 class FragmentThirdResetPassword: BaseFragment<FragmentThirdResetPasswordBinding>() {
@@ -22,4 +23,6 @@ class FragmentThirdResetPassword: BaseFragment<FragmentThirdResetPasswordBinding
         super.onResume()
         binding.root.requestLayout()
     }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {}
 }
