@@ -3,6 +3,7 @@ package com.solutionplus.altasherat.features.menu.about.presentation
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentAboutBinding
 
 class AboutFragment : BaseFragment<FragmentAboutBinding>() {
@@ -21,4 +22,6 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
     override fun viewInit() {
     }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {}
 }

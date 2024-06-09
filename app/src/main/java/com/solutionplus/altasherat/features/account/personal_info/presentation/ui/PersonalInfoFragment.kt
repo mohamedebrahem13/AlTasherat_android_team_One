@@ -17,6 +17,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.extentions.showShortToast
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.common.domain.constants.Constants.BIRTH_DATE
 import com.solutionplus.altasherat.common.domain.constants.Constants.COUNTRY
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
@@ -26,6 +27,7 @@ import com.solutionplus.altasherat.common.domain.constants.Constants.MIDDLE_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE_NUMBER
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentPersonalInfoBinding
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.PhoneRequest
 import com.solutionplus.altasherat.features.account.personal_info.data.models.request.UpdateInfoRequest
@@ -201,7 +203,11 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
             onLoading(state.isLoading)
 
             state.exception?.let { exception ->
-                handleException(exception, ::handleValidationErrors)
+                handleException(
+                    exception = exception,
+                    action = state.action,
+                    handleValidationErrors = ::handleValidationErrors
+                )
             }
         }
 
@@ -288,6 +294,12 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
         errorFields.forEach { (key, field) ->
             field.error = errors[key]
             field.editText?.doAfterTextChanged { field.error = null }
+        }
+    }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as PersonalInfoAction) }
         }
     }
 

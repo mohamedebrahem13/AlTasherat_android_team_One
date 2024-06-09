@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
+import com.solutionplus.altasherat.R
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
@@ -44,4 +46,10 @@ private fun <T : Any> Any.getClass(): Class<T> {
 
 fun Context.showShortToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Fragment.showSnackBar(message: String, onRetryClicked: () -> Unit) {
+    Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG)
+        .setAction(R.string.retry) { onRetryClicked() }
+        .show()
 }

@@ -6,6 +6,8 @@
     <string name="network_connection_error">Network connection error</string>
     <string name="encryption_error">Encryption error</string>
     <string name="decryption_error">Decryption error</string>
+    <string name="retry">Retry</string>
+    <string name="dismiss">Dismiss</string>
     <!--endregion-->
 
     <!--region Onboarding-->

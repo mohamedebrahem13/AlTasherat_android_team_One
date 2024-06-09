@@ -6,8 +6,10 @@ import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.android.extentions.showShortToast
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentLanguageSettingsBinding
 import com.solutionplus.altasherat.features.menu.language.presentation.viewmodels.LanguageSettingsContract
 import com.solutionplus.altasherat.features.menu.language.presentation.viewmodels.LanguageSettingsViewModel
@@ -92,6 +94,13 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
             binding.radioButton2.isChecked = true
         }
     }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as LanguageSettingsContract.LanguageSettingsContractAction) }
+        }
+    }
+
     companion object {
         private val logger = getClassLogger()
     }

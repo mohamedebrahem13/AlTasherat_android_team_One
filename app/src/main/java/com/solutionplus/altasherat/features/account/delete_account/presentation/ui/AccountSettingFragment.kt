@@ -3,6 +3,7 @@ package com.solutionplus.altasherat.features.account.delete_account.presentation
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentAccountSettingBinding
 
 class AccountSettingFragment : BaseFragment<FragmentAccountSettingBinding>() {
@@ -26,4 +27,6 @@ class AccountSettingFragment : BaseFragment<FragmentAccountSettingBinding>() {
     override fun subscribeToObservables() {}
 
     override fun onLoading(isLoading: Boolean) {}
+
+    override fun onRetryAction(action: ViewAction?, message: String) {}
 }
