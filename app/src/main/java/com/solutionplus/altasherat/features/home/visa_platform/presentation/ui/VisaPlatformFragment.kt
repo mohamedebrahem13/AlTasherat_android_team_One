@@ -3,7 +3,6 @@ package com.solutionplus.altasherat.features.home.visa_platform.presentation.ui
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
-import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentVisaPlatformBinding
@@ -74,7 +73,6 @@ class VisaPlatformFragment : BaseFragment<FragmentVisaPlatformBinding>(), VisaPl
             }
 
             VisaTypeEnum.EMPLOYMENT_VISA -> {
-                showSnackBar("EMPLOYMENT_VISA") {}
             }
 
             VisaTypeEnum.VISA_SELLING -> {
