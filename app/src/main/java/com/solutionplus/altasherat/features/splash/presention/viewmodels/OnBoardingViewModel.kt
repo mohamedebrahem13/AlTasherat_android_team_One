@@ -17,6 +17,7 @@ class OnBoardingViewModel@Inject constructor(private val setOnboardingShownUseCa
     }
 
     override fun onActionTrigger(action: ViewAction?) {
+        setState(oldViewState.copy(action = action))
         when (action) {
             is OnBoardingContract.OnBoardingAction.SaveOnboardingShown -> {
                 // Execute the use case to save the onboarding shown boolean to true

@@ -8,6 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.extentions.showShortToast
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.domain.constants.Constants.EMAIL
 import com.solutionplus.altasherat.common.domain.constants.Constants.FIRST_NAME
@@ -15,6 +16,7 @@ import com.solutionplus.altasherat.common.domain.constants.Constants.LAST_NAME
 import com.solutionplus.altasherat.common.domain.constants.Constants.PASSWORD
 import com.solutionplus.altasherat.common.domain.constants.Constants.PHONE
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentSignupBinding
 import com.solutionplus.altasherat.features.auth.presentation.listener.LoginSignupButtonListener
 import com.solutionplus.altasherat.features.auth.signup.data.model.request.PhoneSignUpRequest
@@ -117,7 +119,11 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
             onLoading(state.isLoading)
 
             state.exception?.let { exception ->
-                handleException(exception, ::handleValidationErrors)
+                handleException(
+                    exception = exception,
+                    action = state.action,
+                    handleValidationErrors = ::handleValidationErrors
+                )
             }
         }
     }
@@ -158,6 +164,12 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
         errorFields.forEach { (key, field) ->
             field.error = errors[key]
             field.editText?.doAfterTextChanged { field.error = null }
+        }
+    }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as SignUpContract.SignUpAction) }
         }
     }
 }

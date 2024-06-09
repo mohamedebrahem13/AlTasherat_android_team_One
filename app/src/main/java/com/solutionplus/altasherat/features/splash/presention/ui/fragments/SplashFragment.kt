@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentSplashBinding
 import com.solutionplus.altasherat.features.home.presentation.HomeActivity
 import com.solutionplus.altasherat.features.splash.presention.viewmodels.SplashContract
@@ -44,7 +45,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             }
 
             state.exception !=null->{
-                handleException(state.exception)
+                handleException(exception = state.exception, action = state.action)
             }
 
         }
@@ -86,5 +87,5 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         }
     }
 
-
+    override fun onRetryAction(action: ViewAction?, message: String) {}
 }

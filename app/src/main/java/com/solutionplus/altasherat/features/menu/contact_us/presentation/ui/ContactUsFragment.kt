@@ -5,8 +5,10 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentContactUsBinding
 import com.solutionplus.altasherat.features.menu.contact_us.presentation.viewmodels.ContactUsContract
 import com.solutionplus.altasherat.features.menu.contact_us.presentation.viewmodels.ContactUsViewModel
@@ -111,7 +113,7 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
         when {
             state.exception != null -> {
                 // Handle error state
-                handleException(state.exception)
+                handleException(exception = state.exception, action = state.action)
 
             }
             state.user != null -> {
@@ -141,6 +143,14 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
 
         }
     }
+
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as ContactUsContract.ContactUsAction) }
+        }
+    }
+
+
     companion object {
         private val logger = getClassLogger()
     }

@@ -11,7 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
 import com.solutionplus.altasherat.features.MainActivity
 import com.solutionplus.altasherat.features.auth.presentation.AuthActivity
@@ -45,10 +47,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         }
 
     }
+
     private fun handleSingleEvent(event: ProfileContract.ProfileEvent) {
         when (event) {
 
-            is ProfileContract.ProfileEvent.SignOutSuccess->{
+            is ProfileContract.ProfileEvent.SignOutSuccess -> {
                 //sign out
                 Intent(requireActivity(), MainActivity::class.java).also { intent ->
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -59,27 +62,34 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             ProfileContract.ProfileEvent.AboutUsNavigation -> {
                 findNavController().navigate(R.id.action_fragment_profile_to_fragmentAbout)
             }
+
             ProfileContract.ProfileEvent.ChangePasswordNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToEditPasswordFragment()
                 findNavController().navigate(action)
             }
+
             ProfileContract.ProfileEvent.ContactUsNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToContactUsFragment()
                 findNavController().navigate(action)
             }
+
             ProfileContract.ProfileEvent.EditProfileNavigation -> {
                 val action = ProfileFragmentDirections.actionFragmentProfileToPersonalInfoFragment()
                 findNavController().navigate(action)
             }
+
             ProfileContract.ProfileEvent.LanguageSelectionNavigation ->
                 findNavController().navigate(ProfileFragmentDirections.actionFragmentProfileToLanguageSettingsFragment())
+
             ProfileContract.ProfileEvent.PrivacyPolicyNavigation -> {
                 findNavController().navigate(R.id.action_fragment_profile_to_fragmentPrivacyPolicies)
             }
+
             ProfileContract.ProfileEvent.TermsAndConditionsNavigation -> {
                 findNavController().navigate(R.id.action_fragment_profile_to_fragmentTermsCondition)
 
             }
+
             ProfileContract.ProfileEvent.Login -> {
                 Intent(requireActivity(), AuthActivity::class.java).also { intent ->
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -88,6 +98,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
             }
         }
     }
+
     private fun handleViewState(state: ProfileContract.ProfileViewState) {
         // Handle different states here
         when {
@@ -97,16 +108,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
             state.exception != null -> {
                 // Handle error state
-                handleException(state.exception)
+                handleException(exception = state.exception, action = state.action)
             }
+
             state.user != null -> {
                 viewsForMenuWithSignedUser(state.user)
                 // Update the list of items with the user information
                 setupListView(state.user)
-            } else -> {
-            // User not signed in, setup list view without user information
-            setupListView(null)
-        }
+            }
+
+            else -> {
+                // User not signed in, setup list view without user information
+                setupListView(null)
+            }
 
         }
     }
@@ -122,6 +136,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         binding.currentVersion.text = updatedText
 
     }
+
     private fun getItems(user: User?): List<Item> {
         val items = mutableListOf<Item>()
 
@@ -146,14 +161,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         adapter = ItemAdapter(requireContext(), getItems(user), this)
         binding.listView.adapter = adapter
     }
-    private fun viewsForMenuWithSignedUser(user: User){
-        with(binding){
-            signOut.visibility= View.VISIBLE
-            profileName.visibility= View.VISIBLE
-            profileImage.visibility=View.VISIBLE
-            editProfile.visibility=View.VISIBLE
-            horizontalLine.visibility=View.VISIBLE
-            val fullName = getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
+
+    private fun viewsForMenuWithSignedUser(user: User) {
+        with(binding) {
+            signOut.visibility = View.VISIBLE
+            profileName.visibility = View.VISIBLE
+            profileImage.visibility = View.VISIBLE
+            editProfile.visibility = View.VISIBLE
+            horizontalLine.visibility = View.VISIBLE
+            val fullName =
+                getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
             profileName.text = fullName
             profileImage.load(user.image.path) {
                 placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
@@ -169,8 +186,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
 
     override fun onItemClick(item: Item) {
         val action = when (item.id) {
-            1-> ProfileContract.ProfileAction.Login
-            2-> ProfileContract.ProfileAction.AboutUs
+            1 -> ProfileContract.ProfileAction.Login
+            2 -> ProfileContract.ProfileAction.AboutUs
             3 -> ProfileContract.ProfileAction.ContactUs
             4 -> ProfileContract.ProfileAction.TermsAndConditions
             5 -> ProfileContract.ProfileAction.PrivacyPolicy
@@ -195,4 +212,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         return "Unknown"
     }
 
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as ProfileContract.ProfileAction) }
+        }
+    }
 }

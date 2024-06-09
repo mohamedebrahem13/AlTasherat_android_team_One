@@ -8,6 +8,8 @@ import com.solutionplus.altasherat.android.extentions.bindView
 import com.solutionplus.altasherat.android.extentions.showShortToast
 import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.ui.base.IExceptionHandling
+import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 
 abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(), IExceptionHandling {
 
@@ -29,6 +31,7 @@ abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(), IExcep
 
     override fun handleException(
         exception: AlTasheratException,
+        action: ViewAction?,
         handleValidationErrors: (Map<String, String>) -> Unit
     ) {
         when (exception) {
@@ -53,7 +56,9 @@ abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(), IExcep
             }
 
             is AlTasheratException.Network.Retrial -> {
-                showShortToast(exception.message ?: "Retrial")
+                supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments
+                    ?.filterIsInstance<BaseFragment<*>>()
+                    ?.forEach { it.onRetryAction(action, getString(exception.messageRes)) }
             }
 
             is AlTasheratException.Network.Unhandled -> {

@@ -8,8 +8,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solutionplus.altasherat.R
+import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
+import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentOnboardingBinding
 import com.solutionplus.altasherat.features.auth.presentation.AuthActivity
 import com.solutionplus.altasherat.features.splash.presention.ui.adapter.OnboardingPage
@@ -113,4 +115,9 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         viewPager.unregisterOnPageChangeCallback(onPageChangeCallback)
     }
 
+    override fun onRetryAction(action: ViewAction?, message: String) {
+        showSnackBar(message) {
+            action?.let { viewModel.processIntent(it as OnBoardingContract.OnBoardingAction) }
+        }
+    }
 }
