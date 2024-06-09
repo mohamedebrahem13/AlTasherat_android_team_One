@@ -13,7 +13,6 @@ internal class SignUpRemoteDataSource @Inject constructor(
         return netWorkProvider.post(
             responseWrappedModel = SignUpResponseDto::class.java,
             "signup",
-            headers = hashMapOf("accept" to "application/json"),
             requestBody = userSignUpRequest
         )
     }
