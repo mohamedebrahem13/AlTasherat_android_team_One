@@ -13,7 +13,6 @@ internal class LoginRemoteDataSource @Inject constructor(
         return networkProvider.post(
             responseWrappedModel = ResponseDto::class.java,
             pathUrl = "login",
-            headers = hashMapOf("accept" to "application/json"),
             requestBody = userLoginRequest
         )
     }
