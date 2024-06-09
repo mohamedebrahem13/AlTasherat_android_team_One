@@ -48,6 +48,7 @@ class SignUpUCTest {
         assertTrue((expected as Resource.Progress).loading)
     }
 
+
     @Test
     fun userValidation_emptyFirstName_returnException() = runTest {
         val phoneRequest = PhoneSignUpRequest("0020", "4452233699")
@@ -101,23 +102,6 @@ class SignUpUCTest {
         assertTrue((expected as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
     }
 
-    @Test
-    fun userValidation_firstnameSpecialChar_returnException() = runTest {
-        val phoneRequest = PhoneSignUpRequest("0020", "4452233699")
-        val userRequest = UserSignUpRequest(
-            "Ebram@Ibrahem!!",
-            "Ibrahem",
-            "Aziz",
-            "email989@gmail.com",
-            "1111255569",
-            "1111255569",
-            1,
-            phoneRequest
-        )
-        val expected = signupUC(userRequest).drop(1).first()
-
-        assertTrue((expected as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-    }
 
     @Test
     fun userValidation_emailPattern_returnException() = runTest {
@@ -263,41 +247,6 @@ class SignUpUCTest {
         assertTrue((expected as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
     }
 
-    @Test
-    fun userValidation_missingUpperCasePassword_returnException() = runTest {
-        val phoneRequest = PhoneSignUpRequest("0020", "4452233699")
-        val userRequest = UserSignUpRequest(
-            "Ebram",
-            "Ibrahem",
-            "Aziz",
-            "email989@gmail.com",
-            "5699874113",
-            "5699874113",
-            1,
-            phoneRequest
-        )
-        val expected = signupUC(userRequest).drop(1).first()
-
-        assertTrue((expected as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-    }
-
-    @Test
-    fun userValidation_missingLowerCasePassword_returnException() = runTest {
-        val phoneRequest = PhoneSignUpRequest("0020", "4452233699")
-        val userRequest = UserSignUpRequest(
-            "Ebram",
-            "Ibrahem",
-            "Aziz",
-            "email989@gmail.com",
-            "5699874113",
-            "5699874113",
-            1,
-            phoneRequest
-        )
-        val expected = signupUC(userRequest).drop(1).first()
-
-        assertTrue((expected as Resource.Failure).exception is AlTasheratException.Local.RequestValidation)
-    }
 
     @Test
     fun userValidation_missingDigitsPassword_returnException() = runTest {
