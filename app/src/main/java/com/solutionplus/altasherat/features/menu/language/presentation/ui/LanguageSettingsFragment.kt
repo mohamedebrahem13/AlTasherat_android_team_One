@@ -30,9 +30,23 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
         collectFlowWithLifecycle(viewModel.singleEvent) { event ->
             handleSingleEvent(event)
         }
+
+        collectFlowWithLifecycle(viewModel.viewState) { state ->
+            handleViewState(state)
+        }
     }
-  private fun handleSingleEvent(event: LanguageSettingsContract.LanguageSettingsContractEvent){
-      when(event){
+    private fun handleViewState(state: LanguageSettingsContract.LanguageSettingsContractViewState) {
+        when {
+
+            state.exception != null -> {
+                // Handle error state
+                handleException(exception = state.exception, action = state.action)
+            }
+        }
+    }
+
+        private fun handleSingleEvent(event: LanguageSettingsContract.LanguageSettingsContractEvent){
+       when(event){
           is LanguageSettingsContract.LanguageSettingsContractEvent.ShowWorkerStateToast ->{
               requireContext().showShortToast (event.workerState)
           }
@@ -97,7 +111,7 @@ class LanguageSettingsFragment : BaseFragment<FragmentLanguageSettingsBinding>()
 
     override fun onRetryAction(action: ViewAction?, message: String) {
         showSnackBar(message) {
-            action?.let { viewModel.processIntent(it as LanguageSettingsContract.LanguageSettingsContractAction) }
+            action?.let { viewModel.processIntent(it as LanguageSettingsContract.LanguageSettingsContractAction.SaveClick) }
         }
     }
 
