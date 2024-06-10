@@ -3,7 +3,9 @@ package com.solutionplus.altasherat.features.splash.presention.viewmodels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.common.data.models.Resource
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.services.country.data.worker.CountriesWorkerImpl
@@ -126,6 +128,12 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                     WorkInfo.State.FAILED -> {
                         val errorMessage = workInfo.outputData.getString(CountriesWorker.KEY_ERROR_MESSAGE)
                         val failureMessage = "Worker failed with error: $errorMessage"
+                        val retryException = AlTasheratException.Network.Retrial(
+                            messageRes = R.string.retry, // Replace with your string resource ID
+                            message = errorMessage // Use the error message from the worker output
+                        )
+                        setState(oldViewState.copy(exception = retryException ))
+
                         // Log the error message
                         failureMessage
                     }

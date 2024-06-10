@@ -2,8 +2,10 @@ package com.solutionplus.altasherat.features.menu.language.presentation.viewmode
 
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
+import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.helpers.logging.getClassLogger
 import com.solutionplus.altasherat.common.data.models.Resource
+import com.solutionplus.altasherat.common.data.models.exception.AlTasheratException
 import com.solutionplus.altasherat.common.presentation.viewmodel.AlTasheratViewModel
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.features.menu.language.domain.repository.interactor.GetUserPreferredCountryUC
@@ -38,7 +40,11 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
             is LanguageSettingsContract.LanguageSettingsContractAction.BackClick ->sendEvent(
                 LanguageSettingsContract.LanguageSettingsContractEvent.BackNavigation
             )
-            is LanguageSettingsContract.LanguageSettingsContractAction.SaveClick ->startCountriesWorker(oldViewState.selectedRadio.toString())
+            is LanguageSettingsContract.LanguageSettingsContractAction.SaveClick ->{
+                if (oldViewState.selectedRadio!=null){
+                    startCountriesWorker(oldViewState.selectedRadio!!)
+                }
+            }
         }
     }
     private fun startCountriesWorker(language: String) {
@@ -53,12 +59,18 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
                         val successMessage = workInfo.outputData.getString(CountriesWorker.KEY_SUCCESS_MESSAGE)
                         successMessage ?: "Worker result is null"
 
+
                     }
                     WorkInfo.State.FAILED -> {
                         val errorMessage = workInfo.outputData.getString(CountriesWorker.KEY_ERROR_MESSAGE)
-                        val failureMessage = "Worker failed with error: $errorMessage"
-                        // Log the error message
-                        failureMessage
+                        val retryException = AlTasheratException.Network.Retrial(
+                            messageRes = R.string.retry, // Replace with your string resource ID
+                            message = errorMessage // Use the error message from the worker output
+                        )
+                        setState(oldViewState.copy(exception = retryException))
+                        logger.debug(retryException.message)
+                        null // Return null since we don't want a message for the FAILED state
+
                     }
                     WorkInfo.State.BLOCKED -> "Worker BLOCKED"
                     WorkInfo.State.CANCELLED -> "Worker is cancelled"
