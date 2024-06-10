@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,26 +16,30 @@
             android:layout_height="match_parent">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profile_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="8dp"
+                android:padding="7dp"
+                android:scaleType="centerCrop"
                 android:visibility="gone"
-                app:civ_border_color="@color/primary"
-                app:civ_border_width="2dp"
+                app:contentPadding="4dp"
                 app:layout_constraintBottom_toTopOf="@+id/list_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ImageContrastCheck" />
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="2dp"
+                tools:ignore="ImageContrastCheck"
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/profile_name"
                 style="@style/TextView.Heavy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/profile"
                 android:textSize="20sp"
                 android:visibility="gone"
@@ -50,10 +53,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/Edit_Profile"
-                android:visibility="gone"
                 android:textSize="14sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,9 +80,7 @@
                 android:id="@+id/list_view"
                 android:layout_width="0dp"
                 android:layout_height="390dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:divider="@null"
                 android:dividerHeight="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +108,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rectangle_shape"
-                android:drawableEnd="@drawable/signout"
+                android:drawableEnd="@drawable/ic_logout"
                 android:drawablePadding="8dp"
                 android:text="@string/sign_out"
                 android:textAlignment="textStart"
@@ -119,8 +120,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.942"
                 app:layout_constraintStart_toEndOf="@+id/current_version"
-                app:layout_constraintTop_toBottomOf="@+id/list_view"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/list_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
@@ -141,10 +141,10 @@
             android:id="@+id/button_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:layout_marginVertical="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/close_button_background"
+            android:padding="16dp"
             android:src="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -166,8 +166,9 @@
 
         <TextView
             style="@style/TextView.Medium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:text="@string/email_confirm_text"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/button_verification"

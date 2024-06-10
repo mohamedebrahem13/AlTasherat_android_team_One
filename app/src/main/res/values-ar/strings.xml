@@ -73,7 +73,7 @@
     <string name="language">اللغة</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="sign_out">تسجيل الخروج</string>
-    <string name="Current_version">النسخة الحالية </string>
+    <string name="Current_version">النسخة الحالية :</string>
     <!--endregion-->
 
     <!--region About, Terms and Conditions, Privacy Policy-->
