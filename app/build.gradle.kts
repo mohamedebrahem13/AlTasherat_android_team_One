@@ -132,9 +132,6 @@ dependencies {
     // Coil
     implementation(libs.coil.kt)
 
-    // Circle Imageview
-    implementation(libs.circleimageview)
-
     // Swipe Refresh Layout
     implementation(libs.swiperefreshlayout)
 }
