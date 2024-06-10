@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.solutionplus.altasherat.R
 import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
@@ -130,7 +131,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
         val currentText = binding.currentVersion.text.toString()
 
         // Append the app version string to the current text
-        val updatedText = "$currentText ${getAppVersion(requireContext())}"
+        val updatedText = "$currentText ${getAppVersion(requireContext())}V"
 
         // Set the updated text back to the TextView
         binding.currentVersion.text = updatedText
@@ -173,7 +174,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), ItemAdapter.Item
                 getString(R.string.user_full_name, user.firstname, user.middlename, user.lastname)
             profileName.text = fullName
             profileImage.load(user.image.path) {
-                placeholder(R.drawable.profile_placeholder).error(R.drawable.profile_placeholder)
+                crossfade(true)
+                placeholder(R.drawable.ic_no_profile_image)
+                error(R.drawable.ic_no_profile_image)
+                transformations(CircleCropTransformation())
             }
             signOut.setOnClickListener {
                 viewModel.onActionTrigger(ProfileContract.ProfileAction.SignOut)
