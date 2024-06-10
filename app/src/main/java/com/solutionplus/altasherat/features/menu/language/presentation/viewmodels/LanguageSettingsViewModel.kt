@@ -34,7 +34,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
         setState(oldViewState.copy(action = action))
         when (action) {
             is LanguageSettingsContract.LanguageSettingsContractAction.RadioButtonClick ->{
-                setState(oldViewState.copy(selectedRadio = action.selectedRadio))
+                setState(oldViewState.copy(selectedRadio = action.selectedRadio, exception = null))
             }
 
             is LanguageSettingsContract.LanguageSettingsContractAction.BackClick ->sendEvent(
@@ -64,8 +64,8 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
                     WorkInfo.State.FAILED -> {
                         val errorMessage = workInfo.outputData.getString(CountriesWorker.KEY_ERROR_MESSAGE)
                         val retryException = AlTasheratException.Network.Retrial(
-                            messageRes = R.string.retry, // Replace with your string resource ID
-                            message = errorMessage // Use the error message from the worker output
+                            messageRes = R.string.check_internet,
+                            message = errorMessage
                         )
                         setState(oldViewState.copy(exception = retryException))
                         logger.debug(retryException.message)

@@ -129,8 +129,8 @@ class LanguageViewModel @Inject constructor(private val getCountriesFromLocalUse
                         val errorMessage = workInfo.outputData.getString(CountriesWorker.KEY_ERROR_MESSAGE)
                         val failureMessage = "Worker failed with error: $errorMessage"
                         val retryException = AlTasheratException.Network.Retrial(
-                            messageRes = R.string.retry, // Replace with your string resource ID
-                            message = errorMessage // Use the error message from the worker output
+                            messageRes = R.string.check_internet,
+                            message = errorMessage
                         )
                         setState(oldViewState.copy(exception = retryException ))
 

@@ -9,6 +9,8 @@
     <string name="decryption_error">خطأ في فك التشفير</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="dismiss">تجاهل</string>
+    <string name="check_internet">من فضلك تحقق من الانترنت </string>
+
     <!--endregion-->
 
     <!--region Onboarding-->
