@@ -31,7 +31,7 @@ class LanguageSettingsViewModel@Inject constructor(private val countriesWorkerIm
     }
 
     override fun onActionTrigger(action: ViewAction?) {
-        setState(oldViewState.copy(action = action))
+        setState(oldViewState.copy(exception = null, action = action))
         when (action) {
             is LanguageSettingsContract.LanguageSettingsContractAction.RadioButtonClick ->{
                 setState(oldViewState.copy(selectedRadio = action.selectedRadio, exception = null))
