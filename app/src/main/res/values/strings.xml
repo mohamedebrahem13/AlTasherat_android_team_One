@@ -8,6 +8,8 @@
     <string name="decryption_error">Decryption error</string>
     <string name="retry">Retry</string>
     <string name="dismiss">Dismiss</string>
+    <string name="check_internet">please check your internet </string>
+
     <!--endregion-->
 
     <!--region Onboarding-->
@@ -200,4 +202,5 @@ who are we?\nEgypt Key is the number one tourism app. It is also the comprehensi
     <string name="new_password_validation">New password must not be the same as the old password and must be between 8 and 50 characters.</string>
     <string name="confirm_password_validation">Password confirmation must match the password.</string>
     <!--endregion-->
+
 </resources>
