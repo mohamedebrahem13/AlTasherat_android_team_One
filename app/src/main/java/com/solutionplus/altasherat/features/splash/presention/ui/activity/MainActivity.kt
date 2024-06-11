@@ -1,4 +1,4 @@
-package com.solutionplus.altasherat.features
+package com.solutionplus.altasherat.features.splash.presention.ui.activity
 
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -29,13 +29,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         private val logger = getClassLogger()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        if (!navController.popBackStack()) {
-            // Call finish() on your Activity
-            finish()
-        }
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
 
 
 }
