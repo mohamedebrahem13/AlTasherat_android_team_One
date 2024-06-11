@@ -62,8 +62,8 @@ class UpdatePersonalInfoUC(
         requestMap["middlename"] = request.middlename
         requestMap["email"] = request.email
         requestMap["birthdate"] = request.birthDate
-        requestMap["number"] = request.phone.number
-        requestMap["country_code"] = request.phone.countryCode
+        requestMap["phone[number]"] = request.phone.number
+        requestMap["phone[country_code]"] = request.phone.countryCode
         requestMap["country"] = request.countryId.toString()
 
         //Files

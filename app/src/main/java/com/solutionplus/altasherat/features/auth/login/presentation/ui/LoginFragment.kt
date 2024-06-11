@@ -43,6 +43,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginSignupButtonLis
         binding.textForgetPassword.setOnClickListener {
             findNavController().navigate(R.id.action_authViewPagerFragment_to_fragmentViewPagerResetPassword)
         }
+
+        binding.etCountryCode.setOnClickListener{
+            binding.etCountryCode.showDropDown()
+        }
     }
 
     override fun onLoading(isLoading: Boolean) {
