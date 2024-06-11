@@ -45,7 +45,10 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(), LoginSignupButtonL
                 countryId = country?.id
                 countryCode = country?.phoneCode
             }
+        }
 
+        binding.etCountryCode.setOnClickListener {
+            binding.etCountryCode.showDropDown()
         }
     }
 

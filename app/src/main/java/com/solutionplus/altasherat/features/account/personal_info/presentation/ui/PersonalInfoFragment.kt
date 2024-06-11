@@ -157,7 +157,7 @@ class PersonalInfoFragment : BaseFragment<FragmentPersonalInfoBinding>() {
                     lastname = inputLastName.editText?.text.toString(),
                     phone = PhoneRequest(
                         number = inputPhoneNumber.editText?.text.toString(),
-                        countryCode = countries[selectedCountryIndex].phoneCode
+                        countryCode = countries[selectedCountryCodeIndex].phoneCode
                     ),
                     email = inputEmail.editText?.text.toString(),
                     birthDate = inputBirthDate.editText?.text.toString(),

@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -53,3 +55,17 @@ fun Fragment.showSnackBar(message: String, onRetryClicked: () -> Unit) {
         .setAction(R.string.retry) { onRetryClicked() }
         .show()
 }
+
+// region StatusBar
+fun Activity.hideStatusBars() {
+    WindowInsetsControllerCompat(
+        window, window.decorView
+    ).hide(WindowInsetsCompat.Type.statusBars())
+}
+
+fun Activity.showStatusBars() {
+    WindowInsetsControllerCompat(
+        window, window.decorView
+    ).show(WindowInsetsCompat.Type.statusBars())
+}
+// endregion
