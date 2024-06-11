@@ -26,9 +26,6 @@
             android:configChanges="uiMode"
             android:exported="false" />
 
-        <activity
-            android:name=".features.splash.presention.ui.activity.OnboardingActivity"
-            android:exported="false" />
 
         <activity
             android:name=".features.MainActivity"
