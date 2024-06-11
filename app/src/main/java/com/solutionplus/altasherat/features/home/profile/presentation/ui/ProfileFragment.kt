@@ -16,7 +16,7 @@ import com.solutionplus.altasherat.android.extentions.showSnackBar
 import com.solutionplus.altasherat.common.presentation.ui.base.fragment.BaseFragment
 import com.solutionplus.altasherat.common.presentation.viewmodel.ViewAction
 import com.solutionplus.altasherat.databinding.FragmentProfileBinding
-import com.solutionplus.altasherat.features.MainActivity
+import com.solutionplus.altasherat.features.splash.presention.ui.activity.MainActivity
 import com.solutionplus.altasherat.features.auth.presentation.AuthActivity
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.Item
 import com.solutionplus.altasherat.features.home.profile.presentation.ui.adapter.ItemAdapter
