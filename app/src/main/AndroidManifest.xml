@@ -28,7 +28,7 @@
 
 
         <activity
-            android:name=".features.MainActivity"
+            android:name=".features.splash.presention.ui.activity.MainActivity"
             android:exported="true">
 
             <intent-filter>
