@@ -30,7 +30,10 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
             selectedCountryItem.let { country ->
                 countryCode = country?.phoneCode
             }
+        }
 
+        binding.etCountryCode.setOnClickListener {
+            binding.etCountryCode.showDropDown()
         }
     }
 
